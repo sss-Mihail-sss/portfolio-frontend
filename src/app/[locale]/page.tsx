@@ -1,6 +1,6 @@
 import {ChevronsRight} from 'lucide-react';
 
-import { Button, buttonVariants } from '@/ui/button';
+import { Button, buttonVariants } from '@/components/dnd/ui/button';
 
 type Props = {
   params: {

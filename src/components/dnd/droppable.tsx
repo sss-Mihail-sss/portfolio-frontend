@@ -10,7 +10,7 @@ const droppableVariants = tv({
   base: '',
   variants: {
     isOver: {
-      true: 'bg-primary/10',
+      true: 'bg-blue-200',
       false: '',
     },
   },
@@ -28,7 +28,7 @@ const Droppable = ({ children, className, id }: Props) => {
   return (
     <div
       ref={setNodeRef}
-      className={cn(droppableVariants({ isOver }), className)}
+      className={cn(className, droppableVariants({ isOver }))}
     >
       {children}
     </div>

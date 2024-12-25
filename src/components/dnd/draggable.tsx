@@ -2,7 +2,7 @@
 
 import { ReactNode } from 'react';
 import { useDraggable } from '@dnd-kit/core';
-import { CSS } from '@dnd-kit/utilities';
+import { tv } from 'tailwind-variants';
 
 type Props = {
   children: ReactNode;
@@ -10,15 +10,20 @@ type Props = {
   data?: AnyData;
 }
 
-const Draggable = ({ children, id, data }: Props) => {
-  const { attributes, listeners, setNodeRef, transform } = useDraggable({ id, data });
+const draggable = tv({
+  base: '',
+  variants: {
+    isDragging: {
+      true: 'opacity-50',
+    },
+  },
+});
 
-  const style = transform ? {
-    transform: CSS.Translate.toString(transform),
-  } : undefined;
+const Draggable = ({ children, id, data }: Props) => {
+  const { attributes, listeners, setNodeRef, isDragging } = useDraggable({ id, data });
 
   return (
-    <div ref={setNodeRef} style={style} {...listeners} {...attributes}>
+    <div ref={setNodeRef} {...listeners} {...attributes} className={draggable({ isDragging })}>
       {children}
     </div>
   );

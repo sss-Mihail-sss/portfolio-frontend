@@ -23,7 +23,6 @@ const buttonVariants = tv({
   },
   defaultVariants: {
     variant: 'default',
-    color: 'default',
     size: 'default',
   },
 });

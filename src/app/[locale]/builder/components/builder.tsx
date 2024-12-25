@@ -2,28 +2,22 @@
 
 import { useState } from 'react';
 
-import { closestCenter, DndContext, KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
-import { sortableKeyboardCoordinates } from '@dnd-kit/sortable';
-import type { DragEndEvent } from '@dnd-kit/core/dist/types';
+import { DndContext, KeyboardSensor, PointerSensor, pointerWithin, useSensor, useSensors } from '@dnd-kit/core';
+import { arrayMove, SortableContext, sortableKeyboardCoordinates } from '@dnd-kit/sortable';
+import type { DragEndEvent, DragStartEvent } from '@dnd-kit/core/dist/types';
 import { v4 } from 'uuid';
 
 import { Draggable } from '@/components/dnd/draggable';
-import { Button } from '@/ui/button';
 import { Droppable } from '@/components/dnd/droppable';
 import { components } from '@/lib/dnd/components-list';
-
-type Block = {
-  id: UniqueIdentifier;
-  slug: string;
-  props: {
-    className?: string;
-    [key: string]: string | number | undefined;
-  }
-  items: Block[];
-}
+import { BuilderDragOverlay } from './drag-overlay';
+import { cn } from '@/lib/utils';
+import { SortableItem } from '@/components/dnd/sortable-item';
 
 const Builder = () => {
-  const [blocks, setBlocks] = useState<Block[]>([]);
+  const [blocks, setBlocks] = useState<DndBlock[]>([]);
+  const [active, setActive] = useState<DndBlock>();
+
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
@@ -31,12 +25,16 @@ const Builder = () => {
     }),
   );
 
-  function addItemToBlock(blocks: Block[], blockId: UniqueIdentifier, newItem: Block): Block[] {
+  function addItemToBlock(blocks: DndBlock[], blockId: UniqueIdentifier, newItem: DndBlock): DndBlock[] {
     let found = false;
 
     const updatedBlocks = blocks.map(block => {
       if (block.id === blockId) {
         found = true;
+
+        if (!block.items) {
+          block.items = [];
+        }
 
         return {
           ...block,
@@ -44,7 +42,7 @@ const Builder = () => {
         };
       }
 
-      if (block.items.length > 0) {
+      if (block.items && block.items.length > 0) {
         return {
           ...block,
           items: addItemToBlock(block.items, blockId, newItem),
@@ -61,35 +59,62 @@ const Builder = () => {
     return updatedBlocks;
   }
 
-  function onDragEnd(event: DragEndEvent) {
-    const { over, active } = event;
-    const id = v4();
+  function handleDragStart(event: DragStartEvent) {
+    const { active } = event;
 
-    if (!over || !active.data.current?.slug) {
+    if (!active.data.current) {
       return;
     }
 
-    const newItem: Block = {
+    setActive({
+      id: active.id,
+      slug: active.data.current.slug,
+      props: active.data.current.props,
+    });
+  }
+
+  function handleDragEnd(event: DragEndEvent) {
+    const { over, active } = event;
+    const id = v4();
+
+    if (!over || !active.data.current) {
+      return;
+    }
+
+    const newItem: DndBlock = {
       id,
       slug: active.data.current.slug,
-      props: active.data.current?.props,
+      props: active.data.current.props,
       items: [],
     };
 
+    if (over.id != 'preview' && active.id !== over.id) {
+      setBlocks((items) => {
+        const oldIndex = items.findIndex(item => item.id === active.id);
+        const newIndex = items.findIndex(item => item.id === over.id);
+
+        return arrayMove(items, oldIndex, newIndex);
+      });
+    }
+
     setBlocks(prev => addItemToBlock(prev, active.id, newItem));
+    setActive(undefined);
   }
 
   return (
     <DndContext
-      onDragEnd={onDragEnd}
       id="builder"
       sensors={sensors}
-      collisionDetection={closestCenter}
+      collisionDetection={pointerWithin}
+      onDragStart={handleDragStart}
+      onDragEnd={handleDragEnd}
     >
       <div className="flex flex-col gap-2 p-4 w-72 border-r">
         {
           components.map((component, index) => {
             const Component = component.component;
+
+            const { className, ...props } = component?.props || {};
 
             return (
               <Draggable
@@ -100,20 +125,40 @@ const Builder = () => {
                   props: component.props,
                 }}
               >
-                <Component {...component.props} />
+                <Component {...props} className={cn('cursor-pointer', className)}>
+                  {component.title}
+                </Component>
               </Draggable>
             );
           })
         }
       </div>
 
-      <Droppable className="flex-1" id="preview">
-        {
-          blocks.map(block => (
-            <Button key={block.id} {...block.props} />
-          ))
-        }
-      </Droppable>
+      <div className="flex-1 p-12">
+        <Droppable className="bg-muted border border-dashed h-full" id="preview">
+          <SortableContext items={blocks}>
+            {
+              blocks.map(block => {
+                const Component = components.find(c => c.slug === block.slug);
+
+                if (!Component) {
+                  return;
+                }
+
+                return (
+                  <SortableItem key={block.id} id={block.id}>
+                    <Component.component {...block.props} >
+                      {block.id}
+                    </Component.component>
+                  </SortableItem>
+                );
+              })
+            }
+          </SortableContext>
+        </Droppable>
+      </div>
+
+      <BuilderDragOverlay item={active} />
     </DndContext>
   );
 };
