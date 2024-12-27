@@ -8,7 +8,7 @@ type Props = {
 
 const Container = ({ children, className }: Props) => {
   return (
-    <div className={cn('', className)}>
+    <div className={cn('bg-background', className)}>
       {children}
     </div>
   );

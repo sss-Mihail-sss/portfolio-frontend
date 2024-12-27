@@ -1,38 +1,28 @@
 @utility theme-slate {
-  --background: light-dark(hsl(0 0% 100%), hsl(240 10% 3.9%));
-  --foreground: light-dark(hsl(240 10% 3.9%), hsl(0 0% 98%));
+  --background: light-dark(
+      oklch(100% 0 106.37),
+      oklch(17.76% 0 0)
+  );
+  --background-soft: light-dark(
+      oklch(100% 0 106.37),
+      oklch(26.45% 0 0)
+  );
 
-  --card: light-dark(hsl(0 0% 100%), hsl(240 10% 3.9%));
-  --card-foreground: light-dark(hsl(240 10% 3.9%), hsl(0 0% 98%));
+  --foreground: light-dark(
+      oklch(26.45% 0 0),
+      oklch(100% 0 106.37)
+  );
+  --foreground-soft: light-dark(
+      oklch(37.96% 0.1783 293.74),
+      oklch(94.33% 0.0284 294.59)
+  );
 
-  --popover: light-dark(hsl(0 0% 100%), hsl(240 10% 3.9%));
-  --popover-foreground: light-dark(hsl(240 10% 3.9%), hsl(0 0% 98%));
-
-  --primary: light-dark(hsl(240 5.9% 10%), hsl(0 0% 98%));
-  --primary-foreground: light-dark(hsl(0 0% 98%), hsl(240 5.9% 10%));
-
-  --secondary: light-dark(hsl(240 4.8% 95.9%), hsl(240 3.7% 15.9%));
-  --secondary-foreground: light-dark(hsl(240 5.9% 10%), hsl(0 0% 98%));
-
-  --muted: light-dark(hsl(240 4.8% 95.9%), hsl(240 3.7% 15.9%));
-  --muted-foreground: light-dark(hsl(240 3.8% 46.1%), hsl(240 5% 64.9%));
-
-  --accent: light-dark(hsl(240 4.8% 95.9%), hsl(240 3.7% 15.9%));
-  --accent-foreground: light-dark(hsl(240 5.9% 10%), hsl(0 0% 98%));
-
-  --info: light-dark(hsl(221.2 83.2% 53.3%), hsl(217.2 91.2% 59.8%));
-  --info-foreground: light-dark(hsl(210 40% 98%), hsl(222.2 47.4% 11.2%));
-
-  --success: light-dark(hsl(142.1 70.6% 45.3%), hsl(142.1 76.2% 36.3%));
-  --success-foreground: light-dark(hsl(355.7 100% 97.3%), hsl(144.9 80.4% 10%));
-
-  --warning: light-dark(hsl(24.6 95% 53.1%), hsl(20.5 90.2% 48.2%));
-  --warning-foreground: light-dark(hsl(60 9.1% 97.8%), hsl(60 9.1% 97.8%));
-
-  --error: light-dark(hsl(0 84.2% 60.2%), hsl(0 62.8% 30.6%));
-  --error-foreground: light-dark(hsl(0 0% 98%), hsl(0 0% 98%));
-
-  --border: light-dark(hsl(240 5.9% 90%), hsl(240 3.7% 15.9%));
-  --input: light-dark(hsl(240 5.9% 90%), hsl(240 3.7% 15.9%));
-  --ring: light-dark(hsl(240 5.9% 10%), hsl(240 4.9% 83.9%));
+  --primary: light-dark(
+      oklch(54.13% 0.2466 293.01),
+      oklch(28.27% 0.1351 291.09)
+  );
+  --primary-foreground: light-dark(
+      oklch(28.27% 0.1351 291.09),
+      oklch(96.91% 0.016059133147051364 293.7557582814141)
+  );
 }

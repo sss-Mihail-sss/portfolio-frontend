@@ -10,7 +10,10 @@
 
 @theme inline {
   --color-background: var(--background);
+  --color-background-soft: var(--background-soft);
+
   --color-foreground: var(--foreground);
+  --color-foreground-soft: var(--foreground-soft);
 
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
@@ -31,7 +34,7 @@
   --color-accent-foreground: var(--accent-foreground);
 
   --color-info: var(--info);
-  --color-info-foreground: var(--info-foreground);
+  --color-info-soft: var(--info-soft);
 
   --color-success: var(--success);
   --color-success-foreground: var(--success-foreground);
@@ -45,6 +48,17 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    @apply transition;
+    border-color: var(--foreground-soft, currentColor);
+  }
 }
 
 @utility container {

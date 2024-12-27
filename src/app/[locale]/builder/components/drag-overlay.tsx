@@ -27,7 +27,7 @@ const BuilderDragOverlay = ({ item }: Props) => {
         duration: 200,
         easing: 'cubic-bezier(0.18, 0.67, 0.6, 1.22)',
       }}
-      className="cursor-move"
+      className="cursor-move z-10"
     >
       <Component key={item.id} {...item.props} >
         {component.title}

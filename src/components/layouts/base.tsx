@@ -13,7 +13,7 @@ type Props = {
 const BaseLayout = async ({ locale, children }: Props) => {
   return (
     <html className="h-full" lang={locale}>
-      <body className={cn(geistMono.variable, geistSans.variable, 'scheme-light-dark theme-slate antialiased bg-background min-h-screen flex flex-col font-geist-sans')}>
+      <body className={cn(geistMono.variable, geistSans.variable, 'scheme-light-dark theme-slate antialiased bg-background text-foreground min-h-screen flex flex-col font-geist-sans')}>
         <SSRProviders locale={locale}>
           <CSRProvider>
             {children}

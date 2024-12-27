@@ -109,53 +109,55 @@ const Builder = () => {
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
     >
-      <div className="flex flex-col gap-2 p-4 w-72 border-r">
-        {
-          components.map((component, index) => {
-            const Component = component.component;
+      <div className='flex flex-1'>
+        <div className="flex flex-col gap-2 p-4 w-72 border-r">
+          {
+            components.map((component, index) => {
+              const Component = component.component;
 
-            const { className, ...props } = component?.props || {};
+              const { className, ...props } = component?.props || {};
 
-            return (
-              <Draggable
-                key={index}
-                id={v4()}
-                data={{
-                  slug: component.slug,
-                  props: component.props,
-                }}
-              >
-                <Component {...props} className={cn('cursor-pointer', className)}>
-                  {component.title}
-                </Component>
-              </Draggable>
-            );
-          })
-        }
-      </div>
+              return (
+                <Draggable
+                  key={index}
+                  id={v4()}
+                  data={{
+                    slug: component.slug,
+                    props: component.props,
+                  }}
+                >
+                  <Component {...props} className={cn('cursor-pointer', className)}>
+                    {component.title}
+                  </Component>
+                </Draggable>
+              );
+            })
+          }
+        </div>
 
-      <div className="flex-1 p-12">
-        <Droppable className="bg-muted border border-dashed h-full" id="preview">
-          <SortableContext items={blocks}>
-            {
-              blocks.map(block => {
-                const Component = components.find(c => c.slug === block.slug);
+        <div className="flex-1 p-12">
+          <Droppable className="bg-background-soft border border-dashed h-full" id="preview">
+            <SortableContext items={blocks}>
+              {
+                blocks.map(block => {
+                  const Component = components.find(c => c.slug === block.slug);
 
-                if (!Component) {
-                  return;
-                }
+                  if (!Component) {
+                    return;
+                  }
 
-                return (
-                  <SortableItem key={block.id} id={block.id}>
-                    <Component.component {...block.props} >
-                      {block.id}
-                    </Component.component>
-                  </SortableItem>
-                );
-              })
-            }
-          </SortableContext>
-        </Droppable>
+                  return (
+                    <SortableItem key={block.id} id={block.id}>
+                      <Component.component {...block.props} >
+                        {block.id}
+                      </Component.component>
+                    </SortableItem>
+                  );
+                })
+              }
+            </SortableContext>
+          </Droppable>
+        </div>
       </div>
 
       <BuilderDragOverlay item={active} />

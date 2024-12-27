@@ -1,6 +1,6 @@
 import {ChevronsRight} from 'lucide-react';
 
-import { Button, buttonVariants } from '@/components/dnd/ui/button';
+import { Button, buttonVariants } from '@/ui/button';
 
 type Props = {
   params: {
@@ -26,20 +26,14 @@ export default function HomePage({}: Props) {
         </thead>
         <tbody>
           {
-            Object.keys(variants.size).map(size => (
-              <tr key={size}>
-                <td>{size}</td>
+            Object.keys(variants.color).map(color => (
+              <tr key={color}>
+                <td>{color}</td>
                 {
                   Object.keys(variants.variant).map(variant => (
                     <td key={variant}>
-                      <Button variant={variant} size={size}>
-                        {
-                          size === 'icon' ? (
-                            <ChevronsRight/>
-                          ) : (
-                            variant
-                          )
-                        }
+                      <Button variant={variant} color={color} className='capitalize'>
+                        {color}
                       </Button>
                     </td>
                   ))
