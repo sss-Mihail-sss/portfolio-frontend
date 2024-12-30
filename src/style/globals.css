@@ -42,8 +42,8 @@
   --color-warning: var(--warning);
   --color-warning-foreground: var(--warning-foreground);
 
-  --color-error: var(--error);
-  --color-error-foreground: var(--error-foreground);
+  --color-danger: var(--danger);
+  --color-danger-foreground: var(--danger-foreground);
 
   --color-border: var(--border);
   --color-input: var(--input);

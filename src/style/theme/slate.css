@@ -1,28 +1,29 @@
 @utility theme-slate {
-  --background: light-dark(
-      oklch(100% 0 106.37),
-      oklch(17.76% 0 0)
-  );
-  --background-soft: light-dark(
-      oklch(100% 0 106.37),
-      oklch(26.45% 0 0)
-  );
+  --background: light-dark(oklch(100% 0 106.37), oklch(14.67% 0.0041 49.31));
+  --foreground: light-dark(oklch(14.05% 0.0044 285.82), oklch(96.19% 0 0));
 
-  --foreground: light-dark(
-      oklch(26.45% 0 0),
-      oklch(100% 0 106.37)
-  );
-  --foreground-soft: light-dark(
-      oklch(37.96% 0.1783 293.74),
-      oklch(94.33% 0.0284 294.59)
-  );
+  --card: light-dark(oklch(100% 0 106.37), oklch(21.61% 0.0061 56.04));
+  --card-foreground: light-dark(oklch(14.05% 0.0044 285.82), oklch(96.19% 0 0));
 
-  --primary: light-dark(
-      oklch(54.13% 0.2466 293.01),
-      oklch(28.27% 0.1351 291.09)
-  );
-  --primary-foreground: light-dark(
-      oklch(28.27% 0.1351 291.09),
-      oklch(96.91% 0.016059133147051364 293.7557582814141)
-  );
+  --popover: light-dark(oklch(100% 0 106.37), oklch(20.44% 0 0));
+  --popover-foreground: light-dark(oklch(14.05% 0.0044 285.82), oklch(96.19% 0 0));
+
+  --primary: light-dark(oklch(58.59% 0.2221 17.55), oklch(58.59% 0.2221 17.55));
+  --primary-foreground: light-dark(oklch(96.99% 0.0149 12.4), oklch(96.99% 0.0149 12.4));
+
+  --secondary: light-dark(oklch(96.76% 0.0013 286.38), oklch(27.41% 0.0055 286.03));
+  --secondary-foreground: light-dark(oklch(21.03% 0.0059 285.88), oklch(98.48% 0 0));
+
+  --muted: light-dark(oklch(96.76% 0.0013 286.38), oklch(26.97% 0 0));
+  --muted-foreground: light-dark(oklch(55.19% 0.0137 285.94), oklch(71.19% 0.0129 286.07));
+
+  --accent: light-dark(oklch(96.76% 0.0013 286.38), oklch(26.85% 0.0063 34.3));
+  --accent-foreground: light-dark(oklch(21.03% 0.0059 285.88), oklch(98.48% 0 0));
+
+  --danger: light-dark(oklch(63.68% 0.2078 25.33), oklch(39.59% 0.1331 25.72));
+  --danger-foreground: light-dark(oklch(98.48% 0 0), oklch(97.1% 0.0127 17.38));
+
+  --border: light-dark(oklch(91.97% 0.004 286.32), oklch(27.41% 0.0055 286.03));
+  --input: light-dark(oklch(91.97% 0.004 286.32), oklch(27.41% 0.0055 286.03));
+  --ring: light-dark(oklch(58.59% 0.2221 17.55), oklch(58.59% 0.2221 17.55));
 }

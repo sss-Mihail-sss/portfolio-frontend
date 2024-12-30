@@ -8,8 +8,8 @@ const buttonVariants = tv({
   variants: {
     variant: {
       default: '',
-      outline: 'outline-2 outline-primary',
-      ghost: 'bg-transparent hover:bg-accent hover:text-accent-foreground',
+      outline: 'ring-2 ring-inset ring-primary',
+      ghost: 'bg-transparent',
     },
     size: {
       default: 'text-sm h-9 px-6',
@@ -17,10 +17,10 @@ const buttonVariants = tv({
       icon: 'size-9',
     },
     color: {
-      default: 'bg-primary hover:bg-primary/90 text-foreground hover:text-foreground',
+      default: 'bg-primary hover:bg-primary/90 text-primary-foreground',
       success: '',
       warning: '',
-      error: '',
+      error: 'bg-danger hover:bg-danger/90',
       info: '',
     },
   },
@@ -32,7 +32,17 @@ const buttonVariants = tv({
   compoundVariants: [
     {
       variant: ['outline', 'ghost'],
-      className: 'bg-background',
+      className: 'bg-transparent',
+    },
+    {
+      variant: 'outline',
+      color: 'error',
+      className: 'ring-danger hover:bg-danger',
+    },
+    {
+      variant: 'ghost',
+      color: 'error',
+      className: 'hover:bg-danger',
     },
   ],
 });
