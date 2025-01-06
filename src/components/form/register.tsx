@@ -1,32 +1,32 @@
 'use client';
 
-import Image from 'next/image';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { toast } from 'sonner';
 import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
 
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/ui/form';
-import { Link } from '@/ui/link';
+import { toast } from 'sonner';
 import { Input } from '@/ui/input';
+import { Link } from '@/ui/link';
 import { Button } from '@/ui/button';
 import { Separator } from '@/ui/separator';
+import Image from 'next/image';
 
-const LoginForm = () => {
-  const loginSchema = z.object({
-    username: z.string().nonempty().min(2),
-    password: z.string().nonempty().min(8),
+const RegisterForm = () => {
+  const registerSchema = z.object({
+    username: z.string(),
+    password: z.string().min(6),
   });
 
-  const form = useForm<z.infer<typeof loginSchema>>({
-    resolver: zodResolver(loginSchema),
+  const form = useForm<z.infer<typeof registerSchema>>({
+    resolver: zodResolver(registerSchema),
     defaultValues: {
       username: '',
       password: '',
     },
   });
 
-  function onSubmit(values: z.infer<typeof loginSchema>) {
+  function onSubmit(values: z.infer<typeof registerSchema>) {
     toast('You submitted the following values:', {
       description: (
         <pre className="mt-2 rounded-md bg-slate-950 p-4">
@@ -40,7 +40,7 @@ const LoginForm = () => {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="flex p-8 flex-col max-w-sm gap-6">
         <div className="text-center">
-          <h1 className="text-2xl font-bold">Login to your account</h1>
+          <h1 className="text-2xl font-bold">Create account</h1>
           <p className="text-balance text-sm text-muted-foreground">Enter your username below to login to your
             account</p>
         </div>
@@ -117,9 +117,9 @@ const LoginForm = () => {
         </div>
 
         <div className="text-center text-sm">
-          Don&apos;t have an account?&nbsp;
-          <Link href="/register" className="underline">
-            Sign up
+          Already have an account?&nbsp;
+          <Link href="/login" className="underline">
+            Sign in
           </Link>
         </div>
       </form>
@@ -127,4 +127,4 @@ const LoginForm = () => {
   );
 };
 
-export { LoginForm };
+export { RegisterForm };

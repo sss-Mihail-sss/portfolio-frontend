@@ -11,7 +11,7 @@ const withNextIntl = createNextIntlPlugin({
 const nextConfig: NextConfig = {
   experimental: {
     authInterrupts: true,
-    reactCompiler: true,
+    // reactCompiler: true,
     typedRoutes: true,
     typedEnv: true,
   },

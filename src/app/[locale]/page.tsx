@@ -11,7 +11,7 @@ export default function HomePage({}: Props) {
 
   return (
     <div className="container flex flex-col items-center p-12 gap-4">
-      <div className="bg-card w-fit rounded">
+      <div className="bg-card shadow w-fit rounded">
         <table className="text-sm border-collapse table-auto w-full text-secondary-foreground [&_td]:py-3 [&_td]:px-8">
           <thead>
             <tr>
