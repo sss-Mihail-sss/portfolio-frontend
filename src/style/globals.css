@@ -5,6 +5,7 @@
 @theme {
   --font-geist-sans: var(--font-geist-sans);
   --font-geist-mono: var(--font-geist-mono);
+  --breakpoint-xs: 420px;
 
   --radius: 0.5rem;
 }

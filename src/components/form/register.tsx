@@ -16,6 +16,7 @@ const RegisterForm = () => {
   const registerSchema = z.object({
     username: z.string(),
     password: z.string().min(6),
+    confirmPassword: z.string().min(6),
   });
 
   const form = useForm<z.infer<typeof registerSchema>>({
@@ -23,6 +24,7 @@ const RegisterForm = () => {
     defaultValues: {
       username: '',
       password: '',
+      confirmPassword: '',
     },
   });
 
@@ -38,7 +40,7 @@ const RegisterForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="flex p-8 flex-col max-w-sm gap-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col px-4 py-8 xs:px-12 md:px-24 max-w-lg gap-6">
         <div className="text-center">
           <h1 className="text-2xl font-bold">Create account</h1>
           <p className="text-balance text-sm text-muted-foreground">Enter your username below to login to your
@@ -62,14 +64,22 @@ const RegisterForm = () => {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <div className="flex items-center justify-between">
-                <FormLabel>Password</FormLabel>
-                <Link href="/forgot-password">
-                  Forgot your password?
-                </Link>
-              </div>
+              <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input placeholder="password" type="password" {...field} />
+                <Input placeholder="******" type="password" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          name="confirmPassword"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Confirm Password</FormLabel>
+              <FormControl>
+                <Input placeholder="******" type="password" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -86,8 +96,8 @@ const RegisterForm = () => {
 
         <div className="flex flex-col gap-4">
           <Button variant="outline">
-            <Image src="/logos/google/g.svg" alt="Google logo" width={24} height={24} />
-            Log in with Google
+            <Image src="/logos/google/short.svg" alt="Google logo" width={24} height={24} />
+            Sign up with Google
           </Button>
           <Button variant="outline">
             <Image
@@ -104,15 +114,15 @@ const RegisterForm = () => {
               width={24}
               height={24}
             />
-            Log in with Github
+            Sign up with Github
           </Button>
           <Button variant="outline">
-            <Image src="/logos/facebook/short.png" alt="Github logo" width={24} height={24} />
-            Log in with Facebook
+            <Image src="/logos/facebook/short.png" alt="Facebook logo" width={24} height={24} />
+            Sign up with Facebook
           </Button>
           <Button variant="outline">
             <Image src="/logos/linkedin/short.png" alt="Linkedin logo" width={24} height={24} />
-            Log in with LinkedIn
+            Sign up with LinkedIn
           </Button>
         </div>
 
