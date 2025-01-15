@@ -3,11 +3,9 @@ import { Slot } from '@radix-ui/react-slot';
 import { tv, VariantProps } from 'tailwind-variants';
 import { cn } from '@/lib/utils';
 
-// inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2
-
 const buttonVariants = tv({
   base: 'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-sm cursor-pointer font-medium ring-offset-background' +
-    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+    'outline-none focus-visible:outline-none focus-visible:border-2 focus-visible:border-primary',
   variants: {
     variant: {
       default: '',
@@ -17,6 +15,7 @@ const buttonVariants = tv({
     size: {
       default: 'text-sm h-9 px-6',
       sm: 'text-xs h-7 px-4',
+      lg: 'h-11 px-6',
       icon: 'size-9',
     },
     color: {
@@ -58,7 +57,7 @@ const Button = ({ variant, size, className, color, asChild, ...props }: ButtonPr
   const Component = asChild ? Slot : 'button';
 
   return (
-    <Component {...props} className={cn(buttonVariants({ variant, size, color, className }))} />
+    <Component type='button' {...props} className={cn(buttonVariants({ variant, size, color, className }))} />
   );
 };
 

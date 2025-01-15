@@ -3,6 +3,8 @@
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useTranslations } from 'next-intl';
+import { signIn } from 'next-auth/react';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
@@ -13,9 +15,11 @@ import { Button } from '@/ui/button';
 import { Separator } from '@/ui/separator';
 
 const LoginForm = () => {
+  const t = useTranslations();
+
   const loginSchema = z.object({
-    username: z.string().nonempty().min(2),
-    password: z.string().nonempty().min(8),
+    username: z.string().min(2),
+    password: z.string().min(8),
   });
 
   const form = useForm<z.infer<typeof loginSchema>>({
@@ -26,32 +30,40 @@ const LoginForm = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof loginSchema>) {
+  async function onSubmit(values: z.infer<typeof loginSchema>) {
     toast('You submitted the following values:', {
       description: (
-        <pre className='mt-2 rounded-md bg-slate-950 p-4'>
+        <pre className='w-full mt-2 rounded-md bg-slate-950 p-4'>
           <code className='text-white whitespace-pre-wrap'>{JSON.stringify(values, null, 2)}</code>
         </pre>
       ),
     });
+
+    await signIn('credentials', { ...values, redirectTo: '/' });
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col px-4 py-8 xs:px-12 md:px-24 max-w-lg gap-6'>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className='flex flex-col px-4 py-8 xs:px-12 md:px-24 w-full md:w-lg gap-6'
+      >
         <div className='text-center'>
-          <h1 className='text-2xl font-bold'>Login to your account</h1>
-          <p className='text-balance text-sm text-muted-foreground'>Enter your username below to login to your
-            account</p>
+          <h1 className='text-2xl font-bold'>
+            {t('form.login.title')}
+          </h1>
+          <p className='text-balance text-sm text-muted-foreground'>
+            {t('form.login.description')}
+          </p>
         </div>
 
         <FormField
           name='username'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              <FormLabel>{t('form.login.fields.username.label')}</FormLabel>
               <FormControl>
-                <Input placeholder='maggie' {...field} />
+                <Input placeholder={t('form.login.fields.username.placeholder')} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -63,63 +75,63 @@ const LoginForm = () => {
           render={({ field }) => (
             <FormItem>
               <div className='flex items-center justify-between'>
-                <FormLabel>Password</FormLabel>
+                <FormLabel>{t('form.login.fields.password.label')}</FormLabel>
                 <Link href='/forgot-password'>
-                  Forgot your password?
+                  {t('form.login.forgot-password')}
                 </Link>
               </div>
               <FormControl>
-                <Input placeholder='password' type='password' {...field} />
+                <Input placeholder={t('form.login.fields.password.placeholder')} type='password' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        <Button type='submit'>Submit</Button>
+        <Button type='submit'>{t('form.login.buttons.submit')}</Button>
 
         <div className='flex items-center gap-2 text-sm'>
           <Separator orientation='horizontal' className='flex-1' />
-          or continue with
+          {t('form.login.or')}
           <Separator orientation='horizontal' className='flex-1' />
         </div>
 
-        <div className='flex flex-col gap-4'>
-          <Button variant='outline'>
-            <Image src='/logos/google/short.svg' alt='Google logo' width={24} height={24} />
-            Log in with Google
+        <div className='flex flex-wrap justify-center gap-4 [&>button]:basis-20'>
+          <Button variant='outline' size='lg'>
+            <Image src='/logos/google/short.svg' alt='Google logo' width={24} height={24} className='shrink-0' />
+            <span className='sr-only'>{t('form.login.social.google')}</span>
           </Button>
-          <Button variant='outline'>
+          <Button variant='outline' size='lg'>
             <Image
               className='block dark:hidden'
               src='/logos/github/short.png'
-              alt='Github logo'
+              alt='Github logo dark'
               width={24}
               height={24}
             />
             <Image
               className='hidden dark:block'
               src='/logos/github/short-white.png'
-              alt='Github logo'
+              alt='Github logo white'
               width={24}
               height={24}
             />
-            Log in with Github
+            <span className='sr-only'>{t('form.login.social.github')}</span>
           </Button>
-          <Button variant='outline'>
+          <Button variant='outline' size='lg'>
             <Image src='/logos/facebook/short.png' alt='Github logo' width={24} height={24} />
-            Log in with Facebook
+            <span className='sr-only'>{t('form.login.social.facebook')}</span>
           </Button>
-          <Button variant='outline'>
+          <Button variant='outline' size='lg'>
             <Image src='/logos/linkedin/short.png' alt='Linkedin logo' width={24} height={24} />
-            Log in with LinkedIn
+            <span className='sr-only'>{t('form.login.social.linkedin')}</span>
           </Button>
         </div>
 
         <div className='text-center text-sm'>
-          Don&apos;t have an account?&nbsp;
+          {t('form.login.no-account')}{' '}
           <Link href='/register' className='underline'>
-            Sign up
+            {t('form.login.signup')}
           </Link>
         </div>
       </form>

@@ -5,8 +5,6 @@ import { notFound } from 'next/navigation';
 import { BaseLayout } from '@/components/layouts/base';
 import { routing } from '@/lib/i18n/routing';
 
-import '@/style/globals.css';
-
 type Props = {
   children: ReactNode;
   params: Promise<{

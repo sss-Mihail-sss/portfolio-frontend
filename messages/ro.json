@@ -1,1 +1,15 @@
-{}
+{
+  "meta": {
+    "login": {
+      "title": "Autentificare"
+    },
+    "register": {
+      "title": "Înregistrare"
+    }
+  },
+  "form": {
+    "login": {
+      "title": "Login to your account"
+    }
+  }
+}

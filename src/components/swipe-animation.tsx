@@ -11,17 +11,13 @@ type Props = {
 
 const SwipeAnimation = ({ children, key }: Props) => {
   return (
-    <AnimatePresence>
+    <AnimatePresence mode='wait'>
       <m.div
         className='flex bg-card rounded overflow-hidden'
         key={key}
-        initial={{ x: 60 }}
-        animate={{ x: 0 }}
-        exit={{ x: -60 }}
-        transition={{
-          x: { type: 'spring', stiffness: 300, damping: 30 },
-          opacity: { duration: 0.2 }
-        }}
+        initial={{ scale: 0.8 }}
+        animate={{ scale: 1 }}
+        exit={{ scale: 0.6 }}
       >
         {children}
       </m.div>

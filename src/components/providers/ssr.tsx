@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
 import { Locale, NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import { domAnimation, LazyMotion } from 'framer-motion';
 
 type Props = {
   children: ReactNode;
@@ -13,9 +12,7 @@ const SSRProviders = async ({ children, locale }: Props) => {
 
   return (
     <NextIntlClientProvider messages={messages}>
-      {/*<LazyMotion features={domAnimation} strict>*/}
-        {children}
-      {/*</LazyMotion>*/}
+      {children}
     </NextIntlClientProvider>
   );
 };

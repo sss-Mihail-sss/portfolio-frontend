@@ -8,7 +8,7 @@ import { tv, VariantProps } from 'tailwind-variants';
 import { cn } from '@/lib/utils';
 
 const labelVariants = tv({
-  base: 'text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
+  base: 'text-base md:text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
 });
 
 type LabelProps = ComponentProps<typeof LabelPrimitive.Root> & VariantProps<typeof labelVariants>;
