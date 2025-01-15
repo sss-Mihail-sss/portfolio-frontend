@@ -2,6 +2,8 @@
 
 @import "./theme/green.css";
 
+@plugin "./animate-plugin.js";
+
 @theme {
   --font-geist-sans: var(--font-geist-sans);
   --font-geist-mono: var(--font-geist-mono);
@@ -47,7 +49,7 @@
   ::before,
   ::backdrop,
   ::file-selector-button {
-    @apply transition border-border;
+    @apply border-border;
   }
 }
 

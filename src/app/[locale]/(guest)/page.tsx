@@ -1,5 +1,4 @@
-import { auth, signOut } from '@/lib/auth';
-import { Button } from '@/ui/button';
+import { auth } from '@/lib/auth';
 
 type Props = {
   params: Promise<{
@@ -12,12 +11,7 @@ export default async function HomePage({}: Props) {
 
   return (
     <>
-      <Button onClick={async () => {
-        'use server';
-        await signOut()
-      }}>
-        Logout
-      </Button>
+      main page
     </>
   );
 }
