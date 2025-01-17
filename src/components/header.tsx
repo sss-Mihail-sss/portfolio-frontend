@@ -1,3 +1,5 @@
+import { House, LayoutDashboard, LogOut, Menu, Search, Settings, User } from 'lucide-react';
+
 import { Logo } from '@/components/logo';
 import { Link } from '@/ui/link';
 import { auth, signOut } from '@/lib/auth';
@@ -21,53 +23,77 @@ const Header = async () => {
   }
 
   return (
-    <header className="bg-card py-4">
-      <div className="container flex items-center justify-between">
-        <Logo />
+    <header className='fixed w-full bottom-0 md:top-0 bg-card flex items-center md:h-20 py-4 '>
+      <div className='container flex items-center justify-between'>
+        <Logo className='hidden md:block' />
 
-        <nav className="flex items-center gap-4 [&>a]:underline-offset-4">
-          <Link variant="underline" href="/">
-            Home
+        <nav className='flex items-center justify-between md:justify-center w-full md:w-auto gap-4 px-6 md:px-0 md:[&>a]:underline-offset-4'>
+          <Link variant='underline' href='/'>
+            <House className='md:hidden' />
+            <span className='hidden md:block'>Home</span>
           </Link>
-          <Link variant="underline" href="/about">
-            About
+          <Link variant='underline' href='/about'>
+            <Search className='md:hidden' />
+            <span className='hidden md:block'>About</span>
           </Link>
-          <Link variant="underline" href="/contact">
-            Contact
+          <Link variant='underline' href='/contact'>
+            <User className='md:hidden' />
+            <span className='hidden md:block'>Contact</span>
           </Link>
+
+          <Menu className='md:hidden cursor-pointer' />
 
           {
             (session && session.user) ? (
               <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Avatar className="cursor-pointer">
+                <DropdownMenuTrigger asChild className='hidden md:flex'>
+                  <Avatar className='cursor-pointer'>
                     <AvatarImage src={session.user.avatar} alt={session.user.username} />
                     <AvatarFallback>
                       {`${session.user.firstName?.trim()[0].toUpperCase()}${session.user.lastName?.trim()[0].toUpperCase()}`}
                     </AvatarFallback>
                   </Avatar>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-34 mt-2">
+                <DropdownMenuContent className='w-42 mt-2'>
                   <DropdownMenuLabel>
-                    {session.user.username}
+                    <p className=''>{session.user.firstName} {session.user.lastName}</p>
+                    <p className='text-xs text-muted-foreground'>
+                      {session.user.role === 'admin' ? session.user.role : session.user.email}
+                    </p>
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    <Link href="/profile">
-                      <div>
-                        Profile
-                      </div>
-                    </Link>
-                  </DropdownMenuItem>
+                  <Link href='/profile'>
+                    <DropdownMenuItem>
+                      <User />
+                      Profile
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link href='/setting'>
+                    <DropdownMenuItem>
+                      <Settings />
+                      Setting
+                    </DropdownMenuItem>
+                  </Link>
+                  {
+                    session.user.role === 'admin' && (
+                      <Link href='/admin'>
+                        <DropdownMenuItem>
+                          <LayoutDashboard />
+                          Admin
+                        </DropdownMenuItem>
+                      </Link>
+                    )
+                  }
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={logout}>
-                    Logout
+                    <LogOut />
+                    Log Out
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
               <Button asChild>
-                <Link href="/login">
+                <Link href='/login'>
                   Login
                 </Link>
               </Button>

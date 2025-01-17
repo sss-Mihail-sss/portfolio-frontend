@@ -59,6 +59,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             firstName: 'Maggie',
             lastName: 'Simpson',
             avatar: '/users/1/maggie.png',
+            role: 'admin',
           };
         }
 
@@ -68,8 +69,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   ],
   callbacks: {
     async jwt({
-      token, // signIn or signUp
-      user,  // signIn or signUp
+      token, // trigger = signIn or signUp
+      user,  // trigger = signIn or signUp
       session,
       trigger,
     }) {
@@ -77,7 +78,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
       return {
         ...token,
-        ...user
+        ...user,
       };
     },
     async signIn({ user, account, credentials }) {
