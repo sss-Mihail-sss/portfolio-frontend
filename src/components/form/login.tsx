@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { signIn } from 'next-auth/react';
 import { toast } from 'sonner';
 import { z } from 'zod';
@@ -13,14 +13,13 @@ import { Link } from '@/ui/link';
 import { Input } from '@/ui/input';
 import { Button } from '@/ui/button';
 import { Separator } from '@/ui/separator';
+import { redirect, useRouter } from '@/lib/i18n/routing';
+import { loginSchema } from '@/lib/zod';
 
 const LoginForm = () => {
   const t = useTranslations();
-
-  const loginSchema = z.object({
-    username: z.string().min(2),
-    password: z.string().min(8),
-  });
+  const locale = useLocale();
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
@@ -31,15 +30,25 @@ const LoginForm = () => {
   });
 
   async function onSubmit(values: z.infer<typeof loginSchema>) {
-    toast('You submitted the following values:', {
-      description: (
-        <pre className='w-full mt-2 rounded-md bg-slate-950 p-4'>
-          <code className='text-white whitespace-pre-wrap'>{JSON.stringify(values, null, 2)}</code>
-        </pre>
-      ),
-    });
+    // toast('Login request data:', {
+    //   description: (
+    //     <pre className='w-full mt-2 rounded-md bg-slate-950 p-4'>
+    //       <code className='text-white whitespace-pre-wrap'>{JSON.stringify(values, null, 2)}</code>
+    //     </pre>
+    //   ),
+    // });
 
-    await signIn('credentials', { ...values, redirectTo: '/' });
+    await signIn('credentials', { ...values, redirect: false })
+      .then((response) => {
+        console.log('Login response:', response);
+        if (response?.error) {
+          if (response?.code == 'credentials') {
+            toast.error(t('form.login.error.credentials'));
+          }
+        } else {
+          router.push('/');
+        }
+      });
   }
 
   return (

@@ -48,15 +48,15 @@ const Header = async () => {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild className='hidden md:flex'>
                   <Avatar className='cursor-pointer'>
-                    <AvatarImage src={session.user.avatar} alt={session.user.username} />
+                    <AvatarImage src={session.user.profile.avatar} alt={session.user.username} />
                     <AvatarFallback>
-                      {`${session.user.firstName?.trim()[0].toUpperCase()}${session.user.lastName?.trim()[0].toUpperCase()}`}
+                      {`${session.user.profile.firstName?.trim()[0].toUpperCase()}${session.profile.user.lastName?.trim()[0].toUpperCase()}`}
                     </AvatarFallback>
                   </Avatar>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className='w-42 mt-2'>
                   <DropdownMenuLabel>
-                    <p className=''>{session.user.firstName} {session.user.lastName}</p>
+                    <p className=''>{session.user.profile.firstName} {session.user.profile.lastName}</p>
                     <p className='text-xs text-muted-foreground'>
                       {session.user.role === 'admin' ? session.user.role : session.user.email}
                     </p>

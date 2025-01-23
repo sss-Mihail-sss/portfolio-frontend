@@ -26,9 +26,10 @@
     "clsx": "^2.1.1",
     "geist": "^1.3.1",
     "jotai": "^2.11.0",
+    "jwt-decode": "^4.0.0",
     "lucide-react": "^0.471.1",
     "motion": "^11.18.0",
-    "next": "^15.1.4",
+    "next": "^15.1.6",
     "next-auth": "^5.0.0-beta.25",
     "next-intl": "^4.0.0-beta-f10dbba",
     "react": "^19.0.0",
@@ -43,14 +44,14 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@tailwindcss/language-server": "^0.12.18",
+    "@tailwindcss/language-server": "^0.14.1",
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "^15.0.0",
     "postcss": "^8",
-    "tailwindcss": "^4.0.0-beta.9",
+    "tailwindcss": "^4.0.0",
     "typescript": "^5"
   }
 }

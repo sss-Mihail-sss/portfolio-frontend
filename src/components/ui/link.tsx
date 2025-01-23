@@ -16,8 +16,6 @@ const linkVariants = tv({
 type LinkProps = ComponentProps<typeof ILink> & VariantProps<typeof linkVariants>;
 
 const Link = ({ ref, variant, className, ...props }: LinkProps) => {
-  console.log(props);
-
   return (
     <ILink ref={ref} className={cn(linkVariants({ variant }), className)} {...props} />
   );
