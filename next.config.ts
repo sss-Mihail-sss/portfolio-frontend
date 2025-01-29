@@ -22,6 +22,7 @@ const nextConfig: NextConfig = {
     AUTH_SECRET: process.env.AUTH_SECRET,
     API_URL: process.env.API_URL,
     WEB_URL: process.env.WEB_URL,
+    CHAT_GPT_KEY: process.env.CHAT_GPT_KEY,
   },
 };
 

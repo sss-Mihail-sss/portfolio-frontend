@@ -25,7 +25,7 @@ const Header = async () => {
   }
 
   return (
-    <header className='fixed w-full bottom-0 md:top-0 bg-card flex items-center md:h-20 py-4 '>
+    <header className='sticky w-full bottom-0 md:top-0 bg-card flex items-center md:h-20 py-4 '>
       <div className='container flex items-center justify-between'>
         <Logo className='hidden md:block' />
 

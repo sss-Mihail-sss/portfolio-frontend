@@ -10,6 +10,7 @@ export default async function GuestLayout({ children }: Props) {
   return (
     <>
       <Header />
+
       {children}
     </>
   );
