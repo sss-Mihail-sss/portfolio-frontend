@@ -11,16 +11,25 @@ async function refreshAccessToken(nextAuthJWT: JWT) {
   try {
     const tokens = await refresh(nextAuthJWT.data.tokens.refreshToken);
 
+    console.log(tokens);
     if (!tokens) {
       throw tokens;
     }
 
-    const { exp } = jwtDecode(tokens.accessToken);
-    nextAuthJWT.data.validity.validUntil = exp;
-    nextAuthJWT.data.tokens.accessToken = tokens.accessToken;
+    const { accessToken, refreshToken } = tokens;
+
+    const decodedAccessToken: DecodedJWT = jwtDecode(accessToken);
+    const decodedRefreshToken: DecodedJWT = jwtDecode(refreshToken);
+
+    nextAuthJWT.data.validity.validUntil = decodedAccessToken.exp;
+    nextAuthJWT.data.validity.refreshUntil = decodedRefreshToken.exp;
+
+    nextAuthJWT.data.tokens.accessToken = accessToken;
+    nextAuthJWT.data.tokens.refreshUntil = refreshToken;
 
     return { ...nextAuthJWT };
   } catch (error) {
+    console.error(error);
     return {
       ...nextAuthJWT,
       error: 'RefreshAccessTokenError',
@@ -109,10 +118,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           return {
             user: userInfo,
             profile: profile,
-            tokens: tokens,
+            tokens: {
+              accessToken,
+              refreshToken,
+            },
             validity: validity,
           };
         } catch (error) {
+          console.error(error);
           return null;
         }
       },
@@ -120,7 +133,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   ],
   callbacks: {
     async jwt({ token, user, account }) {
-      console.log('JWT CALLBACK');
       if (user && account) {
         return {
           ...token,
@@ -128,16 +140,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         };
       }
 
+      console.log(Date.now(), new Date(Date.now()));
+      console.log(token.data.validity.validUntil * 1000, new Date(token.data.validity.validUntil * 1000));
+
       if (Date.now() < token.data.validity.validUntil * 1000) {
-        console.log('JWT CALLBACK | Access token is still valid');
+        console.debug('JWT CALLBACK | Access token is still valid');
         return token;
       }
 
-      if (Date.now() < token.data.validity.validUntil * 1000) {
-        console.log('JWT CALLBACK | Refresh token is still valid');
+      if (Date.now() < token.data.validity.refreshUntil * 1000) {
+        console.debug('JWT CALLBACK | Updating access and refresh token');
         return await refreshAccessToken(token);
       }
 
+      console.error('JWT CALLBACK | Refresh and access token are expired');
       return {
         ...token,
         error: 'RefreshTokenError',
@@ -145,8 +161,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
     async session({ session, token }) {
       session.user = token.data.user;
+      session.profile = token.data.user.profile;
       session.validity = token.data.validity;
-      session.error = token.error;
+      session.tokens = token.data.tokens;
 
       return session;
     },

@@ -2,7 +2,7 @@ import { House, LayoutDashboard, LogOut, Menu, Search, Settings, User } from 'lu
 
 import { Logo } from '@/components/logo';
 import { Link } from '@/ui/link';
-import { auth, signOut } from '@/lib/auth';
+import { auth } from '@/lib/auth';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,13 +13,15 @@ import {
 } from '@/ui/dropdown-menu';
 import { Avatar, AvatarFallback, AvatarImage } from '@/ui/avatar';
 import { Button } from '@/ui/button';
+import { logout } from '@/actions/auth';
 
 const Header = async () => {
   const session = await auth();
 
-  async function logout() {
-    'use server';
-    await signOut();
+  let avatar = '/users/default/avatar/male-avatar-boy-face-man-user-9-svgrepo-com.svg';
+
+  if (session?.profile) {
+    avatar = session.profile.avatar;
   }
 
   return (
@@ -48,15 +50,17 @@ const Header = async () => {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild className='hidden md:flex'>
                   <Avatar className='cursor-pointer'>
-                    <AvatarImage src={session.user.profile.avatar} alt={session.user.username} />
+                    <AvatarImage src={avatar} alt={session.user.username} />
                     <AvatarFallback>
-                      {`${session.user.profile.firstName?.trim()[0].toUpperCase()}${session.profile.user.lastName?.trim()[0].toUpperCase()}`}
+                      {`${session?.profile?.firstName?.trim()[0].toUpperCase()}${session?.profile?.lastName?.trim()[0].toUpperCase()}`}
                     </AvatarFallback>
                   </Avatar>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className='w-42 mt-2'>
                   <DropdownMenuLabel>
-                    <p className=''>{session.user.profile.firstName} {session.user.profile.lastName}</p>
+                    <p className=''>
+                      {session?.profile?.firstName} {session?.profile?.lastName}
+                    </p>
                     <p className='text-xs text-muted-foreground'>
                       {session.user.role === 'admin' ? session.user.role : session.user.email}
                     </p>

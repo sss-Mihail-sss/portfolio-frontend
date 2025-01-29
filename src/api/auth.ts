@@ -35,5 +35,9 @@ export async function refresh(refreshToken: string): Promise<{
     },
   });
 
+  if (!response.ok) {
+    throw new Error('Failed to refresh token');
+  }
+
   return await response.json();
 }

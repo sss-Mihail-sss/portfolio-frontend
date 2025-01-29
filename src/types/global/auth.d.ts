@@ -7,7 +7,7 @@ declare module 'next-auth' {
   interface User {
     user: UserType,
     tokens: Tokens;
-    profile: Profile;
+    profile: Profile | null;
     validity: Validity;
   }
 
@@ -22,8 +22,10 @@ declare module 'next-auth' {
   }
 
   interface Session {
-    user: User;
+    user: UserType;
+    profile: Profile | null;
     validity: Validity;
+    tokens: Tokens;
     error: string;
   }
 

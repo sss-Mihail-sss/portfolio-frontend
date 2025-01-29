@@ -1,9 +1,9 @@
 import { auth } from '@/lib/auth';
 import { Profile } from '@/types/profile';
 
-export async function getProfile(options?: RequestInit): Promise<Profile> {
+export async function getProfile(options?: RequestInit): Promise<Profile | null> {
   const session = await auth();
-  const accessToken = session?.accessToken;
+  const accessToken = session?.user?.tokens?.accessToken;
 
   const response = await fetch(process.env.API_URL + '/profile', {
     ...options,
@@ -13,5 +13,10 @@ export async function getProfile(options?: RequestInit): Promise<Profile> {
     },
   });
 
-  return await response.json();
+  if (!response.ok) {
+    return null;
+  }
+  const json = await response.json();
+
+  return json;
 }
