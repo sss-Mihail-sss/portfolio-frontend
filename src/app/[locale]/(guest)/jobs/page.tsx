@@ -1,7 +1,7 @@
 import { Locale } from 'next-intl';
 import { Button } from '@/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/ui/dialog';
-import { SpeechToText } from '@/components/speech-to-text';
+import { FormJobCreate } from '@/components/form/job/create';
 
 type Props = {
   params: Promise<{
@@ -13,7 +13,7 @@ export default async function JobsPage({ params }: Props) {
   const { locale } = await params;
 
   return (
-    <div className="p-12">
+    <div className='p-12'>
       <h1>Jobs Page</h1>
 
       <Dialog>
@@ -30,7 +30,8 @@ export default async function JobsPage({ params }: Props) {
             </DialogDescription>
           </DialogHeader>
           <div>
-            <SpeechToText />
+            <FormJobCreate />
+            {/*<SpeechToText />*/}
           </div>
         </DialogContent>
       </Dialog>
