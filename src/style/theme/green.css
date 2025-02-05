@@ -1,5 +1,5 @@
 @layer theme {
-  [data-theme="green"] {
+  [data-theme='green'] {
     --background: light-dark(hsl(0 0% 100%), hsl(20 14.3% 4.1%));
     --foreground: light-dark(hsl(240 10% 3.9%), hsl(0 0% 95%));
 
@@ -12,7 +12,7 @@
     --card: light-dark(hsl(0 0% 100%), hsl(24 9.8% 10%));
     --card-foreground: light-dark(hsl(240 10% 3.9%), hsl(0 0% 95%));
 
-     --primary: light-dark(hsl(142.1 76.2% 36.3%), hsl(142.1 70.6% 45.3%));
+    --primary: light-dark(hsl(142.1 76.2% 36.3%), hsl(142.1 70.6% 45.3%));
     --primary-foreground: light-dark(hsl(355.7 100% 97.3%), hsl(144.9 80.4% 10%));
 
     --secondary: light-dark(hsl(240 4.8% 95.9%), hsl(240 3.7% 15.9%));

@@ -45,16 +45,14 @@ const FormJobCreate = () => {
           )}
         />
 
-        <TextEditor />
-
         <FormField
           control={form.control}
           name='description'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>description</FormLabel>
+              <FormLabel>Description</FormLabel>
               <FormControl>
-                <Input placeholder='' {...field} />
+                <TextEditor placeholder='Typing your description' content={field.value} onChange={field.onChange} />
               </FormControl>
               <FormMessage />
             </FormItem>

@@ -1,6 +1,6 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-@import "./theme/green.css";
+@import './theme/green.css';
 
 @plugin "./animate-plugin.js";
 
@@ -50,6 +50,30 @@
   ::backdrop,
   ::file-selector-button {
     @apply border-border;
+  }
+
+  h1 {
+    font-size: var(--text-4xl);
+  }
+
+  h2 {
+    font-size: var(--text-3xl);
+  }
+
+  h3 {
+    font-size: var(--text-2xl);
+  }
+
+  h4 {
+    font-size: var(--text-xl);
+  }
+
+  h5 {
+    font-size: var(--text-lg);
+  }
+
+  pre + code {
+    font-size: var(--text-sm);
   }
 }
 

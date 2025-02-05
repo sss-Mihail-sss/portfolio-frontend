@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 
 const buttonVariants = tv({
   base: 'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-sm cursor-pointer font-medium ring-offset-background' +
-    'outline-none focus-visible:outline-none focus-visible:border-2 focus-visible:border-primary',
+    'outline-none focus-visible:outline-none focus-visible:border-2 focus-visible:border-primary disabled:pointer-events-none disabled:opacity-50',
   variants: {
     variant: {
       default: '',
