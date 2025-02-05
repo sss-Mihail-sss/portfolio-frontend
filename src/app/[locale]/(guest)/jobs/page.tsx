@@ -20,7 +20,7 @@ export default async function JobsPage({ params }: Props) {
         <DialogTrigger asChild>
           <Button>Create job</Button>
         </DialogTrigger>
-        <DialogContent className='sm:max-w-3xl'>
+        <DialogContent className='sm:max-w-3xl max-h-dvh'>
           <DialogHeader>
             <DialogTitle>
               Create job
@@ -29,7 +29,7 @@ export default async function JobsPage({ params }: Props) {
               Create a new job
             </DialogDescription>
           </DialogHeader>
-          <div>
+          <div className='max-h-full overflow-y-scroll'>
             <FormJobCreate />
             {/*<SpeechToText />*/}
           </div>
