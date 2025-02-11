@@ -1,10 +1,10 @@
 import { useCurrentEditor } from '@tiptap/react';
-import { ListIcon } from 'lucide-react';
+import { MinusIcon } from 'lucide-react';
 
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/ui/tooltip';
 import { Button } from '@/ui/button';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/ui/tooltip';
 
-function BulletList() {
+function Divider() {
   const { editor } = useCurrentEditor();
 
   if (!editor) {
@@ -17,17 +17,16 @@ function BulletList() {
         <Button
           size="icon"
           variant="ghost"
-          onClick={() => editor.chain().focus().toggleBulletList().run()}
-          className={editor.isActive('bulletList') ? 'bg-accent' : ''}
+          onClick={() => editor.chain().focus().setHorizontalRule().run()}
         >
-          <ListIcon className="size-4" />
+          <MinusIcon className="size-4" />
         </Button>
       </TooltipTrigger>
       <TooltipContent className="fill-primary">
-        Bullet List
+        Divider
       </TooltipContent>
     </Tooltip>
   );
 }
 
-export { BulletList };
+export { Divider };

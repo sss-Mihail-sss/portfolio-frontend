@@ -7,8 +7,6 @@ import { tv, VariantProps } from 'tailwind-variants';
 
 import { cn } from '@/lib/utils';
 
-// border-input placeholder:text-muted-foreground focus:ring-ring aria-invalid:border-destructive flex h-9 items-center justify-between rounded-md border bg-transparent px-3 py-2 text-sm shadow-xs focus:ring-1 focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&>span]:line-clamp-1 w-32
-
 const selectVariants = tv({
   slots: {
     trigger: 'placeholder:text-muted-foreground focus:ring-ring aria-invalid:border-destructive flex h-9 w-full items-center justify-between rounded-md border bg-transparent px-3 py-2 text-sm focus:ring-1 focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*=\'size-\'])]:size-4 [&>span]:line-clamp-1',
@@ -43,19 +41,19 @@ const selectVariants = tv({
 
 function Select({ ...props }: ComponentProps<typeof SelectPrimitive.Root>) {
   return (
-    <SelectPrimitive.Root data-slot='select' {...props} />
+    <SelectPrimitive.Root data-slot="select" {...props} />
   );
 }
 
 function SelectGroup({ ...props }: ComponentProps<typeof SelectPrimitive.SelectGroup>) {
   return (
-    <SelectPrimitive.SelectGroup data-slot='select-group' {...props} />
+    <SelectPrimitive.SelectGroup data-slot="select-group" {...props} />
   );
 }
 
 function SelectValue({ ...props }: ComponentProps<typeof SelectPrimitive.SelectValue>) {
   return (
-    <SelectPrimitive.SelectValue data-slot='select-value' {...props} />
+    <SelectPrimitive.SelectValue data-slot="select-value" {...props} />
   );
 }
 
@@ -68,10 +66,10 @@ function SelectTrigger({
   const { trigger } = selectVariants({ variant });
 
   return (
-    <SelectPrimitive.Trigger data-slot='select-trigger' className={cn(trigger({ variant }), className)} {...props}>
+    <SelectPrimitive.Trigger data-slot="select-trigger" className={cn(trigger({ variant }), className)} {...props}>
       {children}
       <SelectPrimitive.Icon asChild>
-        <ChevronDown className='size-4 opacity-50' />
+        <ChevronDown className="size-4 opacity-50" />
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
   );
@@ -88,7 +86,7 @@ function SelectContent({
   return (
     <SelectPrimitive.Portal>
       <SelectPrimitive.Content
-        data-slot='select-content'
+        data-slot="select-content"
         className={cn(content({ position }), className)}
         position={position}
         {...props}
@@ -105,17 +103,13 @@ function SelectContent({
 
 function SelectLabel({
   className,
-  children,
   position,
   ...props
 }: ComponentProps<typeof SelectPrimitive.Label> & VariantProps<typeof selectVariants>) {
   const { label } = selectVariants();
 
   return (
-    <SelectPrimitive.Label
-      className={cn(label(), className)}
-      {...props}
-    />
+    <SelectPrimitive.Label className={cn(label(), className)} {...props} />
   );
 }
 
@@ -128,10 +122,10 @@ function SelectItem({
   const { item } = selectVariants();
 
   return (
-    <SelectPrimitive.Item data-slot='select-item' className={cn(item(), className)} {...props}>
-      <span className='absolute right-2 flex size-3.5 items-center justify-center'>
+    <SelectPrimitive.Item data-slot="select-item" className={cn(item(), className)} {...props}>
+      <span className="absolute right-2 flex size-3.5 items-center justify-center">
         <SelectPrimitive.ItemIndicator>
-          <Check className='size-4' />
+          <Check className="size-4" />
         </SelectPrimitive.ItemIndicator>
       </span>
       <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
@@ -148,7 +142,7 @@ function SelectSeparator({
   const { separator } = selectVariants();
 
   return (
-    <SelectPrimitive.Separator data-slot='select-separator' className={cn(separator(), className)} {...props} />
+    <SelectPrimitive.Separator data-slot="select-separator" className={cn(separator(), className)} {...props} />
   );
 }
 
@@ -160,8 +154,8 @@ function SelectScrollUpButton({
   const { up } = selectVariants();
 
   return (
-    <SelectPrimitive.ScrollUpButton data-slot='select-scroll-up-button' className={cn(up(), className)} {...props}>
-      <ChevronUp className='size-4' />
+    <SelectPrimitive.ScrollUpButton data-slot="select-scroll-up-button" className={cn(up(), className)} {...props}>
+      <ChevronUp className="size-4" />
     </SelectPrimitive.ScrollUpButton>
   );
 }
@@ -175,11 +169,11 @@ function SelectScrollDownButton({
 
   return (
     <SelectPrimitive.ScrollDownButton
-      data-slot='select-scroll-down-button'
+      data-slot="select-scroll-down-button"
       className={cn(bottom(), className)}
       {...props}
     >
-      <ChevronDown className='size-4' />
+      <ChevronDown className="size-4" />
     </SelectPrimitive.ScrollDownButton>
   );
 }

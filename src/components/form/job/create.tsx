@@ -79,7 +79,9 @@ const FormJobCreate = () => {
                   placeholder="Typing your description"
                   content={field.value}
                   onChange={field.onChange}
-                  extensions={['bold', 'italic', 'underline', 'strike', 'link', 'code', 'heading', 'align', 'blockquote', 'bullet-list', 'ordered-list']}
+                  extensions={[
+                    'bold', 'italic', 'underline', 'strike', 'link', 'code', 'heading', 'align', 'blockquote', 'bullet-list', 'ordered-list', 'highlight',
+                  ]}
                 />
               </FormControl>
               <FormMessage />

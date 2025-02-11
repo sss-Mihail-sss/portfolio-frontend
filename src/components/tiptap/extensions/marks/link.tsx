@@ -1,7 +1,7 @@
 'use client';
 
 import { useCurrentEditor } from '@tiptap/react';
-import { LinkIcon, Trash2Icon } from 'lucide-react';
+import { Link2Icon, Trash2Icon } from 'lucide-react';
 
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/ui/tooltip';
 import { Button } from '@/ui/button';
@@ -27,7 +27,7 @@ function Link() {
               variant="ghost"
               className={editor.isActive('link') ? 'bg-accent' : ''}
             >
-              <LinkIcon className="size-4" />
+              <Link2Icon className="size-4" />
             </Button>
           </PopoverTrigger>
         </TooltipTrigger>
@@ -35,28 +35,27 @@ function Link() {
           Link
         </TooltipContent>
       </Tooltip>
-      <PopoverContent className="flex w-auto">
+      <PopoverContent className="flex flex-col gap-2 w-auto">
         <Input
           placeholder="https://"
-          className="rounded-r-none"
           value={link}
           onChange={(event) => setLink(event.target.value)}
         />
-        <Button
-          className="rounded-none"
-          onClick={() => editor.chain().focus().setLink({ href: link }).run()}
-        >
-          Save
-        </Button>
-        <Button
-          size="icon"
-          className="rounded-l-none shrink-0"
-          color="error"
-          disabled={!editor.isActive('link')}
-          onClick={() => editor.chain().focus().unsetLink().run()}
-        >
-          <Trash2Icon className="size-4" />
-        </Button>
+        <div className="flex justify-between">
+          <Button
+            onClick={() => editor.chain().focus().setLink({ href: link }).run()}
+          >
+            Save
+          </Button>
+          <Button
+            size="icon"
+            color="error"
+            disabled={!editor.isActive('link')}
+            onClick={() => editor.chain().focus().unsetLink().run()}
+          >
+            <Trash2Icon className="size-4" />
+          </Button>
+        </div>
       </PopoverContent>
     </Popover>
   );

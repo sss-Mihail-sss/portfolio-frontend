@@ -29,7 +29,7 @@ export default async function JobsPage({ params }: Props) {
               Create a new job
             </DialogDescription>
           </DialogHeader>
-          <div className='max-h-full overflow-y-scroll'>
+          <div className='max-h-full overflow-y-auto'>
             <FormJobCreate />
             {/*<SpeechToText />*/}
           </div>

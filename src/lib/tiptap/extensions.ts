@@ -13,8 +13,10 @@ import Heading from '@tiptap/extension-heading';
 import TextAlign from '@tiptap/extension-text-align';
 import Blockquote from '@tiptap/extension-blockquote';
 import BulletList from '@tiptap/extension-bullet-list';
-import OrderedList from '@tiptap/extension-ordered-list'
+import OrderedList from '@tiptap/extension-ordered-list';
 import ListItem from '@tiptap/extension-list-item';
+import HorizontalRule from '@tiptap/extension-horizontal-rule';
+import Highlight from '@tiptap/extension-highlight';
 
 export type ExtensionsEnum =
   'bold'
@@ -26,11 +28,22 @@ export type ExtensionsEnum =
   | 'heading'
   | 'align'
   | 'blockquote'
+  | 'highlight'
   | 'bullet-list'
   | 'ordered-list';
 
 export const configureExtensions = (extensions?: ExtensionsEnum[], placeholder?: string): Extensions => {
-  const baseExtensions: Extensions = [Document, Paragraph, Text, ListItem];
+  const baseExtensions: Extensions = [
+    Document,
+    Paragraph,
+    Text,
+    ListItem,
+    HorizontalRule.configure({
+      HTMLAttributes: {
+        class: 'border-t-2 my-2',
+      },
+    }),
+  ];
 
   if (placeholder) {
     baseExtensions.push(
@@ -54,15 +67,18 @@ export const extensionMap: Record<ExtensionsEnum, AnyExtension> = {
   underline: Underline,
   strike: Strike,
   blockquote: Blockquote,
+  highlight: Highlight.configure({
+    multicolor: true,
+  }),
   'bullet-list': BulletList.configure({
     HTMLAttributes: {
       class: 'list-inside list-disc [&>li>p]:inline',
-    }
+    },
   }),
   'ordered-list': OrderedList.configure({
     HTMLAttributes: {
       class: 'list-inside list-decimal [&>li>p]:inline',
-    }
+    },
   }),
   link: Link.configure({
     openOnClick: false,
