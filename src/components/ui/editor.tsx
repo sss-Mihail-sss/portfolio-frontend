@@ -1,11 +1,10 @@
 'use client';
 
-import { EditorContent, EditorContext, useEditor } from '@tiptap/react';
+import { BubbleMenu, EditorContent, EditorContext, useEditor } from '@tiptap/react';
 
-import { Heading1, Heading2, Heading3, Heading4, Heading5 } from '@/components/tiptap/extensions/marks/heading';
+import { HeadingSelect } from '@/components/tiptap/extensions/marks/heading';
 import { Bold, Italic, Strike, Underline } from '@/components/tiptap/extensions/marks/formatting';
 import { AlignCenter, AlignJustify, AlignLeft, AlignRight } from '@/components/tiptap/extensions/functionality/align';
-import { Paragraph } from '@/components/tiptap/extensions/marks/paragraph';
 import { Link } from '@/components/tiptap/extensions/marks/link';
 import { Code } from '@/components/tiptap/extensions/marks/code';
 
@@ -13,6 +12,7 @@ import { configureExtensions, ExtensionsEnum } from '@/lib/tiptap/extensions';
 import { Blockquote } from '@/components/tiptap/extensions/marks/blockquote';
 import { BulletList } from '@//components/tiptap/extensions/marks/bullet-list';
 import { OrderedList } from '@/components/tiptap/extensions/marks/ordered-list';
+import { Button } from '@/ui/button';
 
 type TextEditorProps = {
   placeholder?: string;
@@ -42,20 +42,22 @@ const TextEditor = ({ content, placeholder, onChange, extensions }: TextEditorPr
 
   return (
     <EditorContext value={{ editor }}>
-      <div className="border rounded">
+      <div className='border rounded'>
         {
           (extensions && extensions.length > 0) && (
-            <div className="flex flex-wrap items-center p-2 border-b divide-x *:px-2 *:first:pl-0 *:last:pr-0">
+            <div className='flex flex-wrap items-center p-2 border-b divide-x *:px-2 *:first:pl-0 *:last:pr-0'>
               {
                 extensions.includes('heading') && (
-                  <div>
-                    <Heading1 />
-                    <Heading2 />
-                    <Heading3 />
-                    <Heading4 />
-                    <Heading5 />
-                    <Paragraph />
-                  </div>
+                  <div><HeadingSelect /></div>
+                  // <div>
+                  //   <HeadingSelect/>
+                  //   <Heading1 />
+                  //   <Heading2 />
+                  //   <Heading3 />
+                  //   <Heading4 />
+                  //   <Heading5 />
+                  //   <Paragraph />
+                  // </div>
                 )
               }
 
@@ -97,7 +99,44 @@ const TextEditor = ({ content, placeholder, onChange, extensions }: TextEditorPr
           )
         }
 
-        <EditorContent editor={editor} className="p-2" />
+        <BubbleMenu editor={editor}>
+          <div className='bg-background shadow rounded-xs'>
+            <Button
+              variant='ghost'
+              size='sm'
+              onClick={() => editor.chain().focus().toggleBold().run()}
+              className={editor.isActive('bold') ? 'bg-accent' : ''}
+            >
+              bold
+            </Button>
+            <Button
+              variant='ghost'
+              size='sm'
+              onClick={() => editor.chain().focus().toggleItalic().run()}
+              className={editor.isActive('italic') ? 'bg-accent' : ''}
+            >
+              italic
+            </Button>
+            <Button
+              variant='ghost'
+              size='sm'
+              onClick={() => editor.chain().focus().toggleUnderline().run()}
+              className={editor.isActive('underline') ? 'bg-accent' : ''}
+            >
+              underline
+            </Button>
+            <Button
+              variant='ghost'
+              size='sm'
+              onClick={() => editor.chain().focus().toggleStrike().run()}
+              className={editor.isActive('strike') ? 'bg-accent' : ''}
+            >
+              strike
+            </Button>
+          </div>
+        </BubbleMenu>
+
+        <EditorContent editor={editor} className='p-2' />
       </div>
     </EditorContext>
   );
