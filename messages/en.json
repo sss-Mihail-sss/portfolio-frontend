@@ -38,5 +38,14 @@
         "credentials": "Invalid username or password"
       }
     }
+  },
+  "languages": {
+    "english": "english",
+    "russian": "russian",
+    "romanian": "romanian",
+    "spanish": "spanish",
+    "japanese": "japanese",
+    "french": "french",
+    "italian": "italian"
   }
 }

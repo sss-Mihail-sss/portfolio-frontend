@@ -12,6 +12,7 @@ import { Blockquote } from '@/components/tiptap/extensions/marks/blockquote';
 import { configureExtensions, ExtensionsEnum } from '@/lib/tiptap/extensions';
 import { Divider } from '@/components/tiptap/extensions/functionality/divider';
 import { Highlighter } from '@/components/tiptap/extensions/functionality/highlight';
+import { ColorPicker } from '@/components/color-picker';
 
 type TextEditorProps = {
   placeholder?: string;
@@ -23,6 +24,7 @@ type TextEditorProps = {
 const TextEditor = ({ content, placeholder, onChange, extensions }: TextEditorProps) => {
   const editor = useEditor({
     extensions: configureExtensions(extensions, placeholder),
+    immediatelyRender: false,
     editorProps: {
       attributes: {
         class: 'outline-none',

@@ -5,6 +5,15 @@ import { Button } from '@/ui/button';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/ui/tooltip';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { ToggleGroup, ToggleGroupItem } from '@/ui/toggle-group';
+import { cn } from '@/lib/utils';
+
+const colors = {
+  'bg-yellow-300': '#FDFF00',
+  'bg-orange-400': '#FF9A00',
+  'bg-lime-400': '#00FF04',
+  'bg-sky-500': '#00C5FF',
+  'bg-fuchsia-500': '#FF00A7',
+};
 
 function Highlighter() {
   const { editor } = useCurrentEditor();
@@ -14,7 +23,7 @@ function Highlighter() {
   }
 
   const handleChangeValue = (value: string) => {
-    editor.chain().focus().toggleHighlight({ color: '#b197fc' }).run()
+    editor.chain().focus().toggleHighlight({ color: value }).run();
   };
 
   return (
@@ -23,31 +32,30 @@ function Highlighter() {
         <TooltipTrigger asChild>
           <PopoverTrigger asChild>
             <Button
-              size="icon"
-              variant="ghost"
+              size='icon'
+              variant='ghost'
               // onClick={() => editor.chain().focus().toggleHighlight().run()}
             >
-              <HighlighterIcon className="size-4" />
+              <HighlighterIcon className='size-4' />
             </Button>
           </PopoverTrigger>
         </TooltipTrigger>
-        <TooltipContent className="fill-primary">
+        <TooltipContent className='fill-primary'>
           Highlight
         </TooltipContent>
       </Tooltip>
       <PopoverContent>
         <ToggleGroup
-          type="single"
-          variant="spaced"
-          className="flex flex-wrap items-center justify-around gap-2"
+          type='single'
+          variant='spaced'
+          className='flex flex-wrap items-center justify-around gap-2'
           onValueChange={handleChangeValue}
         >
-          <ToggleGroupItem value="red" className="size-6 bg-red-600" />
-          <ToggleGroupItem value="blue" className="size-6 bg-blue-600" />
-          <ToggleGroupItem value="orange" className="size-6 bg-orange-600" />
-          <ToggleGroupItem value="green" className="size-6 bg-green-600" />
-          <ToggleGroupItem value="purple" className="size-6 bg-purple-600" />
-          <ToggleGroupItem value="yellow" className="size-6 bg-yellow-600" />
+          {
+            Object.entries(colors).map(([color, hex]) => (
+              <ToggleGroupItem key={hex} value={hex} className={cn('size-6', color)} />
+            ))
+          }
         </ToggleGroup>
       </PopoverContent>
     </Popover>

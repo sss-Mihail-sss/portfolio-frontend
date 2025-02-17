@@ -17,10 +17,10 @@ const inputVariants = tv({
 
 type InputProps = ComponentProps<'input'> & VariantProps<typeof inputVariants>;
 
-const Input = ({ ref, type, variant, className, ...props }: InputProps) => {
+function Input({ type, variant, className, ...props }: InputProps) {
   return (
-    <input type={type} ref={ref} className={cn(inputVariants({ variant }), className)} {...props} />
+    <input type={type} className={cn(inputVariants({ variant }), className)} {...props} />
   );
-};
+}
 
-export { Input };
+export { Input, inputVariants };
