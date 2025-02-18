@@ -1,7 +1,7 @@
 'use client';
 
 import { z } from 'zod';
-import { useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -10,27 +10,19 @@ import { Input } from '@/ui/input';
 import { Button } from '@/ui/button';
 import { TextEditor } from '@/ui/editor';
 import { ToggleGroup, ToggleGroupItem } from '@/ui/toggle-group';
-import { translate } from '@/actions/job/translate';
 
-const languages = [
-  'english',
-  'russian',
-  'romanian',
-  'spanish',
-  'japanese',
-  'french',
-  'italian',
-] as const;
+import { locales } from '@/lib/i18n/routing';
+import { getLanguageName } from '@/lib/intl';
 
 const formSchema = z.object({
   title: z.string().min(3).max(255),
   description: z.string().max(255),
   requirements: z.string().max(255),
-  languages: z.array(z.enum(languages)).min(1),
+  languages: z.array(z.enum(locales)).min(1),
 });
 
 const FormJobCreate = () => {
-  const Languages = useTranslations('languages');
+  const currentLocale = useLocale();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -124,9 +116,9 @@ const FormJobCreate = () => {
                   value={field.value}
                 >
                   {
-                    languages.map(lang => (
-                      <ToggleGroupItem value={lang} key={lang} className='capitalize'>
-                        {Languages(lang)}
+                    locales.map(locale => (
+                      <ToggleGroupItem value={locale} key={locale} className='capitalize'>
+                        {getLanguageName(currentLocale, locale)}
                       </ToggleGroupItem>
                     ))
                   }

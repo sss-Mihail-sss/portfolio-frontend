@@ -18,9 +18,18 @@ type Props = {
 }
 
 const steps = [
-  'Complete form',
-  'Select language',
-  'Refactoring translate',
+  {
+    label: 'Complete form',
+    component: <></>,
+  },
+  {
+    label: 'Select language',
+    component: <></>,
+  },
+  {
+    label: 'Refactoring translate',
+    component: <></>,
+  },
 ];
 
 export default async function JobsPage({ params }: Props) {
@@ -34,8 +43,8 @@ export default async function JobsPage({ params }: Props) {
         <StepperList>
           {
             steps.map((step, index) => (
-              <StepperListItem key={step} index={index} indicator>
-                {step}
+              <StepperListItem key={index} index={index} indicator>
+                {step.label}
               </StepperListItem>
             ))
           }
@@ -43,8 +52,8 @@ export default async function JobsPage({ params }: Props) {
 
         {
           steps.map((step, index) => (
-            <StepperContent key={step} index={index}>
-              {step}
+            <StepperContent key={index} index={index}>
+              {step.component}
             </StepperContent>
           ))
         }
