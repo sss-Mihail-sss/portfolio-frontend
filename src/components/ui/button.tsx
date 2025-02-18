@@ -46,6 +46,11 @@ const buttonVariants = tv({
       color: 'error',
       className: 'border-error hover:bg-error/40',
     },
+    {
+      variant: 'default',
+      color: 'info',
+      className: 'bg-blue-600 hover:bg-blue-600/90',
+    },
   ],
 });
 

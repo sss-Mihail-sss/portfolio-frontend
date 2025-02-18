@@ -12,18 +12,24 @@ import { Blockquote } from '@/components/tiptap/extensions/marks/blockquote';
 import { configureExtensions, ExtensionsEnum } from '@/lib/tiptap/extensions';
 import { Divider } from '@/components/tiptap/extensions/functionality/divider';
 import { Highlighter } from '@/components/tiptap/extensions/functionality/highlight';
-import { ColorPicker } from '@/components/color-picker';
+import { cn } from '@/lib/utils';
 
 type TextEditorProps = {
-  placeholder?: string;
   content: string;
   onChange: (content: string) => void;
+  placeholder?: string;
+  className?: string;
   extensions?: ExtensionsEnum[];
+  limit?: number;
 }
 
-const TextEditor = ({ content, placeholder, onChange, extensions }: TextEditorProps) => {
+const TextEditor = ({ className, content, placeholder, onChange, extensions, limit }: TextEditorProps) => {
   const editor = useEditor({
-    extensions: configureExtensions(extensions, placeholder),
+    extensions: configureExtensions({
+      extensions,
+      placeholder,
+      limit,
+    }),
     immediatelyRender: false,
     editorProps: {
       attributes: {
@@ -43,10 +49,10 @@ const TextEditor = ({ content, placeholder, onChange, extensions }: TextEditorPr
 
   return (
     <EditorContext value={{ editor }}>
-      <div className="border rounded">
+      <div className={cn('overflow-auto relative border rounded', className)}>
         {
           (extensions && extensions.length > 0) && (
-            <div className="flex flex-wrap items-center p-2 border-b divide-x *:px-2 *:first:pl-0 *:last:pr-0">
+            <div className='flex flex-wrap items-center p-2 border-b divide-x *:px-2 *:first:pl-0 *:last:pr-0'>
               {
                 extensions.includes('heading') && (
                   <div>
@@ -80,25 +86,42 @@ const TextEditor = ({ content, placeholder, onChange, extensions }: TextEditorPr
                 )
               }
 
-              <div>
-                <Divider />
-                {extensions.includes('highlight') && (<Highlighter />)}
-              </div>
+              {
+                extensions.some((ext) => ['divider', 'highlight'].includes(ext)) && (
+                  <div>
+                    {extensions.includes('divider') && (<Divider />)}
+                    {extensions.includes('highlight') && (<Highlighter />)}
+                  </div>
+                )
+              }
             </div>
           )
         }
 
-        <BubbleMenu editor={editor}>
-          <div className="relative flex bg-background shadow rounded-xs">
-            <Bold />
-            <Italic />
-            <Underline />
-            <Strike />
-            <Code />
-          </div>
-        </BubbleMenu>
+        {
+          (extensions && extensions.some((ext) => ['bold', 'italic', 'underline', 'strike', 'code'].includes(ext))) && (
+            <BubbleMenu editor={editor}>
+              <div className='relative flex bg-background shadow rounded-xs'>
+                {extensions.includes('bold') && (<Bold />)}
+                {extensions.includes('italic') && (<Italic />)}
+                {extensions.includes('underline') && (<Underline />)}
+                {extensions.includes('strike') && (<Strike />)}
+                {extensions.includes('code') && (<Code />)}
+              </div>
+            </BubbleMenu>
+          )
+        }
 
-        <EditorContent editor={editor} className="p-2" />
+        {
+          !!limit && (
+            <div className='absolute text-xs bottom-0 right-1'>
+              <span>{editor.storage.characterCount.characters()} / {limit}</span>&nbsp;
+              <span>({editor.storage.characterCount.words()} words)</span>
+            </div>
+          )
+        }
+
+        <EditorContent editor={editor} className='p-2 text-sm' />
       </div>
     </EditorContext>
   );

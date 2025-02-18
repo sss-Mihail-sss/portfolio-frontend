@@ -17,6 +17,7 @@ import OrderedList from '@tiptap/extension-ordered-list';
 import ListItem from '@tiptap/extension-list-item';
 import HorizontalRule from '@tiptap/extension-horizontal-rule';
 import Highlight from '@tiptap/extension-highlight';
+import CharacterCount from '@tiptap/extension-character-count';
 
 export type ExtensionsEnum =
   'bold'
@@ -25,6 +26,7 @@ export type ExtensionsEnum =
   | 'strike'
   | 'link'
   | 'code'
+  | 'divider'
   | 'heading'
   | 'align'
   | 'blockquote'
@@ -32,24 +34,31 @@ export type ExtensionsEnum =
   | 'bullet-list'
   | 'ordered-list';
 
-export const configureExtensions = (extensions?: ExtensionsEnum[], placeholder?: string): Extensions => {
+export const configureExtensions = ({ extensions, placeholder, limit }: {
+  extensions?: ExtensionsEnum[],
+  placeholder?: string,
+  limit?: number
+}): Extensions => {
   const baseExtensions: Extensions = [
     Document,
     Paragraph,
     Text,
     ListItem,
-    HorizontalRule.configure({
-      HTMLAttributes: {
-        class: 'border-t-2 my-2',
-      },
-    }),
   ];
 
-  if (placeholder) {
+  if (!!placeholder) {
     baseExtensions.push(
       Placeholder.configure({
         placeholder,
-        emptyNodeClass: 'before:content-[attr(data-placeholder)] before:text-muted-foreground before:pointer-events-none before:h-0 before:float-left',
+        emptyEditorClass: 'first:before:content-[attr(data-placeholder)] first:before:text-muted-foreground first:before:pointer-events-none first:before:h-0 first:before:float-left',
+      }),
+    );
+  }
+
+  if (!!limit) {
+    baseExtensions.push(
+      CharacterCount.configure({
+        limit: limit,
       }),
     );
   }
@@ -67,6 +76,11 @@ export const extensionMap: Record<ExtensionsEnum, AnyExtension> = {
   underline: Underline,
   strike: Strike,
   blockquote: Blockquote,
+  divider: HorizontalRule.configure({
+    HTMLAttributes: {
+      class: 'border-t-2 my-2',
+    },
+  }),
   highlight: Highlight.configure({
     multicolor: true,
   }),

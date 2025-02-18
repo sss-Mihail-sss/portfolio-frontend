@@ -18,6 +18,7 @@ function Stepper({
   defaultStep,
   onStepComplete,
   onStepChange,
+  className,
   ...props
 }: StepperProps) {
   const steps = useSteps({
@@ -33,7 +34,7 @@ function Stepper({
   });
 
   return (
-    <Steps.RootProvider value={steps} {...props} />
+    <Steps.RootProvider className={cn('spacy-y-4', className)} value={steps} {...props} />
   );
 }
 
@@ -79,9 +80,9 @@ function StepperListItem({ trigger, indicator, children, className, ...props }: 
   );
 }
 
-function StepperContent({ ...props }: ComponentProps<typeof Steps.Content>) {
+function StepperContent({ className, ...props }: ComponentProps<typeof Steps.Content>) {
   return (
-    <Steps.Content {...props} />
+    <Steps.Content className={cn('py-4', className)} {...props} />
   );
 }
 
