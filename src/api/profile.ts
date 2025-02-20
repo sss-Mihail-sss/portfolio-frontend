@@ -3,7 +3,7 @@ import { Profile } from '@/types/profile';
 
 export async function getProfile(options?: RequestInit): Promise<Profile | null> {
   const session = await auth();
-  const accessToken = session?.user?.tokens?.accessToken;
+  const accessToken = session?.tokens?.accessToken;
 
   const response = await fetch(process.env.API_URL + '/profile', {
     ...options,

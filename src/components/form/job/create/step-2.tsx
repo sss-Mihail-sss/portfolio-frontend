@@ -1,3 +1,5 @@
+'use client';
+
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -25,24 +27,24 @@ const Step2 = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
-          name='languages'
+          name="languages"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Languages</FormLabel>
               <FormControl>
                 <ToggleGroup
-                  type='multiple'
-                  className='justify-start'
-                  variant='outline'
+                  type="multiple"
+                  className="justify-start"
+                  variant="outline"
                   onValueChange={field.onChange}
                   value={field.value}
                 >
                   {
                     locales.map(locale => (
-                      <ToggleGroupItem value={locale} key={locale} className='capitalize'>
+                      <ToggleGroupItem value={locale} key={locale} className="capitalize">
                         {getLanguageName(currentLocale, locale)}
                       </ToggleGroupItem>
                     ))

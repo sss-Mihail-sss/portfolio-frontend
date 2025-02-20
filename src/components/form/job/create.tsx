@@ -1,5 +1,3 @@
-'use client';
-
 import { Stepper, StepperContent } from '@/ui/stepper';
 
 import { Step1 } from './create/step-1';
@@ -25,7 +23,7 @@ const FormJobCreate = () => {
     <Stepper count={steps.length}>
       {
         steps.map((step, index) => (
-          <StepperContent key={index} index={index} className='space-y-8'>
+          <StepperContent key={index} index={index}>
             {step.component}
           </StepperContent>
         ))
