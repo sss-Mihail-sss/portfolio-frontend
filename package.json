@@ -39,6 +39,8 @@
     "@tiptap/extension-underline": "^2.11.5",
     "@tiptap/pm": "^2.11.5",
     "@tiptap/react": "^2.11.5",
+    "@uidotdev/usehooks": "^2.4.1",
+    "@vis.gl/react-google-maps": "^1.5.1",
     "ai": "^4.1.45",
     "babel-plugin-react-compiler": "^19.0.0-beta-e552027-20250112",
     "chalk": "^5.4.1",

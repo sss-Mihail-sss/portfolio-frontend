@@ -8,8 +8,6 @@ import { getCompanies } from '@/lib/api/company';
 export function useCompanies() {
   const { data, status } = useSession();
 
-  console.log(status === 'authenticated' || status === 'unauthenticated');
-
   return useQuery({
     queryKey: ['companies', data],
     queryFn: () => getCompanies(data),

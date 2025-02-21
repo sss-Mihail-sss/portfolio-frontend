@@ -23,6 +23,7 @@ const nextConfig: NextConfig = {
     API_URL: process.env.API_URL,
     WEB_URL: process.env.WEB_URL,
     CHAT_GPT_KEY: process.env.CHAT_GPT_KEY,
+    GOOGLE_PLACE_API_KEY: process.env.GOOGLE_PLACE_API_KEY,
   },
 };
 

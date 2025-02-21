@@ -21,7 +21,6 @@ const eslintConfig = [
     rules: {
       'indent': ['error', 2, { 'SwitchCase': 1 }],
       'quotes': ['error', 'single'],
-      'linebreak-style': ['error', 'unix'],
       'semi': ['error', 'always'],
     },
   }),

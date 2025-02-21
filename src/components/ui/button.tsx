@@ -4,7 +4,7 @@ import { tv, VariantProps } from 'tailwind-variants';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = tv({
-  base: 'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-sm cursor-pointer font-medium outline-offset-1 outline-offset-background focus-visible:outline-2 focus-visible:outline-primary disabled:pointer-events-none disabled:opacity-50',
+  base: 'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md cursor-pointer font-medium outline-offset-1 outline-offset-background focus-visible:outline-2 focus-visible:outline-primary disabled:pointer-events-none disabled:opacity-50',
   variants: {
     variant: {
       default: '',
