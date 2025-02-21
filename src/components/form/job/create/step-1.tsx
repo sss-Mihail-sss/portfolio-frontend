@@ -14,7 +14,6 @@ import { TextEditor } from '@/ui/editor';
 import { jobAtom } from '@/stores/jotai';
 import { Button } from '@/ui/button';
 import { getCompanies } from '@/api/company';
-import { Suspense } from 'react';
 
 const formSchema = z.object({
   title: z.string().min(3).max(255),
@@ -62,15 +61,15 @@ const Step1 = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
         <FormField
           control={form.control}
-          name="title"
+          name='title'
           render={({ field }) => (
             <FormItem>
               <FormLabel>Title</FormLabel>
               <FormControl>
-                <Input placeholder="Developer" {...field} />
+                <Input placeholder='Developer' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -79,42 +78,53 @@ const Step1 = () => {
 
         <FormField
           control={form.control}
-          name="company"
+          name='company'
           render={({ field }) => (
             <FormItem>
               <FormLabel>Company</FormLabel>
-              <Suspense fallback={<>Loading...</>}>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select a verified email to display" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent position='popper'>
-                    <SelectItem value="m@example.com">m@example.com</SelectItem>
-                    <SelectItem value="m@google.com">m@google.com</SelectItem>
-                    <SelectItem value="m@support.com">m@support.com</SelectItem>
-                  </SelectContent>
-                </Select>
-              </Suspense>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder='Select a verified email to display' />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value='m@example.com'>m@example.com</SelectItem>
+                  <SelectItem value='m@google.com'>m@google.com</SelectItem>
+                  <SelectItem value='m@support.com'>m@support.com</SelectItem>
+                </SelectContent>
+              </Select>
               <FormMessage />
             </FormItem>
           )}
         />
 
+        <Select>
+          <FormControl>
+            <SelectTrigger>
+              <SelectValue placeholder='Select a verified email to display' />
+            </SelectTrigger>
+          </FormControl>
+          <SelectContent>
+            <SelectItem value='m@example.com'>m@example.com</SelectItem>
+            <SelectItem value='m@google.com'>m@google.com</SelectItem>
+            <SelectItem value='m@support.com'>m@support.com</SelectItem>
+          </SelectContent>
+        </Select>
+
         <FormField
           control={form.control}
-          name="description"
+          name='description'
           render={({ field }) => (
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
                 <TextEditor
-                  placeholder="Typing your description"
+                  placeholder='Typing your description'
                   content={field.value}
                   onChange={field.onChange}
                   limit={500}
-                  className="h-48"
+                  className='h-48'
                   extensions={[
                     'bold',
                     'italic',
@@ -133,17 +143,17 @@ const Step1 = () => {
 
         <FormField
           control={form.control}
-          name="requirements"
+          name='requirements'
           render={({ field }) => (
             <FormItem>
               <FormLabel>Requirements</FormLabel>
               <FormControl>
                 <TextEditor
-                  placeholder="Typing your description"
+                  placeholder='Typing your description'
                   content={field.value}
                   onChange={field.onChange}
                   limit={500}
-                  className="h-48"
+                  className='h-48'
                   extensions={[
                     'bold',
                     'italic',
@@ -160,8 +170,8 @@ const Step1 = () => {
           )}
         />
 
-        <div className="flex justify-end gap-2">
-          <Button color="info" onClick={handleSubmitAI}>
+        <div className='flex justify-end gap-2'>
+          <Button color='info' onClick={handleSubmitAI}>
             Translate with AI
           </Button>
           <Button onClick={handleSave}>

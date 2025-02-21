@@ -2,7 +2,7 @@
 
 @import './theme/green.css';
 
-@plugin "./animate-plugin.js";
+@plugin "tailwindcss-animate";
 
 @theme {
   --font-geist-sans: var(--font-geist-sans);
