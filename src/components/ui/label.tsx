@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { ComponentProps } from 'react';
-import * as LabelPrimitive from '@radix-ui/react-label';
+import { Label as LabelPrimitive } from 'radix-ui';
 import { tv, VariantProps } from 'tailwind-variants';
 
 import { cn } from '@/lib/utils';

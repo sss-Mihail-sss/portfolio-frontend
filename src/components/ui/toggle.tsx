@@ -1,7 +1,7 @@
 'use client';
 
 import { ComponentProps } from 'react';
-import * as TogglePrimitive from '@radix-ui/react-toggle';
+import { Toggle as TogglePrimitive } from 'radix-ui';
 import { tv, VariantProps } from 'tailwind-variants';
 
 import { cn } from '@/lib/utils';
@@ -30,7 +30,7 @@ type ToggleProps = ComponentProps<typeof TogglePrimitive.Root> & VariantProps<ty
 function Toggle({ className, variant, size, ...props }: ToggleProps) {
   return (
     <TogglePrimitive.Root
-      data-slot="toggle"
+      data-slot='toggle'
       className={cn(toggleVariants({ variant, size, className }))}
       {...props}
     />

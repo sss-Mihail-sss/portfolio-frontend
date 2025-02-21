@@ -1,7 +1,7 @@
 'use client';
 
 import { ComponentProps } from 'react';
-import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
+import { DropdownMenu as DropdownMenuPrimitive } from 'radix-ui';
 import { Check, ChevronRight, Circle } from 'lucide-react';
 import { tv, VariantProps } from 'tailwind-variants';
 

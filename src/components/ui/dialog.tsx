@@ -1,7 +1,7 @@
 'use client';
 
 import { ComponentProps } from 'react';
-import * as DialogPrimitive from '@radix-ui/react-dialog';
+import { Dialog as DialogPrimitive} from 'radix-ui';
 import { tv } from 'tailwind-variants';
 import { X } from 'lucide-react';
 
@@ -26,7 +26,9 @@ function Dialog({ ...props }: ComponentProps<typeof DialogPrimitive.Root>) {
 }
 
 function DialogTrigger({ ...props }: ComponentProps<typeof DialogPrimitive.Trigger>) {
-  return <DialogPrimitive.Trigger data-slot='dialog-trigger' {...props} />;
+  return (
+    <DialogPrimitive.Trigger data-slot='dialog-trigger' {...props} />
+  );
 }
 
 function DialogPortal({ ...props }: ComponentProps<typeof DialogPrimitive.Portal>) {

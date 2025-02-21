@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { ComponentProps, useId } from 'react';
-import { Slot } from '@radix-ui/react-slot';
+import { Slot } from 'radix-ui';
 import { Controller, ControllerProps, FieldPath, FieldValues, FormProvider, useFormContext } from 'react-hook-form';
 import { tv, VariantProps } from 'tailwind-variants';
 
@@ -110,13 +110,13 @@ const FormLabel = ({ ref, className, ...props }: LabelProps) => {
   );
 };
 
-type FormControlProps = ComponentProps<typeof Slot> & VariantProps<typeof formVariants>;
+type FormControlProps = ComponentProps<typeof Slot.Slot> & VariantProps<typeof formVariants>;
 
 const FormControl = ({ ref, ...props }: FormControlProps) => {
   const { error, formItemId, formDescriptionId, formMessageId } = useFormField();
 
   return (
-    <Slot
+    <Slot.Slot
       ref={ref}
       id={formItemId}
       aria-describedby={

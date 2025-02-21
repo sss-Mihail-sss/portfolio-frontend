@@ -13,38 +13,16 @@ const eslintConfig = [
   ...compat.config({
     extends: [
       'next',
+      'plugin:@tanstack/query/recommended',
+    ],
+    plugins: [
+      '@tanstack/query',
     ],
     rules: {
       'indent': ['error', 2, { 'SwitchCase': 1 }],
       'quotes': ['error', 'single'],
       'linebreak-style': ['error', 'unix'],
       'semi': ['error', 'always'],
-      'import/order': [
-        'error',
-        {
-          'groups': [
-            ['builtin', 'external'],
-            'internal',
-            ['parent', 'sibling', 'index'],
-            'object',
-            'type',
-            'style',
-          ],
-          'pathGroups': [
-            {
-              'pattern': '**/*.css',
-              'group': 'style',
-              'position': 'after',
-            },
-            {
-              'pattern': '**/*.scss',
-              'group': 'style',
-              'position': 'after',
-            },
-          ],
-          'newlines-between': 'always',
-        },
-      ],
     },
   }),
 ];

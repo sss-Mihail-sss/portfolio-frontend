@@ -1,4 +1,5 @@
 import { Locale } from 'next-intl';
+
 import { Button } from '@/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/ui/dialog';
 import { FormJobCreate } from '@/components/form/job/create';

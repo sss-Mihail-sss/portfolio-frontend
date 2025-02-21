@@ -10,10 +10,10 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/ui/select';
 import { Input } from '@/ui/input';
 import { TextEditor } from '@/ui/editor';
+import { Button } from '@/ui/button';
 
 import { jobAtom } from '@/stores/jotai';
-import { Button } from '@/ui/button';
-import { getCompanies } from '@/api/company';
+import { useCompanies } from '@/lib/hooks/useCompany';
 
 const formSchema = z.object({
   title: z.string().min(3).max(255),
@@ -31,7 +31,7 @@ const Step1 = () => {
   const setJob = useSetAtom(jobAtom);
   const { goToNextStep, setStep } = useStepsContext();
 
-  const companies = getCompanies();
+  const { data: companies, status } = useCompanies();
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -42,20 +42,21 @@ const Step1 = () => {
     },
   });
 
-  const handleSubmitAI = form.handleSubmit((values: FormValues) => {
+  const handleSubmitAI = form.handleSubmit(async (values: FormValues) => {
     goToNextStep();
+    await onSubmit(values);
   }, (errors) => {
     console.log('AI Errors', errors);
   });
 
-  const handleSave = form.handleSubmit((values: FormValues) => {
+  const handleSave = form.handleSubmit(async (values: FormValues) => {
     setStep(2);
+    await onSubmit(values);
   }, (errors) => {
     console.log('Save Errors', errors);
   });
 
   async function onSubmit(values: FormValues) {
-    console.log('submit');
     setJob(values);
   }
 
@@ -84,33 +85,34 @@ const Step1 = () => {
               <FormLabel>Company</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder='Select a verified email to display' />
+                  <SelectTrigger disabled={status === 'pending'}>
+                    <SelectValue
+                      placeholder={
+                        status === 'pending' ? 'Loading...' :
+                          status === 'error' ? 'Error...' :
+                            'Select a company'
+                      }
+                    />
                   </SelectTrigger>
                 </FormControl>
-                <SelectContent>
-                  <SelectItem value='m@example.com'>m@example.com</SelectItem>
-                  <SelectItem value='m@google.com'>m@google.com</SelectItem>
-                  <SelectItem value='m@support.com'>m@support.com</SelectItem>
+                <SelectContent className='z-50' position='popper'>
+                  {
+                    status === 'pending' ? (
+                      <SelectItem value='loading'>Loading...</SelectItem>
+                    ) : status === 'error' ? (
+                      <SelectItem value='error'>Error...</SelectItem>
+                    ) : companies.map((company) => (
+                      <SelectItem value={String(company.id)} key={company.id}>
+                        {company.name}
+                      </SelectItem>
+                    ))
+                  }
                 </SelectContent>
               </Select>
               <FormMessage />
             </FormItem>
           )}
         />
-
-        <Select>
-          <FormControl>
-            <SelectTrigger>
-              <SelectValue placeholder='Select a verified email to display' />
-            </SelectTrigger>
-          </FormControl>
-          <SelectContent>
-            <SelectItem value='m@example.com'>m@example.com</SelectItem>
-            <SelectItem value='m@google.com'>m@google.com</SelectItem>
-            <SelectItem value='m@support.com'>m@support.com</SelectItem>
-          </SelectContent>
-        </Select>
 
         <FormField
           control={form.control}

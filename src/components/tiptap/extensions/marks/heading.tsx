@@ -74,7 +74,7 @@ function HeadingSelect() {
 
   return (
     <Select value={value} onValueChange={handleChange}>
-      <SelectTrigger className="w-40 whitespace-nowrap">
+      <SelectTrigger className="w-40 whitespace-nowrap rounded-sm">
         <SelectValue placeholder="Select format" />
       </SelectTrigger>
       <SelectContent position="popper">

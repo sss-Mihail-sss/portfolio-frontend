@@ -2,9 +2,9 @@ import NextAuth, { DecodedJWT, Validity } from 'next-auth';
 import type { JWT } from 'next-auth/jwt';
 import Credentials from 'next-auth/providers/credentials';
 
-import { login, refresh } from '@/api/auth';
+import { login, refresh } from '@/lib/api/auth';
 import { loginSchema } from '@/lib/zod';
-import { getProfile } from '@/api/profile';
+import { getProfile } from '@/lib/api/profile';
 import { jwtDecode } from 'jwt-decode';
 
 async function refreshAccessToken(nextAuthJWT: JWT) {
