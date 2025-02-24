@@ -8,5 +8,5 @@ export type Company = {
   website: string | null;
   description: string | null;
   createdAt: string;
-  updatedAt: string;
+  updatedAt?: string;
 }

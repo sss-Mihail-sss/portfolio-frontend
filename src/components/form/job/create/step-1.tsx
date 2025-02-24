@@ -8,7 +8,6 @@ import { useSetAtom } from 'jotai';
 import { useStepsContext } from '@ark-ui/react/steps';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useDebounce } from '@uidotdev/usehooks';
-import { APIProvider, Map } from '@vis.gl/react-google-maps';
 
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/ui/form';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/ui/select';
@@ -23,6 +22,7 @@ import { jobAtom } from '@/stores/jotai';
 import { useCompanies } from '@/lib/hooks/useCompany';
 import { useGoogleMapsAutocomplete } from '@/lib/hooks/useGoogle';
 import { cn } from '@/lib/utils';
+import { LocationPicker } from '@/components/google/location-picker';
 
 const formSchema = z.object({
   title: z.string().min(3).max(255),
@@ -76,15 +76,15 @@ const Step1 = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
         <FormField
           control={form.control}
-          name="title"
+          name='title'
           render={({ field }) => (
             <FormItem>
               <FormLabel>Title</FormLabel>
               <FormControl>
-                <Input placeholder="Developer" {...field} />
+                <Input placeholder='Developer' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -93,7 +93,7 @@ const Step1 = () => {
 
         <FormField
           control={form.control}
-          name="company"
+          name='company'
           render={({ field }) => (
             <FormItem>
               <FormLabel>Company</FormLabel>
@@ -109,12 +109,12 @@ const Step1 = () => {
                     />
                   </SelectTrigger>
                 </FormControl>
-                <SelectContent className="z-50" position="popper">
+                <SelectContent className='z-50' position='popper'>
                   {
                     status === 'pending' ? (
-                      <SelectItem value="loading">Loading...</SelectItem>
+                      <SelectItem value='loading'>Loading...</SelectItem>
                     ) : status === 'error' ? (
-                      <SelectItem value="error">Error...</SelectItem>
+                      <SelectItem value='error'>Error...</SelectItem>
                     ) : companies.map((company) => (
                       <SelectItem value={String(company.id)} key={company.id}>
                         {company.name}
@@ -130,20 +130,20 @@ const Step1 = () => {
 
         <FormField
           control={form.control}
-          name="title"
+          name='title'
           render={({ field }) => (
             <Dialog>
               <DialogTrigger>
                 <FormItem>
                   <FormLabel>Title</FormLabel>
                   <FormControl>
-                    <Input placeholder="Developer" {...field} />
+                    <Input placeholder='Developer' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               </DialogTrigger>
-              <DialogContent className="p-0 sm:max-w-9/10 overflow-hidden">
-                <DialogHeader className="sr-only">
+              <DialogContent className='p-0 h-9/10 sm:max-w-9/10 overflow-hidden'>
+                <DialogHeader className='sr-only'>
                   <DialogTitle>
                     Select job address
                   </DialogTitle>
@@ -151,122 +151,104 @@ const Step1 = () => {
                     Select job address
                   </DialogDescription>
                 </DialogHeader>
-                <div className="h-300 max-h-9/10">
-                  <APIProvider apiKey={process.env.GOOGLE_PLACE_API_KEY}>
-                    <Map
-                      styles={[
-                        {
-                          featureType: 'poi',
-                          stylers: [{ visibility: 'off' }],
-                        },
-                      ]}
-                      defaultCenter={{
-                        lat: 47.0147319,
-                        lng: 28.8421226
-                      }}
-                      defaultZoom={12}
-                      cameraControl={false}
-                      mapTypeControl={false}
-                      streetViewControl={false}
-                      fullscreenControl={false}
-                    />
-                  </APIProvider>
+                <div className='h-full w-full'>
+                  <LocationPicker />
                 </div>
               </DialogContent>
             </Dialog>
           )}
         />
 
-        <FormField
-          control={form.control}
-          name="address"
-          render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <FormLabel>Address</FormLabel>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <FormControl>
-                    <Button
-                      variant="outline"
-                      role="combobox"
-                      className={cn(
-                        'w-full justify-between',
-                        !field.value && 'text-muted-foreground',
-                      )}
-                    >
-                      {
-                        (field.value && placeStatus === 'success' && places?.suggestions?.length)
-                          ? places?.suggestions.find(
-                            place => place.placePrediction.place === field.value,
-                          )?.placePrediction.text.text
-                          : 'Select address'
-                      }
-                      <ChevronsUpDownIcon className="size-4 opacity-50" />
-                    </Button>
-                  </FormControl>
-                </PopoverTrigger>
-                <PopoverContent className="w-[var(--radix-popover-trigger-width)] p-0">
-                  <Command shouldFilter={false}>
-                    <CommandInput
-                      placeholder="Search address..."
-                      className="h-9"
-                      value={placeSearch}
-                      onValueChange={setPlaceSearch}
-                    />
-                    <CommandList>
-                      <CommandEmpty>No place found.</CommandEmpty>
-                      <CommandGroup>
-                        {
-                          isLoading ? (
-                            <CommandItem value="loading" disabled>Loading...</CommandItem>
-                          ) : placeStatus === 'error' ? (
-                            <CommandItem value="error">Error...</CommandItem>
-                          ) : places?.suggestions.map((place) => (
-                            <CommandItem
-                              value={place.placePrediction.place}
-                              key={place.placePrediction.place}
-                              onSelect={() => {
-                                form.setValue('address', place.placePrediction.place, {
-                                  shouldValidate: true,
-                                  shouldDirty: true,
-                                });
-                              }}
-                            >
-                              {place.placePrediction.text.text}
-                              <CheckIcon
-                                className={cn(
-                                  'ml-auto',
-                                  place.placePrediction.place === field.value
-                                    ? 'opacity-100'
-                                    : 'opacity-0',
-                                )}
-                              />
-                            </CommandItem>
-                          ))
-                        }
-                      </CommandGroup>
-                    </CommandList>
-                  </Command>
-                </PopoverContent>
-              </Popover>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        {/*<FormField*/}
+        {/*  control={form.control}*/}
+        {/*  name='address'*/}
+        {/*  render={({ field }) => (*/}
+        {/*    <FormItem className='flex flex-col'>*/}
+        {/*      <FormLabel>Address</FormLabel>*/}
+        {/*      <Popover>*/}
+        {/*        <PopoverTrigger asChild>*/}
+        {/*          <FormControl>*/}
+        {/*            <Button*/}
+        {/*              variant='outline'*/}
+        {/*              role='combobox'*/}
+        {/*              className={cn(*/}
+        {/*                'w-full justify-between',*/}
+        {/*                !field.value && 'text-muted-foreground',*/}
+        {/*              )}*/}
+        {/*            >*/}
+        {/*              {*/}
+        {/*                (field.value && placeStatus === 'success' && places?.suggestions?.length)*/}
+        {/*                  ? places?.suggestions.find(*/}
+        {/*                    place => place.placePrediction.place === field.value,*/}
+        {/*                  )?.placePrediction.text.text*/}
+        {/*                  : 'Select address'*/}
+        {/*              }*/}
+        {/*              <ChevronsUpDownIcon className='size-4 opacity-50' />*/}
+        {/*            </Button>*/}
+        {/*          </FormControl>*/}
+        {/*        </PopoverTrigger>*/}
+        {/*        <PopoverContent className='w-[var(--radix-popover-trigger-width)] p-0'>*/}
+        {/*          <Command shouldFilter={false}>*/}
+        {/*            <CommandInput*/}
+        {/*              placeholder='Search address...'*/}
+        {/*              className='h-9'*/}
+        {/*              value={placeSearch}*/}
+        {/*              onValueChange={setPlaceSearch}*/}
+        {/*            />*/}
+        {/*            <CommandList>*/}
+        {/*              <CommandEmpty>No place found.</CommandEmpty>*/}
+        {/*              <CommandGroup>*/}
+        {/*                {*/}
+        {/*                  isLoading ? (*/}
+        {/*                    <CommandItem value='loading' disabled>Loading...</CommandItem>*/}
+        {/*                  ) : placeStatus === 'error' ? (*/}
+        {/*                    <CommandItem value='error'>Error...</CommandItem>*/}
+        {/*                  ) : places?.suggestions.map((place) => (*/}
+        {/*                    <CommandItem*/}
+        {/*                      value={place.placePrediction.place}*/}
+        {/*                      key={place.placePrediction.place}*/}
+        {/*                      onSelect={() => {*/}
+        {/*                        form.setValue('address', place.placePrediction.place, {*/}
+        {/*                          shouldValidate: true,*/}
+        {/*                          shouldDirty: true,*/}
+        {/*                        });*/}
+        {/*                      }}*/}
+        {/*                    >*/}
+        {/*                      {place.placePrediction.text.text}*/}
+        {/*                      <CheckIcon*/}
+        {/*                        className={cn(*/}
+        {/*                          'ml-auto',*/}
+        {/*                          place.placePrediction.place === field.value*/}
+        {/*                            ? 'opacity-100'*/}
+        {/*                            : 'opacity-0',*/}
+        {/*                        )}*/}
+        {/*                      />*/}
+        {/*                    </CommandItem>*/}
+        {/*                  ))*/}
+        {/*                }*/}
+        {/*              </CommandGroup>*/}
+        {/*            </CommandList>*/}
+        {/*          </Command>*/}
+        {/*        </PopoverContent>*/}
+        {/*      </Popover>*/}
+        {/*      <FormMessage />*/}
+        {/*    </FormItem>*/}
+        {/*  )}*/}
+        {/*/>*/}
 
         <FormField
           control={form.control}
-          name="description"
+          name='description'
           render={({ field }) => (
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
                 <TextEditor
-                  placeholder="Typing your description"
+                  placeholder='Typing your description'
                   content={field.value}
                   onChange={field.onChange}
                   limit={500}
-                  className="h-48"
+                  className='h-48'
                   extensions={[
                     'bold',
                     'italic',
@@ -285,17 +267,17 @@ const Step1 = () => {
 
         <FormField
           control={form.control}
-          name="requirements"
+          name='requirements'
           render={({ field }) => (
             <FormItem>
               <FormLabel>Requirements</FormLabel>
               <FormControl>
                 <TextEditor
-                  placeholder="Typing your description"
+                  placeholder='Typing your description'
                   content={field.value}
                   onChange={field.onChange}
                   limit={500}
-                  className="h-48"
+                  className='h-48'
                   extensions={[
                     'bold',
                     'italic',
@@ -312,8 +294,8 @@ const Step1 = () => {
           )}
         />
 
-        <div className="flex justify-end gap-2">
-          <Button color="info" onClick={handleSubmitAI}>
+        <div className='flex justify-end gap-2'>
+          <Button color='info' onClick={handleSubmitAI}>
             Translate with AI
           </Button>
           <Button onClick={handleSave}>

@@ -49,7 +49,7 @@
   ::before,
   ::backdrop,
   ::file-selector-button {
-    @apply border-border;
+    @apply border-border accent-primary;
   }
 
   h1 {
