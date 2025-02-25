@@ -8,12 +8,12 @@ const buttonVariants = tv({
   variants: {
     variant: {
       default: '',
-      outline: 'border border-input bg-transparent hover:bg-accent hover:text-accent-foreground',
-      ghost: 'hover:bg-accent hover:text-accent-foreground',
+      outline: 'border border-input bg-transparent',
+      ghost: '',
     },
     size: {
       default: 'text-sm h-9 px-6',
-      sm: 'text-sm h-7 px-4',
+      sm: 'text-xs h-7 px-4',
       lg: 'h-11 px-6',
       icon: 'size-9',
     },
@@ -24,13 +24,23 @@ const buttonVariants = tv({
       error: 'focus-visible:ring-error',
       info: '',
     },
+    disabled: {
+      true: 'cursor-default opacity-50',
+      false: '',
+    }
   },
   defaultVariants: {
     variant: 'default',
     size: 'default',
     color: 'default',
+    disabled: false,
   },
   compoundVariants: [
+    {
+      disabled: false,
+      variant: ['outline', 'ghost'],
+      className: 'hover:bg-accent hover:text-accent-foreground'
+    },
     {
       variant: 'default',
       className: 'bg-primary hover:bg-primary/90 text-primary-foreground',
@@ -57,11 +67,11 @@ type ButtonProps = {
   asChild?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement> & VariantProps<typeof buttonVariants>
 
-const Button = ({ variant, size, className, color, asChild, ...props }: ButtonProps) => {
+const Button = ({ variant, size, className, color, disabled, asChild, ...props }: ButtonProps) => {
   const Component = asChild ? Slot.Slot : 'button';
 
   return (
-    <Component type='button' {...props} className={cn(buttonVariants({ variant, size, color, className }))} />
+    <Component type='button' {...props} className={cn(buttonVariants({ variant, size, color, disabled, className }))} />
   );
 };
 

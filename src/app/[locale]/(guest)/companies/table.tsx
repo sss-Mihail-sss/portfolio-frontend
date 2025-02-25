@@ -8,24 +8,31 @@ import {
   ColumnFiltersState,
   flexRender,
   getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
   SortingState,
   useReactTable,
   VisibilityState,
 } from '@tanstack/react-table';
+import { ArrowDownIcon, ArrowUpIcon } from 'lucide-react';
 
 import { Checkbox } from '@/ui/checkbox';
-import { Company } from '@/types/company';
 import { Button } from '@/ui/button';
-import { useCompanies } from '@/lib/hooks/useCompany';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/ui/table';
-import { ArrowDownIcon, ArrowUpIcon } from 'lucide-react';
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from '@/ui/pagination';
+
+import { usePaginationSearchParams } from '@/lib/searchParams';
+import { useCompanies } from '@/lib/hooks/useCompany';
+import { Company } from '@/types/company';
 
 const HeadButton = ({ text, column }: { text: string; column: Column<Company> }) => (
   <Button
-    className='w-full flex items-center justify-between'
+    className='w-full flex items-center justify-between p-2'
     variant='ghost'
     onClick={() => {
       if (!column.getIsSorted()) {
@@ -73,6 +80,12 @@ export const columns: ColumnDef<Company>[] = [
     size: 20,
   },
   {
+    accessorKey: 'id',
+    header: ({ column }) => (
+      <HeadButton column={column} text='Id' />
+    ),
+  },
+  {
     accessorKey: 'name',
     header: ({ column }) => (
       <HeadButton column={column} text='Name' />
@@ -100,11 +113,7 @@ export const columns: ColumnDef<Company>[] = [
 
       return (
         <div className='font-mono'>
-          {format.dateTime(new Date(row.original.createdAt), {
-            year: 'numeric',
-            month: 'numeric',
-            day: 'numeric',
-          })}
+          {format.dateTime(new Date(row.original.createdAt), 'date-short')}
         </div>
       );
     },
@@ -124,11 +133,7 @@ export const columns: ColumnDef<Company>[] = [
 
       return (
         <div className='font-mono'>
-          {format.dateTime(new Date(row.original.updatedAt), {
-            year: 'numeric',
-            month: 'numeric',
-            day: 'numeric',
-          })}
+          {format.dateTime(new Date(row.original.updatedAt), 'date-short')}
         </div>
       );
     },
@@ -142,28 +147,33 @@ const CompaniesTable = () => {
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
 
-  const { data = [], isLoading } = useCompanies();
+  const [paginationSearchParams, setPaginationSearchParams] = usePaginationSearchParams();
+
+  const { data, isLoading } = useCompanies({
+    pagination: paginationSearchParams,
+  });
 
   const table = useReactTable({
-    data,
+    data: data?.data || [],
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
-    // getPaginationRowModel: getPaginationRowModel(),
-    // getSortedRowModel: getSortedRowModel(),
-    // getFilteredRowModel: getFilteredRowModel(),
     onColumnVisibilityChange: setColumnVisibility,
     onRowSelectionChange: setRowSelection,
+    onPaginationChange: setPaginationSearchParams,
     manualSorting: true,
     manualPagination: true,
     manualFiltering: true,
     state: {
+      pagination: paginationSearchParams,
       sorting,
       columnFilters,
       columnVisibility,
       rowSelection,
     },
+    rowCount: data?.rowCount,
+    pageCount: data?.pageCount,
   });
 
   return (
@@ -180,6 +190,7 @@ const CompaniesTable = () => {
                       minWidth: header.column.columnDef.size,
                       maxWidth: header.column.columnDef.size,
                     }}
+                    className='px-0'
                   >
                     {header.isPlaceholder
                       ? null
@@ -198,6 +209,7 @@ const CompaniesTable = () => {
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && 'selected'}
+                  className='hover:bg-muted/50'
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
@@ -229,27 +241,42 @@ const CompaniesTable = () => {
           </TableBody>
         </Table>
       </div>
-      <div className='flex items-center justify-end space-x-2 py-4'>
+      <div className='flex items-center justify-between gap-2 py-4'>
         <div className='flex-1 text-sm text-muted-foreground'>
           {table.getFilteredSelectedRowModel().rows.length} of{' '}
           {table.getFilteredRowModel().rows.length} row(s) selected.
         </div>
-        <div className='space-x-2'>
-          <Button
-            variant='outline'
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
-            Previous
-          </Button>
-          <Button
-            variant='outline'
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          >
-            Next
-          </Button>
-        </div>
+
+        <Pagination>
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious
+                onClick={() => table.previousPage()}
+                disabled={!table.getCanPreviousPage()}
+              />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink
+                onClick={() => table.setPageIndex(0)}
+                isActive={paginationSearchParams.pageIndex == 0}
+              >
+                1
+              </PaginationLink>
+              <PaginationLink
+                onClick={() => table.setPageIndex(table.getPageCount())}
+                isActive={paginationSearchParams.pageIndex == table.getPageCount() - 1}
+              >
+                {table.getPageCount()}
+              </PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationNext
+                onClick={() => table.nextPage()}
+                disabled={!table.getCanNextPage()}
+              />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
       </div>
     </div>
   );

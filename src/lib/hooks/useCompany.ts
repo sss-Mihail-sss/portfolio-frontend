@@ -1,24 +1,19 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import { useSession } from 'next-auth/react';
 
 import { getCompanies } from '@/lib/api/company';
 import { Pagination } from '@/types/pagination';
 
 export function useCompanies({
-  page = 1,
-  pageSize = 25,
-}: Pagination) {
-  const { data, status } = useSession();
-
+  pagination,
+}: {
+  pagination: Pagination
+}) {
   return useQuery({
-    queryKey: ['companies', data, page, pageSize],
+    queryKey: ['companies', pagination],
     queryFn: () => getCompanies({
-      session: data,
-      page,
-      pageSize,
+      pagination,
     }),
-    enabled: status === 'authenticated' || status === 'unauthenticated',
   });
 }

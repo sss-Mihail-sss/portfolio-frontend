@@ -6,5 +6,17 @@ export default getRequestConfig(async ({ requestLocale }) => {
   const requested = await requestLocale;
   const locale = hasLocale(routing.locales, requested) ? requested : routing.defaultLocale;
 
-  return { locale, messages: (await import(`../../../messages/${locale}.json`)).default };
+  return {
+    locale,
+    messages: (await import(`../../../messages/${locale}.json`)).default,
+    formats: {
+      dateTime: {
+        'date-short': {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric',
+        },
+      },
+    },
+  };
 });

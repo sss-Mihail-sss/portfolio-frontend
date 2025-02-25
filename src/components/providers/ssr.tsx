@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { Locale, NextIntlClientProvider } from 'next-intl';
+import { NuqsAdapter } from 'nuqs/adapters/next/app';
 import { getMessages } from 'next-intl/server';
 
 type Props = {
@@ -12,7 +13,9 @@ const SSRProviders = async ({ children, locale }: Props) => {
 
   return (
     <NextIntlClientProvider messages={messages}>
-      {children}
+      <NuqsAdapter>
+        {children}
+      </NuqsAdapter>
     </NextIntlClientProvider>
   );
 };

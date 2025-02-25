@@ -1,17 +1,21 @@
-import { Session } from 'next-auth';
-
 import { Company } from '@/types/company';
-import { Pagination } from '@/types/pagination';
+import { Pagination, PaginationResponse } from '@/types/pagination';
+import { serializePagination } from '@/lib/searchParams';
+import { withAccessToken } from '@/lib/fetch';
 
 export async function getCompanies({
-  session,
-  page,
-  pageSize,
+  pagination,
 }: {
-  session: Session | null
-} & Pagination): Promise<Company[]> {
-  const response = await fetch(process.env.API_URL + '/companies', {
+  pagination: Pagination;
+}): Promise<PaginationResponse<Company>> {
+  const url = serializePagination(process.env.API_URL + '/companies', pagination);
 
+  console.log('fetch getCompanies', pagination);
+
+  const response = await fetch(url, {
+    headers: await withAccessToken({
+      'Content-Type': 'application/json',
+    }),
   });
 
   return await response.json();

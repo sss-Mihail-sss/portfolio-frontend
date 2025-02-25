@@ -1,4 +1,12 @@
 export type Pagination = {
-  page: number;
+  pageIndex: number;
   pageSize: number;
+}
+
+export type PaginationResponse<T> = {
+  data: T[],
+  page: number,
+  pageSize: number,
+  rowCount: number,
+  pageCount: number,
 }
