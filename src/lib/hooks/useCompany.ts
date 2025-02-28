@@ -1,6 +1,6 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, keepPreviousData } from '@tanstack/react-query';
 
 import { getCompanies } from '@/lib/api/company';
 import { Pagination } from '@/types/pagination';
@@ -15,5 +15,6 @@ export function useCompanies({
     queryFn: () => getCompanies({
       pagination,
     }),
+    placeholderData: keepPreviousData
   });
 }

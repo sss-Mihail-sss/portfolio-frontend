@@ -1,54 +1,70 @@
 import { ComponentProps } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon, MoreHorizontalIcon } from 'lucide-react';
 
+import { Pagination as PaginationPrimitive, usePaginationContext } from '@ark-ui/react/pagination';
+
 import { Button, buttonVariants } from '@/ui/button';
 import { cn } from '@/lib/utils';
 
-function Pagination({ className, ...props }: ComponentProps<'nav'>) {
+type PaginationProps = ComponentProps<typeof PaginationPrimitive.Root>;
+
+function Pagination({ className, ...props }: PaginationProps) {
   return (
-    <nav
+    <PaginationPrimitive.Root
       role='navigation'
       aria-label='pagination'
       data-slot='pagination'
-      className={cn('', className)}
-      {...props}
-    />
-  );
-}
-
-function PaginationContent({ className, ...props }: ComponentProps<'ul'>) {
-  return (
-    <ul
-      data-slot='pagination-content'
       className={cn('flex flex-row items-center gap-1', className)}
       {...props}
     />
   );
 }
 
-function PaginationItem({ ...props }: ComponentProps<'li'>) {
-  return <li data-slot='pagination-item' {...props} />;
+function PaginationContent() {
+  return (
+    <PaginationPrimitive.Context data-slot='pagination-content'>
+      {
+        (pagination) => pagination.pages.map((page, index) => {
+          return page.type === 'page' ? (
+            <PaginationItem key={index} type={page.type} value={(page.value)}>
+              {page.value}
+            </PaginationItem>
+          ) : (
+            <PaginationPrimitive.Ellipsis
+              key={index}
+              index={index}
+              aria-hidden
+              data-slot='pagination-ellipsis'
+              className='flex size-9 items-center justify-center'
+            >
+              <MoreHorizontalIcon className='size-4' />
+              <span className='sr-only'>More pages</span>
+            </PaginationPrimitive.Ellipsis>
+          );
+        })
+      }
+    </PaginationPrimitive.Context>
+  );
 }
 
-type PaginationLinkProps = {
-  isActive?: boolean;
-} & Pick<ComponentProps<typeof Button>, 'size' | 'disabled'> & ComponentProps<'a'>
+type PaginationItemProps =
+  Pick<ComponentProps<typeof Button>, 'size' | 'disabled'>
+  & ComponentProps<typeof PaginationPrimitive.Item>
 
-function PaginationLink({
+function PaginationItem({
   className,
-  isActive,
-  size = 'icon',
   disabled,
+  size = 'icon',
   ...props
-}: PaginationLinkProps) {
+}: PaginationItemProps) {
+  const { page } = usePaginationContext();
+
   return (
-    <a
-      aria-current={isActive ? 'page' : undefined}
-      data-slot='pagination-link'
-      data-active={isActive}
+    <PaginationPrimitive.Item
+      data-slot='pagination-item'
       className={cn(
         buttonVariants({
-          variant: isActive ? 'outline' : 'ghost',
+          variant: props.value === page ? 'outline' : 'ghost',
           disabled,
           size,
         }),
@@ -59,54 +75,53 @@ function PaginationLink({
   );
 }
 
-function PaginationPrevious({ className, ...props }: ComponentProps<typeof PaginationLink>) {
+function PaginationPrevious({ className, ...props }: ComponentProps<typeof PaginationPrimitive.PrevTrigger>) {
+  const { page } = usePaginationContext();
+
   return (
-    <PaginationLink
+    <PaginationPrimitive.PrevTrigger
       aria-label='Go to previous page'
-      size='default'
-      className={cn('gap-1 px-2.5 sm:pl-2.5', className)}
+      className={cn(
+        buttonVariants({
+          className: 'gap-1 px-2.5',
+          variant: 'ghost',
+          disabled: page === 1,
+        }),
+        className,
+      )}
       {...props}
     >
       <ChevronLeftIcon />
       <span className='hidden sm:block'>Previous</span>
-    </PaginationLink>
+    </PaginationPrimitive.PrevTrigger>
   );
 }
 
-function PaginationNext({ className, ...props }: ComponentProps<typeof PaginationLink>) {
+function PaginationNext({ className, ...props }: ComponentProps<typeof PaginationPrimitive.NextTrigger>) {
+  const { page, totalPages } = usePaginationContext();
+
   return (
-    <PaginationLink
+    <PaginationPrimitive.NextTrigger
       aria-label='Go to next page'
-      size='default'
-      className={cn('gap-1 px-2.5 sm:pr-2.5', className)}
+      className={cn(
+        buttonVariants({
+          className: 'gap-1 px-2.5',
+          variant: 'ghost',
+          disabled: page === totalPages,
+        }),
+        className,
+      )}
       {...props}
     >
       <span className='hidden sm:block'>Next</span>
       <ChevronRightIcon />
-    </PaginationLink>
-  );
-}
-
-function PaginationEllipsis({ className, ...props }: ComponentProps<'span'>) {
-  return (
-    <span
-      aria-hidden
-      data-slot='pagination-ellipsis'
-      className={cn('flex size-9 items-center justify-center', className)}
-      {...props}
-    >
-      <MoreHorizontalIcon className='size-4' />
-      <span className='sr-only'>More pages</span>
-    </span>
+    </PaginationPrimitive.NextTrigger>
   );
 }
 
 export {
   Pagination,
   PaginationContent,
-  PaginationLink,
-  PaginationItem,
   PaginationPrevious,
   PaginationNext,
-  PaginationEllipsis,
 };

@@ -10,5 +10,3 @@ declare type DndBlock = {
   }
   items?: Block[];
 }
-
-declare type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>

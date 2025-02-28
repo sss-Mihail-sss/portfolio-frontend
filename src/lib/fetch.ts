@@ -1,7 +1,14 @@
 import { getSession } from 'next-auth/react';
+import { auth } from '@/lib/auth';
 
 export async function withAccessToken(headers: HeadersInit): Promise<HeadersInit> {
-  const session = await getSession();
+  let session;
+
+  if (window != undefined) {
+    session = await getSession();
+  } else {
+    session = await auth();
+  }
 
   return {
     ...(session?.tokens?.accessToken && {

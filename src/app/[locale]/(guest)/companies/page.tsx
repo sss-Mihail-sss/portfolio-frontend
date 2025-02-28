@@ -1,8 +1,9 @@
 import { Locale } from 'next-intl';
+import type { SearchParams } from 'nuqs/server';
 
-import { CompaniesTable } from './table';
-import { paginationSearchParamsCache } from '@/lib/searchParams';
+import { searchParamsCache } from '@/lib/searchParams';
 import { Button } from '@/ui/button';
+import { TableCompanies } from '@/components/table/companies';
 
 type Props = {
   params: Promise<{
@@ -12,7 +13,7 @@ type Props = {
 }
 
 export default async function Page({ searchParams }: Props) {
-  await paginationSearchParamsCache.parse(searchParams);
+  await searchParamsCache.parse(searchParams);
 
   return (
     <div className='container py-6 space-y-4'>
@@ -22,7 +23,8 @@ export default async function Page({ searchParams }: Props) {
           Create company
         </Button>
       </div>
-      <CompaniesTable />
+
+      <TableCompanies />
     </div>
   );
 }

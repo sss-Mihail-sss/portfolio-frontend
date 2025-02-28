@@ -22,3 +22,4 @@ const Link = ({ ref, variant, className, ...props }: LinkProps) => {
 };
 
 export { Link };
+export type { LinkProps };

@@ -13,6 +13,7 @@ export const routing = defineRouting({
     '/register': '/register',
 
     '/jobs': '/jobs',
+    '/companies': '/companies',
   },
 });
 
