@@ -25,11 +25,11 @@ const Header = async () => {
   }
 
   return (
-    <header className='sticky w-full bottom-0 md:top-0 bg-card flex items-center md:h-20 py-4 z-10'>
-      <div className='container flex items-center justify-between'>
+    <header className='sticky w-full bottom-0 md:top-0 bg-card shadow flex items-center md:h-20 py-4 z-10'>
+      <div className='container-wrapper flex items-center justify-between'>
         <Logo className='hidden md:block' />
 
-        <nav className='flex items-center justify-between md:justify-center w-full md:w-auto gap-4 px-6 md:px-0 md:[&>a]:underline-offset-4'>
+        <nav className='flex items-center justify-between md:justify-center w-full md:w-auto gap-4 md:[&>a]:underline-offset-4'>
           <Link variant='underline' href='/'>
             <House className='md:hidden' />
             <span className='hidden md:block'>Home</span>

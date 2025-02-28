@@ -12,8 +12,9 @@ export const routing = defineRouting({
     '/login': '/login',
     '/register': '/register',
 
-    '/jobs': '/jobs',
-    '/companies': '/companies',
+    '/dashboard': '/dashboard',
+    '/dashboard/jobs': '/dashboard/jobs',
+    '/dashboard/companies': '/dashboard/companies',
   },
 });
 

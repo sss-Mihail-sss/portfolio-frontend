@@ -1,6 +1,5 @@
 import { ComponentProps } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon, MoreHorizontalIcon } from 'lucide-react';
-
 import { Pagination as PaginationPrimitive, usePaginationContext } from '@ark-ui/react/pagination';
 
 import { Button, buttonVariants } from '@/ui/button';
@@ -64,6 +63,7 @@ function PaginationItem({
       data-slot='pagination-item'
       className={cn(
         buttonVariants({
+          className: 'text-sm',
           variant: props.value === page ? 'outline' : 'ghost',
           disabled,
           size,
@@ -83,8 +83,9 @@ function PaginationPrevious({ className, ...props }: ComponentProps<typeof Pagin
       aria-label='Go to previous page'
       className={cn(
         buttonVariants({
-          className: 'gap-1 px-2.5',
+          className: 'gap-1',
           variant: 'ghost',
+          size: 'icon',
           disabled: page === 1,
         }),
         className,
@@ -92,7 +93,7 @@ function PaginationPrevious({ className, ...props }: ComponentProps<typeof Pagin
       {...props}
     >
       <ChevronLeftIcon />
-      <span className='hidden sm:block'>Previous</span>
+      <span className='sr-only'>Previous</span>
     </PaginationPrimitive.PrevTrigger>
   );
 }
@@ -105,15 +106,16 @@ function PaginationNext({ className, ...props }: ComponentProps<typeof Paginatio
       aria-label='Go to next page'
       className={cn(
         buttonVariants({
-          className: 'gap-1 px-2.5',
+          className: 'gap-1',
           variant: 'ghost',
+          size: 'icon',
           disabled: page === totalPages,
         }),
         className,
       )}
       {...props}
     >
-      <span className='hidden sm:block'>Next</span>
+      <span className='sr-only'>Next</span>
       <ChevronRightIcon />
     </PaginationPrimitive.NextTrigger>
   );

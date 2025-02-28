@@ -1,9 +1,16 @@
+import { ArrowDownIcon, ArrowUpIcon, MoreHorizontalIcon } from 'lucide-react';
+import { useFormatter } from 'next-intl';
 import { Column, ColumnDef } from '@tanstack/react-table';
+
 import { Company } from '@/types/company';
 import { Checkbox } from '@/ui/checkbox';
-import { useFormatter } from 'next-intl';
 import { Button } from '@/ui/button';
-import { ArrowDownIcon, ArrowUpIcon } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/ui/dropdown-menu';
 
 const HeadButton = ({ text, column }: { text: string; column: Column<Company> }) => (
   <Button
@@ -22,9 +29,9 @@ const HeadButton = ({ text, column }: { text: string; column: Column<Company> })
     {text}
     {
       column.getIsSorted() === 'desc' ? (
-        <ArrowDownIcon className='size-4' />
+        <ArrowDownIcon className='size-4 shrink-0' />
       ) : column.getIsSorted() === 'asc' ? (
-        <ArrowUpIcon className='size-4' />
+        <ArrowUpIcon className='size-4 shrink-0' />
       ) : null
     }
   </Button>
@@ -52,7 +59,6 @@ export const companiesColumns: ColumnDef<Company>[] = [
     ),
     enableSorting: false,
     enableHiding: false,
-    size: 20,
   },
   {
     accessorKey: 'id',
@@ -92,7 +98,6 @@ export const companiesColumns: ColumnDef<Company>[] = [
         </div>
       );
     },
-    size: 80,
   },
   {
     accessorKey: 'updatedAt',
@@ -112,6 +117,23 @@ export const companiesColumns: ColumnDef<Company>[] = [
         </div>
       );
     },
-    size: 80,
+  },
+  {
+    id: 'actions',
+    cell: ({ cell }) => (
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant='ghost' size='icon'>
+            <span className='sr-only'>Open menu</span>
+            <MoreHorizontalIcon className='size-4' />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align='end'>
+          <DropdownMenuItem>View</DropdownMenuItem>
+          <DropdownMenuItem>Edit</DropdownMenuItem>
+          <DropdownMenuItem>Delete</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    ),
   },
 ];

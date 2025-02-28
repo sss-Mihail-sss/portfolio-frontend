@@ -4,7 +4,7 @@ import { auth } from '@/lib/auth';
 export async function withAccessToken(headers: HeadersInit): Promise<HeadersInit> {
   let session;
 
-  if (window != undefined) {
+  if (typeof window !== 'undefined') {
     session = await getSession();
   } else {
     session = await auth();

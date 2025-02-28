@@ -30,5 +30,14 @@
     --border: light-dark(hsl(240 5.9% 90%), hsl(240 3.7% 15.9%));
     --input: light-dark(hsl(240 5.9% 90%), hsl(240 3.7% 15.9%));
     --ring: light-dark(hsl(142.1 76.2% 36.3), hsl(142.4 71.8% 29.2%));
+
+    --sidebar: light-dark(oklch(0.985 0 0), oklch(0.205 0 0));
+    --sidebar-foreground: light-dark(oklch(0.145 0 0), oklch(0.985 0 0));
+    --sidebar-primary: light-dark(oklch(0.205 0 0), oklch(0.488 0.243 264.376));
+    --sidebar-primary-foreground: light-dark(oklch(0.985 0 0), oklch(0.985 0 0));
+    --sidebar-accent: light-dark(oklch(0.97 0 0)), oklch(0.269 0 0);
+    --sidebar-accent-foreground: light-dark(oklch(0.205 0 0), oklch(0.985 0 0));
+    --sidebar-border: light-dark(oklch(0.922 0 0), oklch(0.269 0 0));
+    --sidebar-ring: light-dark(oklch(0.708 0 0), oklch(0.439 0 0));
   }
 }

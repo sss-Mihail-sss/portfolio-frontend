@@ -25,6 +25,14 @@ const nextConfig: NextConfig = {
     CHAT_GPT_KEY: process.env.CHAT_GPT_KEY,
     GOOGLE_PLACE_API_KEY: process.env.GOOGLE_PLACE_API_KEY,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+      }
+    ]
+  }
 };
 
 export default withNextIntl(nextConfig);

@@ -54,12 +54,10 @@ const TableCompanies = () => {
     pageCount: data?.pageCount,
   });
 
-  console.log(isFetching);
-
   return (
     <div className='relative'>
       <DataTable table={table} />
-      <DataTablePagination table={table} />
+      <DataTablePagination table={table} pageSizeOptions={[10, 25, 50]} />
 
       {
         isFetching && (

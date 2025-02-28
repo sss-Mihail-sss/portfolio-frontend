@@ -17,11 +17,7 @@ function DataTable<TData>({ table }: Props<TData>) {
             {headerGroup.headers.map((header) => (
               <TableHead
                 key={header.id}
-                style={{
-                  minWidth: header.column.columnDef.size,
-                  maxWidth: header.column.columnDef.size,
-                }}
-                className='px-0'
+                colSpan={header.colSpan}
               >
                 {header.isPlaceholder
                   ? null
@@ -45,10 +41,6 @@ function DataTable<TData>({ table }: Props<TData>) {
               {row.getVisibleCells().map((cell) => (
                 <TableCell
                   key={cell.id}
-                  style={{
-                    minWidth: cell.column.columnDef.size,
-                    maxWidth: cell.column.columnDef.size,
-                  }}
                   className='truncate'
                 >
                   {flexRender(
