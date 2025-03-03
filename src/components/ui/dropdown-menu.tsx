@@ -32,73 +32,102 @@ const dropdownVariants = tv({
 
 type DropdownProps = VariantProps<typeof dropdownVariants>;
 
-const DropdownMenu = DropdownMenuPrimitive.Root;
+function DropdownMenu(props: ComponentProps<typeof DropdownMenuPrimitive.Root>) {
+  return (
+    <DropdownMenuPrimitive.Root data-slot='dropdown-menu' {...props} />
+  );
+}
 
-const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger;
+function DropdownMenuPortal(props: ComponentProps<typeof DropdownMenuPrimitive.Root>) {
+  return (
+    <DropdownMenuPrimitive.Portal data-slot='dropdown-menu-portal'  {...props} />
+  );
+}
 
-const DropdownMenuGroup = DropdownMenuPrimitive.Group;
+function DropdownMenuTrigger(props: ComponentProps<typeof DropdownMenuPrimitive.Trigger>) {
+  return (
+    <DropdownMenuPrimitive.Trigger data-slot='dropdown-menu-trigger' {...props} />
+  );
+}
 
-const DropdownMenuPortal = DropdownMenuPrimitive.Portal;
+function DropdownMenuGroup(props: ComponentProps<typeof DropdownMenuPrimitive.Group>) {
+  return (
+    <DropdownMenuPrimitive.Group data-slot='dropdown-menu-group' {...props} />
+  );
+}
 
-const DropdownMenuSub = DropdownMenuPrimitive.Sub;
+function DropdownMenuSub(props: ComponentProps<typeof DropdownMenuPrimitive.Sub>) {
+  return (
+    <DropdownMenuPrimitive.Sub data-slot='dropdown-menu-sub' {...props} />
+  );
+}
 
-const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup;
+function DropdownMenuRadioGroup(props: ComponentProps<typeof DropdownMenuPrimitive.RadioGroup>) {
+  return (
+    <DropdownMenuPrimitive.RadioGroup data-slot='dropdown-menu-radio-group' {...props} />
+  );
+}
 
 type DropdownMenuSubTriggerProps = ComponentProps<typeof DropdownMenuPrimitive.SubTrigger> & DropdownProps;
 
-const DropdownMenuSubTrigger = ({ ref, className, inset, children, ...props }: DropdownMenuSubTriggerProps) => {
+const DropdownMenuSubTrigger = ({ className, inset, children, ...props }: DropdownMenuSubTriggerProps) => {
   const { subTrigger } = dropdownVariants({ inset });
 
   return (
-    <DropdownMenuPrimitive.SubTrigger ref={ref} className={cn(subTrigger(), className)} {...props}>
+    <DropdownMenuPrimitive.SubTrigger
+      data-slot='dropdown-menu-sub-trigger'
+      data-inset={inset}
+      className={cn(subTrigger(), className)}
+      {...props}
+    >
       {children}
-      <ChevronRight className="ml-auto" />
+      <ChevronRight className='ml-auto size-4' />
     </DropdownMenuPrimitive.SubTrigger>
   );
 };
 
 type DropdownMenuSubContentProps = ComponentProps<typeof DropdownMenuPrimitive.SubContent> & DropdownProps;
 
-const DropdownMenuSubContent = ({ ref, className, ...props }: DropdownMenuSubContentProps) => {
+const DropdownMenuSubContent = ({ className, ...props }: DropdownMenuSubContentProps) => {
   const { subContent } = dropdownVariants({});
 
   return (
-    <DropdownMenuPrimitive.SubContent ref={ref} className={cn(subContent(), className)} {...props} />
+    <DropdownMenuPrimitive.SubContent className={cn(subContent(), className)} {...props} />
   );
 };
 
 type DropdownMenuContentProps = ComponentProps<typeof DropdownMenuPrimitive.Content> & DropdownProps;
 
-const DropdownMenuContent = ({ ref, className, ...props }: DropdownMenuContentProps) => {
+const DropdownMenuContent = ({ className, ...props }: DropdownMenuContentProps) => {
   const { content } = dropdownVariants({});
 
   return (
     <DropdownMenuPrimitive.Portal>
-      <DropdownMenuPrimitive.Content ref={ref} className={cn(content(), className)} {...props} />
+      <DropdownMenuPrimitive.Content className={cn(content(), className)} {...props} />
     </DropdownMenuPrimitive.Portal>
   );
 };
 
 type DropdownMenuItemProps = ComponentProps<typeof DropdownMenuPrimitive.Item> & DropdownProps;
 
-const DropdownMenuItem = ({ ref, className, inset, ...props }: DropdownMenuItemProps) => {
+const DropdownMenuItem = ({ className, inset, ...props }: DropdownMenuItemProps) => {
   const { item } = dropdownVariants({ inset });
 
   return (
-    <DropdownMenuPrimitive.Item ref={ref} className={cn(item(), className)} {...props} />
+    <DropdownMenuPrimitive.Item className={cn(item(), className)} {...props} />
   );
 };
 
 type DropdownMenuCheckboxItemProps = ComponentProps<typeof DropdownMenuPrimitive.CheckboxItem> & DropdownProps;
 
-const DropdownMenuCheckboxItem = ({ ref, className, children, ...props }: DropdownMenuCheckboxItemProps) => {
+const DropdownMenuCheckboxItem = ({ className, children, ...props }: DropdownMenuCheckboxItemProps) => {
   const { checkboxItem } = dropdownVariants({});
 
   return (
-    <DropdownMenuPrimitive.CheckboxItem ref={ref} className={cn(checkboxItem(), className)} {...props}>
-      <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+    <DropdownMenuPrimitive.CheckboxItem className={cn(checkboxItem(), className)} {...props}>
+      <span className='absolute left-2 flex h-3.5 w-3.5 items-center justify-center'>
         <DropdownMenuPrimitive.ItemIndicator>
-          <Check className="h-4 w-4" />
+          <Check className='h-4 w-4' />
         </DropdownMenuPrimitive.ItemIndicator>
       </span>
       {children}
@@ -108,14 +137,14 @@ const DropdownMenuCheckboxItem = ({ ref, className, children, ...props }: Dropdo
 
 type DropdownMenuRadioItemProps = ComponentProps<typeof DropdownMenuPrimitive.RadioItem> & DropdownProps;
 
-const DropdownMenuRadioItem = ({ ref, className, children, ...props }: DropdownMenuRadioItemProps) => {
+const DropdownMenuRadioItem = ({ className, children, ...props }: DropdownMenuRadioItemProps) => {
   const { radioItem } = dropdownVariants({});
 
   return (
-    <DropdownMenuPrimitive.RadioItem ref={ref} className={cn(radioItem(), className)} {...props} >
-      <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+    <DropdownMenuPrimitive.RadioItem className={cn(radioItem(), className)} {...props} >
+      <span className='absolute left-2 flex h-3.5 w-3.5 items-center justify-center'>
         <DropdownMenuPrimitive.ItemIndicator>
-          <Circle className="h-2 w-2 fill-current" />
+          <Circle className='h-2 w-2 fill-current' />
         </DropdownMenuPrimitive.ItemIndicator>
       </span>
       {children}
@@ -125,21 +154,21 @@ const DropdownMenuRadioItem = ({ ref, className, children, ...props }: DropdownM
 
 type DropdownMenuLabelProps = ComponentProps<typeof DropdownMenuPrimitive.Label> & DropdownProps;
 
-const DropdownMenuLabel = ({ ref, className, inset, ...props }: DropdownMenuLabelProps) => {
+const DropdownMenuLabel = ({ className, inset, ...props }: DropdownMenuLabelProps) => {
   const { label } = dropdownVariants({ inset });
 
   return (
-    <DropdownMenuPrimitive.Label ref={ref} className={cn(label(), className)} {...props} />
+    <DropdownMenuPrimitive.Label className={cn(label(), className)} {...props} />
   );
 };
 
 type DropdownMenuSeparatorProps = ComponentProps<typeof DropdownMenuPrimitive.Separator> & DropdownProps;
 
-const DropdownMenuSeparator = ({ ref, className, ...props }: DropdownMenuSeparatorProps) => {
+const DropdownMenuSeparator = ({ className, ...props }: DropdownMenuSeparatorProps) => {
   const { separator } = dropdownVariants({});
 
   return (
-    <DropdownMenuPrimitive.Separator ref={ref} className={cn(separator(), className)} {...props} />
+    <DropdownMenuPrimitive.Separator className={cn(separator(), className)} {...props} />
   );
 };
 

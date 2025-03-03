@@ -17,13 +17,13 @@ function TeamSwitcher() {
       id: 1,
       name: 'Jobber Team',
       plan: 'Free',
-      logo: 'https://avatars.githubusercontent.com/u/130739088',
+      logo: 'https://avatars.githubusercontent.com/u/130739088?s=36',
     },
     {
       id: 2,
       name: 'Vercel',
       plan: 'Vip',
-      logo: 'https://avatars.githubusercontent.com/u/14985020',
+      logo: 'https://avatars.githubusercontent.com/u/14985020?s=36',
     },
   ];
 
@@ -34,11 +34,14 @@ function TeamSwitcher() {
       <SidebarMenuItem>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <SidebarMenuButton className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground'>
-              <div>
+            <SidebarMenuButton
+              size='lg'
+              className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground cursor-pointer'
+            >
+              <div className='bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg'>
                 <Image
-                  width={36}
-                  height={36}
+                  width={16}
+                  height={16}
                   src={company.logo}
                   alt={company.name}
                   className='aspect-square object-contain rounded'
@@ -51,11 +54,21 @@ function TeamSwitcher() {
               <ChevronsUpDownIcon />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
-          <DropdownMenuContent>
+          <DropdownMenuContent className='w-(--radix-dropdown-menu-trigger-width)' sideOffset={4}>
             {
               companies.map(company => (
-                <DropdownMenuItem key={company.name}>
-                  test
+                <DropdownMenuItem
+                  key={company.name}
+                  onClick={() => setCompany(company)}
+                >
+                  <Image
+                    width={36}
+                    height={36}
+                    src={company.logo}
+                    alt={company.name}
+                    className='aspect-square object-contain rounded'
+                  />
+                  {company.name}
                 </DropdownMenuItem>
               ))
             }
