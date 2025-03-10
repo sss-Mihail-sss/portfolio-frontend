@@ -9,22 +9,22 @@ import { cn } from '@/lib/utils';
 
 const dropdownVariants = tv({
   slots: {
-    subTrigger: 'flex cursor-default gap-2 select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent data-[state=open]:bg-accent [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
-    subContent: 'z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
-    content: 'z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
-    item: 'relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&>svg]:size-4 [&>svg]:shrink-0',
-    checkboxItem: 'relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
-    radioItem: 'relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
-    label: 'px-2 py-1.5 text-sm font-semibold',
-    separator: '-mx-1 my-1 h-px bg-muted',
-    shortcut: 'ml-auto text-xs tracking-widest opacity-60',
+    subTrigger: 'focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground flex cursor-default items-center rounded-sm px-2 py-1.5 text-sm outline-hidden select-none',
+    subContent: 'bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 min-w-[8rem] overflow-hidden rounded-md border p-1 shadow-lg',
+    content: 'bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 max-h-(--radix-dropdown-menu-content-available-height) min-w-[8rem] overflow-x-hidden overflow-y-auto rounded-md border p-1 shadow-md',
+    item: 'focus:bg-accent focus:text-accent-foreground data-[variant=destructive]:text-destructive-foreground data-[variant=destructive]:focus:bg-destructive/10 dark:data-[variant=destructive]:focus:bg-destructive/40 data-[variant=destructive]:focus:text-destructive-foreground data-[variant=destructive]:*:[svg]:!text-destructive-foreground [&_svg:not([class*=\'text-\'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*=\'size-\'])]:size-4',
+    checkboxItem: 'focus:bg-accent focus:text-accent-foreground relative flex cursor-default items-center gap-2 rounded-sm py-1.5 pr-2 pl-8 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*=\'size-\'])]:size-4',
+    radioItem: 'focus:bg-accent focus:text-accent-foreground relative flex cursor-default items-center gap-2 rounded-sm py-1.5 pr-2 pl-8 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*=\'size-\'])]:size-4',
+    label: 'px-2 py-1.5 text-sm font-medium',
+    separator: 'bg-border -mx-1 my-1 h-px',
+    shortcut: 'text-muted-foreground ml-auto text-xs tracking-widest',
   },
   variants: {
     inset: {
       true: {
         subTrigger: 'pl-8',
-        menuItem: 'pl-8',
-        menuLabel: 'pl-8',
+        item: 'pl-8',
+        label: 'pl-8',
       },
     },
   },
@@ -62,15 +62,12 @@ function DropdownMenuSub(props: ComponentProps<typeof DropdownMenuPrimitive.Sub>
   );
 }
 
-function DropdownMenuRadioGroup(props: ComponentProps<typeof DropdownMenuPrimitive.RadioGroup>) {
-  return (
-    <DropdownMenuPrimitive.RadioGroup data-slot='dropdown-menu-radio-group' {...props} />
-  );
-}
-
-type DropdownMenuSubTriggerProps = ComponentProps<typeof DropdownMenuPrimitive.SubTrigger> & DropdownProps;
-
-const DropdownMenuSubTrigger = ({ className, inset, children, ...props }: DropdownMenuSubTriggerProps) => {
+const DropdownMenuSubTrigger = ({
+  className,
+  inset,
+  children,
+  ...props
+}: ComponentProps<typeof DropdownMenuPrimitive.SubTrigger> & DropdownProps) => {
   const { subTrigger } = dropdownVariants({ inset });
 
   return (
@@ -86,48 +83,72 @@ const DropdownMenuSubTrigger = ({ className, inset, children, ...props }: Dropdo
   );
 };
 
-type DropdownMenuSubContentProps = ComponentProps<typeof DropdownMenuPrimitive.SubContent> & DropdownProps;
-
-const DropdownMenuSubContent = ({ className, ...props }: DropdownMenuSubContentProps) => {
+const DropdownMenuSubContent = ({
+  className,
+  ...props
+}: ComponentProps<typeof DropdownMenuPrimitive.SubContent> & DropdownProps) => {
   const { subContent } = dropdownVariants({});
 
   return (
-    <DropdownMenuPrimitive.SubContent className={cn(subContent(), className)} {...props} />
+    <DropdownMenuPrimitive.SubContent
+      data-slot='dropdown-menu-content'
+      className={cn(subContent(), className)}
+      {...props}
+    />
   );
 };
 
-type DropdownMenuContentProps = ComponentProps<typeof DropdownMenuPrimitive.Content> & DropdownProps;
-
-const DropdownMenuContent = ({ className, ...props }: DropdownMenuContentProps) => {
+const DropdownMenuContent = ({
+  className,
+  sideOffset = 4,
+  ...props
+}: ComponentProps<typeof DropdownMenuPrimitive.Content> & DropdownProps) => {
   const { content } = dropdownVariants({});
 
   return (
     <DropdownMenuPrimitive.Portal>
-      <DropdownMenuPrimitive.Content className={cn(content(), className)} {...props} />
+      <DropdownMenuPrimitive.Content
+        data-slot='dropdown-menu-content'
+        sideOffset={sideOffset}
+        className={cn(content(), className)}
+        {...props}
+      />
     </DropdownMenuPrimitive.Portal>
   );
 };
 
-type DropdownMenuItemProps = ComponentProps<typeof DropdownMenuPrimitive.Item> & DropdownProps;
-
-const DropdownMenuItem = ({ className, inset, ...props }: DropdownMenuItemProps) => {
+const DropdownMenuItem = ({
+  className,
+  inset,
+  ...props
+}: ComponentProps<typeof DropdownMenuPrimitive.Item> & DropdownProps) => {
   const { item } = dropdownVariants({ inset });
 
   return (
-    <DropdownMenuPrimitive.Item className={cn(item(), className)} {...props} />
+    <DropdownMenuPrimitive.Item
+      data-slot='dropdown-menu-item'
+      className={cn(item(), className)}
+      {...props}
+    />
   );
 };
 
-type DropdownMenuCheckboxItemProps = ComponentProps<typeof DropdownMenuPrimitive.CheckboxItem> & DropdownProps;
-
-const DropdownMenuCheckboxItem = ({ className, children, ...props }: DropdownMenuCheckboxItemProps) => {
+const DropdownMenuCheckboxItem = ({
+  className,
+  children,
+  ...props
+}: ComponentProps<typeof DropdownMenuPrimitive.CheckboxItem> & DropdownProps) => {
   const { checkboxItem } = dropdownVariants({});
 
   return (
-    <DropdownMenuPrimitive.CheckboxItem className={cn(checkboxItem(), className)} {...props}>
-      <span className='absolute left-2 flex h-3.5 w-3.5 items-center justify-center'>
+    <DropdownMenuPrimitive.CheckboxItem
+      data-slot='dropdown-menu-checkbox-item'
+      className={cn(checkboxItem(), className)}
+      {...props}
+    >
+      <span className='pointer-events-none absolute left-2 flex size-3.5 items-center justify-center'>
         <DropdownMenuPrimitive.ItemIndicator>
-          <Check className='h-4 w-4' />
+          <Check className='size-4' />
         </DropdownMenuPrimitive.ItemIndicator>
       </span>
       {children}
@@ -135,16 +156,28 @@ const DropdownMenuCheckboxItem = ({ className, children, ...props }: DropdownMen
   );
 };
 
-type DropdownMenuRadioItemProps = ComponentProps<typeof DropdownMenuPrimitive.RadioItem> & DropdownProps;
+function DropdownMenuRadioGroup(props: ComponentProps<typeof DropdownMenuPrimitive.RadioGroup>) {
+  return (
+    <DropdownMenuPrimitive.RadioGroup data-slot='dropdown-menu-radio-group' {...props} />
+  );
+}
 
-const DropdownMenuRadioItem = ({ className, children, ...props }: DropdownMenuRadioItemProps) => {
+const DropdownMenuRadioItem = ({
+  className,
+  children,
+  ...props
+}: ComponentProps<typeof DropdownMenuPrimitive.RadioItem> & DropdownProps) => {
   const { radioItem } = dropdownVariants({});
 
   return (
-    <DropdownMenuPrimitive.RadioItem className={cn(radioItem(), className)} {...props} >
-      <span className='absolute left-2 flex h-3.5 w-3.5 items-center justify-center'>
+    <DropdownMenuPrimitive.RadioItem
+      data-slot='dropdown-menu-radio-item'
+      className={cn(radioItem(), className)}
+      {...props}
+    >
+      <span className='pointer-events-none absolute left-2 flex size-3.5 items-center justify-center'>
         <DropdownMenuPrimitive.ItemIndicator>
-          <Circle className='h-2 w-2 fill-current' />
+          <Circle className='size-2 fill-current' />
         </DropdownMenuPrimitive.ItemIndicator>
       </span>
       {children}
@@ -152,33 +185,38 @@ const DropdownMenuRadioItem = ({ className, children, ...props }: DropdownMenuRa
   );
 };
 
-type DropdownMenuLabelProps = ComponentProps<typeof DropdownMenuPrimitive.Label> & DropdownProps;
-
-const DropdownMenuLabel = ({ className, inset, ...props }: DropdownMenuLabelProps) => {
+const DropdownMenuLabel = ({
+  className,
+  inset,
+  ...props
+}: ComponentProps<typeof DropdownMenuPrimitive.Label> & DropdownProps) => {
   const { label } = dropdownVariants({ inset });
 
   return (
-    <DropdownMenuPrimitive.Label className={cn(label(), className)} {...props} />
+    <DropdownMenuPrimitive.Label data-slot='dropdown-menu-label' className={cn(label(), className)} {...props} />
   );
 };
 
-type DropdownMenuSeparatorProps = ComponentProps<typeof DropdownMenuPrimitive.Separator> & DropdownProps;
-
-const DropdownMenuSeparator = ({ className, ...props }: DropdownMenuSeparatorProps) => {
+const DropdownMenuSeparator = ({
+  className,
+  ...props
+}: ComponentProps<typeof DropdownMenuPrimitive.Separator> & DropdownProps) => {
   const { separator } = dropdownVariants({});
 
   return (
-    <DropdownMenuPrimitive.Separator className={cn(separator(), className)} {...props} />
+    <DropdownMenuPrimitive.Separator
+      data-slot='dropdown-menu-separator'
+      className={cn(separator(), className)}
+      {...props}
+    />
   );
 };
 
-type DropdownMenuShortcutProps = ComponentProps<'span'> & DropdownProps;
-
-const DropdownMenuShortcut = ({ className, ...props }: DropdownMenuShortcutProps) => {
+const DropdownMenuShortcut = ({ className, ...props }: ComponentProps<'span'> & DropdownProps) => {
   const { shortcut } = dropdownVariants({});
 
   return (
-    <span className={cn(shortcut(), className)} {...props} />
+    <span data-slot='dropdown-menu-shortcut' className={cn(shortcut(), className)} {...props} />
   );
 };
 

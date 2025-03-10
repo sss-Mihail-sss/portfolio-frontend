@@ -66,7 +66,7 @@ const menu: MenuItem[] = [
 
 function AppSidebar() {
   return (
-    <Sidebar collapsible='icon' className='top-(--header-height) h-[calc(100svh-var(--header-height))]!'>
+    <Sidebar side='left' variant='floating' collapsible='icon' className='top-(--header-height) h-[calc(100svh-var(--header-height))]!'>
       <SidebarHeader>
         <TeamSwitcher />
       </SidebarHeader>

@@ -35,9 +35,12 @@ export async function refresh(refreshToken: string): Promise<{
     },
   });
 
+  const json = await response.json();
+  console.log('json', json);
+
   if (!response.ok) {
     throw new Error('Failed to refresh token');
   }
 
-  return await response.json();
+  return json;
 }

@@ -15,7 +15,7 @@ function TeamSwitcher() {
   const companies: PartCompany[] = [
     {
       id: 1,
-      name: 'Jobber Team',
+      name: 'Jobber Space',
       plan: 'Free',
       logo: 'https://avatars.githubusercontent.com/u/130739088?s=36',
     },
@@ -36,12 +36,12 @@ function TeamSwitcher() {
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size='lg'
-              className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground cursor-pointer'
+              className='data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground'
             >
               <div className='bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg'>
                 <Image
-                  width={16}
-                  height={16}
+                  width={32}
+                  height={32}
                   src={company.logo}
                   alt={company.name}
                   className='aspect-square object-contain rounded'
@@ -60,6 +60,7 @@ function TeamSwitcher() {
                 <DropdownMenuItem
                   key={company.name}
                   onClick={() => setCompany(company)}
+                  className=''
                 >
                   <Image
                     width={36}
@@ -68,7 +69,8 @@ function TeamSwitcher() {
                     alt={company.name}
                     className='aspect-square object-contain rounded'
                   />
-                  {company.name}
+                  <p>{company.name}</p>
+                  <span>{company.plan}</span>
                 </DropdownMenuItem>
               ))
             }

@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { cookies } from 'next/headers';
 
 import { SidebarInset, SidebarProvider } from '@/ui/sidebar';
 import { SiteHeader } from './components/site-header';
@@ -8,15 +9,19 @@ type Props = {
   children: ReactNode;
 }
 
-export default function Layout({ children }: Props) {
+export default async function Layout({ children }: Props) {
+  const cookieStore = await cookies();
+  const defaultOpen = cookieStore.get('sidebar_state')?.value === 'true';
+
+
   return (
     <div className='[--header-height:calc(--spacing(14))]'>
-      <SidebarProvider className='flex flex-col'>
+      <SidebarProvider className='flex flex-col' defaultOpen={defaultOpen}>
         <SiteHeader />
         <div className='flex flex-1'>
           <AppSidebar />
           <SidebarInset>
-            content
+            {children}
           </SidebarInset>
         </div>
       </SidebarProvider>
