@@ -6,8 +6,6 @@ import { routing } from '@/i18n/routing';
 const withIntl = createMiddleware(routing);
 
 export async function middleware(request: NextRequest) {
-  // TODO: Add your own middleware here
-
   return withIntl(request);
 }
 

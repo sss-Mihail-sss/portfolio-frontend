@@ -2,7 +2,7 @@ import { defaultLocale, routing } from '@/i18n/routing';
 import { formats } from '@/i18n/request';
 
 const defaultMessages = {
-  ...(await import(`../../../messages/${defaultLocale}/meta.json`)).default,
+  ...(await import(`../../messages/${defaultLocale}/meta.json`)).default,
 };
 
 declare module 'next-intl' {

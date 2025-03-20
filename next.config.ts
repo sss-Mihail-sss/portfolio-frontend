@@ -21,6 +21,7 @@ const nextConfig: NextConfig = {
     // ppr: 'incremental',
   },
   env: {
+    DOMAIN: process.env.DOMAIN,
     API_URL: process.env.API_URL,
     WEB_URL: process.env.WEB_URL,
     CHAT_GPT_KEY: process.env.CHAT_GPT_KEY,

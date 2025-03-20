@@ -11,3 +11,4 @@
 - [ ] Games - Games (Tetris, Snake, Tic Tac Toe, Chess, etc.)
 - [ ] Blog - Blog (Medium clone)
 - [ ] Build - Build a website (Wix/WordPress clone)
+- [ ] Forum - Forum (Reddit clone)

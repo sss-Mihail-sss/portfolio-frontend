@@ -6,7 +6,7 @@ type Props = {
   }>
 }
 
-export default async function HomePage({}: Props) {
+export default async function HomePage() {
   return (
     <>
       main page
