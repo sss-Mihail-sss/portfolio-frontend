@@ -1,9 +1,6 @@
 'use client';
 
-import { useState } from 'react';
-import { APIProvider, Map, MapProps, useMapsLibrary } from '@vis.gl/react-google-maps';
-import { useDebounce } from '@uidotdev/usehooks';
-import { useQuery } from '@tanstack/react-query';
+import { APIProvider, Map, MapProps } from '@vis.gl/react-google-maps';
 import { LocationPickerAutocomplete } from '@/components/google/location-picker-autocomplete';
 
 type Props = MapProps;

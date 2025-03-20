@@ -3,9 +3,7 @@
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useLocale, useTranslations } from 'next-intl';
-import { signIn } from 'next-auth/react';
-import { toast } from 'sonner';
+import { useTranslations } from 'next-intl';
 import { z } from 'zod';
 
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/ui/form';
@@ -13,12 +11,11 @@ import { Link } from '@/ui/link';
 import { Input } from '@/ui/input';
 import { Button } from '@/ui/button';
 import { Separator } from '@/ui/separator';
-import { redirect, useRouter } from '@/lib/i18n/routing';
+import { useRouter } from '@/i18n/navigation';
 import { loginSchema } from '@/lib/zod';
 
 const LoginForm = () => {
   const t = useTranslations();
-  const locale = useLocale();
   const router = useRouter();
 
   const form = useForm<z.infer<typeof loginSchema>>({
@@ -30,25 +27,6 @@ const LoginForm = () => {
   });
 
   async function onSubmit(values: z.infer<typeof loginSchema>) {
-    // toast('Login request data:', {
-    //   description: (
-    //     <pre className='w-full mt-2 rounded-md bg-slate-950 p-4'>
-    //       <code className='text-white whitespace-pre-wrap'>{JSON.stringify(values, null, 2)}</code>
-    //     </pre>
-    //   ),
-    // });
-
-    await signIn('credentials', { ...values, redirect: false })
-      .then((response) => {
-        console.log('Login response:', response);
-        if (response?.error) {
-          if (response?.code == 'credentials') {
-            toast.error(t('form.login.error.credentials'));
-          }
-        } else {
-          router.push('/');
-        }
-      });
   }
 
   return (

@@ -4,8 +4,6 @@ import { createOpenAI } from '@ai-sdk/openai';
 import { generateObject } from 'ai';
 import { z } from 'zod';
 
-import { Job } from '@/types/job';
-
 const openai = createOpenAI({
   apiKey: process.env.OPENAI_API_KEY,
   compatibility: 'strict',
@@ -27,26 +25,4 @@ async function translateText(text: string, fromLang: string, toLang: string) {
   });
 
   return result.object;
-}
-
-export async function translate(job: Partial<Job>, languages: string[]) {
-  console.log('Translate job', job);
-  const translations = {};
-
-  for (const language of languages) {
-    const translatedJob = {};
-
-    for (const field of ['title', 'requirements', 'description']) {
-      if (job[field]) {
-        const translatedText = await translateText(job[field], 'auto', language);
-        translatedJob[field] = translatedText[field];
-      }
-    }
-
-    translations[language] = translatedJob;
-  }
-
-  console.log('result', result);
-  const { object } = result;
-  return object;
 }

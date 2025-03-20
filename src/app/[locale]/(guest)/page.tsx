@@ -1,14 +1,12 @@
-import { auth } from '@/lib/auth';
+import { Locale } from 'next-intl';
 
 type Props = {
   params: Promise<{
-    locale: string;
+    locale: Locale;
   }>
 }
 
 export default async function HomePage({}: Props) {
-  const session = await auth();
-
   return (
     <>
       main page

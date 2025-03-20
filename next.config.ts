@@ -3,9 +3,11 @@ import createNextIntlPlugin from 'next-intl/plugin';
 
 const withNextIntl = createNextIntlPlugin({
   experimental: {
-    createMessagesDeclaration: './messages/en.json',
+    createMessagesDeclaration: [
+      './messages/en/meta.json',
+    ],
   },
-  requestConfig: './src/lib/i18n/request.ts',
+  requestConfig: './src/i18n/request.ts',
 });
 
 const nextConfig: NextConfig = {
@@ -19,7 +21,6 @@ const nextConfig: NextConfig = {
     // ppr: 'incremental',
   },
   env: {
-    AUTH_SECRET: process.env.AUTH_SECRET,
     API_URL: process.env.API_URL,
     WEB_URL: process.env.WEB_URL,
     CHAT_GPT_KEY: process.env.CHAT_GPT_KEY,
@@ -30,9 +31,9 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'avatars.githubusercontent.com',
-      }
-    ]
-  }
+      },
+    ],
+  },
 };
 
 export default withNextIntl(nextConfig);

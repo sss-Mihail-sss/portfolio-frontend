@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes } from 'react';
-import { Slot } from '@radix-ui/react-slot';
+import { Slot } from 'radix-ui';
 import { tv, VariantProps } from 'tailwind-variants';
 import { cn } from '@/lib/utils';
 
@@ -32,7 +32,7 @@ type ButtonProps = {
 } & ButtonHTMLAttributes<HTMLButtonElement> & VariantProps<typeof buttonVariants>
 
 const Button = ({ variant, size, className, asChild, ...props }: ButtonProps) => {
-  const Component = asChild ? Slot : 'button';
+  const Component = asChild ? Slot.Slot : 'button';
 
   return (
     <Component {...props} className={cn(buttonVariants({ variant, size, className }))} />

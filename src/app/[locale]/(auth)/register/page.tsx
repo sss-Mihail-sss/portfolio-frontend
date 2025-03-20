@@ -1,5 +1,5 @@
-import { Locale } from 'next-intl';
 import { Metadata } from 'next';
+import { Locale } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 
 import { RegisterForm } from '@/components/form/register';
@@ -16,9 +16,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: t('title'),
-    robots: {
-      index: false,
-    },
   };
 }
 

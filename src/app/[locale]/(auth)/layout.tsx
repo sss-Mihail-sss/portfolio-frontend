@@ -1,8 +1,6 @@
 import { ReactNode } from 'react';
+import { Metadata } from 'next';
 import { Locale } from 'next-intl';
-
-import { auth } from '@/lib/auth';
-import { redirect } from '@/lib/i18n/routing';
 
 type Props = {
   children: ReactNode;
@@ -11,13 +9,14 @@ type Props = {
   }>
 }
 
-export default async function AuthLayout({ children, params }: Props) {
-  const { locale } = await params;
-  const session = await auth();
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
-  if (session) {
-    redirect({ href: '/', locale });
-  }
+export default async function AuthLayout({ children }: Props) {
 
   return (
     <div className='container flex-1 flex items-center justify-center'>

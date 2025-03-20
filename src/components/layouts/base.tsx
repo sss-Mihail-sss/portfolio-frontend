@@ -16,10 +16,10 @@ const BaseLayout = async ({ locale, children }: Props) => {
   return (
     <html className="h-full" lang={locale}>
       <body
-        className={cn(geistMono.variable, geistSans.variable, 'scheme-light-dark antialiased bg-background text-foreground min-h-svh flex flex-col font-geist-sans')}
+        className={cn(geistMono.variable, geistSans.variable, 'scheme-light-dark antialiased bg-background text-foreground min-h-dvh flex flex-col font-geist-sans')}
         data-theme="green"
       >
-        <SSRProviders locale={locale}>
+        <SSRProviders>
           <CSRProvider>
             {children}
 
