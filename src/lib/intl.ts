@@ -1,4 +1,4 @@
-import { IntlError, IntlErrorCode } from 'next-intl';
+import { Formats, IntlError, IntlErrorCode } from 'next-intl';
 
 export function getLanguageName(locale: string, code: string): string | undefined {
   const Locale = new Intl.Locale(locale);
@@ -31,3 +31,13 @@ export function getMessageFallback({ key, error, namespace }: {
     return 'Dear developer, please fix this message: ' + path;
   }
 }
+
+export const formats: Formats = {
+  dateTime: {
+    'date-short': {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+    },
+  },
+};
