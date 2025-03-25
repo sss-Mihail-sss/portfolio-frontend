@@ -28,6 +28,7 @@ const nextConfig: NextConfig = {
     GOOGLE_PLACE_API_KEY: process.env.GOOGLE_PLACE_API_KEY,
   },
   images: {
+    // GitHub Images
     remotePatterns: [
       {
         protocol: 'https',

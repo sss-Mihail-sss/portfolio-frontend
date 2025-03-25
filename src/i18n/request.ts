@@ -1,32 +1,18 @@
 import { AbstractIntlMessages, hasLocale } from 'next-intl';
 import { getRequestConfig } from 'next-intl/server';
 import deepmerge from 'deepmerge';
-import { join } from 'path';
-import { readdirSync } from 'fs';
 
 import { defaultLocale, locales } from '@/i18n/routing';
-import { formats, getLanguage, getMessageFallback, onError } from '@/lib/intl';
+import { getLanguage, getMessageFallback, loadMessages, onError } from '@/lib/intl';
+import { formats } from '@/config/i18n';
 
 export default getRequestConfig(async ({ requestLocale }) => {
   const requested = await requestLocale;
   const locale = hasLocale(locales, requested) ? requested : defaultLocale;
   const language = getLanguage(locale);
-  const files = readdirSync(join('messages', locale));
 
-  files.forEach((file) => {
-    console.log(file);
-  });
-
-  const defaultMessages: AbstractIntlMessages = {};
-
-  for (const file of files) {
-    const messages = (await import(`../../messages/${defaultLocale}/${file}`)).default;
-    Object.assign(defaultMessages, ...messages);
-  }
-
-  const messages = {
-    ...(await import(`../../messages/${language}/meta.json`)).default,
-  };
+  let defaultMessages: AbstractIntlMessages = await loadMessages(getLanguage(defaultLocale));
+  let messages: AbstractIntlMessages = await loadMessages(language);
 
   return {
     locale,

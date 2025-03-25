@@ -8,7 +8,17 @@
 @theme {
   --font-geist-sans: var(--font-geist-sans);
   --font-geist-mono: var(--font-geist-mono);
+  --font-montserrat: var(--font-montserrat);
+  --font-raleway: var(--font-raleway);
+  --font-roboto: var(--font-roboto);
+  --font-roboto-mono: var(--font-roboto-mono);
+  --font-inter: var(--font-inter);
+  --font-open-sans: var(--font-open-sans);
+
   --breakpoint-xs: 420px;
+
+  --spacing-sidebar: 18rem;
+  --spacing-sidebar-collapse: 3rem;
 
   --radius: 0.5rem;
 }
@@ -64,7 +74,9 @@
   ::file-selector-button {
     @apply border-border accent-primary;
   }
+}
 
+@utility editor {
   h1 {
     font-size: var(--text-4xl);
   }

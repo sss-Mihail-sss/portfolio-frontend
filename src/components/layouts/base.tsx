@@ -4,7 +4,7 @@ import { Locale } from 'next-intl';
 import { SSRProviders } from '@/components/providers/ssr';
 import { CSRProvider } from '@/components/providers/csr';
 import { cn } from '@/lib/utils';
-import { geistMono, geistSans } from '@/lib/font';
+import { geistMono, geistSans, inter, montserrat, openSans, raleway, roboto, robotoMono } from '@/lib/font';
 import { Toaster } from '@/ui/sonner';
 
 type Props = {
@@ -14,10 +14,20 @@ type Props = {
 
 const BaseLayout = async ({ locale, children }: Props) => {
   return (
-    <html className="h-full" lang={locale}>
+    <html className='h-full' lang={locale}>
       <body
-        className={cn(geistMono.variable, geistSans.variable, 'scheme-light-dark antialiased bg-background text-foreground min-h-dvh flex flex-col font-geist-sans')}
-        data-theme="green"
+        className={cn(
+          geistMono.variable,
+          geistSans.variable,
+          openSans.variable,
+          roboto.variable,
+          robotoMono.variable,
+          montserrat.variable,
+          raleway.variable,
+          inter.variable,
+          'scheme-light-dark antialiased bg-background text-foreground min-h-dvh flex flex-col font-geist-sans',
+        )}
+        data-theme='green'
       >
         <SSRProviders>
           <CSRProvider>

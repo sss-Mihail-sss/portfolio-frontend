@@ -1,4 +1,6 @@
-import { Formats, IntlError, IntlErrorCode } from 'next-intl';
+import { AbstractIntlMessages, IntlError, IntlErrorCode } from 'next-intl';
+import { readdir } from 'fs/promises';
+import { join } from 'path';
 
 export function getLanguageName(locale: string, code: string): string | undefined {
   const Locale = new Intl.Locale(locale);
@@ -32,12 +34,22 @@ export function getMessageFallback({ key, error, namespace }: {
   }
 }
 
-export const formats: Formats = {
-  dateTime: {
-    'date-short': {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-    },
-  },
-};
+export async function loadMessages(locale: string): Promise<AbstractIntlMessages> {
+  const path = join('messages', locale);
+  const files = await readdir(path);
+  const messages: AbstractIntlMessages = {};
+
+  for (const file of files) {
+    if (file.endsWith('.json')) {
+      try {
+        const json = (await import(`../../messages/${locale}/${file}`)).default;
+        const key = file.replace('.json', '');
+        messages[key] = json;
+      } catch (error) {
+        console.error(`Failed load json file ${file}`, error);
+      }
+    }
+  }
+
+  return messages;
+}
