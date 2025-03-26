@@ -11,12 +11,10 @@ import { Link } from '@/ui/link';
 import { Input } from '@/ui/input';
 import { Button } from '@/ui/button';
 import { Separator } from '@/ui/separator';
-import { useRouter } from '@/i18n/navigation';
 import { loginSchema } from '@/lib/zod';
 
 const LoginForm = () => {
   const t = useTranslations();
-  const router = useRouter();
 
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),

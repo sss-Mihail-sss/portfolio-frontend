@@ -1,9 +1,15 @@
-type Props = {}
+import { Locale } from 'next-intl';
 
-export default function Layout({}: Props) {
+type Props = {
+  params: Promise<{
+    locale: Locale;
+  }>
+}
+
+export default async function Page({}: Props) {
   return (
     <div>
-      storage page
+      Storage dashboard
     </div>
   );
 }

@@ -6,11 +6,11 @@ import { ChevronRight, PanelLeftClose } from 'lucide-react';
 import { useAtom } from 'jotai';
 
 import { Pathnames } from '@/i18n/routing';
-import { usePathname } from '@/i18n/navigation';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from '@/ui/breadcrumb';
 import { Button } from '@/components/ui/button';
 import { sidebarStateAtom } from '@/stores/jotai/sidebar';
 import { cn } from '@/lib/utils';
+import { useParams, usePathname } from 'next/navigation';
 
 const Navbar = () => {
   const t = useTranslations('navigation');
@@ -42,22 +42,26 @@ const Navbar = () => {
       <Breadcrumb>
         <BreadcrumbList>
           {
-            paths.filter(Boolean).map((path, index) => (
-              <Fragment key={path}>
-                {
-                  index > 0 && (
-                    <BreadcrumbSeparator>
-                      <ChevronRight />
-                    </BreadcrumbSeparator>
-                  )
-                }
-                <BreadcrumbItem>
-                  <BreadcrumbLink href={path as Pathnames}>
-                    {t(path)}
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-              </Fragment>
-            ))
+            paths.filter(Boolean).map((path, index) => {
+              const pathname = paths.slice(0, index + 1).join('/');
+
+              return (
+                <Fragment key={path}>
+                  {
+                    index > 0 && (
+                      <BreadcrumbSeparator>
+                        <ChevronRight />
+                      </BreadcrumbSeparator>
+                    )
+                  }
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href={pathname as Pathnames}>
+                      {t.has(path) ? t(path) : path}
+                    </BreadcrumbLink>
+                  </BreadcrumbItem>
+                </Fragment>
+              );
+            })
           }
         </BreadcrumbList>
       </Breadcrumb>

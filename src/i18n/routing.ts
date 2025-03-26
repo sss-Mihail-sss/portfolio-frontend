@@ -15,8 +15,10 @@ export const routing = defineRouting({
     '/forgot-password': '/forgot-password',
 
     '/dashboard': '/dashboard',
-    '/dashboard/jobs': '/dashboard/jobs',
-    '/dashboard/companies': '/dashboard/companies',
+
+    '/dashboard/storage': '/dashboard/storage',
+    '/dashboard/storage/folders': '/dashboard/storage/folders',
+    '/dashboard/storage/folders/[[...path]]': '/dashboard/storage/folders/[[...path]]',
   },
 });
 

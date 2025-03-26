@@ -35,6 +35,11 @@ const nextConfig: NextConfig = {
     WEB_URL: process.env.WEB_URL,
     CHAT_GPT_KEY: process.env.CHAT_GPT_KEY,
     GOOGLE_PLACE_API_KEY: process.env.GOOGLE_PLACE_API_KEY,
+
+    // AWS S3
+    AWS_REGION: process.env.AWS_REGION,
+    AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID,
+    AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
   },
   images: {
     // GitHub Images
