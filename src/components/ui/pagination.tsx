@@ -65,7 +65,6 @@ function PaginationItem({
         buttonVariants({
           className: 'text-sm',
           variant: props.value === page ? 'outline' : 'ghost',
-          disabled,
           size,
         }),
         className,
@@ -86,10 +85,10 @@ function PaginationPrevious({ className, ...props }: ComponentProps<typeof Pagin
           className: 'gap-1',
           variant: 'ghost',
           size: 'icon',
-          disabled: page === 1,
         }),
         className,
       )}
+      disabled={page === 1}
       {...props}
     >
       <ChevronLeftIcon />
@@ -109,10 +108,10 @@ function PaginationNext({ className, ...props }: ComponentProps<typeof Paginatio
           className: 'gap-1',
           variant: 'ghost',
           size: 'icon',
-          disabled: page === totalPages,
         }),
         className,
       )}
+      disabled={page === totalPages}
       {...props}
     >
       <span className='sr-only'>Next</span>

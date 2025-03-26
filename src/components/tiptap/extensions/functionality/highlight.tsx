@@ -47,7 +47,6 @@ function Highlighter() {
       <PopoverContent>
         <ToggleGroup
           type='single'
-          variant='spaced'
           className='flex flex-wrap items-center justify-around gap-2'
           onValueChange={handleChangeValue}
         >

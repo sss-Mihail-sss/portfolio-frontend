@@ -29,11 +29,11 @@ type ButtonProps = {
   asChild?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement> & VariantProps<typeof buttonVariants>
 
-const Button = ({ variant, size, className, disabled, asChild, ...props }: ButtonProps) => {
+const Button = ({ variant, size, className, asChild, ...props }: ButtonProps) => {
   const Component = asChild ? Slot.Slot : 'button';
 
   return (
-    <Component type='button' {...props} className={cn(buttonVariants({ variant, size, disabled, className }))} />
+    <Component type='button' {...props} className={cn(buttonVariants({ variant, size, className }))} />
   );
 };
 

@@ -1,11 +1,19 @@
 import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
+import { join } from 'path';
+import { readdirSync } from 'fs';
+
+import { defaultLocale } from '@/i18n/routing';
+
+const path = join('messages', defaultLocale);
+const files = readdirSync(path);
+
+const messagesDeclaration = files.filter(file => file.endsWith('.json'))
+  .map(file => './' + join('messages', defaultLocale, file));
 
 const withNextIntl = createNextIntlPlugin({
   experimental: {
-    createMessagesDeclaration: [
-      './messages/en/meta.json',
-    ],
+    createMessagesDeclaration: messagesDeclaration,
   },
   requestConfig: './src/i18n/request.ts',
 });
@@ -19,6 +27,7 @@ const nextConfig: NextConfig = {
     typedEnv: true,
     taint: true,
     // ppr: 'incremental',
+    viewTransition: true,
   },
   env: {
     DOMAIN: process.env.DOMAIN,
