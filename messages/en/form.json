@@ -1,0 +1,22 @@
+{
+  "login": {
+    "title": "Login to your account",
+    "description": "Enter your username and password to login",
+    "fields": {
+      "username": {
+        "label": "Username",
+        "placeholder": "jognwick24"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "********"
+      }
+    },
+    "social": {
+      "google": "Log in with Google",
+      "facebook": "Log in with Facebook",
+      "github": "Log in with GitHub",
+      "linkedin": "Log in with LinkedIn"
+    }
+  }
+}

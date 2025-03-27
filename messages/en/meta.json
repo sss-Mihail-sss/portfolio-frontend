@@ -1,5 +1,8 @@
 {
   "home": {
     "title": "Home Page"
+  },
+  "login": {
+    "title": "Login Page"
   }
 }

@@ -61,8 +61,8 @@ const LoginForm = () => {
             <FormItem>
               <div className='flex items-center justify-between'>
                 <FormLabel>{t('form.login.fields.password.label')}</FormLabel>
-                <Link href='/forgot-password'>
-                  {t('form.login.forgot-password')}
+                <Link href='/forgot-password' className='hover:underline'>
+                  {t('common.forgot-password')}?
                 </Link>
               </div>
               <FormControl>
@@ -73,11 +73,11 @@ const LoginForm = () => {
           )}
         />
 
-        <Button type='submit'>{t('form.login.buttons.submit')}</Button>
+        <Button type='submit'>{t('common.submit')}</Button>
 
         <div className='flex items-center gap-2 text-sm'>
           <Separator orientation='horizontal' className='flex-1' />
-          {t('form.login.or')}
+          {t('common.or')}
           <Separator orientation='horizontal' className='flex-1' />
         </div>
 
@@ -114,9 +114,9 @@ const LoginForm = () => {
         </div>
 
         <div className='text-center text-sm'>
-          {t('form.login.no-account')}{' '}
+          {t('common.no-account')}{' '}
           <Link href='/register' className='underline'>
-            {t('form.login.signup')}
+            {t('common.sign-up')}
           </Link>
         </div>
       </form>
