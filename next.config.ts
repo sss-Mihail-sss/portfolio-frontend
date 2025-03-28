@@ -26,8 +26,9 @@ const nextConfig: NextConfig = {
     // dynamicIO: true,
     typedEnv: true,
     taint: true,
-    // ppr: 'incremental',
+    ppr: 'incremental',
     viewTransition: true,
+    useCache: true,
   },
   env: {
     DOMAIN: process.env.DOMAIN,

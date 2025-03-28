@@ -4,7 +4,7 @@ import { ListObjectsV2Command, ListObjectsV2Request, PutObjectCommand, PutObject
 
 import { getS3Client } from '@/lib/s3';
 
-export async function getObjects({ path = '/' }: { path?: string }) {
+export async function getObjects({ path }: { path?: string } = { path: '/' }) {
   const client = getS3Client();
   const params: ListObjectsV2Request = {
     Bucket: process.env.AWS_BUCKET_NAME,
@@ -20,7 +20,7 @@ export async function getObjects({ path = '/' }: { path?: string }) {
   return { folders, files };
 }
 
-export async function createFolder({ folder }: { folder: string }) {
+export async function createObject({ folder }: { folder: string }) {
   const client = getS3Client();
   const params: PutObjectRequest = {
     Bucket: process.env.AWS_BUCKET_NAME,

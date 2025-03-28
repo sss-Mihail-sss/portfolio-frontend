@@ -1,10 +1,11 @@
 import { Locale } from 'next-intl';
 import { FileIcon, FolderIcon } from 'lucide-react';
 
-import { getObjects } from '@/actions/s3';
+import { getObjects } from '@/actions/s3/object';
 import { CreateFolder } from '@/components/form/s3/create-folder';
 import { Link } from '@/ui/link';
 import { getPathname } from '@/i18n/navigation';
+import { Pathnames } from '@/i18n/routing';
 
 type Props = {
   params: Promise<{
@@ -55,7 +56,7 @@ export default async function Page({ params }: Props) {
                   //     ],
                   //   },
                   // }}
-                  href={href}
+                  href={href as Pathnames}
                   className='flex px-2 py-1 gap-2 items-center rounded hover:bg-gray-100/10'
                 >
                   <FolderIcon className='size-4' />

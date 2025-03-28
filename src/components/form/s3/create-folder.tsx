@@ -18,7 +18,7 @@ import {
 } from '@/ui/dialog';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/ui/form';
 import { Input } from '@/ui/input';
-import { createFolder } from '@/actions/s3';
+import { createObject } from '@/actions/s3/object';
 
 const schema = z.object({
   folder: z.string().min(3),
@@ -33,7 +33,7 @@ function CreateFolder() {
   });
 
   const onSubmit = async (data: z.infer<typeof schema>) => {
-    const response = await createFolder(data);
+    const response = await createObject(data);
 
     console.log(response);
   };
