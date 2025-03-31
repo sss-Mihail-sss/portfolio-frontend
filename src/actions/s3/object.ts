@@ -6,16 +6,43 @@ import { getS3Client } from '@/lib/s3';
 
 export async function getObjects({ path }: { path?: string } = { path: '/' }) {
   const client = getS3Client();
-  const params: ListObjectsV2Request = {
-    Bucket: process.env.AWS_BUCKET_NAME,
-    Delimiter: path,
-  };
+  let continuationToken = undefined;
 
-  const command = new ListObjectsV2Command(params);
-  const response = await client.send(command);
+  const folders: string[] = [];
+  const files: string[] = [];
 
-  const folders = response.CommonPrefixes ? response.CommonPrefixes.map(prefix => prefix.Prefix) : [];
-  const files = response.Contents ? response.Contents.map(item => item.Key) : [];
+  do {
+    const params: ListObjectsV2Request = {
+      Bucket: process.env.AWS_BUCKET_NAME,
+      Delimiter: path,
+      ContinuationToken: continuationToken,
+    };
+
+    const command = new ListObjectsV2Command(params);
+
+    try {
+      const response = await client.send(command);
+      continuationToken = response.NextContinuationToken;
+
+      if (response.CommonPrefixes) {
+        for (const prefix of response.CommonPrefixes) {
+          if (prefix.Prefix) {
+            folders.push(prefix.Prefix);
+          }
+        }
+      }
+
+      if (response.Contents) {
+        for (const item of response.Contents) {
+          if (item.Key) {
+            files.push(item.Key);
+          }
+        }
+      }
+    } catch (error) {
+      console.error('Failed to get bucket objects:', error);
+    }
+  } while (continuationToken);
 
   return { folders, files };
 }

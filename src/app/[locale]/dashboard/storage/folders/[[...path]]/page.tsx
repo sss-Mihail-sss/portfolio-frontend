@@ -6,6 +6,7 @@ import { CreateFolder } from '@/components/form/s3/create-folder';
 import { Link } from '@/ui/link';
 import { getPathname } from '@/i18n/navigation';
 import { Pathnames } from '@/i18n/routing';
+import { UploadImage } from '@/components/form/s3/upload-image';
 
 type Props = {
   params: Promise<{
@@ -37,37 +38,36 @@ export default async function Page({ params }: Props) {
       <div className='flex items-center justify-between'>
         <h1>Folders</h1>
 
-        <CreateFolder />
+        <div className='flex gap-2'>
+          <CreateFolder />
+          <UploadImage />
+        </div>
       </div>
 
       <div className='flex gap-1 flex-col mt-4'>
         {
-          folders?.map(folder => {
-            if (!!folder) {
-              return (
-                <Link
-                  key={folder}
-                  // href={{
-                  //   pathname: '/dashboard/storage/folders/[[...path]]',
-                  //   params: {
-                  //     path: [
-                  //       ...(path ? path : []),
-                  //       folder,
-                  //     ],
-                  //   },
-                  // }}
-                  href={href as Pathnames}
-                  className='flex px-2 py-1 gap-2 items-center rounded hover:bg-gray-100/10'
-                >
-                  <FolderIcon className='size-4' />
-                  {folder}
-                </Link>
-              );
-            }
-          })
+          folders.map(folder => (
+            <Link
+              key={folder}
+              // href={{
+              //   pathname: '/dashboard/storage/folders/[[...path]]',
+              //   params: {
+              //     path: [
+              //       ...(path ? path : []),
+              //       folder,
+              //     ],
+              //   },
+              // }}
+              href={href as Pathnames}
+              className='flex px-2 py-1 gap-2 items-center rounded hover:bg-gray-100/10'
+            >
+              <FolderIcon className='size-4' />
+              {folder}
+            </Link>
+          ))
         }
         {
-          files?.map(file => (
+          files.map(file => (
             <div key={file} className='flex px-2 py-1 gap-2 items-center rounded hover:bg-gray-100/10'>
               <FileIcon className='size-4' />
               {file}

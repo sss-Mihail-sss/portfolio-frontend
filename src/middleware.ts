@@ -12,7 +12,7 @@ const protectedRoutes = ['/dashboard'];
 export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
   const isProtectedRoute = protectedRoutes.includes(path);
-  
+
   const cookie = await getCookie('session');
   const session = await decrypt(cookie);
 

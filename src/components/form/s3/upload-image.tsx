@@ -1,8 +1,8 @@
 'use client';
 
-import { FolderPlusIcon } from 'lucide-react';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
+import { FilePlusIcon } from 'lucide-react';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { Button } from '@/ui/button';
@@ -16,35 +16,33 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/ui/dialog';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/ui/form';
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/ui/form';
 import { Input } from '@/ui/input';
-import { createObject } from '@/actions/s3/object';
+import { FileUpload } from '@/ui/file-upload';
 
 const schema = z.object({
-  folder: z.string().min(3),
+  files: z.array(z.instanceof(File)),
 });
 
-function CreateFolder() {
+function UploadImage() {
   const form = useForm({
     resolver: zodResolver(schema),
     defaultValues: {
-      folder: '',
+      files: [],
     },
   });
 
   const onSubmit = async (data: z.infer<typeof schema>) => {
-    const response = await createObject(data);
-
-    console.log(response);
+    console.log(data);
   };
 
   return (
     <Dialog>
       <DialogTrigger asChild>
         <Button>
-          <FolderPlusIcon className='size-4' />
+          <FilePlusIcon className='size-4' />
           <span>
-            Create folder
+            Upload file(s)
           </span>
         </Button>
       </DialogTrigger>
@@ -52,22 +50,21 @@ function CreateFolder() {
       <DialogContent>
         <DialogHeader>
           <DialogTitle>
-            Create new folder
+            Upload file
           </DialogTitle>
-          <DialogDescription>
-            Typing name of folder
+          <DialogDescription className='sr-only'>
+            Upload file here
           </DialogDescription>
         </DialogHeader>
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
             <FormField
-              name='folder'
+              name='files'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Folder name</FormLabel>
                   <FormControl>
-                    <Input placeholder='images' {...field} />
+                    <FileUpload />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -92,4 +89,4 @@ function CreateFolder() {
   );
 }
 
-export { CreateFolder };
+export { UploadImage };

@@ -7,7 +7,11 @@ export async function getBucketSize() {
   const client = getCloudWatchClient();
 
   const params: GetMetricDataInput = {
-    MetricDataQueries: [],
+    MetricDataQueries: [
+      {
+        Id: 'bucket-size',
+      }
+    ],
     StartTime: new Date(),
     EndTime: new Date(),
   };
