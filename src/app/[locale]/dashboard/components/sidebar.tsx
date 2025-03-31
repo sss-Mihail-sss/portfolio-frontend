@@ -2,11 +2,11 @@
 
 import { useAtomValue } from 'jotai';
 
-import { sidebarStateAtom } from '@/stores/jotai/sidebar';
+import { sidebarStateAtom, sidebarStateAtomPersistence } from '@/stores/jotai/sidebar';
 import { cn } from '@/lib/utils';
 
 const Sidebar = () => {
-  const state = useAtomValue(sidebarStateAtom);
+  const state = useAtomValue(sidebarStateAtomPersistence);
 
   return (
     <aside

@@ -8,8 +8,8 @@ type Props = {
 }
 
 export default async function Page({}: Props) {
-  const objects = await getBucketSize();
-  console.log(objects);
+  // const objects = await getBucketSize();
+  // console.log(objects);
 
   return (
     <div>

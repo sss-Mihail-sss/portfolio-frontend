@@ -8,13 +8,13 @@ import { useAtom } from 'jotai';
 import { Pathnames } from '@/i18n/routing';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from '@/ui/breadcrumb';
 import { Button } from '@/components/ui/button';
-import { sidebarStateAtom } from '@/stores/jotai/sidebar';
+import { sidebarStateAtomPersistence } from '@/stores/jotai/sidebar';
 import { cn } from '@/lib/utils';
 import { useParams, usePathname } from 'next/navigation';
 
 const Navbar = () => {
   const t = useTranslations('navigation');
-  const [sidebarStatus, setSidebarStatus] = useAtom(sidebarStateAtom);
+  const [sidebarStatus, setSidebarStatus] = useAtom(sidebarStateAtomPersistence);
   const pathname = usePathname();
   const paths = pathname.split('/');
 

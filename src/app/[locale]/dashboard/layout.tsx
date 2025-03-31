@@ -7,7 +7,7 @@ type Props = {
   children: ReactNode;
 }
 
-export default function Layout({ children }: Props) {
+export default async function Layout({ children }: Props) {
   return (
     <div className='flex flex-col sm:flex-row flex-1 gap-2 p-2'>
       <Sidebar />

@@ -1,32 +1,31 @@
-import { atomWithStorage, createJSONStorage } from 'jotai/utils';
+'use client';
 
-import { deleteCookie, getCookie, setCookie } from '@/lib/cookie';
+import { atomWithStorage } from 'jotai/utils';
+import { z } from 'zod';
 
-type Status = 'expanded' | 'collapsed';
+export type Status = 'expanded' | 'collapsed';
+export const SIDEBAR_STATUS = 'sidebar-state';
 
-const cookieStorage = createJSONStorage(() => {
-  async function getItem(key: string) {
-    const value = await getCookie(key);
-    if (typeof value == 'undefined') {
-      return null;
-    }
+const sidebarSchema = z.enum(['expanded', 'collapsed']);
 
-    return value;
-  }
+export const sidebarStateAtomPersistence = atomWithStorage<Status>(
+  SIDEBAR_STATUS,
+  'expanded',
+  {
+    getItem(key, initialValue) {
+      const storedValue = localStorage.getItem(key);
 
-  async function setItem(key: string, value: string) {
-    await setCookie(key, value);
-  }
-
-  async function removeItem(key: string) {
-    await deleteCookie(key);
-  }
-
-  return {
-    getItem: getItem,
-    setItem: setItem,
-    removeItem: removeItem,
-  };
-});
-
-export const sidebarStateAtom = atomWithStorage<Status>('sidebar-state', 'expanded', cookieStorage);
+      try {
+        return sidebarSchema.parse(JSON.parse(storedValue ?? ''));
+      } catch (error) {
+        return initialValue;
+      }
+    },
+    setItem(key, value) {
+      localStorage.setItem(key, JSON.stringify(value));
+    },
+    removeItem(key) {
+      localStorage.removeItem(key);
+    },
+  },
+);
