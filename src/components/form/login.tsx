@@ -5,26 +5,65 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import { z } from 'zod';
+import parsePhoneNumber from 'libphonenumber-js';
 
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/ui/form';
 import { Link } from '@/ui/link';
 import { Input } from '@/ui/input';
 import { Button } from '@/ui/button';
 import { Separator } from '@/ui/separator';
-import { loginSchema } from '@/lib/zod';
 
 const LoginForm = () => {
   const t = useTranslations();
 
-  const form = useForm<z.infer<typeof loginSchema>>({
-    resolver: zodResolver(loginSchema),
+  const schema = z.object({
+    username: z
+      .string()
+      .min(2, t('validation.field-required', { field: t('username') }))
+      .trim()
+      .optional(),
+    email: z
+      .string()
+      .email(t('validation.field-invalid', { field: t('email') }))
+      .optional(),
+    phone: z
+      .string()
+      .transform((value, ctx) => {
+        const phoneNumber = parsePhoneNumber(value);
+
+        if (phoneNumber?.isValid()) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: t('validation.field-invalid', { field: t('phone') }),
+          });
+          return z.NEVER;
+        }
+
+        return phoneNumber?.formatInternational();
+      })
+      .optional(),
+    password: z
+      .string()
+      .min(8)
+      .regex(/[a-zA-Z]/, { message: 'Contain at least one letter.' })
+      .regex(/[0-9]/, { message: 'Contain at least one number.' })
+      .regex(/[^a-zA-Z0-9]/, {
+        message: 'Contain at least one special character.',
+      })
+      .trim(),
+  });
+  type Schema = z.infer<typeof schema>;
+
+  const form = useForm<Schema>({
+    resolver: zodResolver(schema),
     defaultValues: {
-      username: '',
       password: '',
     },
   });
+  console.log(form.formState.errors);
 
-  async function onSubmit(values: z.infer<typeof loginSchema>) {
+  async function onSubmit(values: Schema) {
+    console.log(values);
   }
 
   return (
@@ -46,7 +85,7 @@ const LoginForm = () => {
           name='username'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t('form.login.fields.username.label')}</FormLabel>
+              <FormLabel>{t('username')}</FormLabel>
               <FormControl>
                 <Input placeholder={t('form.login.fields.username.placeholder')} {...field} />
               </FormControl>
@@ -62,7 +101,7 @@ const LoginForm = () => {
               <div className='flex items-center justify-between'>
                 <FormLabel>{t('form.login.fields.password.label')}</FormLabel>
                 <Link href='/forgot-password' className='hover:underline'>
-                  {t('common.forgot-password')}?
+                  {t('forgot-password')}?
                 </Link>
               </div>
               <FormControl>
@@ -73,11 +112,11 @@ const LoginForm = () => {
           )}
         />
 
-        <Button type='submit'>{t('common.submit')}</Button>
+        <Button type='submit'>{t('submit')}</Button>
 
         <div className='flex items-center gap-2 text-sm'>
           <Separator orientation='horizontal' className='flex-1' />
-          {t('common.or')}
+          {t('or')}
           <Separator orientation='horizontal' className='flex-1' />
         </div>
 
@@ -114,9 +153,9 @@ const LoginForm = () => {
         </div>
 
         <div className='text-center text-sm'>
-          {t('common.no-account')}{' '}
+          {t('no-account')}{' '}
           <Link href='/register' className='underline'>
-            {t('common.sign-up')}
+            {t('sign-up')}
           </Link>
         </div>
       </form>

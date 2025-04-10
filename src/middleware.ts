@@ -13,11 +13,18 @@ export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
   const isProtectedRoute = protectedRoutes.includes(path);
 
-  const cookie = await getCookie('session');
-  const session = await decrypt(cookie);
+  if (isProtectedRoute) {
+    const cookie = await getCookie('session');
 
-  if (isProtectedRoute && !session?.userId) {
-    return NextResponse.redirect(new URL('/login', request.nextUrl));
+    if (!cookie) {
+      return NextResponse.redirect(new URL('/login', request.nextUrl));
+    }
+
+    const session = await decrypt(cookie);
+
+    if (!session?.userId) {
+      return NextResponse.redirect(new URL('/login', request.nextUrl));
+    }
   }
 
   return withIntl(request);

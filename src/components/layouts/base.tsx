@@ -16,7 +16,6 @@ type Props = {
 
 const BaseLayout = async ({ locale, children }: Props) => {
   const initialState = await getCookie(SIDEBAR_STATUS);
-  console.log(initialState);
 
   return (
     <html className='h-full' lang={locale}>

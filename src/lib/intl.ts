@@ -37,10 +37,10 @@ export function getMessageFallback({ key, error, namespace }: {
 export async function loadMessages(locale: string): Promise<AbstractIntlMessages> {
   const path = join('messages', locale);
   const files = await readdir(path);
-  const messages: AbstractIntlMessages = {};
+  const messages: AbstractIntlMessages = (await import(`../../messages/${locale}/common.json`)).default;
 
   for (const file of files) {
-    if (file.endsWith('.json')) {
+    if (file != 'common.json' && file.endsWith('.json')) {
       try {
         const json = (await import(`../../messages/${locale}/${file}`)).default;
         const key = file.replace('.json', '');

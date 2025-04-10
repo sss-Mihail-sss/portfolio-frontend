@@ -40,5 +40,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-messages/*.d.json.ts
+messages/*/*.d.json.ts
 .idea
