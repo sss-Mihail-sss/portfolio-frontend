@@ -6,11 +6,11 @@ import { Link } from '@/ui/link';
 
 export default async function GlobalNotFound() {
   const t = await getTranslations('error.not-found');
-  const headersList = await headers();
+  // const headersList = await headers();
 
-  headersList.forEach((value, key) => {
-    console.log(key, value);
-  });
+  // headersList.forEach((value, key) => {
+  //   console.log(key, value);
+  // });
 
   return (
     <div className='flex-1 flex flex-col gap-4 items-center justify-center'>

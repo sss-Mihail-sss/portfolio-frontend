@@ -16,7 +16,7 @@ import { SortableItem } from '@/components/dnd/sortable-item';
 
 const Builder = () => {
   const [blocks, setBlocks] = useState<DndBlock[]>([]);
-  const [active, setActive] = useState<DndBlock>();
+  const [currentBlock, setCurrentBlock] = useState<DndBlock>();
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -62,14 +62,14 @@ const Builder = () => {
   function handleDragStart(event: DragStartEvent) {
     const { active } = event;
 
-    if (!active.data.current) {
+    if (!active.data.current || !currentBlock) {
       return;
     }
 
-    setActive({
+    setCurrentBlock({
       id: active.id,
-      slug: active.data.current.slug,
-      props: active.data.current.props,
+      slug: currentBlock.slug,
+      props: currentBlock.props,
     });
   }
 
@@ -80,6 +80,8 @@ const Builder = () => {
     if (!over || !active.data.current) {
       return;
     }
+
+    console.log(active);
 
     const newItem: DndBlock = {
       id,
@@ -98,23 +100,22 @@ const Builder = () => {
     }
 
     setBlocks(prev => addItemToBlock(prev, active.id, newItem));
-    setActive(undefined);
+    setCurrentBlock(undefined);
   }
 
   return (
     <DndContext
-      id="builder"
+      id='builder'
       sensors={sensors}
       collisionDetection={pointerWithin}
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
     >
       <div className='flex flex-1'>
-        <div className="flex flex-col gap-2 p-4 w-72 border-r">
+        <div className='flex flex-col gap-2 p-4 w-72 border-r'>
           {
             components.map((component, index) => {
               const Component = component.component;
-
               const { className, ...props } = component?.props || {};
 
               return (
@@ -135,12 +136,13 @@ const Builder = () => {
           }
         </div>
 
-        <div className="flex-1 p-12">
-          <Droppable className="bg-background-soft border border-dashed h-full" id="preview">
+        <div className='flex-1 p-12'>
+          <Droppable className='bg-background-soft border border-dashed h-full' id='preview'>
             <SortableContext items={blocks}>
               {
                 blocks.map(block => {
                   const Component = components.find(c => c.slug === block.slug);
+                  console.log(blocks);
 
                   if (!Component) {
                     return;
@@ -160,7 +162,7 @@ const Builder = () => {
         </div>
       </div>
 
-      <BuilderDragOverlay item={active} />
+      <BuilderDragOverlay item={currentBlock} />
     </DndContext>
   );
 };
