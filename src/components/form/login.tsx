@@ -1,20 +1,21 @@
 'use client';
 
-import Image from 'next/image';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import { z } from 'zod';
 import parsePhoneNumber from 'libphonenumber-js';
+import { EyeIcon } from 'lucide-react';
 
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/ui/form';
 import { Link } from '@/ui/link';
 import { Input } from '@/ui/input';
 import { Button } from '@/ui/button';
-import { Separator } from '@/ui/separator';
 
 const LoginForm = () => {
   const t = useTranslations();
+  const [isVisiblePassword, setVisiblePassword] = useState<boolean>(false);
 
   const schema = z.object({
     username: z
@@ -57,6 +58,9 @@ const LoginForm = () => {
   const form = useForm<Schema>({
     resolver: zodResolver(schema),
     defaultValues: {
+      username: '',
+      email: '',
+      phone: '',
       password: '',
     },
   });
@@ -83,11 +87,12 @@ const LoginForm = () => {
 
         <FormField
           name='username'
+          control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t('username')}</FormLabel>
+              <FormLabel>{t('username-or-email')}</FormLabel>
               <FormControl>
-                <Input placeholder={t('form.login.fields.username.placeholder')} {...field} />
+                <Input placeholder='fakeusernme' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -96,6 +101,7 @@ const LoginForm = () => {
 
         <FormField
           name='password'
+          control={form.control}
           render={({ field }) => (
             <FormItem>
               <div className='flex items-center justify-between'>
@@ -104,9 +110,23 @@ const LoginForm = () => {
                   {t('forgot-password')}?
                 </Link>
               </div>
-              <FormControl>
-                <Input placeholder={t('form.login.fields.password.placeholder')} type='password' {...field} />
-              </FormControl>
+              <div className='relative'>
+                <FormControl>
+                  <Input
+                    placeholder={t('form.login.fields.password.placeholder')}
+                    type={isVisiblePassword ? 'text' : 'password'}
+                    {...field}
+                  />
+                </FormControl>
+                <Button
+                  className='absolute top-1/2 -translate-y-1/2 right-2'
+                  size='icon'
+                  variant='ghost'
+                  onClick={() => setVisiblePassword(prev => !prev)}
+                >
+                  <EyeIcon className='size-5' />
+                </Button>
+              </div>
               <FormMessage />
             </FormItem>
           )}
@@ -114,43 +134,43 @@ const LoginForm = () => {
 
         <Button type='submit'>{t('submit')}</Button>
 
-        <div className='flex items-center gap-2 text-sm'>
-          <Separator orientation='horizontal' className='flex-1' />
-          {t('or')}
-          <Separator orientation='horizontal' className='flex-1' />
-        </div>
+        {/*<div className='flex items-center gap-2 text-sm'>*/}
+        {/*  <Separator orientation='horizontal' className='flex-1' />*/}
+        {/*  {t('or')}*/}
+        {/*  <Separator orientation='horizontal' className='flex-1' />*/}
+        {/*</div>*/}
 
-        <div className='flex flex-wrap justify-center gap-4 [&>button]:basis-20'>
-          <Button variant='outline' size='lg'>
-            <Image src='/logos/google/short.svg' alt='Google logo' width={24} height={24} className='shrink-0' />
-            <span className='sr-only'>{t('form.login.social.google')}</span>
-          </Button>
-          <Button variant='outline' size='lg'>
-            <Image
-              className='block dark:hidden'
-              src='/logos/github/short.png'
-              alt='Github logo dark'
-              width={24}
-              height={24}
-            />
-            <Image
-              className='hidden dark:block'
-              src='/logos/github/short-white.png'
-              alt='Github logo white'
-              width={24}
-              height={24}
-            />
-            <span className='sr-only'>{t('form.login.social.github')}</span>
-          </Button>
-          <Button variant='outline' size='lg'>
-            <Image src='/logos/facebook/short.png' alt='Github logo' width={24} height={24} />
-            <span className='sr-only'>{t('form.login.social.facebook')}</span>
-          </Button>
-          <Button variant='outline' size='lg'>
-            <Image src='/logos/linkedin/short.png' alt='Linkedin logo' width={24} height={24} />
-            <span className='sr-only'>{t('form.login.social.linkedin')}</span>
-          </Button>
-        </div>
+        {/*<div className='flex flex-wrap justify-center gap-4 [&>button]:basis-20'>*/}
+        {/*  <Button variant='outline' size='lg'>*/}
+        {/*    <Image src='/logos/google/short.svg' alt='Google logo' width={24} height={24} className='shrink-0' />*/}
+        {/*    <span className='sr-only'>{t('form.login.social.google')}</span>*/}
+        {/*  </Button>*/}
+        {/*  <Button variant='outline' size='lg'>*/}
+        {/*    <Image*/}
+        {/*      className='block dark:hidden'*/}
+        {/*      src='/logos/github/short.png'*/}
+        {/*      alt='Github logo dark'*/}
+        {/*      width={24}*/}
+        {/*      height={24}*/}
+        {/*    />*/}
+        {/*    <Image*/}
+        {/*      className='hidden dark:block'*/}
+        {/*      src='/logos/github/short-white.png'*/}
+        {/*      alt='Github logo white'*/}
+        {/*      width={24}*/}
+        {/*      height={24}*/}
+        {/*    />*/}
+        {/*    <span className='sr-only'>{t('form.login.social.github')}</span>*/}
+        {/*  </Button>*/}
+        {/*  <Button variant='outline' size='lg'>*/}
+        {/*    <Image src='/logos/facebook/short.png' alt='Github logo' width={24} height={24} />*/}
+        {/*    <span className='sr-only'>{t('form.login.social.facebook')}</span>*/}
+        {/*  </Button>*/}
+        {/*  <Button variant='outline' size='lg'>*/}
+        {/*    <Image src='/logos/linkedin/short.png' alt='Linkedin logo' width={24} height={24} />*/}
+        {/*    <span className='sr-only'>{t('form.login.social.linkedin')}</span>*/}
+        {/*  </Button>*/}
+        {/*</div>*/}
 
         <div className='text-center text-sm'>
           {t('no-account')}{' '}

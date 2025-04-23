@@ -20,7 +20,7 @@ const nextConfig: NextConfig = {
     authInterrupts: true,
     typedEnv: true,
     taint: true,
-    ppr: 'incremental',
+    // ppr: 'incremental',
     useCache: true,
   },
   turbopack: {

@@ -6,8 +6,6 @@ import { CSRProvider } from '@/components/providers/csr';
 import { cn } from '@/lib/utils';
 import { geistMono, geistSans, graduate, inter, montserrat, openSans, raleway, roboto, robotoMono } from '@/lib/font';
 import { Toaster } from '@/ui/sonner';
-import { getCookie } from '@/lib/cookie';
-import { SIDEBAR_STATUS } from '@/stores/jotai/sidebar';
 
 type Props = {
   children: ReactNode;
@@ -15,8 +13,6 @@ type Props = {
 }
 
 const BaseLayout = async ({ locale, children }: Props) => {
-  const initialState = await getCookie(SIDEBAR_STATUS);
-
   return (
     <html className='h-full' lang={locale}>
       <body
@@ -38,7 +34,7 @@ const BaseLayout = async ({ locale, children }: Props) => {
           <CSRProvider>
             {children}
 
-            <Toaster duration={100000} closeButton />
+            <Toaster closeButton />
           </CSRProvider>
         </SSRProviders>
       </body>

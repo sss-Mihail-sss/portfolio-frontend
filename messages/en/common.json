@@ -6,5 +6,6 @@
   "no-account": "Don't have an account?",
   "username": "Username",
   "email": "Email",
-  "phone": "Phone"
+  "phone": "Phone",
+  "username-or-email": "Username or email"
 }
