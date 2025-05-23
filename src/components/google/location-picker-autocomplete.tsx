@@ -1,11 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useDebounce } from '@uidotdev/usehooks';
 import { useQuery } from '@tanstack/react-query';
 import { ControlPosition, MapControl, useMap, useMapsLibrary } from '@vis.gl/react-google-maps';
 
 import { Input } from '@/ui/input';
+import { useDebounce } from '@/hooks/use-debounce';
 
 const LocationPickerAutocomplete = () => {
   const map = useMap();

@@ -1,4 +1,3 @@
-import { headers } from 'next/headers';
 import { getTranslations } from 'next-intl/server';
 
 import { Button } from '@/ui/button';

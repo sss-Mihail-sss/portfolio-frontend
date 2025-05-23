@@ -1,16 +1,11 @@
 import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
 
+import { FileNames } from '@/config/i18n';
+
 const withNextIntl = createNextIntlPlugin({
   experimental: {
-    createMessagesDeclaration: [
-      './messages/en/common.json',
-      './messages/en/meta.json',
-      './messages/en/form.json',
-      './messages/en/error.json',
-      './messages/en/navigation.json',
-      './messages/en/validation.json',
-    ],
+    createMessagesDeclaration: FileNames,
   },
   requestConfig: './src/i18n/request.ts',
 });
@@ -22,14 +17,6 @@ const nextConfig: NextConfig = {
     taint: true,
     // ppr: 'incremental',
     useCache: true,
-  },
-  turbopack: {
-    rules: {
-      '*.svg': {
-        loaders: ['@svgr/webpack'],
-        as: '*.js',
-      },
-    },
   },
   env: {
     DOMAIN: process.env.DOMAIN!,
@@ -50,15 +37,6 @@ const nextConfig: NextConfig = {
 
     // Blob KEY
     BLOB_READ_WRITE_TOKEN: process.env.BLOB_READ_WRITE_TOKEN!,
-  },
-  images: {
-    // GitHub Images
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'avatars.githubusercontent.com',
-      },
-    ],
   },
 };
 

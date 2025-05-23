@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
-import { z } from 'zod';
+import { z } from '@zod/mini';
 import parsePhoneNumber from 'libphonenumber-js';
 import { EyeIcon } from 'lucide-react';
 
@@ -18,40 +18,16 @@ const LoginForm = () => {
   const [isVisiblePassword, setVisiblePassword] = useState<boolean>(false);
 
   const schema = z.object({
-    username: z
-      .string()
-      .min(2, t('validation.field-required', { field: t('username') }))
-      .trim()
-      .optional(),
-    email: z
-      .string()
-      .email(t('validation.field-invalid', { field: t('email') }))
-      .optional(),
-    phone: z
-      .string()
-      .transform((value, ctx) => {
-        const phoneNumber = parsePhoneNumber(value);
-
-        if (phoneNumber?.isValid()) {
-          ctx.addIssue({
-            code: z.ZodIssueCode.custom,
-            message: t('validation.field-invalid', { field: t('phone') }),
-          });
-          return z.NEVER;
-        }
-
-        return phoneNumber?.formatInternational();
-      })
-      .optional(),
-    password: z
-      .string()
-      .min(8)
-      .regex(/[a-zA-Z]/, { message: 'Contain at least one letter.' })
-      .regex(/[0-9]/, { message: 'Contain at least one number.' })
-      .regex(/[^a-zA-Z0-9]/, {
-        message: 'Contain at least one special character.',
-      })
-      .trim(),
+    username: z.string().check(z.trim(), z.minLength(2)),
+    email: z.email(),
+    phone: z.string().check(z.refine((value) => parsePhoneNumber(value)?.isValid())),
+    password: z.string().check(
+      z.trim(),
+      z.minLength(8),
+      z.regex(/[a-zA-Z]/),
+      z.regex(/[0-9]/),
+      z.regex(/[^a-zA-Z0-9]/),
+    ),
   });
   type Schema = z.infer<typeof schema>;
 

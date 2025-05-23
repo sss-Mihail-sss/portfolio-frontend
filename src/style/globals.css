@@ -3,8 +3,6 @@
 @import './theme/green.css';
 @import './animation.css';
 
-@plugin "tailwindcss-animate";
-
 @theme {
   --font-geist-sans: var(--font-geist-sans);
   --font-geist-mono: var(--font-geist-mono);
@@ -17,9 +15,6 @@
   --font-graduate: var(--font-graduate);
 
   --breakpoint-xs: 420px;
-
-  --spacing-sidebar: 18rem;
-  --spacing-sidebar-collapse: 3rem;
 
   --radius: 0.5rem;
 }
