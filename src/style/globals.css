@@ -1,7 +1,7 @@
 @import 'tailwindcss';
+@import 'tw-animate-css';
 
-@import './theme/green.css';
-@import './animation.css';
+@import './theme/default.css';
 
 @theme {
   --font-geist-sans: var(--font-geist-sans);
@@ -20,55 +20,67 @@
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+
+  --color-selection: var(--selection);
+  --color-selection-fg: var(--selection-fg);
+
+  --color-primary: var(--primary);
+  --color-primary-fg: var(--primary-fg);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-fg: var(--secondary-fg);
+
+  --color-overlay: var(--overlay);
+  --color-overlay-fg: var(--overlay-fg);
+
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
 
   --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
+  --color-muted-fg: var(--muted-fg);
 
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
+  --color-success: var(--success);
+  --color-success-fg: var(--success-fg);
 
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
+  --color-warning: var(--warning);
+  --color-warning-fg: var(--warning-fg);
+
+  --color-error: var(--error);
+  --color-error-fg: var(--error-fg);
+
+  --color-navbar: var(--navbar);
+  --color-navbar-fg: var(--navbar-fg);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-fg: var(--sidebar-fg);
 
   --color-border: var(--border);
   --color-input: var(--input);
-
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-
-  --color-error: var(--error);
-  --color-error-foreground: var(--error-foreground);
-
   --color-ring: var(--ring);
-
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
 }
 
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    @apply border-border accent-primary;
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  ::selection {
+    @apply bg-selection text-selection-fg;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  .lucide {
+    @apply size-4;
   }
 }
 

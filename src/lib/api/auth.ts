@@ -1,42 +1,25 @@
-import { User } from '@/types/user';
+import { SignInSchema } from '@/schemas/auth';
+import { fetcher } from '@/lib/fetcher';
 
-export async function login({
-  username,
-  password,
-}: {
-  username: string,
-  password: string,
-}): Promise<{
-  accessToken: string;
-  refreshToken: string;
-  userInfo: User
-}> {
-  const response = await fetch(process.env.API_URL + '/auth/login', {
+export async function signIn(data: SignInSchema) {
+  const response = await fetcher('/auth/login', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      username,
-      password,
-    }),
+    body: JSON.stringify(data)
   });
 
-  return await response.json();
+  const json: FetchResponse = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+
+  return json;
 }
 
-export async function refresh(refreshToken: string): Promise<{
-  accessToken: string;
-  refreshToken: string;
-}> {
-  const response = await fetch(process.env.API_URL + '/auth/refresh', {
-    headers: {
-      Authorization: `Bearer ${refreshToken}`,
-    },
-  });
+export async function refresh() {
+  const response = await fetcher('/auth/refresh');
 
   const json = await response.json();
-  console.log('json', json);
 
   if (!response.ok) {
     throw new Error('Failed to refresh token');

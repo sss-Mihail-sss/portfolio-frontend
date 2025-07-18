@@ -12,15 +12,14 @@ type Props = {
 export const metadata: Metadata = {
   robots: {
     index: false,
-    follow: false,
-  },
+    follow: false
+  }
 };
 
 export default async function AuthLayout({ children }: Props) {
-
   return (
     <div className='container flex-1 flex items-center justify-center'>
-      <div className='bg-card w-full md:w-auto rounded'>
+      <div className='bg-overlay shadow w-full md:w-lg rounded px-4 py-8 xs:px-12'>
         {children}
       </div>
     </div>

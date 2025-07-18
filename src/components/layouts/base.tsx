@@ -3,9 +3,9 @@ import { Locale } from 'next-intl';
 
 import { SSRProviders } from '@/components/providers/ssr';
 import { CSRProvider } from '@/components/providers/csr';
+
 import { cn } from '@/lib/utils';
 import { geistMono, geistSans, graduate, inter, montserrat, openSans, raleway, roboto, robotoMono } from '@/lib/font';
-import { Toaster } from '@/ui/sonner';
 
 type Props = {
   children: ReactNode;
@@ -14,7 +14,7 @@ type Props = {
 
 const BaseLayout = async ({ locale, children }: Props) => {
   return (
-    <html className='h-full' lang={locale}>
+    <html className='h-full' lang={locale} suppressHydrationWarning>
       <body
         className={cn(
           geistMono.variable,
@@ -26,15 +26,12 @@ const BaseLayout = async ({ locale, children }: Props) => {
           raleway.variable,
           inter.variable,
           graduate.variable,
-          'scheme-light-dark antialiased bg-background text-foreground min-h-dvh flex flex-col font-geist-sans',
+          'antialiased bg-bg text-fg min-h-dvh flex flex-col font-geist-sans'
         )}
-        data-theme='green'
       >
         <SSRProviders>
           <CSRProvider>
             {children}
-
-            <Toaster closeButton />
           </CSRProvider>
         </SSRProviders>
       </body>

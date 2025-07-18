@@ -1,27 +1,57 @@
 'use client';
 
-import { ComponentProps } from 'react';
-import { Toaster as Sonner } from 'sonner';
+import { toast as sonnerToast, ToastT } from 'sonner';
 
-type ToasterProps = ComponentProps<typeof Sonner>
+import { Slot } from '@/ui/slot';
 
-const Toaster = ({ ...props }: ToasterProps) => {
-  return (
-    <Sonner
-      theme="system"
-      className="toaster group"
-      toastOptions={{
-        classNames: {
-          content: 'w-full',
-          toast: 'group toast group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-border group-[.toaster]:shadow-lg',
-          description: 'group-[.toast]:text-muted-foreground',
-          actionButton: 'group-[.toast]:bg-primary group-[.toast]:text-primary-foreground',
-          cancelButton: 'group-[.toast]:bg-muted group-[.toast]:text-muted-foreground',
-        },
-      }}
+type Toaster = Pick<ToastT, 'id' | 'type' | 'title' | 'description' | 'icon' | 'action' | 'cancel' | 'onDismiss' | 'onAutoClose'>
+
+function toast({ onDismiss, onAutoClose, ...props }: Omit<Toaster, 'id'>) {
+  return sonnerToast.custom((id) => (
+    <Toast
+      id={id}
       {...props}
     />
-  );
-};
+  ), {
+    onDismiss,
+    onAutoClose,
+    className: 'font-geist-sans'
+  });
+}
 
-export { Toaster };
+function Toast({
+  id,
+  title,
+  description,
+  icon,
+  type,
+  action,
+  cancel
+}: Omit<Toaster, 'onDismiss' | 'onAutoClose'>) {
+
+  return (
+    <div className='flex rounded-lg bg-bg shadow w-full md:w-92 max-w-full items-center p-4'>
+      {
+        !!icon && (
+          <Slot>
+            icon
+          </Slot>
+        )
+      }
+      <div className='w-full'>
+        <p className='text-xs font-medium text-fg'>
+          {typeof title === 'function' ? title() : title}
+        </p>
+        {
+          !!description && (
+            <p className='text-sm text-muted-fg'>
+              {typeof description === 'function' ? description() : description}
+            </p>
+          )
+        }
+      </div>
+    </div>
+  );
+}
+
+export { toast };

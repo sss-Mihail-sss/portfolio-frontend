@@ -1,28 +1,39 @@
 import { ButtonHTMLAttributes } from 'react';
 import { Slot } from 'radix-ui';
-import { tv, VariantProps } from 'tailwind-variants';
+import { VariantProps } from 'tailwind-variants';
 
-import { cn } from '@/lib/utils';
+import { cn, tv } from '@/lib/utils';
 
 const buttonVariants = tv({
-  base: 'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md cursor-pointer font-medium outline-offset-1 outline-offset-background focus-visible:outline-2 focus-visible:outline-primary disabled:pointer-events-none disabled:opacity-50',
+  base: [
+    'inline-flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer transition-all font-medium',
+    'disabled:pointer-events-none disabled:opacity-50',
+    'focus-visible:outline-ring focus-visible:outline-2 focus-visible:outline-offset-1'
+  ],
   variants: {
     variant: {
-      default: 'bg-primary text-primary-foreground hover:bg-primary/90',
-      outline: 'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
-      ghost: 'hover:bg-accent hover:text-accent-foreground',
+      default: 'bg-primary text-primary-fg hover:bg-primary/90',
+      outline: 'inset-ring inset-ring-border hover:bg-muted',
+      ghost: 'hover:bg-muted'
     },
     size: {
-      default: 'text-sm h-9 px-6',
-      sm: 'text-xs h-7 px-4',
-      lg: 'h-11 px-6',
-      icon: 'size-8',
+      default: 'text-sm px-4 py-2',
+      sm: 'text-xs px-3',
+      lg: 'px-6',
+      'sq-xs': 'size-8',
+      'sq-sm': 'size-9',
+      'sq-md': 'size-10'
     },
+    rounded: {
+      true: 'rounded-full',
+      false: 'rounded-md'
+    }
   },
   defaultVariants: {
     variant: 'default',
     size: 'default',
-  },
+    rounded: false
+  }
 });
 
 type ButtonProps = {
@@ -33,7 +44,12 @@ const Button = ({ variant, size, className, asChild, ...props }: ButtonProps) =>
   const Component = asChild ? Slot.Slot : 'button';
 
   return (
-    <Component type='button' {...props} className={cn(buttonVariants({ variant, size, className }))} />
+    <Component
+      data-slot='button'
+      type='button'
+      className={cn(buttonVariants({ variant, size, className }))}
+      {...props}
+    />
   );
 };
 

@@ -10,9 +10,11 @@ function Input({ className, disabled, ...props }: InputProps) {
       data-slot='input'
       disabled={disabled}
       className={cn(
-        'flex h-9 w-full rounded-md px-3 py-1 text-base md:text-sm border border-input bg-transparent transition-all placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-primary',
+        'text-fg flex w-full rounded-md px-3 py-2 text-sm border border-input bg-transparent transition-all',
+        'placeholder:text-muted-fg',
+        'focus-visible:outline-ring focus-visible:outline-2 focus-visible:outline-offset-1',
         disabled && 'disabled:cursor-not-allowed disabled:opacity-50',
-        className,
+        className
       )}
       {...props}
     />

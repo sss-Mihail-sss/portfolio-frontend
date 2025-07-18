@@ -1,4 +1,10 @@
 {
   "field-required": "{field} is required",
-  "field-invalid": "{field} is invalid"
+  "field-invalid": "{field} is invalid",
+  "contains-letters": "Field must contain letters",
+  "contains-numbers": "Field must contain numbers",
+  "contains-special-characters": "Field must contain special characters",
+  "username-required": "Username is required",
+  "password-min-length": "Password must be at least {length, number} characters long",
+  "password-max-length": "Password must be at most {length, number} characters long"
 }

@@ -1,16 +1,17 @@
 'use client';
 
 import { Avatar as AvatarPrimitive } from 'radix-ui';
-import { cn } from '@/lib/utils';
-import { tv, VariantProps } from 'tailwind-variants';
+import { VariantProps } from 'tailwind-variants';
 import { ComponentProps } from 'react';
+
+import { tv, cn } from '@/lib/utils';
 
 const avatarVariants = tv({
   slots: {
     root: 'relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full',
     image: 'aspect-square h-full w-full',
-    fallback: 'flex h-full w-full items-center justify-center rounded-full bg-muted',
-  },
+    fallback: 'flex h-full w-full items-center justify-center rounded-full bg-muted'
+  }
 });
 
 type AvatarProps = VariantProps<typeof avatarVariants>;

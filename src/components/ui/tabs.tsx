@@ -1,49 +1,62 @@
 'use client';
 
-import * as React from 'react';
+import { ComponentProps } from 'react';
 import { Tabs as TabsPrimitive } from 'radix-ui';
-import { tv, VariantProps } from 'tailwind-variants';
 
 import { cn } from '@/lib/utils';
 
-const tabsVariants = tv({
-  slots: {
-    list: 'inline-flex h-9 items-center justify-center rounded-lg bg-muted p-1 text-muted-foreground',
-    trigger: 'inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow',
-    content: 'mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
-  },
-});
-
-const Tabs = TabsPrimitive.Root;
-
-type TabsListProps = React.ComponentProps<typeof TabsPrimitive.List> & VariantProps<typeof tabsVariants>;
-
-const TabsList = ({ ref, className, ...props }: TabsListProps) => {
-  const { list } = tabsVariants();
-
+function Tabs({ className, children, ...props }: ComponentProps<typeof TabsPrimitive.Root>) {
   return (
-    <TabsPrimitive.List ref={ref} className={cn(list(), className)} {...props} />
+    <TabsPrimitive.Root
+      data-slot='tabs'
+      className={cn(
+        'flex gap-4 data-[orientation=horizontal]:flex-col data-[orientation=vertical]:flex-row',
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </TabsPrimitive.Root>
   );
-};
+}
 
-type TabsTriggerProps = React.ComponentProps<typeof TabsPrimitive.Trigger> & VariantProps<typeof tabsVariants>;
-
-const TabsTrigger = ({ ref, className, ...props }: TabsTriggerProps) => {
-  const { trigger } = tabsVariants();
-
+function TabsList({ className, ...props }: ComponentProps<typeof TabsPrimitive.List>) {
   return (
-    <TabsPrimitive.Trigger ref={ref} className={cn(trigger(), className)} {...props} />
+    <TabsPrimitive.List
+      data-slot='tabs-list'
+      className={cn(
+        'flex',
+        'data-[orientation=horizontal]:flex-row data-[orientation=horizontal]:border-b',
+        'data-[orientation=vertical]:flex-col data-[orientation=vertical]:border-l',
+        className
+      )}
+      {...props}
+    />
   );
-};
+}
 
-type TabsContentProps = React.ComponentProps<typeof TabsPrimitive.Content> & VariantProps<typeof tabsVariants>;
-
-const TabsContent = ({ ref, className, ...props }: TabsContentProps) => {
-  const { content } = tabsVariants();
-
+function TabsTrigger({ className, ...props }: ComponentProps<typeof TabsPrimitive.Trigger>) {
   return (
-    <TabsPrimitive.Content ref={ref} className={cn(content(), className)} {...props} />
+    <TabsPrimitive.Trigger
+      data-slot='tabs-trigger'
+      className={cn(
+        'relative p-2 flex items-center text-sm font-medium whitespace-nowrap rounded-sm text-muted-fg hover:text-fg',
+        'data-[state=active]:text-fg data-[state=active]:after:absolute data-[state=active]:after:bg-fg',
+        'focus-visible:outline-ring focus-visible:outline-2 focus-visible:outline-offset-1',
+        className
+      )}
+      {...props}
+    />
   );
-};
+}
+
+function TabsContent({ className, ...props }: ComponentProps<typeof TabsPrimitive.Content>) {
+  return (
+    <TabsPrimitive.Content
+      className={cn('focus-visible:outline-ring focus-visible:outline-2 focus-visible:outline-offset-1', className)}
+      {...props}
+    />
+  );
+}
 
 export { Tabs, TabsList, TabsTrigger, TabsContent };

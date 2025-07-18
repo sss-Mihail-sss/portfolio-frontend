@@ -67,6 +67,8 @@ const eslintConfig = [
       'quotes': ['error', 'single'],
       'semi': ['error', 'always'],
       'no-unused-vars': 'error',
+      'no-empty': 'error',
+      'no-multiple-empty-lines': ['error', { 'max': 1, 'maxEOF': 0 }],
       ...restrictedImports,
       ...importOrder
     },

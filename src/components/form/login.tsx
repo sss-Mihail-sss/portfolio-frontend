@@ -1,74 +1,75 @@
 'use client';
 
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
-import { z } from '@zod/mini';
-import parsePhoneNumber from 'libphonenumber-js';
-import { EyeIcon } from 'lucide-react';
+import { z } from 'zod/v4-mini';
+import { PlusIcon } from 'lucide-react';
 
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/ui/form';
 import { Link } from '@/ui/link';
 import { Input } from '@/ui/input';
 import { Button } from '@/ui/button';
+import { Password, PasswordInput, PasswordToggle } from '@/ui/password';
+import { toast } from '@/ui/sonner';
+
+import { signIn } from '@/lib/api/auth';
 
 const LoginForm = () => {
   const t = useTranslations();
-  const [isVisiblePassword, setVisiblePassword] = useState<boolean>(false);
 
-  const schema = z.object({
-    username: z.string().check(z.trim(), z.minLength(2)),
-    email: z.email(),
-    phone: z.string().check(z.refine((value) => parsePhoneNumber(value)?.isValid())),
+  const signInSchema = z.object({
+    identifier: z.string().check(
+      z.trim(),
+      z.minLength(2, t('validation.username-required'))
+    ),
     password: z.string().check(
       z.trim(),
-      z.minLength(8),
-      z.regex(/[a-zA-Z]/),
-      z.regex(/[0-9]/),
-      z.regex(/[^a-zA-Z0-9]/),
-    ),
+      z.minLength(8, t('validation.password-min-length', { length: 8 })),
+      z.maxLength(32, t('validation.password-min-length', { length: 32 })),
+      z.regex(/[a-zA-Z]/, t('validation.contains-letters')),
+      z.regex(/[0-9]/, t('validation.contains-numbers')),
+      z.regex(/[^a-zA-Z0-9]/, t('validation.contains-special-characters'))
+    )
   });
-  type Schema = z.infer<typeof schema>;
 
-  const form = useForm<Schema>({
-    resolver: zodResolver(schema),
+  type SignInSchema = z.infer<typeof signInSchema>;
+
+  const form = useForm<SignInSchema>({
+    resolver: zodResolver(signInSchema),
     defaultValues: {
-      username: '',
-      email: '',
-      phone: '',
-      password: '',
-    },
+      identifier: '',
+      password: ''
+    }
   });
-  console.log(form.formState.errors);
 
-  async function onSubmit(values: Schema) {
-    console.log(values);
+  async function onSubmit(values: SignInSchema) {
+    try {
+      await signIn(values);
+    } catch (error) {
+      console.log(error);
+      toast({
+        title: 'Error',
+        description: 'Description',
+        icon: <PlusIcon/>
+      });
+    }
   }
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className='flex flex-col px-4 py-8 xs:px-12 md:px-24 w-full md:w-lg gap-6'
+        className='flex flex-col gap-6'
       >
-        <div className='text-center'>
-          <h1 className='text-2xl font-bold'>
-            {t('form.login.title')}
-          </h1>
-          <p className='text-balance text-sm text-muted-foreground'>
-            {t('form.login.description')}
-          </p>
-        </div>
-
         <FormField
-          name='username'
+          name='identifier'
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t('username-or-email')}</FormLabel>
+              <FormLabel>{t('username')}</FormLabel>
               <FormControl>
-                <Input placeholder='fakeusernme' {...field} />
+                <Input placeholder='john' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -80,35 +81,25 @@ const LoginForm = () => {
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <div className='flex items-center justify-between'>
-                <FormLabel>{t('form.login.fields.password.label')}</FormLabel>
-                <Link href='/forgot-password' className='hover:underline'>
-                  {t('forgot-password')}?
-                </Link>
-              </div>
-              <div className='relative'>
-                <FormControl>
-                  <Input
-                    placeholder={t('form.login.fields.password.placeholder')}
-                    type={isVisiblePassword ? 'text' : 'password'}
-                    {...field}
-                  />
-                </FormControl>
-                <Button
-                  className='absolute top-1/2 -translate-y-1/2 right-2'
-                  size='icon'
-                  variant='ghost'
-                  onClick={() => setVisiblePassword(prev => !prev)}
-                >
-                  <EyeIcon className='size-5' />
-                </Button>
-              </div>
+              <FormLabel>{t('form.login.fields.password.label')}</FormLabel>
+              <FormControl>
+                <Password>
+                  <PasswordInput {...field} placeholder='john@123' />
+                  <PasswordToggle />
+                </Password>
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        <Button type='submit'>{t('submit')}</Button>
+        <Link underline href='/forgot-password'>
+          {t('forgot-password')}?
+        </Link>
+
+        <Button type='submit'>
+          {t('submit')}
+        </Button>
 
         {/*<div className='flex items-center gap-2 text-sm'>*/}
         {/*  <Separator orientation='horizontal' className='flex-1' />*/}
@@ -150,7 +141,7 @@ const LoginForm = () => {
 
         <div className='text-center text-sm'>
           {t('no-account')}{' '}
-          <Link href='/register' className='underline'>
+          <Link href='/register' underline variant='secondary' className='font-medium'>
             {t('sign-up')}
           </Link>
         </div>
