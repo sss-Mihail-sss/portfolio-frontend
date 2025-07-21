@@ -3,6 +3,7 @@ import createMiddleware from 'next-intl/middleware';
 
 import { routing } from '@/i18n/routing';
 import { getCookie } from '@/lib/cookie';
+import { refresh } from '@/lib/api/auth';
 
 const withIntl = createMiddleware(routing);
 
@@ -12,17 +13,31 @@ export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
   const isProtectedRoute = protectedRoutes.includes(path);
 
-  if (isProtectedRoute) {
-    const accessToken = await getCookie('accessToken');
-
-    if (!accessToken?.value) {
-      return NextResponse.redirect(new URL('/login', request.nextUrl));
-    }
+  if (!isProtectedRoute) {
+    return withIntl(request);
   }
 
-  return withIntl(request);
+  const accessToken = await getCookie('accessToken');
+  const refreshToken = await getCookie('refreshToken');
+
+  console.log(`Access Token: ${accessToken?.value}`);
+  console.log(`Refresh Token: ${refreshToken?.value}`);
+
+  if (accessToken?.value) {
+    return withIntl(request);
+  }
+
+  if (refreshToken?.value) {
+    const refreshResponse = await refresh();
+    console.log(refreshResponse);
+    return NextResponse.redirect(request.url);
+  }
+
+  const loginUrl = new URL('/login', request.nextUrl);
+  loginUrl.searchParams.set('redirect', request.nextUrl.pathname);
+  return NextResponse.redirect(loginUrl);
 }
 
 export const config = {
-  matcher: ['/((?!api|trpc|_next|_vercel|.*\\..*).*)'],
+  matcher: ['/((?!api|trpc|_next|_vercel|.*\\..*).*)']
 };

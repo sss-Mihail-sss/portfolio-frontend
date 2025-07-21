@@ -19,7 +19,8 @@ export async function signIn(data: SignInSchema) {
 export async function refresh() {
   const response = await fetcher('/auth/refresh');
 
-  const json = await response.json();
+  const json: FetchResponse = await response.json();
+  console.log(json);
 
   if (!response.ok) {
     throw new Error('Failed to refresh token');

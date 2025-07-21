@@ -4,13 +4,15 @@ import { Fragment } from 'react';
 import { useTranslations } from 'next-intl';
 import { ChevronRight, PanelLeftClose } from 'lucide-react';
 import { useAtom } from 'jotai';
+import { useParams, usePathname } from 'next/navigation';
+
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from '@/ui/breadcrumb';
+
+import { Button } from '@/components/ui/button';
 
 import { Pathnames } from '@/i18n/routing';
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from '@/ui/breadcrumb';
-import { Button } from '@/components/ui/button';
 import { sidebarStateAtomPersistence } from '@/stores/jotai/sidebar';
 import { cn } from '@/lib/utils';
-import { useParams, usePathname } from 'next/navigation';
 
 const Navbar = () => {
   const t = useTranslations('navigation');
