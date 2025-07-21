@@ -4,9 +4,7 @@ import { cookies } from 'next/headers';
 
 export async function getCookie(name: string) {
   const cookie = await cookies();
-  const value = cookie.get(name);
-
-  return value?.value;
+  return cookie.get(name);
 }
 
 export async function setCookie(name: string, value: string, expires?: Date) {

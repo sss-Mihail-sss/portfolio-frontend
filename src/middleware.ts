@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
 
 import { routing } from '@/i18n/routing';
-import { decrypt } from '@/lib/session';
 import { getCookie } from '@/lib/cookie';
 
 const withIntl = createMiddleware(routing);
@@ -14,15 +13,9 @@ export async function middleware(request: NextRequest) {
   const isProtectedRoute = protectedRoutes.includes(path);
 
   if (isProtectedRoute) {
-    const cookie = await getCookie('session');
+    const accessToken = await getCookie('accessToken');
 
-    if (!cookie) {
-      return NextResponse.redirect(new URL('/login', request.nextUrl));
-    }
-
-    const session = await decrypt(cookie);
-
-    if (!session?.userId) {
+    if (!accessToken?.value) {
       return NextResponse.redirect(new URL('/login', request.nextUrl));
     }
   }

@@ -1,11 +1,12 @@
 import { ReactNode } from 'react';
 import { hasLocale, Locale } from 'next-intl';
 import { notFound } from 'next/navigation';
-
-import { BaseLayout } from '@/components/layouts/base';
-import { locales } from '@/i18n/routing';
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
+
+import { BaseLayout } from '@/components/layouts/base';
+
+import { locales } from '@/i18n/routing';
 
 type Props = {
   children: ReactNode;

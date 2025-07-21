@@ -14,8 +14,10 @@ import { Password, PasswordInput, PasswordToggle } from '@/ui/password';
 import { toast } from '@/ui/sonner';
 
 import { signIn } from '@/lib/api/auth';
+import { useRouter } from '@/i18n/navigation';
 
 const LoginForm = () => {
+  const { push } = useRouter();
   const t = useTranslations();
 
   const signInSchema = z.object({
@@ -46,12 +48,15 @@ const LoginForm = () => {
   async function onSubmit(values: SignInSchema) {
     try {
       await signIn(values);
+      push({
+        pathname: '/dashboard'
+      });
     } catch (error) {
       console.log(error);
       toast({
         title: 'Error',
         description: 'Description',
-        icon: <PlusIcon/>
+        icon: <PlusIcon />
       });
     }
   }
