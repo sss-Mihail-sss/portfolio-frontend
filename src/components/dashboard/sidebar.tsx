@@ -9,71 +9,66 @@ import {
   SidebarGroup,
   SidebarHeader,
   SidebarMenu,
+  SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub,
+  SidebarMenuSubButton,
   SidebarMenuSubItem
 } from '@/ui/sidebar';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/ui/collapsible';
 import { Link } from '@/ui/link';
-import { Button } from '@/ui/button';
 
 function AppSidebar() {
   return (
     <Sidebar>
       <SidebarHeader>
-        test
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton asChild>
+              <Link href='/'>
+                Mihai
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
       </SidebarHeader>
 
       <SidebarContent>
         <SidebarGroup>
           <SidebarMenu>
             <SidebarMenuItem>
-              <Button variant='ghost' className='w-full justify-start'>
+              <SidebarMenuButton>
                 <LayoutDashboardIcon />
                 Dashboard
-              </Button>
+              </SidebarMenuButton>
             </SidebarMenuItem>
 
             <Collapsible asChild>
               <SidebarMenuItem>
                 <CollapsibleTrigger asChild>
-                  <Button variant='ghost' className='w-full justify-start'>
+                  <SidebarMenuButton>
                     <ShieldUserIcon />
                     User Management
                     <ChevronDownIcon className='group-data-[state=open]:rotate-180 ml-auto' />
-                  </Button>
+                  </SidebarMenuButton>
                 </CollapsibleTrigger>
                 <CollapsibleContent asChild>
                   <SidebarMenuSub>
                     <SidebarMenuSubItem>
-                      <Button asChild variant='ghost' className='w-full justify-start'>
-                        <Link href='/user-management/users'>
-                          <UsersIcon />
-                          Users
-                        </Link>
-                      </Button>
+                      <SidebarMenuSubButton href='/user-management/users'>
+                        <UsersIcon />
+                        Users
+                      </SidebarMenuSubButton>
                     </SidebarMenuSubItem>
                     <SidebarMenuSubItem>
-                      <Button asChild variant='ghost' className='w-full justify-start'>
-                        <Link href='/user-management/roles'>
-                          Roles
-                        </Link>
-                      </Button>
+                      <SidebarMenuSubButton href='/user-management/roles'>
+                        Roles
+                      </SidebarMenuSubButton>
                     </SidebarMenuSubItem>
                     <SidebarMenuSubItem>
-                      <Button asChild variant='ghost' className='w-full justify-start'>
+                      <SidebarMenuSubButton href='/user-management/permissions'>
                         Permissions
-                      </Button>
-                    </SidebarMenuSubItem>
-                    <SidebarMenuSubItem>
-                      <Button asChild variant='ghost' className='w-full justify-start'>
-                        Account
-                      </Button>
-                    </SidebarMenuSubItem>
-                    <SidebarMenuSubItem>
-                      <Button asChild variant='ghost' className='w-full justify-start'>
-                        Logs
-                      </Button>
+                      </SidebarMenuSubButton>
                     </SidebarMenuSubItem>
                   </SidebarMenuSub>
                 </CollapsibleContent>

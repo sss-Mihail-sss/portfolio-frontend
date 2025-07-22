@@ -11,6 +11,7 @@ import { Separator } from '@/ui/separator';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/ui/tooltip';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '@/ui/sheet';
 
+import { Link } from '@/i18n/navigation';
 import { cn, tv } from '@/lib/utils';
 import { useSidebar } from '@/hooks/use-sidebar';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -54,7 +55,7 @@ function Sidebar({ className, children, ...props }: ComponentProps<'div'>) {
         <SheetContent
           data-slot='sidebar'
           data-mobile='true'
-          className='bg-sidebar text-sidebar-fg w-64 p-0 [&>button]:hidden'
+          className='bg-sidebar text-sidebar-foreground w-64 p-0 [&>button]:hidden'
         >
           <SheetHeader className='sr-only'>
             <SheetTitle>Sidebar</SheetTitle>
@@ -75,7 +76,7 @@ function Sidebar({ className, children, ...props }: ComponentProps<'div'>) {
       data-slot='sidebar'
     >
       <div
-        className={cn('shadow flex flex-col size-full z-10 transition-[left,right,width] duration-200 ease-linear rounded', className)}
+        className={cn('bg-sidebar border flex flex-col size-full z-10 transition-[left,right,width] duration-200 ease-linear rounded', className)}
         {...props}
       >
         {children}
@@ -280,7 +281,7 @@ function SidebarMenuButton({
   isActive?: boolean
   tooltip?: string | ComponentProps<typeof TooltipContent>
 } & VariantProps<typeof sidebarMenuButtonVariants>) {
-  const Comp = asChild ? Slot.Slot : 'button';
+  const Comp = asChild ? Slot : 'button';
   const { isMobile, state } = useSidebar();
 
   const button = (
@@ -410,7 +411,7 @@ function SidebarMenuSub({ className, ...props }: ComponentProps<'ul'>) {
       data-slot='sidebar-menu-sub'
       data-sidebar='menu-sub'
       className={cn(
-        'border-sidebar-border ml-5.5 flex min-w-0 translate-x-px flex-col gap-1 border-l py-0.5',
+        'border-sidebar-border ml-4 flex min-w-0 flex-col gap-1 border-l px-3 py-0.5',
         'group-data-[collapsible=icon]:hidden',
         className
       )}
@@ -437,17 +438,16 @@ function SidebarMenuSubButton({
   isActive = false,
   className,
   ...props
-}: ComponentProps<'a'> & {
+}: ComponentProps<typeof Link> & {
   isActive?: boolean
 }) {
   return (
-    <Slot
+    <Link
       data-slot='sidebar-menu-sub-button'
       data-active={isActive}
       className={cn(
-        'flex items-center gap-2 text-muted',
+        'text-xs flex items-center gap-2 text-sidebar-foreground hover:text-sidebar-accent-foreground py-1',
         'data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground',
-        'group-data-[collapsible=icon]:hidden',
         className
       )}
       {...props}

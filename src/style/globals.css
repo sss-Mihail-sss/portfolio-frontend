@@ -82,7 +82,7 @@
   }
 
   ::selection {
-    @apply bg-selection text-selection-fg;
+    @apply bg-selection text-selection-foreground;
   }
 
   html {
