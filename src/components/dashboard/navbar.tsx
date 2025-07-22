@@ -7,8 +7,7 @@ import { useAtom } from 'jotai';
 import { useParams, usePathname } from 'next/navigation';
 
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from '@/ui/breadcrumb';
-
-import { Button } from '@/components/ui/button';
+import { Button } from '@/ui/button';
 
 import { Pathnames } from '@/i18n/routing';
 import { sidebarStateAtomPersistence } from '@/stores/jotai/sidebar';

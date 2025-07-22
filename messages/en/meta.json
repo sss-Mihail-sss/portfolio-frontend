@@ -4,5 +4,8 @@
   },
   "login": {
     "title": "Login Page"
+  },
+  "dashboard": {
+    "title": "Dashboard Page"
   }
 }

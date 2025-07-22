@@ -18,6 +18,9 @@ const nextConfig: NextConfig = {
     // ppr: 'incremental',
     useCache: true,
   },
+  devIndicators: {
+    position: 'bottom-right'
+  },
   env: {
     DOMAIN: process.env.DOMAIN!,
     API_URL: process.env.API_URL!,

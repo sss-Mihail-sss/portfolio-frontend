@@ -16,9 +16,10 @@ export const routing = defineRouting({
 
     '/dashboard': '/dashboard',
 
-    '/dashboard/storage': '/dashboard/storage',
-    '/dashboard/storage/folders': '/dashboard/storage/folders',
-    '/dashboard/storage/folders/[[...path]]': '/dashboard/storage/folders/[[...path]]',
+    '/user-management': '/user-management',
+    '/user-management/users': '/user-management/users',
+    '/user-management/roles': '/user-management/roles',
+    '/user-management/permissions': '/user-management/permissions',
   },
 });
 

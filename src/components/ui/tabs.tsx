@@ -5,12 +5,14 @@ import { Tabs as TabsPrimitive } from 'radix-ui';
 
 import { cn } from '@/lib/utils';
 
-function Tabs({ className, children, ...props }: ComponentProps<typeof TabsPrimitive.Root>) {
+type TabsProps = ComponentProps<typeof TabsPrimitive.Root>
+
+function Tabs({ className, children, ...props }: TabsProps) {
   return (
     <TabsPrimitive.Root
       data-slot='tabs'
       className={cn(
-        'flex gap-4 data-[orientation=horizontal]:flex-col data-[orientation=vertical]:flex-row',
+        'flex gap-4',
         className
       )}
       {...props}
@@ -60,3 +62,4 @@ function TabsContent({ className, ...props }: ComponentProps<typeof TabsPrimitiv
 }
 
 export { Tabs, TabsList, TabsTrigger, TabsContent };
+export type { TabsProps };

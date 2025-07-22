@@ -2,11 +2,13 @@ import { ReactNode } from 'react';
 import { hasLocale, Locale } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
 
-import { BaseLayout } from '@/components/layouts/base';
+import { SSRProviders } from '@/components/providers/ssr';
+import { CSRProvider } from '@/components/providers/csr';
 
 import { locales } from '@/i18n/routing';
+import { cn } from '@/lib/utils';
+import { geistMono, geistSans, graduate, inter, montserrat, openSans, raleway, roboto, robotoMono } from '@/lib/font';
 
 type Props = {
   children: ReactNode;
@@ -15,12 +17,9 @@ type Props = {
   }>;
 }
 
-export async function generateMetadata({ params }: Omit<Props, 'children'>): Promise<Metadata> {
-  const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'meta' });
-
+export async function generateMetadata({}: Omit<Props, 'children'>): Promise<Metadata> {
   return {
-    metadataBase: new URL(process.env.API_URL!),
+    metadataBase: new URL(process.env.API_URL!)
   };
 }
 
@@ -36,8 +35,27 @@ export default async function LocaleLayout({ children, params }: Props) {
   }
 
   return (
-    <BaseLayout locale={locale}>
-      {children}
-    </BaseLayout>
+    <html className='h-full' lang={locale} suppressHydrationWarning>
+      <body
+        className={cn(
+          geistMono.variable,
+          geistSans.variable,
+          openSans.variable,
+          roboto.variable,
+          robotoMono.variable,
+          montserrat.variable,
+          raleway.variable,
+          inter.variable,
+          graduate.variable,
+          'antialiased bg-bg text-fg min-h-dvh font-geist-sans'
+        )}
+      >
+        <SSRProviders>
+          <CSRProvider>
+            {children}
+          </CSRProvider>
+        </SSRProviders>
+      </body>
+    </html>
   );
 }

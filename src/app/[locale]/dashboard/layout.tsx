@@ -1,24 +1,43 @@
 import { ReactNode } from 'react';
+import { Metadata } from 'next';
+import { cookies } from 'next/headers';
+import { getTranslations } from 'next-intl/server';
+import { Locale } from 'next-intl';
 
-import { Sidebar } from './components/sidebar';
-import { Navbar } from './components/navbar';
+import { SidebarProvider } from '@/ui/sidebar';
+
+import { AppSidebar } from '@/components/dashboard/sidebar';
+import { Navbar } from '@/components/dashboard/navbar';
 
 type Props = {
   children: ReactNode;
+  params: Promise<{
+    locale: Locale;
+  }>;
+}
+
+export async function generateMetadata({ params }: Omit<Props, 'children'>): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'meta.dashboard' });
+
+  return {
+    title: t('title')
+  };
 }
 
 export default async function Layout({ children }: Props) {
-  return (
-    <div className='flex flex-col sm:flex-row flex-1 gap-2 p-2'>
-      <Sidebar />
+  const cookieStore = await cookies();
+  const sidebarOpen = cookieStore.get('sidebarOpen')?.value === 'true';
 
-      <div className='flex flex-col flex-1 gap-2'>
+  return (
+    <SidebarProvider open>
+      <AppSidebar />
+
+      <main className='flex flex-col flex-1 gap-2'>
         <Navbar />
 
-        <main className='flex-1 p-4 bg-card rounded-lg'>
-          {children}
-        </main>
-      </div>
-    </div>
+        {children}
+      </main>
+    </SidebarProvider>
   );
 }

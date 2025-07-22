@@ -16,49 +16,64 @@
 
   --breakpoint-xs: 420px;
 
-  --radius: 0.5rem;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
 @theme inline {
-  --color-bg: var(--bg);
-  --color-fg: var(--fg);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
 
-  --color-selection: var(--selection);
-  --color-selection-fg: var(--selection-fg);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
 
   --color-primary: var(--primary);
-  --color-primary-fg: var(--primary-fg);
+  --color-primary-foreground: var(--primary-foreground);
 
   --color-secondary: var(--secondary);
-  --color-secondary-fg: var(--secondary-fg);
-
-  --color-overlay: var(--overlay);
-  --color-overlay-fg: var(--overlay-fg);
-
-  --color-accent: var(--accent);
-  --color-accent-fg: var(--accent-fg);
+  --color-secondary-foreground: var(--secondary-foreground);
 
   --color-muted: var(--muted);
-  --color-muted-fg: var(--muted-fg);
+  --color-muted-foreground: var(--muted-foreground);
 
-  --color-success: var(--success);
-  --color-success-fg: var(--success-fg);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
 
-  --color-warning: var(--warning);
-  --color-warning-fg: var(--warning-fg);
-
-  --color-error: var(--error);
-  --color-error-fg: var(--error-fg);
-
-  --color-navbar: var(--navbar);
-  --color-navbar-fg: var(--navbar-fg);
-
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-fg: var(--sidebar-fg);
-
+  --color-destructive: var(--destructive);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --color-surface: var(--surface);
+  --color-surface-foreground: var(--surface-foreground);
+
+  --color-code: var(--code);
+  --color-code-foreground: var(--code-foreground);
+  --color-code-highlight: var(--code-highlight);
+  --color-code-number: var(--code-number);
+
+  --color-selection: var(--selection);
+  --color-selection-foreground: var(--selection-foreground);
 }
 
 @layer base {
