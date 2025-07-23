@@ -14,6 +14,7 @@
   --font-open-sans: var(--font-open-sans);
   --font-graduate: var(--font-graduate);
 
+  /* Typography */
   --text-label: 14px;
   --text-label--line-height: 160%;
 

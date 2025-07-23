@@ -3,7 +3,7 @@ import { RadioGroup as RadioGroupPrimitive } from 'radix-ui';
 
 import { cn } from '@/lib/utils';
 
-type RadioGroupProps = ComponentProps<typeof RadioGroupPrimitive.Root>
+type RadioGroupProps = ComponentProps<typeof RadioGroupPrimitive.Root>;
 
 function RadioGroup({ className, ...props }: RadioGroupProps) {
   return (
@@ -18,7 +18,7 @@ function RadioGroup({ className, ...props }: RadioGroupProps) {
   );
 }
 
-type RadioGroupItemProps = ComponentProps<typeof RadioGroupPrimitive.Item>
+type RadioGroupItemProps = ComponentProps<typeof RadioGroupPrimitive.Item>;
 
 function RadioGroupItem({ className, ...props }: RadioGroupItemProps) {
   return (

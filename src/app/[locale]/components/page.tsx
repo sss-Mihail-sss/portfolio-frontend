@@ -1,27 +1,34 @@
-import { RadioGroup, RadioGroupItem } from '@/ui/radio-group';
-import { Label } from '@/ui/label';
+'use client';
+
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/ui/select';
 
 export default function ComponentsPage() {
   return (
     <div className='min-h-dvh flex flex-col gap-2 items-center justify-center'>
-      <RadioGroup className='flex flex-col gap-2' defaultValue='3'>
-        <div className='flex items-center gap-2'>
-          <RadioGroupItem value='1' id='1' />
-          <Label htmlFor='1'>Radio 1</Label>
-        </div>
-        <div className='flex items-center gap-2'>
-          <RadioGroupItem value='2' id='2' />
-          <Label htmlFor='2'>Radio 2</Label>
-        </div>
-        <div className='flex items-center gap-2'>
-          <RadioGroupItem value='3' id='3' disabled defaultChecked />
-          <Label htmlFor='3'>Radio 3</Label>
-        </div>
-        <div className='flex items-center gap-2'>
-          <RadioGroupItem value='4' id='4' disabled />
-          <Label htmlFor='4'>Radio 4</Label>
-        </div>
-      </RadioGroup>
+      <div className='flex flex-col gap-2'>
+        <Select>
+          <SelectTrigger className='w-64'>
+            <SelectValue placeholder='Select...' />
+          </SelectTrigger>
+          <SelectContent position='popper'>
+            <SelectItem value='1'>
+              Option 1
+            </SelectItem>
+            <SelectItem value='2'>
+              Option 2
+            </SelectItem>
+            <SelectItem value='3'>
+              Option 3
+            </SelectItem>
+            <SelectItem value='4'>
+              Option 4
+            </SelectItem>
+            <SelectItem value='5'>
+              Option 5
+            </SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
     </div>
   );
 }
