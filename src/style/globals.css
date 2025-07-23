@@ -14,75 +14,146 @@
   --font-open-sans: var(--font-open-sans);
   --font-graduate: var(--font-graduate);
 
+  --text-label: 14px;
+  --text-label--line-height: 160%;
+
+  --text-detail: 13px;
+  --text-detail--line-height: 160%;
+
+  --text-small: 12px;
+  --text-small--line-height: 150%;
+
+  --text-micro: 11px;
+  --text-micro--line-height: 150%;
+
+  --text-nano: 10px;
+  --text-nano--line-height: 150%;
+
   --breakpoint-xs: 420px;
 
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-sm: calc(var(--radius) - 4px); /* 4px */
+  --radius-md: calc(var(--radius) - 2px); /* 6px */
+  --radius-lg: var(--radius);             /* 8px */
+  --radius-xl: calc(var(--radius) + 4px); /* 12px */
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  /* Base */
+  --color-base: var(--base);
 
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
+  --color-base-raised: var(--base-raised);
 
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
+  --color-base-placeholder-fg: var(--base-placeholder-fg);
 
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
+  --color-base-overlay: var(--base-overlay);
+  --color-base-overlay-active: var(--base-overlay-active);
+  --color-base-overlay-hover: var(--base-overlay-hover);
 
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
+  --color-base-input: var(--base-input);
+  --color-base-input-focus: var(--base-input-focus);
+  --color-base-input-on: var(--base-input-on);
+  --color-base-input-off: var(--base-input-off);
+  --color-base-input-disabled: var(--base-input-disabled);
 
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
+  --color-base-border-focus: var(--base-border-focus);
+  --color-base-border-input: var(--base-border-input);
+  --color-base-border-input-focus: var(--base-border-input-focus);
 
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
+  /* White */
+  --color-white-accent-fg: var(--white-accent-fg);
+  --color-white-hover: var(--white-hover);
 
-  --color-destructive: var(--destructive);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
+  --color-white-subtle: var(--white-subtle);
 
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
+  --color-white-border-medium: var(--white-border-medium);
+  --color-white-border-accent: var(--white-border-accent);
 
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+  /* Black */
+  --color-black-accent: var(--black-accent);
+  --color-black-accent-fg: var(--black-accent-fg);
 
-  --color-surface: var(--surface);
-  --color-surface-foreground: var(--surface-foreground);
+  /* Primary */
+  --color-primary-accent: var(--primary-accent);
+  --color-primary-accent-fg: var(--primary-accent-fg);
 
-  --color-code: var(--code);
-  --color-code-foreground: var(--code-foreground);
-  --color-code-highlight: var(--code-highlight);
-  --color-code-number: var(--code-number);
+  --color-primary-subtle: var(--primary-subtle);
 
-  --color-selection: var(--selection);
-  --color-selection-foreground: var(--selection-foreground);
+  --color-primary-strong: var(--primary-strong);
+
+  --color-primary-hover: var(--primary-hover);
+
+  --color-primary-border-medium: var(--primary-border-medium);
+
+  /* Neutral */
+  --color-neutral-accent: var(--neutral-accent);
+  --color-neutral-accent-fg: var(--neutral-accent-fg);
+
+  --color-neutral-subtle: var(--neutral-subtle);
+  --color-neutral-subtle-fg: var(--neutral-subtle-fg);
+
+  --color-neutral-body-fg: var(--neutral-body-fg);
+
+  --color-neutral-medium: var(--neutral-medium);
+
+  --color-neutral-dimmed: var(--neutral-dimmed);
+
+  --color-neutral-hover: var(--neutral-hover);
+
+  --color-neutral-body-minimal: var(--neutral-body-minimal);
+  --color-neutral-border-medium: var(--neutral-border-medium);
+  --color-neutral-border-subtle: var(--neutral-border-subtle);
+  --color-neutral-border-strong: var(--neutral-border-strong);
+
+  /* Positive */
+  --color-positive-subtle: var(--positive-subtle);
+  --color-positive-strong: var(--positive-strong);
+
+  --color-positive-accent: var(--positive-accent);
+  --color-positive-accent-fg: var(--positive-accent-fg);
+
+  /* Negative */
+  --color-negative-accent: var(--negative-accent);
+  --color-negative-accent-fg: var(--negative-accent-fg);
+
+  --color-negative-dimmed: var(--negative-dimmed);
+  --color-negative-subtle: var(--negative-subtle);
+  --color-negative-hover: var(--negative-hover);
+  --color-negative-strong: var(--negative-strong);
+
+  --color-negative-border-medium: var(--negative-border-medium);
+  --color-negative-border-strong: var(--negative-border-strong);
+  --color-negative-border-accent: var(--negative-border-accent);
+
+  /* Info */
+  --color-info-accent: var(--info-accent);
+  --color-info-accent-fg: var(--info-accent-fg);
+
+  --color-info-subtle: var(--info-subtle);
+  --color-info-strong: var(--info-strong);
+
+  /* Notice */
+  --color-notice-subtle: var(--notice-subtle);
+  --color-notice-accent-fg: var(--notice-accent-fg);
+
+  /* Inverse */
+  --color-inverse-accent: var(--inverse-accent);
+  --color-inverse-accent-fg: var(--inverse-accent-fg);
+
+  --color-inverse-subtle: var(--inverse-subtle);
+
+  --color-inverse-hover: var(--inverse-hover);
+
+  --color-inverse-border-medium: var(--inverse-border-medium);
+  --color-inverse-border-strong: var(--inverse-border-strong);
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    /* @apply border-border outline-ring/50; */
   }
 
   ::selection {
-    @apply bg-selection text-selection-foreground;
+    /* @apply bg-selection text-selection-foreground; */
   }
 
   html {

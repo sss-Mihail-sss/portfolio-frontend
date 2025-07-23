@@ -38,16 +38,16 @@ export default async function LocaleLayout({ children, params }: Props) {
     <html className='h-full' lang={locale} suppressHydrationWarning>
       <body
         className={cn(
-          geistMono.variable,
-          geistSans.variable,
-          openSans.variable,
-          roboto.variable,
-          robotoMono.variable,
-          montserrat.variable,
-          raleway.variable,
+          // geistMono.variable,
+          // geistSans.variable,
+          // openSans.variable,
+          // roboto.variable,
+          // robotoMono.variable,
+          // montserrat.variable,
+          // raleway.variable,
           inter.variable,
-          graduate.variable,
-          'antialiased bg-background text-foreground min-h-dvh font-geist-sans'
+          // graduate.variable,
+          'antialiased bg-base text-neutral-body-fg min-h-dvh font-inter'
         )}
       >
         <SSRProviders>
