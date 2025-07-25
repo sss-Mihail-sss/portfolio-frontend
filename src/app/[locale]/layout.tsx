@@ -47,7 +47,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           // raleway.variable,
           inter.variable,
           // graduate.variable,
-          'antialiased bg-base text-neutral-body-fg min-h-dvh font-inter'
+          'antialiased bg-surface text-base-fg min-h-dvh font-inter'
         )}
       >
         <SSRProviders>

@@ -4,6 +4,9 @@
 @import './theme/default.css';
 
 @theme {
+  --color-*: initial;
+
+  /* Font family */
   --font-geist-sans: var(--font-geist-sans);
   --font-geist-mono: var(--font-geist-mono);
   --font-montserrat: var(--font-montserrat);
@@ -14,138 +17,94 @@
   --font-open-sans: var(--font-open-sans);
   --font-graduate: var(--font-graduate);
 
-  /* Typography */
-  --text-label: 14px;
-  --text-label--line-height: 160%;
+  /* Typography - Heading */
+  --text-heading-2xl: 2rem;
+  --text-heading-2xl--line-height: 2.2rem;
+  --text-heading-2xl--font-weight: 700;
 
-  --text-detail: 13px;
-  --text-detail--line-height: 160%;
+  --text-heading-xl: 1.75rem;
+  --text-heading-xl--line-height: 2rem;
+  --text-heading-xl--font-weight: 700;
 
-  --text-small: 12px;
-  --text-small--line-height: 150%;
+  --text-heading-lg: 1.5rem;
+  --text-heading-lg--line-height: 1.55rem;
+  --text-heading-lg--font-weight: 700;
 
-  --text-micro: 11px;
-  --text-micro--line-height: 150%;
+  --text-heading: 1.25rem;
+  --text-heading--line-height: 1.5rem;
+  --text-heading--font-weight: 700;
 
-  --text-nano: 10px;
-  --text-nano--line-height: 150%;
+  --text-heading-sm: 1rem;
+  --text-heading-sm--line-height: 1.25rem;
+  --text-heading-sm--font-weight: 700;
 
-  --breakpoint-xs: 420px;
+  --text-heading-xs: 0.825rem;
+  --text-heading-xs--line-height: 1.25rem;
+  --text-heading-xs--font-weight: 700;
 
-  --radius-sm: calc(var(--radius) - 4px); /* 4px */
-  --radius-md: calc(var(--radius) - 2px); /* 6px */
-  --radius-lg: var(--radius);             /* 8px */
-  --radius-xl: calc(var(--radius) + 4px); /* 12px */
+  --text-heading-2xs: 0.75rem;
+  --text-heading-2xs--line-height: 1rem;
+  --text-heading-2xs--font-weight: 700;
+
+  /* Typography - Body */
+  --text-body-lg: 1rem;
+  --text-body-lg--line-height: 1.5rem;
+
+  --text-body: 0.875rem;
+  --text-body--line-height: 1.25rem;
+
+  --text-body-sm: 0.75rem;
+  --text-body-sm--line-height: 1rem;
+
+  /* Typography - Metric */
+  --text-metric-lg: 1.75rem;
+  --text-metric-lg--line-height: 2rem;
+
+  --text-metric: 1.5rem;
+  --text-metric--line-height: 1.75rem;
+
+  --text-metric-sm: 1rem;
+  --text-metric-sm--line-height: 1.25rem;
+
+  /* Breakpoint */
+  --breakpoint-xs: 30rem;
+
+  /* Radius */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
 @theme inline {
   /* Base */
-  --color-base: var(--base);
+  --color-base-fg: var(--base-fg);
 
-  --color-base-raised: var(--base-raised);
+  /* Surface */
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-surface-press: var(--surface-press);
 
-  --color-base-placeholder-fg: var(--base-placeholder-fg);
+  --color-surface-overlay: var(--surface-overlay);
+  --color-surface-overlay-hover: var(--surface-overlay-hover);
+  --color-surface-overlay-press: var(--surface-overlay-press);
 
-  --color-base-overlay: var(--base-overlay);
-  --color-base-overlay-active: var(--base-overlay-active);
-  --color-base-overlay-hover: var(--base-overlay-hover);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-raised-hover: var(--surface-raised-hover);
+  --color-surface-raised-press: var(--surface-raised-press);
 
-  --color-base-input: var(--base-input);
-  --color-base-input-focus: var(--base-input-focus);
-  --color-base-input-on: var(--base-input-on);
-  --color-base-input-off: var(--base-input-off);
-  --color-base-input-disabled: var(--base-input-disabled);
-
-  --color-base-border-focus: var(--base-border-focus);
-  --color-base-border-input: var(--base-border-input);
-  --color-base-border-input-focus: var(--base-border-input-focus);
-
-  /* White */
-  --color-white-accent-fg: var(--white-accent-fg);
-  --color-white-hover: var(--white-hover);
-
-  --color-white-subtle: var(--white-subtle);
-
-  --color-white-border-medium: var(--white-border-medium);
-  --color-white-border-accent: var(--white-border-accent);
-
-  /* Black */
-  --color-black-accent: var(--black-accent);
-  --color-black-accent-fg: var(--black-accent-fg);
+  --color-surface-sunked: var(--surface-sunked);
 
   /* Primary */
-  --color-primary-accent: var(--primary-accent);
-  --color-primary-accent-fg: var(--primary-accent-fg);
-
-  --color-primary-subtle: var(--primary-subtle);
-
-  --color-primary-strong: var(--primary-strong);
-
-  --color-primary-hover: var(--primary-hover);
-
-  --color-primary-border-medium: var(--primary-border-medium);
+  --color-primary: var(--primary-fg);
+  --color-primary-icon: var(--primary-icon);
+  --color-primary-border: var(--primary-border);
 
   /* Neutral */
-  --color-neutral-accent: var(--neutral-accent);
-  --color-neutral-accent-fg: var(--neutral-accent-fg);
-
-  --color-neutral-subtle: var(--neutral-subtle);
-  --color-neutral-subtle-fg: var(--neutral-subtle-fg);
-
-  --color-neutral-body-fg: var(--neutral-body-fg);
-
-  --color-neutral-medium: var(--neutral-medium);
-
-  --color-neutral-dimmed: var(--neutral-dimmed);
-
-  --color-neutral-hover: var(--neutral-hover);
-
-  --color-neutral-body-minimal: var(--neutral-body-minimal);
-  --color-neutral-border-medium: var(--neutral-border-medium);
-  --color-neutral-border-subtle: var(--neutral-border-subtle);
-  --color-neutral-border-strong: var(--neutral-border-strong);
-
-  /* Positive */
-  --color-positive-subtle: var(--positive-subtle);
-  --color-positive-strong: var(--positive-strong);
-
-  --color-positive-accent: var(--positive-accent);
-  --color-positive-accent-fg: var(--positive-accent-fg);
-
-  /* Negative */
-  --color-negative-accent: var(--negative-accent);
-  --color-negative-accent-fg: var(--negative-accent-fg);
-
-  --color-negative-dimmed: var(--negative-dimmed);
-  --color-negative-subtle: var(--negative-subtle);
-  --color-negative-hover: var(--negative-hover);
-  --color-negative-strong: var(--negative-strong);
-
-  --color-negative-border-medium: var(--negative-border-medium);
-  --color-negative-border-strong: var(--negative-border-strong);
-  --color-negative-border-accent: var(--negative-border-accent);
-
-  /* Info */
-  --color-info-accent: var(--info-accent);
-  --color-info-accent-fg: var(--info-accent-fg);
-
-  --color-info-subtle: var(--info-subtle);
-  --color-info-strong: var(--info-strong);
-
-  /* Notice */
-  --color-notice-subtle: var(--notice-subtle);
-  --color-notice-accent-fg: var(--notice-accent-fg);
-
-  /* Inverse */
-  --color-inverse-accent: var(--inverse-accent);
-  --color-inverse-accent-fg: var(--inverse-accent-fg);
-
-  --color-inverse-subtle: var(--inverse-subtle);
-
-  --color-inverse-hover: var(--inverse-hover);
-
-  --color-inverse-border-medium: var(--inverse-border-medium);
-  --color-inverse-border-strong: var(--inverse-border-strong);
+  /* Shadow */
+  --shadow-overflow: var(--shadow-overflow);
+  --shadow-overlay: var(--shadow-overlay);
+  --shadow-raised: var(--shadow-raised);
 }
 
 @layer base {
@@ -169,41 +128,4 @@
   .lucide {
     @apply size-4;
   }
-}
-
-@utility editor {
-  h1 {
-    font-size: var(--text-4xl);
-  }
-
-  h2 {
-    font-size: var(--text-3xl);
-  }
-
-  h3 {
-    font-size: var(--text-2xl);
-  }
-
-  h4 {
-    font-size: var(--text-xl);
-  }
-
-  h5 {
-    font-size: var(--text-lg);
-  }
-
-  blockquote {
-    @apply border-l-4 pl-4;
-  }
-}
-
-@utility container-wrapper {
-  @apply w-full max-w-340;
-  margin-inline: auto;
-  padding-inline: 1rem;
-}
-
-@utility container {
-  margin-inline: auto;
-  padding-inline: 1rem;
 }

@@ -1,116 +1,76 @@
 :root {
   --radius: .5rem;
 
+  /* Surface */
+  --surface: rgb(255, 255, 255);
+  --surface-hover: rgb(241, 242, 244);
+  --surface-press: rgb(220, 223, 228);
+
+  --surface-overlay: rgb(255, 255, 255);
+  --surface-overlay-hover: rgb(241, 242, 244);
+  --surface-overlay-press: rgb(220, 223, 228);
+
+  --surface-raised: rgb(255, 255, 255);
+  --surface-raised-hover: rgb(241, 242, 244);
+  --surface-raised-press: rgb(220, 223, 228);
+
+  --surface-sunked: rgb(247, 248, 249);
+
   /* Base */
-  --base: rgba(255, 255, 255, 1);
-
-  --base-raised: rgba(255, 255, 255, 1);
-
-  --base-placeholder-fg: rgba(0, 0, 0, 0.5);
-
-  --base-overlay: rgba(255, 255, 255, 1);
-  --base-overlay-active: rgba(232, 232, 232, 1);
-  --base-overlay-hover: rgba(241, 241, 241, 1);
-
-  --base-input: rgba(255, 255, 255, 1);
-  --base-input-focus: rgba(255, 255, 255, 1);
-  --base-input-on: rgba(0, 112, 235, 1);
-  --base-input-off: rgba(232, 232, 232, 1);
-  --base-input-disabled: rgba(248, 248, 248, 1);
-
-  --base-border-focus: rgba(19, 124, 236, 1);
-  --base-border-input: rgba(232, 232, 232, 1);
-  --base-border-input-focus: rgba(19, 124, 236, 1);
-
-  /* White */
-  --white-accent-fg: rgba(255, 255, 255, 1);
-  --white-hover: rgba(255, 255, 255, 0.85);
-
-  --white-subtle: rgba(255, 255, 255, 0.06);
-
-  --white-border-medium: rgba(255, 255, 255, 0.15);
-  --white-border-accent: rgba(255, 255, 255, 1);
-
-  /* Black */
-  --black-accent: rgba(17, 17, 17, 1);
-  --black-accent-fg: rgba(17, 17, 17, 1);
+  --base-fg: rgb(23, 43, 77);
+  --base-disabled-fg: rgba(9, 30, 66, 0.31);
+  --base-inverse-fg: rgb(255, 255, 255);
+  --base-selected-fg: rgb(12, 102, 228);
+  --base-subtlest-fg: rgb(98, 111, 134);
+  --base-subtle-fg: rgb(68, 84, 111);
 
   /* Primary */
-  --primary-accent: rgba(74, 71, 245, 1);
-  --primary-accent-fg: rgba(68, 66, 223, 1);
+  --primary-fg: rgb(12, 102, 228);
+  --primary-icon: rgb(12, 102, 228);
+  --primary-border: rgb(12, 102, 228);
 
-  --primary-subtle: rgba(234, 234, 255, 1);
+  --primary-subtle: ;
+  --primary-subtle-hover: ;
+  --primary-subtle-press: ;
 
-  --primary-strong: rgba(205, 204, 255, 1);
-
-  --primary-hover: rgba(68, 66, 223, 1);
-
-  --primary-border-medium: rgba(205, 204, 255, 1);
-
-  /* Neutral */
-  --neutral-accent: rgba(17, 17, 17, 1);
-  --neutral-accent-fg: rgba(17, 17, 17, 1);
-
-  --neutral-subtle: rgba(241, 241, 241, 1);
-  --neutral-subtle-fg: rgba(114, 114, 114, 1);
-
-  --neutral-body-fg: rgba(34, 34, 34, 1);
-
-  --neutral-medium: rgba(232, 232, 232, 1);
-
-  --neutral-dimmed: rgba(248, 248, 248, 1);
-
-  --neutral-hover: rgba(44, 44, 44, 1);
-
-  --neutral-body-minimal: rgba(241, 241, 241, 1);
-
-  --neutral-border-medium: rgba(220, 220, 220, 1);
-  --neutral-border-subtle: rgba(232, 232, 232, 1);
-  --neutral-border-strong: rgba(208, 208, 208, 1);
-
-  /* Positive */
-  --positive-subtle: rgba(226, 245, 230, 1);
-  --positive-strong: rgba(185, 231, 195, 1);
-
-  --positive-accent: rgba(15, 133, 44, 1);
-  --positive-accent-fg: rgba(15, 122, 42, 1);
-
-  /* Negative */
-  --negative-accent: rgba(223, 24, 12, 1);
-  --negative-accent-fg: rgba(203, 23, 13, 1);
-
-  --negative-dimmed: rgba(255, 239, 238, 1);
-  --negative-subtle: rgba(255, 227, 224, 1);
-  --negative-hover: rgba(203, 23, 13, 1);
-  --negative-strong: rgba(255, 188, 184, 1);
-
-  --negative-border-medium: rgba(255, 188, 184, 1);
-  --negative-border-strong: rgba(255, 164, 159, 1);
-  --negative-border-accent: rgba(203, 23, 13, 1);
-
-  /* Info */
-  --info-accent: rgba(0, 112, 235, 1);
-  --info-accent-fg: rgba(2, 103, 213, 1);
-
-  --info-subtle: rgba(225, 239, 255, 1);
-  --info-strong: rgba(184, 218, 255, 1);
-
-  /* Notice */
-  --notice-subtle: rgba(255, 247, 227, 1);
-  --notice-accent-fg: rgba(111, 65, 50, 1);
-
-  /* Inverse */
-  --inverse-accent: rgba(241, 241, 241, 1);
-  --inverse-accent-fg: rgba(241, 241, 241, 1);
-
-  --inverse-subtle: rgba(34, 34, 34, 1);
-
-  --inverse-hover: rgba(220, 220, 220, 1);
-
-  --inverse-border-medium: rgba(56, 56, 56, 1);
-  --inverse-border-strong: rgba(67, 67, 67, 1);
+  /* Shadow */
+  --shadow-overflow: 0px 0px 8px rgba(9, 30, 66, 0.16), 0px 0px 1px rgba(9, 30, 66, 0.12);
+  --shadow-overlay: 0px 8px 12px rgba(9, 30, 66, 0.15), 0px 0px 1px rgba(9, 30, 66, 0.31);
+  --shadow-raised: 0px 1px 1px rgba(9, 30, 66, 0.25), 0px 0px 1px rgba(9, 30, 66, 0.31);
 }
 
 .dark {
+  /* Surface */
+  --surface: rgb(29, 33, 37);
+  --surface-hover: rgb(34, 39, 43);
+  --surface-press: rgb(40, 46, 51);
+
+  --surface-overlay: rgb(40, 46, 51);
+  --surface-overlay-hover: rgb(44, 51, 58);
+  --surface-overlay-press: rgb(56, 65, 74);
+
+  --surface-raised: rgb(34, 39, 43);
+  --surface-raised-hover: rgb(40, 46, 51);
+  --surface-raised-press: rgb(44, 51, 58);
+
+  --surface-sunked: rgb(22, 26, 29);
+
+  /* Base */
+  --base-fg: rgb(182, 194, 207);
+  --base-disabled-fg: rgba(191, 219, 248, 0.28);
+  --base-inverse-fg: rgb(29, 33, 37);
+  --base-selected-fg: rgb(87, 157, 255);
+  --base-subtlest-fg: rgb(140, 155, 171);
+  --base-subtle-fg: rgb(159, 173, 188);
+
+  /* Primary */
+  --primary-fg: rgb(87, 157, 255);
+  --primary-icon: rgb(87, 157, 255);
+  --primary-border: rgb(87, 157, 255);
+
+  /* Shadow */
+  --shadow-overflow: 0px 0px 12px rgba(3, 4, 4, 0.56), 0px 0px 1px rgba(3, 4, 4, 0.5);
+  --shadow-overlay: 0px 0px 0px rgba(57, 66, 74, 1), 0px 8px 12px rgba(3, 4, 4, 0.36), 0px 0px 1px rgba(3, 4, 4, 0.5);
+  --shadow-raised: 0px 0px 0px rgba(0, 0, 0, 0), 0px 1px 1px rgba(3, 4, 4, 0.5), 0px 0px 1px rgba(3, 4, 4, 0.5);
 
 }
