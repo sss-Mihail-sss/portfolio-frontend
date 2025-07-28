@@ -95,12 +95,31 @@
 
   --color-surface-sunked: var(--surface-sunked);
 
-  /* Primary */
-  --color-primary: var(--primary-fg);
-  --color-primary-icon: var(--primary-icon);
-  --color-primary-border: var(--primary-border);
+  /* Brand */
+  --color-brand-fg: var(--brand-fg);
 
-  /* Neutral */
+  --color-brand-bold: var(--brand-bold);
+  --color-brand-bold-hover: var(--brand-bold-hover);
+  --color-brand-bold-press: var(--brand-bold-press);
+
+  --color-brand-boldest: var(--brand-boldest);
+  --color-brand-boldest-hover: var(--brand-boldest-hover);
+  --color-brand-boldest-press: var(--brand-boldest-press);
+
+  --color-brand-subtlest: var(--brand-subtlest);
+  --color-brand-subtlest-hover: var(--brand-subtlest-hover);
+  --color-brand-subtlest-press: var(--brand-subtlest-press);
+
+  /* Inverse */
+  --color-inverse-fg: var(--inverse-fg);
+
+  /*  */
+  --color-border-focus: var(--border-focus);
+
+  /* Disabled */
+  --color-disabled: var(--disabled);
+  --color-disabled-fg: var(--disabled-fg);
+
   /* Shadow */
   --shadow-overflow: var(--shadow-overflow);
   --shadow-overlay: var(--shadow-overlay);

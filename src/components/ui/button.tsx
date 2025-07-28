@@ -4,11 +4,15 @@ import { VariantProps } from 'tailwind-variants';
 
 import { cn, tv } from '@/lib/utils';
 
+// inline-flex items-center justify-center gap-2 whitespace-nowrap transition-all font-medium disabled:pointer-events-none
+// focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-border-focus
+// rounded-md h-12 py-3 px-4.5 bg-brand-bold hover:bg-brand-bold-hover active:bg-brand-bold-press text-inverse-fg
+
 const buttonVariants = tv({
   base: [
     'inline-flex items-center justify-center gap-2 whitespace-nowrap transition-all font-medium',
-    'disabled:pointer-events-none',
-    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
+    'disabled:bg-disabled disabled:text-disabled-fg disabled:cursor-not-allowed',
+    'outline-border-focus focus-visible:outline-2 focus-visible:outline-offset-2',
   ],
   variants: {
     variant: {
@@ -17,13 +21,13 @@ const buttonVariants = tv({
       ghost: ''
     },
     color: {
-      default: 'focus-visible:ring-neutral-accent',
-      primary: 'focus-visible:ring-base-border-focus',
-      negative: 'focus-visible:ring-negative-accent',
+      default: '',
+      brand: '',
+      negative: '',
       positive: ''
     },
     size: {
-      default: 'text-label rounded-md h-10 py-2 px-3',
+      default: 'text-body rounded-md h-10 py-2 px-3',
       xs: 'text-label rounded-md h-7 py-1 px-2',
       sm: 'text-label rounded-md h-8 py-1.5 px-2.5',
       lg: 'text-label rounded-md h-12 py-3 px-4.5',
@@ -40,47 +44,47 @@ const buttonVariants = tv({
     {
       variant: 'default',
       color: 'default',
-      className: 'bg-neutral-accent text-inverse-accent-fg hover:bg-neutral-hover disabled:opacity-30'
+      className: ''
     },
     {
       variant: 'outline',
       color: 'default',
-      className: 'border border-neutral-border-medium text-neutral-accent-fg hover:bg-neutral-subtle disabled:opacity-40'
+      className: ''
     },
     {
       variant: 'ghost',
       color: 'default',
-      className: 'text-neutral-accent-fg hover:bg-neutral-subtle disabled:opacity-40'
+      className: ''
     },
     {
       variant: 'default',
-      color: 'primary',
-      className: 'bg-primary-accent text-white-accent-fg hover:bg-primary-hover disabled:bg-neutral-accent disabled:opacity-30'
+      color: 'brand',
+      className: 'bg-brand-bold hover:bg-brand-bold-hover active:bg-brand-bold-press text-inverse-fg'
     },
     {
       variant: 'outline',
-      color: 'primary',
-      className: 'border border-primary-border-medium text-primary-accent-fg hover:bg-primary-subtle disabled:text-neutral-accent-fg disabled:border-neutral-border-subtle disabled:opacity-40'
+      color: 'brand',
+      className: ''
     },
     {
       variant: 'ghost',
-      color: 'primary',
-      className: 'text-primary-accent-fg hover:bg-primary-subtle disabled:text-neutral-accent-fg disabled:opacity-40'
+      color: 'brand',
+      className: ''
     },
     {
       variant: 'default',
       color: 'negative',
-      className: 'bg-negative-accent text-white-accent-fg hover:bg-negative-hover disabled:bg-neutral-accent disabled:opacity-30'
+      className: ''
     },
     {
       variant: 'outline',
       color: 'negative',
-      className: 'border border-negative-border-medium text-negative-accent-fg hover:bg-negative-subtle disabled:text-neutral-accent-fg disabled:border-neutral-border-subtle disabled:opacity-40'
+      className: ''
     },
     {
       variant: 'ghost',
       color: 'negative',
-      className: 'text-negative-accent-fg hover:bg-negative-subtle disabled:text-neutral-accent-fg disabled:opacity-40'
+      className: ''
     }
   ]
 });

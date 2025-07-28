@@ -36,18 +36,18 @@ function Buttons({ size }: ButtonProps) {
 
       <div className='grid grid-cols-3 gap-2'>
         <div className='flex flex-col items-center justify-center gap-2'>
-          <Button size={size} color='primary'>Button</Button>
-          <Button size={size} color='primary' disabled>Button</Button>
+          <Button size={size} color='brand'>Button</Button>
+          <Button size={size} color='brand' disabled>Button</Button>
         </div>
 
         <div className='flex flex-col items-center justify-center gap-2'>
-          <Button size={size} color='primary' variant='outline'>Button</Button>
-          <Button size={size} color='primary' variant='outline' disabled>Button</Button>
+          <Button size={size} color='brand' variant='outline'>Button</Button>
+          <Button size={size} color='brand' variant='outline' disabled>Button</Button>
         </div>
 
         <div className='flex flex-col items-center justify-center gap-2'>
-          <Button size={size} color='primary' variant='ghost'>Button</Button>
-          <Button size={size} color='primary' variant='ghost' disabled>Button</Button>
+          <Button size={size} color='brand' variant='ghost'>Button</Button>
+          <Button size={size} color='brand' variant='ghost' disabled>Button</Button>
         </div>
       </div>
 

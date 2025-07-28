@@ -6,9 +6,11 @@ export default async function ColorsPage() {
         <p className='mt-4'>This page is under construction.</p>
       </div>
 
-      <div>
+      <div className='space-y-6'>
         <div className='space-y-2'>
-          <h2>Typography</h2>
+          <h2 className='text-heading-lg'>
+            Typography
+          </h2>
 
           <div className='p-4 rounded-md bg-surface-sunked space-y-2'>
             <h1 className='text-heading-2xl'>Heading XXl</h1>

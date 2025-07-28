@@ -1,6 +1,7 @@
-import { AbstractIntlMessages, IntlError, IntlErrorCode } from 'next-intl';
-import { readdir } from 'fs/promises';
+import { readdirSync, existsSync } from 'fs';
 import { join } from 'path';
+
+import { AbstractIntlMessages, IntlError, IntlErrorCode } from 'next-intl';
 
 export function getLanguageName(locale: string, code: string): string | undefined {
   const Locale = new Intl.Locale(locale);
@@ -36,11 +37,11 @@ export function getMessageFallback({ key, error, namespace }: {
 
 export async function loadMessages(locale: string): Promise<AbstractIntlMessages> {
   const path = join('messages', locale);
-  const files = await readdir(path);
+  const files = readdirSync(path);
   const messages: AbstractIntlMessages = (await import(`../../messages/${locale}/common.json`)).default;
 
   for (const file of files) {
-    if (file != 'common.json' && file.endsWith('.json')) {
+    if (existsSync(file) && file != 'common.json' && file.endsWith('.json')) {
       try {
         const json = (await import(`../../messages/${locale}/${file}`)).default;
         const key = file.replace('.json', '');

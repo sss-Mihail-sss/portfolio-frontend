@@ -24,14 +24,29 @@
   --base-subtlest-fg: rgb(98, 111, 134);
   --base-subtle-fg: rgb(68, 84, 111);
 
-  /* Primary */
-  --primary-fg: rgb(12, 102, 228);
-  --primary-icon: rgb(12, 102, 228);
-  --primary-border: rgb(12, 102, 228);
+  /* Brand */
+  --brand-fg: rgb(12, 102, 228);
 
-  --primary-subtle: ;
-  --primary-subtle-hover: ;
-  --primary-subtle-press: ;
+  --brand-bold: rgb(12, 102, 228);
+  --brand-bold-hover: rgb(0, 85, 204);
+  --brand-bold-press: rgb(9, 50, 108);
+
+  --brand-boldest: rgb(28, 43, 65);
+  --brand-boldest-hover: rgb(9, 50, 108);
+  --brand-boldest-press: rgb(0, 85, 204);
+
+  --brand-subtlest: rgb(233, 242, 255);
+  --brand-subtlest-hover: rgb(204, 224, 255);
+  --brand-subtlest-press: rgb(133, 184, 255);
+
+  /* Inverse */
+  --inverse-fg: rgb(255, 255, 255);
+
+  --border-focus: rgb(56, 139, 255);
+
+  /* Disabled */
+  --disabled: rgba(9, 30, 66, 0.03);
+  --disabled-fg: rgba(9, 30, 66, 0.31);
 
   /* Shadow */
   --shadow-overflow: 0px 0px 8px rgba(9, 30, 66, 0.16), 0px 0px 1px rgba(9, 30, 66, 0.12);
@@ -62,11 +77,6 @@
   --base-selected-fg: rgb(87, 157, 255);
   --base-subtlest-fg: rgb(140, 155, 171);
   --base-subtle-fg: rgb(159, 173, 188);
-
-  /* Primary */
-  --primary-fg: rgb(87, 157, 255);
-  --primary-icon: rgb(87, 157, 255);
-  --primary-border: rgb(87, 157, 255);
 
   /* Shadow */
   --shadow-overflow: 0px 0px 12px rgba(3, 4, 4, 0.56), 0px 0px 1px rgba(3, 4, 4, 0.5);
