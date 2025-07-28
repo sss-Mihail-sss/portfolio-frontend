@@ -1,6 +1,82 @@
 :root {
   --radius: .5rem;
 
+  /* Primary */
+  --fg-primary-accent: #3434E7;
+
+  --bg-primary-minimal: #EBEBFF;
+  --bg-primary-accent: #3838FF;
+  --bg-primary-hover: #3131D0;
+
+  --border-primary-minimal: #DBDBFF;
+  --border-primary-accent: #3434E7;
+
+  /* Neutral */
+  --fg-neutral-accent: #171717;
+  --fg-neutral-subtle: #727272;
+  --fg-neutral-minimal: #808080;
+  --fg-neutral-heading: #1B1B1B;
+  --fg-neutral-body: #222222;
+
+  --bg-neutral-dimmed: #F7F7F7;
+  --bg-neutral-minimal: #F0F0F0;
+  --bg-neutral-subtle: #E5E5E5;
+  --bg-neutral-medium: #D9D9D9;
+  --bg-neutral-accent: #171717;
+  --bg-neutral-hover: #434343;
+
+  --border-neutral-dimmed: #F0F0F0;
+  --border-neutral-minimal: #E5E5E5;
+  --border-neutral-accent: #171717;
+
+  /* Informative */
+  --fg-informative-accent: #0260E3;
+  --bg-informative-minimal: #E3EEFE;
+  --bg-informative-accent: #0068FA;
+  --bg-informative-hover: #0457CC;
+  --border-informative-minimal: #D1E4FE;
+  --border-informative-accent: #0260E3;
+
+  /* Negative */
+  --fg-negative-accent: #C71E1E;
+  --bg-negative-minimal: #FFE2E2;
+  --bg-negative-accent: #DB1F1F;
+  --bg-negative-hover: #B31D1D;
+  --border-negative-minimal: #FFD0D0;
+  --border-negative-accent: #C71E1E;
+
+  /* Positive */
+  --fg-positive-accent: #287337;
+  --bg-positive-minimal: #E1F8E4;
+  --bg-positive-accent: #2A7E3B;
+  --bg-positive-hover: #266933;
+  --border-positive-minimal: #CEF3D6;
+  --border-positive-accent: #287337;
+
+  /* Notice */
+  --fg-notice-accent: #72370C;
+  --bg-notice-minimal: #FFF7D9;
+  --bg-notice-accent: #FFCC00;
+  --bg-notice-hover: #FFDE59;
+  --border-notice-minimal: #FFEDA6;
+  --border-notice-accent: #72370C;
+
+  /* Inverse */
+  --fg-inverted-accent: #FFFFFF;
+  --fg-inverted-subtle: rgba(255, 255, 255, 0.6);
+  --fg-inverted-minimal: rgba(255, 255, 255, 0.5);
+  --fg-inverted-heading: rgba(255, 255, 255, 0.95);
+  --fg-inverted-body: rgba(255, 255, 255, 0.95);
+  --bg-inverted-dimmed: rgba(255, 255, 255, 0.05);
+  --bg-inverted-minimal: rgba(255, 255, 255, 0.07);
+  --bg-inverted-subtle: rgba(255, 255, 255, 0.1);
+  --bg-inverted-ьувшгь: rgba(255, 255, 255, 0.12);
+  --bg-inverted-accent: #FFFFFF;
+  --bg-inverted-hover: rgba(255, 255, 255, 0.8);
+  --border-inverted-dimmed: rgba(255, 255, 255, 0.1);
+  --border-inverted-minimal: rgba(255, 255, 255, 0.15);
+  --border-inverted-accent: #FFFFFF;
+
   /* Surface */
   --surface: rgb(255, 255, 255);
   --surface-hover: rgb(241, 242, 244);
@@ -15,38 +91,6 @@
   --surface-raised-press: rgb(220, 223, 228);
 
   --surface-sunked: rgb(247, 248, 249);
-
-  /* Base */
-  --base-fg: rgb(23, 43, 77);
-  --base-disabled-fg: rgba(9, 30, 66, 0.31);
-  --base-inverse-fg: rgb(255, 255, 255);
-  --base-selected-fg: rgb(12, 102, 228);
-  --base-subtlest-fg: rgb(98, 111, 134);
-  --base-subtle-fg: rgb(68, 84, 111);
-
-  /* Brand */
-  --brand-fg: rgb(12, 102, 228);
-
-  --brand-bold: rgb(12, 102, 228);
-  --brand-bold-hover: rgb(0, 85, 204);
-  --brand-bold-press: rgb(9, 50, 108);
-
-  --brand-boldest: rgb(28, 43, 65);
-  --brand-boldest-hover: rgb(9, 50, 108);
-  --brand-boldest-press: rgb(0, 85, 204);
-
-  --brand-subtlest: rgb(233, 242, 255);
-  --brand-subtlest-hover: rgb(204, 224, 255);
-  --brand-subtlest-press: rgb(133, 184, 255);
-
-  /* Inverse */
-  --inverse-fg: rgb(255, 255, 255);
-
-  --border-focus: rgb(56, 139, 255);
-
-  /* Disabled */
-  --disabled: rgba(9, 30, 66, 0.03);
-  --disabled-fg: rgba(9, 30, 66, 0.31);
 
   /* Shadow */
   --shadow-overflow: 0px 0px 8px rgba(9, 30, 66, 0.16), 0px 0px 1px rgba(9, 30, 66, 0.12);
@@ -69,14 +113,6 @@
   --surface-raised-press: rgb(44, 51, 58);
 
   --surface-sunked: rgb(22, 26, 29);
-
-  /* Base */
-  --base-fg: rgb(182, 194, 207);
-  --base-disabled-fg: rgba(191, 219, 248, 0.28);
-  --base-inverse-fg: rgb(29, 33, 37);
-  --base-selected-fg: rgb(87, 157, 255);
-  --base-subtlest-fg: rgb(140, 155, 171);
-  --base-subtle-fg: rgb(159, 173, 188);
 
   /* Shadow */
   --shadow-overflow: 0px 0px 12px rgba(3, 4, 4, 0.56), 0px 0px 1px rgba(3, 4, 4, 0.5);

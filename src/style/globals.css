@@ -95,30 +95,39 @@
 
   --color-surface-sunked: var(--surface-sunked);
 
-  /* Brand */
-  --color-brand-fg: var(--brand-fg);
+  /* Neutral */
+  --color-neutral-accent-fg: var(--fg-neutral-accent);
+  --color-neutral-subtle-fg: var(--fg-neutral-subtle);
+  --color-neutral-minimal-fg: var(--fg-neutral-minimal);
+  --color-neutral-heading-fg: var(--fg-neutral-heading);
+  --color-neutral-body-fg: var(--fg-neutral-body);
 
-  --color-brand-bold: var(--brand-bold);
-  --color-brand-bold-hover: var(--brand-bold-hover);
-  --color-brand-bold-press: var(--brand-bold-press);
+  --color-neutral-dimmed: var(--bg-neutral-dimmed);
+  --color-neutral-minimal: var(--bg-neutral-minimal);
+  --color-neutral-subtle: var(--bg-neutral-subtle);
+  --color-neutral-medium: var(--bg-neutral-medium);
+  --color-neutral-accent: var(--bg-neutral-accent);
+  --color-neutral-hover: var(--bg-neutral-hover);
 
-  --color-brand-boldest: var(--brand-boldest);
-  --color-brand-boldest-hover: var(--brand-boldest-hover);
-  --color-brand-boldest-press: var(--brand-boldest-press);
-
-  --color-brand-subtlest: var(--brand-subtlest);
-  --color-brand-subtlest-hover: var(--brand-subtlest-hover);
-  --color-brand-subtlest-press: var(--brand-subtlest-press);
+  --color-neutral-dimmed-br: var(--border-neutral-dimmed);
+  --color-neutral-minimal-br: var(--border-neutral-minimal);
+  --color-neutral-accent-br: var(--border-neutral-accent);
 
   /* Inverse */
-  --color-inverse-fg: var(--inverse-fg);
-
-  /*  */
-  --color-border-focus: var(--border-focus);
-
-  /* Disabled */
-  --color-disabled: var(--disabled);
-  --color-disabled-fg: var(--disabled-fg);
+  --color-inverted-accent-fg: var(--fg-inverted-accent);
+  --color-inverted-subtle-fg: var(--fg-inverted-subtle);
+  --color-inverted-minimal-fg: var(--fg-inverted-minimal);
+  --color-inverted-heading-fg: var(--fg-inverted-heading);
+  --color-inverted-body-fg: var(--fg-inverted-body);
+  --color-inverted-dimmed: var(--bg-inverted-dimmed);
+  --color-inverted-minimal: var(--bg-inverted-minimal);
+  --color-inverted-subtle: var(--bg-inverted-subtle);
+  --color-inverted-ьувшгь: var(--bg-inverted-ьувшгь);
+  --color-inverted-accent: var(--bg-inverted-accent);
+  --color-inverted-hover: var(--bg-inverted-hover);
+  --color-inverted-dimmed-br: var(--border-inverted-dimmed);
+  --color-inverted-minimal-br: var(--border-inverted-minimal);
+  --color-inverted-accent-br: var(--border-inverted-accent);
 
   /* Shadow */
   --shadow-overflow: var(--shadow-overflow);

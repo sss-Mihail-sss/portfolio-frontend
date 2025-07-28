@@ -11,7 +11,7 @@ import { cn, tv } from '@/lib/utils';
 const buttonVariants = tv({
   base: [
     'inline-flex items-center justify-center gap-2 whitespace-nowrap transition-all font-medium',
-    'disabled:bg-disabled disabled:text-disabled-fg disabled:cursor-not-allowed',
+    'disabled:bg-neutral-accent disabled:text-inverted-accent-fg disabled:cursor-not-allowed disabled:opacity-30',
     'outline-border-focus focus-visible:outline-2 focus-visible:outline-offset-2',
   ],
   variants: {
@@ -28,10 +28,10 @@ const buttonVariants = tv({
     },
     size: {
       default: 'text-body rounded-md h-10 py-2 px-3',
-      xs: 'text-label rounded-md h-7 py-1 px-2',
-      sm: 'text-label rounded-md h-8 py-1.5 px-2.5',
-      lg: 'text-label rounded-md h-12 py-3 px-4.5',
-      xl: 'text-label rounded-md h-14 py-4 px-6'
+      xs: 'text-body-sm rounded-md h-7 py-1 px-2',
+      sm: 'text-body-sm rounded-md h-8 py-1.5 px-2.5',
+      lg: 'text-body-lg rounded-md h-12 py-3 px-4.5',
+      xl: 'text-body-lg rounded-md h-14 py-4 px-6'
     }
   },
   defaultVariants: {
@@ -44,7 +44,7 @@ const buttonVariants = tv({
     {
       variant: 'default',
       color: 'default',
-      className: ''
+      className: 'bg-neutral-accent text-inverted-accent-fg hover:bg-neutral-hover'
     },
     {
       variant: 'outline',
