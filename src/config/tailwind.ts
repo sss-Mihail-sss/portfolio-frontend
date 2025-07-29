@@ -11,7 +11,7 @@ export const tailwindConfig: ConfigExtension<DefaultClassGroupIds, DefaultThemeG
         'brand-hover',
         'brand-press',
         'disabled',
-        'disabled-fg',
+        'disabled-fg'
       ],
       text: [
         'heading-2xl',
@@ -20,10 +20,7 @@ export const tailwindConfig: ConfigExtension<DefaultClassGroupIds, DefaultThemeG
         'heading',
         'heading-sm',
         'heading-xs',
-        'heading-2xs',
-        'body-lg',
-        'body',
-        'body-sm',
+        'heading-2xs'
       ]
     }
   }

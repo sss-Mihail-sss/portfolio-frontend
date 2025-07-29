@@ -47,24 +47,14 @@
   --text-heading-2xs--font-weight: 700;
 
   /* Typography - Body */
-  --text-body-lg: 1rem;
-  --text-body-lg--line-height: 1.5rem;
+  --text-lg: 1rem;
+  --text-lg--line-height: 1.5rem;
 
-  --text-body: 0.875rem;
-  --text-body--line-height: 1.25rem;
+  --text-base: 0.875rem;
+  --text-base--line-height: 1.25rem;
 
-  --text-body-sm: 0.75rem;
-  --text-body-sm--line-height: 1rem;
-
-  /* Typography - Metric */
-  --text-metric-lg: 1.75rem;
-  --text-metric-lg--line-height: 2rem;
-
-  --text-metric: 1.5rem;
-  --text-metric--line-height: 1.75rem;
-
-  --text-metric-sm: 1rem;
-  --text-metric-sm--line-height: 1.25rem;
+  --text-sm: 0.75rem;
+  --text-sm--line-height: 1rem;
 
   /* Breakpoint */
   --breakpoint-xs: 30rem;
@@ -78,56 +68,180 @@
 
 @theme inline {
   /* Base */
-  --color-base-fg: var(--base-fg);
+  --text-color-base: var(--text-base);
+  --text-color-base-subtle: var(--text-base-subtle);
+  --text-color-base-subtlest: var(--text-base-subtlest);
+  --text-color-base-disabled: var(--text-base-disabled);
+  --text-color-base-inverse: var(--text-base-inverse);
 
-  /* Surface */
-  --color-surface: var(--surface);
-  --color-surface-hover: var(--surface-hover);
-  --color-surface-press: var(--surface-press);
+  --text-color-icon-disabled: var(--icon-base-disabled);
+  --text-color-icon-inverse: var(--icon-base-inverse);
 
-  --color-surface-overlay: var(--surface-overlay);
-  --color-surface-overlay-hover: var(--surface-overlay-hover);
-  --color-surface-overlay-press: var(--surface-overlay-press);
-
-  --color-surface-raised: var(--surface-raised);
-  --color-surface-raised-hover: var(--surface-raised-hover);
-  --color-surface-raised-press: var(--surface-raised-press);
-
-  --color-surface-sunked: var(--surface-sunked);
+  --border-color-base: var(--border-base);
+  --border-color-base-bold: var(--border-base-bold);
+  --border-color-base-disabled: var(--border-base-disabled);
+  --border-color-base-focus: var(--border-base-focus);
+  --border-color-base-input: var(--border-base-input);
+  --border-color-base-inverse: var(--border-base-inverse);
+  --border-color-base-selected: var(--border-base-selected);
 
   /* Neutral */
-  --color-neutral-accent-fg: var(--fg-neutral-accent);
-  --color-neutral-subtle-fg: var(--fg-neutral-subtle);
-  --color-neutral-minimal-fg: var(--fg-neutral-minimal);
-  --color-neutral-heading-fg: var(--fg-neutral-heading);
-  --color-neutral-body-fg: var(--fg-neutral-body);
+  --text-color-neutral: var(--text-neutral);
+  --text-color-neutral-bolder: var(--text-neutral-bolder);
+  --text-color-neutral-icon: var(--text-neutral-icon);
 
-  --color-neutral-dimmed: var(--bg-neutral-dimmed);
-  --color-neutral-minimal: var(--bg-neutral-minimal);
-  --color-neutral-subtle: var(--bg-neutral-subtle);
-  --color-neutral-medium: var(--bg-neutral-medium);
-  --color-neutral-accent: var(--bg-neutral-accent);
-  --color-neutral-hover: var(--bg-neutral-hover);
+  --border-color-neutral: var(--border-neutral);
 
-  --color-neutral-dimmed-br: var(--border-neutral-dimmed);
-  --color-neutral-minimal-br: var(--border-neutral-minimal);
-  --color-neutral-accent-br: var(--border-neutral-accent);
+  --background-color-neutral: var(--background-neutral);
+  --background-color-neutral-hover: var(--background-neutral-hover);
+  --background-color-neutral-press: var(--background-neutral-press);
 
-  /* Inverse */
-  --color-inverted-accent-fg: var(--fg-inverted-accent);
-  --color-inverted-subtle-fg: var(--fg-inverted-subtle);
-  --color-inverted-minimal-fg: var(--fg-inverted-minimal);
-  --color-inverted-heading-fg: var(--fg-inverted-heading);
-  --color-inverted-body-fg: var(--fg-inverted-body);
-  --color-inverted-dimmed: var(--bg-inverted-dimmed);
-  --color-inverted-minimal: var(--bg-inverted-minimal);
-  --color-inverted-subtle: var(--bg-inverted-subtle);
-  --color-inverted-ьувшгь: var(--bg-inverted-ьувшгь);
-  --color-inverted-accent: var(--bg-inverted-accent);
-  --color-inverted-hover: var(--bg-inverted-hover);
-  --color-inverted-dimmed-br: var(--border-inverted-dimmed);
-  --color-inverted-minimal-br: var(--border-inverted-minimal);
-  --color-inverted-accent-br: var(--border-inverted-accent);
+  --background-color-neutral-subtle: var(--background-neutral-subtle);
+  --background-color-neutral-subtle-hover: var(--background-neutral-subtle-hover);
+  --background-color-neutral-subtle-press: var(--background-neutral-subtle-press);
+
+  --background-color-neutral-bold: var(--background-neutral-bold);
+  --background-color-neutral-bold-hover: var(--background-neutral-bold-hover);
+  --background-color-neutral-bold-press: var(--background-neutral-bold-press);
+
+  /* Selected */
+  --text-color-selected: var(--text-base-selected);
+  --text-color-icon-selected: var(--icon-base-selected);
+
+  --background-color-selected: var(--background-selected);
+  --background-color-selected-hover: var(--background-selected-hover);
+  --background-color-selected-press: var(--background-selected-press);
+
+  --background-color-bold-selected: var(--background-selected-bold);
+  --background-color-bold-selected-hover: var(--background-selected-bold-hover);
+  --background-color-bold-selected-press: var(--background-selected-bold-press);
+
+  /* Brand */
+  --text-color-brand: var(--text-brand);
+  --text-color-brand-icon: var(--icon-brand);
+
+  --border-color-brand: var(--border-brand);
+
+  --color-chart: var(--chart);
+  --color-chart-hover: var(--chart-hover);
+
+  --background-color-brand-subtlest: var(--background-brand-subtlest);
+  --background-color-brand-subtlest-hover: var(--background-brand-subtlest-hover);
+  --background-color-brand-subtlest-press: var(--background-brand-subtlest-press);
+
+  --background-color-brand-bold: var(--background-brand-bold);
+  --background-color-brand-bold-hover: var(--background-brand-bold-hover);
+  --background-color-brand-bold-press: var(--background-brand-bold-press);
+
+  --background-color-brand-boldest: var(--background-brand-boldest);
+  --background-color-brand-boldest-hover: var(--background-brand-boldest-hover);
+  --background-color-brand-boldest-press: var(--background-brand-boldest-press);
+
+  /* Danger */
+  --text-color-danger: var(--text-danger);
+  --text-color-icon-danger: var(--icon-danger);
+
+  --border-color-danger: var(--border-danger);
+
+  --color-chart-danger: var(--chart-danger);
+  --color-chart-danger-hover: var(--chart-danger-hover);
+
+  --color-chart-danger-bold: var(--chart-danger-bold);
+  --color-chart-danger-bold-hover: var(--chart-danger-bold-hover);
+
+  --background-color-danger: var(--background-danger);
+  --background-color-danger-hover: var(--background-danger-hover);
+  --background-color-danger-press: var(--background-danger-press);
+
+  --background-color-danger-bold: var(--background-danger-bold);
+  --background-color-danger-bold-hover: var(--background-danger-bold-hover);
+  --background-color-danger-bold-press: var(--background-danger-bold-press);
+
+  /* Warning */
+  --text-color-warning: var(--text-warning);
+  --text-color-warning-inverse: var(--text-warning-inverse);
+
+  --text-color-icon-warning: var(--icon-warning);
+  --text-color-icon-warning-inverse: var(--icon-warning-inverse);
+
+  --border-color-warning: var(--border-warning);
+
+  --color-chart-warning: var(--chart-warning);
+  --color-chart-warning-hover: var(--chart-warning-hover);
+
+  --color-chart-warning-bold: var(--chart-warning-bold);
+  --color-chart-warning-bold-hover: var(--chart-warning-bold-hover);
+
+  --background-color-warning: var(--background-warning);
+  --background-color-warning-hover: var(--background-warning-hover);
+  --background-color-warning-press: var(--background-warning-press);
+
+  --background-color-warning-bold: var(--background-warning-bold);
+  --background-color-warning-bold-hover: var(--background-warning-bold-hover);
+  --background-color-warning-bold-press: var(--background-warning-bold-press);
+
+  /* Success */
+  --text-color-success: var(--text-success);
+  --text-color-icon-success: var(--icon-success);
+
+  --border-color-success: var(--border-success);
+
+  --color-chart-success: var(--chart-success);
+  --color-chart-success-hover: var(--chart-success-hover);
+
+  --color-chart-success-bold: var(--chart-success-bold);
+  --color-chart-success-bold-hover: var(--chart-success-bold-hover);
+
+  --background-color-success: var(--background-success);
+  --background-color-success-hover: var(--background-success-hover);
+  --background-color-success-press: var(--background-success-press);
+
+  --background-color-success-bold: var(--background-success-bold);
+  --background-color-success-bold-hover: var(--background-success-bold-hover);
+  --background-color-success-bold-press: var(--background-success-bold-press);
+
+  /* Info */
+  --text-color-info: var(--text-info);
+  --text-color-icon-info: var(--icon-info);
+
+  --border-color-info: var(--border-info);
+
+  --color-chart-info: var(--chart-info);
+  --color-chart-info-hover: var(--chart-info-hover);
+
+  --color-chart-info-bold: var(--chart-info-bold);
+  --color-chart-info-bold-hover: var(--chart-info-bold-hover);
+
+  --background-color-info: var(--background-info);
+  --background-color-info-hover: var(--background-info-hover);
+  --background-color-info-press: var(--background-info-press);
+
+  --background-color-info-bold: var(--background-info-bold);
+  --background-color-info-bold-hover: var(--background-info-bold-hover);
+  --background-color-info-bold-press: var(--background-info-bold-press);
+
+  /* Blanket */
+  --background-color-blanket: var(--background-blanket);
+  --background-color-blanket-selected: var(--background-blanket-selected);
+
+  /* Skeleton */
+  --background-color-skeleton: var(--background-skeleton);
+  --background-color-skeleton-subtle: var(--background-skeleton-subtle);
+
+  /* Surface */
+  --background-color-surface: var(--background-surface);
+  --background-color-surface-hover: var(--background-surface-hover);
+  --background-color-surface-press: var(--background-surface-press);
+
+  --background-color-surface-overlay: var(--background-surface-overlay);
+  --background-color-surface-overlay-hover: var(--background-surface-overlay-hover);
+  --background-color-surface-overlay-press: var(--background-surface-overlay-press);
+
+  --background-color-surface-raised: var(--background-surface-raised);
+  --background-color-surface-raised-hover: var(--background-surface-raised-hover);
+  --background-color-surface-raised-press: var(--background-surface-raised-press);
+
+  --background-color-surface-sunked: var(--background-surface-sunked);
 
   /* Shadow */
   --shadow-overflow: var(--shadow-overflow);
@@ -156,4 +270,12 @@
   .lucide {
     @apply size-4;
   }
+}
+
+.opacity-disabled {
+  @apply opacity-40;
+}
+
+.opacity-loading {
+  @apply opacity-20;
 }

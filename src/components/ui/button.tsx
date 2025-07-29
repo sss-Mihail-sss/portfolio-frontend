@@ -4,15 +4,11 @@ import { VariantProps } from 'tailwind-variants';
 
 import { cn, tv } from '@/lib/utils';
 
-// inline-flex items-center justify-center gap-2 whitespace-nowrap transition-all font-medium disabled:pointer-events-none
-// focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-border-focus
-// rounded-md h-12 py-3 px-4.5 bg-brand-bold hover:bg-brand-bold-hover active:bg-brand-bold-press text-inverse-fg
-
 const buttonVariants = tv({
   base: [
     'inline-flex items-center justify-center gap-2 whitespace-nowrap transition-all font-medium',
     'disabled:bg-neutral-accent disabled:text-inverted-accent-fg disabled:cursor-not-allowed disabled:opacity-30',
-    'outline-border-focus focus-visible:outline-2 focus-visible:outline-offset-2',
+    'focus-visible:outline-2 focus-visible:outline-offset-2'
   ],
   variants: {
     variant: {
@@ -23,15 +19,17 @@ const buttonVariants = tv({
     color: {
       default: '',
       brand: '',
-      negative: '',
-      positive: ''
+      danger: '',
+      warning: '',
+      success: '',
+      info: '',
     },
     size: {
-      default: 'text-body rounded-md h-10 py-2 px-3',
-      xs: 'text-body-sm rounded-md h-7 py-1 px-2',
-      sm: 'text-body-sm rounded-md h-8 py-1.5 px-2.5',
-      lg: 'text-body-lg rounded-md h-12 py-3 px-4.5',
-      xl: 'text-body-lg rounded-md h-14 py-4 px-6'
+      default: 'rounded-md h-10 py-2 px-3',
+      xs: 'text-sm rounded-md h-7 py-1 px-2',
+      sm: 'text-sm rounded-md h-8 py-1.5 px-2.5',
+      lg: 'text-lg rounded-md h-12 py-3 px-4.5',
+      xl: 'text-lg rounded-md h-14 py-4 px-6'
     }
   },
   defaultVariants: {
@@ -44,46 +42,91 @@ const buttonVariants = tv({
     {
       variant: 'default',
       color: 'default',
-      className: 'bg-neutral-accent text-inverted-accent-fg hover:bg-neutral-hover'
+      className: 'text-base-subtle hover:bg-neutral-subtle-hover active:bg-neutral-subtle-press'
     },
     {
       variant: 'outline',
       color: 'default',
-      className: ''
+      className: 'text-base-subtle border border-base hover:bg-neutral-subtle-hover active:bg-neutral-subtle-press'
     },
     {
       variant: 'ghost',
       color: 'default',
-      className: ''
+      className: 'text-base-subtle hover:bg-neutral-subtle-hover active:bg-neutral-subtle-press'
     },
     {
       variant: 'default',
       color: 'brand',
-      className: 'bg-brand-bold hover:bg-brand-bold-hover active:bg-brand-bold-press text-inverse-fg'
+      className: 'text-base-inverse bg-brand-bold hover:bg-brand-bold-hover active:bg-brand-bold-press'
     },
     {
       variant: 'outline',
       color: 'brand',
-      className: ''
+      className: 'text-brand border border-brand hover:bg-brand-subtlest-hover active:bg-brand-subtlest-press'
     },
     {
       variant: 'ghost',
       color: 'brand',
+      className: 'text-brand hover:bg-brand-subtlest-hover active:bg-brand-subtlest-press'
+    },
+    {
+      variant: 'default',
+      color: 'danger',
+      className: 'text-base-inverse bg-danger-bold hover:bg-danger-bold-hover active:bg-danger-bold-press'
+    },
+    {
+      variant: 'outline',
+      color: 'danger',
+      className: 'text-danger border border-danger hover:bg-danger-hover active:bg-danger-press'
+    },
+    {
+      variant: 'ghost',
+      color: 'danger',
+      className: 'text-danger hover:bg-danger-hover active:bg-danger-press'
+    },
+    {
+      variant: 'default',
+      color: 'warning',
+      className: 'text-warning-inverse bg-warning-bold hover:bg-warning-bold-hover active:bg-warning-bold-press'
+    },
+    {
+      variant: 'outline',
+      color: 'warning',
+      className: 'text-warning border border-warning hover:bg-warning-hover active:bg-warning-press'
+    },
+    {
+      variant: 'ghost',
+      color: 'warning',
+      className: 'text-warning hover:bg-warning-hover active:bg-warning-press'
+    },
+    {
+      variant: 'default',
+      color: 'success',
+      className: 'text-success bg-success-bold hover:bg-success-bold-hover active:bg-success-bold-press'
+    },
+    {
+      variant: 'outline',
+      color: 'success',
+      className: ''
+    },
+    {
+      variant: 'ghost',
+      color: 'success',
       className: ''
     },
     {
       variant: 'default',
-      color: 'negative',
+      color: 'info',
       className: ''
     },
     {
       variant: 'outline',
-      color: 'negative',
+      color: 'info',
       className: ''
     },
     {
       variant: 'ghost',
-      color: 'negative',
+      color: 'info',
       className: ''
     }
   ]

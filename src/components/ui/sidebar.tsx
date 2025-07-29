@@ -55,7 +55,7 @@ function Sidebar({ className, children, ...props }: ComponentProps<'div'>) {
         <SheetContent
           data-slot='sidebar'
           data-mobile='true'
-          className='bg-sidebar text-sidebar-foreground w-64 p-0 [&>button]:hidden'
+          className='bg-surface-sunked shadow-overlay text-sidebar-foreground w-64 p-0 [&>button]:hidden'
         >
           <SheetHeader className='sr-only'>
             <SheetTitle>Sidebar</SheetTitle>
