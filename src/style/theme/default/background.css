@@ -1,0 +1,67 @@
+:root {
+
+  /* Background */
+  --background-page: #F6F2F0FF;
+  --background-selected: #DFE7FF;
+  --background-disabled: #CCD5DF;
+
+  /* Surface sunken level -1 */
+  --background-surface-sunken: #F7F8F9;
+  --background-surface-sunken-hover: #E8E0DBFF;
+  --background-surface-sunken-press: #D3C3BAFF;
+
+  /* Surface base */
+  --background-surface: #FFFFFF;
+  --background-surface-hover: #E8E0DBFF;
+  --background-surface-press: #D3C3BAFF;
+
+  /* Surface raised level 1 */
+  --background-surface-raised: #FFFFFF;
+  --background-surface-raised-hover: #E8E0DBFF;
+  --background-surface-raised-press: #D3C3BAFF;
+
+  /* Surface overlay level 2 */
+  --background-surface-overlay: #FFFFFF;
+  --background-surface-overlay-hover: #E8E0DBFF;
+  --background-surface-overlay-press: #D3C3BAFF;
+
+  /* Background - neutral */
+  --background-neutral-subtle: oklch(92% 0 0);
+  --background-neutral: oklch(0.1776 0 0);
+  --background-neutral-hover: oklch(0.2931 0 0);
+  --background-neutral-press: oklch(0.4131 0 0);
+
+  /* Background - Brand */
+  --background-brand-subtle: #E9F2FF;
+  --background-brand: oklch(54.6% 0.245 262.881);
+  --background-brand-hover: oklch(48.8% 0.243 264.376);
+  --background-brand-press: oklch(42.4% 0.199 265.638);
+
+  /* Background - Info */
+  --background-info-subtle: #DFE7FF;
+  --background-info: oklch(54.6% 0.245 262.881);
+  --background-info-hover: oklch(48.8% 0.243 264.376);
+  --background-info-press: oklch(42.4% 0.199 265.638);
+
+  /* Background - Success */
+  --background-success-subtle: #DBECE2;
+  --background-success: oklch(44.8% 0.119 151.328);
+  --background-success-hover: oklch(39.3% 0.095 152.535);
+  --background-success-press: oklch(26.6% 0.065 152.934);
+
+  /* Background - Warning */
+  --background-warning-subtle: #FEF6E0;
+  --background-warning: oklch(0.8543 0.1663 88.88);
+  --background-warning-hover: oklch(0.7927 0.169 72.77);
+  --background-warning-press: oklch(0.734 0.1723 58.9);
+
+  /* Background - Danger */
+  --background-danger-subtle: #F5DEDB;
+  --background-danger: oklch(0.557 0.1847 28.8);
+  --background-danger-hover: oklch(0.4999 0.1663 28.93);
+  --background-danger-press: oklch(0.3841 0.092 27.7);
+}
+
+.dark {
+
+}

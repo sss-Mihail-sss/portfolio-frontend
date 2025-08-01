@@ -6,14 +6,14 @@ import { cn, tv } from '@/lib/utils';
 
 const buttonVariants = tv({
   base: [
-    'inline-flex items-center justify-center gap-2 whitespace-nowrap transition-all font-medium',
-    'disabled:bg-neutral-accent disabled:text-inverted-accent-fg disabled:cursor-not-allowed disabled:opacity-30',
+    'inline-flex items-center justify-center gap-2 whitespace-nowrap transition-all font-medium cursor-pointer',
+    'disabled:pointer-events-none disabled:text-on-disabled disabled:bg-neutral disabled:opacity-30',
     'focus-visible:outline-2 focus-visible:outline-offset-2'
   ],
   variants: {
     variant: {
       default: '',
-      outline: '',
+      outline: 'ring ring-inset',
       ghost: ''
     },
     color: {
@@ -36,98 +36,97 @@ const buttonVariants = tv({
     variant: 'default',
     color: 'default',
     size: 'default',
-    rounded: false
   },
   compoundVariants: [
     {
       variant: 'default',
       color: 'default',
-      className: 'text-base-subtle hover:bg-neutral-subtle-hover active:bg-neutral-subtle-press'
+      className: 'text-on-neutral bg-neutral hover:bg-neutral-hover active:bg-neutral-press'
     },
     {
       variant: 'outline',
       color: 'default',
-      className: 'text-base-subtle border border-base hover:bg-neutral-subtle-hover active:bg-neutral-subtle-press'
+      className: 'text-foreground hover:bg-neutral-subtle'
     },
     {
       variant: 'ghost',
       color: 'default',
-      className: 'text-base-subtle hover:bg-neutral-subtle-hover active:bg-neutral-subtle-press'
+      className: 'text-foreground hover:bg-neutral-subtle'
     },
     {
       variant: 'default',
       color: 'brand',
-      className: 'text-base-inverse bg-brand-bold hover:bg-brand-bold-hover active:bg-brand-bold-press'
+      className: 'text-on-brand bg-brand hover:bg-brand-hover active:bg-brand-press'
     },
     {
       variant: 'outline',
       color: 'brand',
-      className: 'text-brand border border-brand hover:bg-brand-subtlest-hover active:bg-brand-subtlest-press'
+      className: 'text-brand ring-brand hover:bg-brand-subtle'
     },
     {
       variant: 'ghost',
       color: 'brand',
-      className: 'text-brand hover:bg-brand-subtlest-hover active:bg-brand-subtlest-press'
+      className: 'text-brand hover:bg-brand-subtle'
     },
     {
       variant: 'default',
       color: 'danger',
-      className: 'text-base-inverse bg-danger-bold hover:bg-danger-bold-hover active:bg-danger-bold-press'
+      className: 'text-on-danger bg-danger hover:bg-danger-hover active:bg-danger-press'
     },
     {
       variant: 'outline',
       color: 'danger',
-      className: 'text-danger border border-danger hover:bg-danger-hover active:bg-danger-press'
+      className: 'text-danger ring-danger hover:bg-danger-subtle'
     },
     {
       variant: 'ghost',
       color: 'danger',
-      className: 'text-danger hover:bg-danger-hover active:bg-danger-press'
+      className: 'text-danger hover:bg-danger-subtle'
     },
     {
       variant: 'default',
       color: 'warning',
-      className: 'text-warning-inverse bg-warning-bold hover:bg-warning-bold-hover active:bg-warning-bold-press'
+      className: 'text-on-warning bg-warning hover:bg-warning-hover active:bg-warning-press'
     },
     {
       variant: 'outline',
       color: 'warning',
-      className: 'text-warning border border-warning hover:bg-warning-hover active:bg-warning-press'
+      className: 'text-warning ring-warning hover:bg-warning-subtle'
     },
     {
       variant: 'ghost',
       color: 'warning',
-      className: 'text-warning hover:bg-warning-hover active:bg-warning-press'
+      className: 'text-warning hover:bg-warning-subtle'
     },
     {
       variant: 'default',
       color: 'success',
-      className: 'text-success bg-success-bold hover:bg-success-bold-hover active:bg-success-bold-press'
+      className: 'text-on-success bg-success hover:bg-success-hover active:bg-success-press'
     },
     {
       variant: 'outline',
       color: 'success',
-      className: ''
+      className: 'text-success ring-success hover:bg-success-subtle'
     },
     {
       variant: 'ghost',
       color: 'success',
-      className: ''
+      className: 'text-success hover:bg-success-subtle'
     },
     {
       variant: 'default',
       color: 'info',
-      className: ''
+      className: 'text-on-info bg-info hover:bg-info-hover active:bg-info-press'
     },
     {
       variant: 'outline',
       color: 'info',
-      className: ''
+      className: 'text-info ring-info hover:bg-info-subtle'
     },
     {
       variant: 'ghost',
       color: 'info',
-      className: ''
+      className: 'text-info hover:bg-info-subtle'
     }
   ]
 });

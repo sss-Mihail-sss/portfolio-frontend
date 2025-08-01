@@ -1,0 +1,23 @@
+:root {
+  --on-background-neutral-subtle: #091C35;
+  --on-background-neutral: oklch(98.5% 0.002 247.839);
+
+  --on-background-brand-subtle: #17348C;
+  --on-background-brand: #FFFFFF;
+
+  --on-background-info-subtle: #17348c;
+  --on-background-info: #FFFFFF;
+
+  --on-background-success-subtle: #084722;
+  --on-background-success: #FFFFFF;
+
+  --on-background-warning-subtle: #8a6a19;
+  --on-background-warning: oklch(0.2856 0.0074 274.7);
+
+  --on-background-danger-subtle: #691309;
+  --on-background-danger: #FFFFFF;
+}
+
+.dark {
+
+}
