@@ -14,7 +14,7 @@ import { Password, PasswordInput, PasswordToggle } from '@/ui/password';
 import { toast } from '@/ui/sonner';
 
 import { signIn } from '@/lib/api/auth';
-import { useRouter } from '@/i18n/navigation';
+import { useRouter } from '@/config/i18n/navigation';
 
 const LoginForm = () => {
   const { push } = useRouter();

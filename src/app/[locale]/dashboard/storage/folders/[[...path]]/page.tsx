@@ -1,12 +1,14 @@
 import { Locale } from 'next-intl';
 import { FileIcon, FolderIcon } from 'lucide-react';
 
-import { getObjects } from '@/actions/s3/object';
-import { CreateFolder } from '@/components/form/s3/create-folder';
 import { Link } from '@/ui/link';
-import { getPathname } from '@/i18n/navigation';
-import { Pathnames } from '@/i18n/routing';
+
+import { CreateFolder } from '@/components/form/s3/create-folder';
 import { UploadImage } from '@/components/form/s3/upload-image';
+
+import { getObjects } from '@/actions/s3/object';
+import { getPathname } from '@/config/i18n/navigation';
+import { Pathnames } from '@/config/i18n/routing';
 
 type Props = {
   params: Promise<{

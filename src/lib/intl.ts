@@ -1,7 +1,7 @@
 import { readdirSync, existsSync } from 'fs';
 import { join } from 'path';
 
-import { AbstractIntlMessages, IntlError, IntlErrorCode } from 'next-intl';
+import { type AbstractIntlMessages, IntlError, IntlErrorCode } from 'next-intl';
 
 export function getLanguageName(locale: string, code: string): string | undefined {
   const Locale = new Intl.Locale(locale);

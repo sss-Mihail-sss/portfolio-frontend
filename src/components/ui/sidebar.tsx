@@ -11,7 +11,7 @@ import { Separator } from '@/ui/separator';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/ui/tooltip';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '@/ui/sheet';
 
-import { Link } from '@/i18n/navigation';
+import { Link } from '@/config/i18n/navigation';
 import { cn, tv } from '@/lib/utils';
 import { useSidebar } from '@/hooks/use-sidebar';
 import { useIsMobile } from '@/hooks/use-mobile';

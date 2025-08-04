@@ -6,7 +6,7 @@ import { Metadata } from 'next';
 import { SSRProviders } from '@/components/providers/ssr';
 import { CSRProvider } from '@/components/providers/csr';
 
-import { locales } from '@/i18n/routing';
+import { locales } from '@/config/i18n/routing';
 import { cn } from '@/lib/utils';
 import { geistMono, geistSans, graduate, inter, montserrat, openSans, raleway, roboto, robotoMono } from '@/lib/font';
 

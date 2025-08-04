@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 import { getLocale } from 'next-intl/server';
 
-import { getPathname } from '@/i18n/navigation';
-import { locales, Pathnames } from '@/i18n/routing';
+import { getPathname } from '@/config/i18n/navigation';
+import { locales, Pathnames } from '@/config/i18n/routing';
 
 export async function generateAlternates({ href }: { href: Pathnames }): Promise<Metadata['alternates']> {
   const locale = await getLocale();

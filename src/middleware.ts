@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
 
-import { routing } from '@/i18n/routing';
+import { routing } from '@/config/i18n/routing';
 import { getCookie } from '@/lib/cookie';
 import { refresh } from '@/lib/api/auth';
 

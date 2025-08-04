@@ -3,7 +3,7 @@ import 'server-only';
 import { cache } from 'react';
 import { getLocale } from 'next-intl/server';
 
-import { redirect } from '@/i18n/navigation';
+import { redirect } from '@/config/i18n/navigation';
 import { decrypt } from '@/lib/session';
 import { getCookie } from '@/lib/cookie';
 

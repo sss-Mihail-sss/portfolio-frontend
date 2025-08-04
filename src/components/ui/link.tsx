@@ -1,7 +1,7 @@
 import { ComponentProps } from 'react';
 import { VariantProps } from 'tailwind-variants';
 
-import { Link as ILink } from '@/i18n/navigation';
+import { Link as ILink } from '@/config/i18n/navigation';
 import { cn, tv } from '@/lib/utils';
 
 const linkVariants = tv({

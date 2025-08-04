@@ -1,4 +1,4 @@
-import { routing } from '@/i18n/routing';
+import { routing } from '@/config/i18n/routing';
 import { formats } from '@/config/i18n';
 
 const defaultMessages = {
