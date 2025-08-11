@@ -5,4 +5,4 @@ export type User = {
   phone?: string;
   createdAt: Date;
   role: string;
-}
+};

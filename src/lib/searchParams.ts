@@ -1,5 +1,5 @@
 import { useQueryStates } from 'nuqs';
-import { createSearchParamsCache, createSerializer, parseAsInteger, parseAsIndex, createLoader } from 'nuqs/server';
+import { createLoader, createSearchParamsCache, createSerializer, parseAsIndex, parseAsInteger } from 'nuqs/server';
 
 const searchParams = {
   pageIndex: parseAsIndex.withDefault(0),
@@ -12,10 +12,10 @@ const searchParamsUrlKeys = {
 };
 
 export const searchParamsCache = createSearchParamsCache(searchParams, {
-  urlKeys: searchParamsUrlKeys
+  urlKeys: searchParamsUrlKeys,
 });
 export const loadSearchParams = createLoader(searchParams, {
-  urlKeys: searchParamsUrlKeys
+  urlKeys: searchParamsUrlKeys,
 });
 
 export const serialize = createSerializer(searchParams, {

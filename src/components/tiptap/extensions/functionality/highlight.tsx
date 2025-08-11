@@ -1,11 +1,11 @@
 import { useCurrentEditor } from '@tiptap/react';
 import { HighlighterIcon } from 'lucide-react';
 
-import { Button } from '@/ui/button';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/ui/tooltip';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { ToggleGroup, ToggleGroupItem } from '@/ui/toggle-group';
 import { cn } from '@/lib/utils';
+import { Button } from '@/ui/button';
+import { ToggleGroup, ToggleGroupItem } from '@/ui/toggle-group';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/ui/tooltip';
 
 const colors = {
   'bg-yellow-300': '#FDFF00',
@@ -32,29 +32,29 @@ function Highlighter() {
         <TooltipTrigger asChild>
           <PopoverTrigger asChild>
             <Button
-              size='icon'
-              variant='ghost'
+              size="sq-sm"
+              variant="ghost"
               // onClick={() => editor.chain().focus().toggleHighlight().run()}
             >
-              <HighlighterIcon className='size-4' />
+              <HighlighterIcon className="size-4" />
             </Button>
           </PopoverTrigger>
         </TooltipTrigger>
-        <TooltipContent className='fill-primary'>
-          Highlight
-        </TooltipContent>
+        <TooltipContent className="fill-primary">Highlight</TooltipContent>
       </Tooltip>
       <PopoverContent>
         <ToggleGroup
-          type='single'
-          className='flex flex-wrap items-center justify-around gap-2'
+          type="single"
+          className="flex flex-wrap items-center justify-around gap-2"
           onValueChange={handleChangeValue}
         >
-          {
-            Object.entries(colors).map(([color, hex]) => (
-              <ToggleGroupItem key={hex} value={hex} className={cn('size-6', color)} />
-            ))
-          }
+          {Object.entries(colors).map(([color, hex]) => (
+            <ToggleGroupItem
+              key={hex}
+              value={hex}
+              className={cn('size-6', color)}
+            />
+          ))}
         </ToggleGroup>
       </PopoverContent>
     </Popover>

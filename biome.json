@@ -1,0 +1,145 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.1.4/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "includes": ["src/**/*.tsx", "src/**/*.ts"]
+  },
+  "formatter": {
+    "enabled": true,
+    "lineEnding": "lf",
+    "lineWidth": 120,
+    "formatWithErrors": true,
+    "attributePosition": "multiline",
+    "bracketSpacing": true,
+    "indentWidth": 2,
+    "indentStyle": "space"
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "a11y": {
+        "recommended": true
+      },
+      "performance": {
+        "noBarrelFile": "error",
+        "noDelete": "error",
+        "noDynamicNamespaceImportAccess": "error",
+        "noImgElement": "error",
+        "noNamespaceImport": "error",
+        "noReExportAll": "error",
+        "useTopLevelRegex": "error"
+      },
+      "security": {
+        "noBlankTarget": "error",
+        "noDangerouslySetInnerHtml": "error",
+        "noDangerouslySetInnerHtmlWithChildren": "error",
+        "noGlobalEval": "error"
+      },
+      "style": {
+        "noCommonJs": "error",
+        "noUselessElse": "error",
+        "noDefaultExport": "error",
+        "useImportType": {
+          "level": "error",
+          "fix": "safe",
+          "options": {
+            "style": "separatedType"
+          }
+        },
+        "noRestrictedImports": {
+          "level": "error",
+          "options": {
+            "paths": {
+              "next/link": {
+                "message": "Please import from `@/i18n/routing` instead."
+              },
+              "next/navigation": {
+                "message": "Please import from `@/i18n/routing` instead.",
+                "importNames": ["redirect", "permanentRedirect", "useRouter", "usePathname"]
+              },
+              "tailwind-variants": {
+                "message": "Please import from `@/lib/utils` instead.",
+                "importNames": ["tv"]
+              }
+            }
+          }
+        }
+      },
+      "complexity": {
+        "useLiteralKeys": "error"
+      },
+      "correctness": {
+        "noUnusedVariables": "error",
+        "noEmptyPattern": "error"
+      },
+      "nursery": {
+        "useImageSize": "error",
+        "useAnchorHref": "error",
+        "useReactFunctionComponents": "error"
+      }
+    },
+    "domains": {
+      "next": "recommended",
+      "react": "recommended"
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "bracketSpacing": true,
+      "semicolons": "always"
+    }
+  },
+  "html": {
+    "formatter": {
+      "enabled": true,
+      "selfCloseVoidElements": "always",
+      "attributePosition": "multiline",
+      "bracketSameLine": true
+    }
+  },
+  "assist": {
+    "enabled": true,
+    "actions": {
+      "source": {
+        "organizeImports": {
+          "level": "on",
+          "options": {
+            "groups": [":PACKAGE:", ":BLANK_LINE:", ["@/ui", "@/components"], ":BLANK_LINE:", ":ALIAS:"]
+          }
+        }
+      }
+    }
+  },
+  "overrides": [
+    {
+      "includes": [
+        "**/*/page.tsx",
+        "**/*/layout.tsx",
+        "**/*/error.tsx",
+        "**/*/not-found.tsx",
+        "**/*/forbidden.tsx",
+        "**/*/instrumentation.tsx",
+        "**/*/loading.tsx",
+        "**/*/route.tsx",
+        "**/*/template.tsx",
+        "**/*/unauthorized.tsx",
+        "**/*/opengraph-image.tsx",
+        "**/*/robots.tsx",
+        "**/*/sitemap.tsx",
+        "**/config/i18n/*.ts"
+      ],
+      "linter": {
+        "rules": {
+          "style": {
+            "noDefaultExport": "off"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,12 +1,13 @@
 'use client';
 
-import { flexRender, Table as TanStackTable } from '@tanstack/react-table';
+import type { Table as TanStackTable } from '@tanstack/react-table';
+import { flexRender } from '@tanstack/react-table';
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/ui/table';
 
 type Props<TData> = {
-  table: TanStackTable<TData>
-}
+  table: TanStackTable<TData>;
+};
 
 function DataTable<TData>({ table }: Props<TData>) {
   return (
@@ -19,12 +20,7 @@ function DataTable<TData>({ table }: Props<TData>) {
                 key={header.id}
                 colSpan={header.colSpan}
               >
-                {header.isPlaceholder
-                  ? null
-                  : flexRender(
-                    header.column.columnDef.header,
-                    header.getContext(),
-                  )}
+                {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
               </TableHead>
             ))}
           </TableRow>
@@ -36,17 +32,14 @@ function DataTable<TData>({ table }: Props<TData>) {
             <TableRow
               key={row.id}
               data-state={row.getIsSelected() && 'selected'}
-              className='hover:bg-muted/50'
+              className="hover:bg-muted/50"
             >
               {row.getVisibleCells().map((cell) => (
                 <TableCell
                   key={cell.id}
-                  className='truncate'
+                  className="truncate"
                 >
-                  {flexRender(
-                    cell.column.columnDef.cell,
-                    cell.getContext(),
-                  )}
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </TableCell>
               ))}
             </TableRow>
@@ -55,7 +48,7 @@ function DataTable<TData>({ table }: Props<TData>) {
           <TableRow>
             <TableCell
               colSpan={table.getAllColumns().length}
-              className='h-24 text-center'
+              className="h-24 text-center"
             >
               No results.
             </TableCell>

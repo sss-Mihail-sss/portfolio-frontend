@@ -1,9 +1,7 @@
 'use client';
 
 function FileUpload() {
-  return (
-    <></>
-  );
+  return <div>test</div>;
 }
 
 export { FileUpload };

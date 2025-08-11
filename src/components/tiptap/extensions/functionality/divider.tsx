@@ -22,9 +22,7 @@ function Divider() {
           <MinusIcon className="size-4" />
         </Button>
       </TooltipTrigger>
-      <TooltipContent className="fill-primary">
-        Divider
-      </TooltipContent>
+      <TooltipContent className="fill-primary">Divider</TooltipContent>
     </Tooltip>
   );
 }

@@ -1,10 +1,11 @@
-import { type AbstractIntlMessages, hasLocale } from 'next-intl';
-import { getRequestConfig } from 'next-intl/server';
 import deepmerge from 'deepmerge';
+import type { AbstractIntlMessages } from 'next-intl';
+import { hasLocale } from 'next-intl';
+import { getRequestConfig } from 'next-intl/server';
 
+import { formats } from '@/config/i18n';
 import { defaultLocale, locales } from '@/config/i18n/routing';
 import { getLanguage, getMessageFallback, loadMessages, onError } from '@/lib/intl';
-import { formats } from '@/config/i18n';
 
 export default getRequestConfig(async ({ requestLocale }) => {
   const requested = await requestLocale;
@@ -12,8 +13,8 @@ export default getRequestConfig(async ({ requestLocale }) => {
   const language = getLanguage(locale);
   const defaultLanguage = getLanguage(defaultLocale);
 
-  let defaultMessages: AbstractIntlMessages = await loadMessages(defaultLanguage);
-  let messages: AbstractIntlMessages = await loadMessages(language);
+  const defaultMessages: AbstractIntlMessages = await loadMessages(defaultLanguage);
+  const messages: AbstractIntlMessages = await loadMessages(language);
 
   return {
     locale,
@@ -21,6 +22,6 @@ export default getRequestConfig(async ({ requestLocale }) => {
     timeZone: 'Europe/Chisinau',
     onError,
     getMessageFallback,
-    formats
+    formats,
   };
 });

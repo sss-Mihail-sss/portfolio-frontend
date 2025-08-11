@@ -1,20 +1,17 @@
 'use client';
 
-import { ComponentProps } from 'react';
 import { Tabs as TabsPrimitive } from 'radix-ui';
+import type { ComponentProps } from 'react';
 
 import { cn } from '@/lib/utils';
 
-type TabsProps = ComponentProps<typeof TabsPrimitive.Root>
+type TabsProps = ComponentProps<typeof TabsPrimitive.Root>;
 
 function Tabs({ className, children, ...props }: TabsProps) {
   return (
     <TabsPrimitive.Root
-      data-slot='tabs'
-      className={cn(
-        'flex gap-4',
-        className
-      )}
+      data-slot="tabs"
+      className={cn('flex gap-4', className)}
       {...props}
     >
       {children}
@@ -25,12 +22,12 @@ function Tabs({ className, children, ...props }: TabsProps) {
 function TabsList({ className, ...props }: ComponentProps<typeof TabsPrimitive.List>) {
   return (
     <TabsPrimitive.List
-      data-slot='tabs-list'
+      data-slot="tabs-list"
       className={cn(
         'flex',
         'data-[orientation=horizontal]:flex-row data-[orientation=horizontal]:border-b',
         'data-[orientation=vertical]:flex-col data-[orientation=vertical]:border-l',
-        className
+        className,
       )}
       {...props}
     />
@@ -40,12 +37,12 @@ function TabsList({ className, ...props }: ComponentProps<typeof TabsPrimitive.L
 function TabsTrigger({ className, ...props }: ComponentProps<typeof TabsPrimitive.Trigger>) {
   return (
     <TabsPrimitive.Trigger
-      data-slot='tabs-trigger'
+      data-slot="tabs-trigger"
       className={cn(
         'relative p-2 flex items-center text-sm font-medium whitespace-nowrap rounded-sm text-muted-fg hover:text-fg',
         'data-[state=active]:text-fg data-[state=active]:after:absolute data-[state=active]:after:bg-fg',
         'focus-visible:outline-ring focus-visible:outline-2 focus-visible:outline-offset-1',
-        className
+        className,
       )}
       {...props}
     />

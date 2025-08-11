@@ -1,14 +1,12 @@
-import { Metadata } from 'next';
-import { Locale } from 'next-intl';
+import type { Metadata } from 'next';
+import type { Locale } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
-
-import { LoginForm } from '@/components/form/login';
 
 type Props = {
   params: Promise<{
     locale: Locale;
-  }>
-}
+  }>;
+};
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
@@ -20,9 +18,5 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default function ForgotPasswordPage() {
-  return (
-    <>
-      forgot-password
-    </>
-  );
+  return <h1>forgot-password</h1>;
 }

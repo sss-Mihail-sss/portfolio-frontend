@@ -1,25 +1,26 @@
-import { ReactNode } from 'react';
-import { hasLocale, Locale } from 'next-intl';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { Metadata } from 'next';
+import type { Locale } from 'next-intl';
+import { hasLocale } from 'next-intl';
+import type { ReactNode } from 'react';
 
-import { SSRProviders } from '@/components/providers/ssr';
 import { CSRProvider } from '@/components/providers/csr';
-
+import { SSRProviders } from '@/components/providers/ssr';
+import { env } from '@/config/env';
 import { locales } from '@/config/i18n/routing';
+import { inter } from '@/lib/font';
 import { cn } from '@/lib/utils';
-import { geistMono, geistSans, graduate, inter, montserrat, openSans, raleway, roboto, robotoMono } from '@/lib/font';
 
 type Props = {
   children: ReactNode;
   params: Promise<{
     locale: Locale;
   }>;
-}
+};
 
-export async function generateMetadata({}: Omit<Props, 'children'>): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   return {
-    metadataBase: new URL(process.env.API_URL!)
+    metadataBase: new URL(env.webUrl),
   };
 }
 
@@ -35,7 +36,11 @@ export default async function LocaleLayout({ children, params }: Props) {
   }
 
   return (
-    <html className='h-full' lang={locale} suppressHydrationWarning>
+    <html
+      className="h-full"
+      lang={locale}
+      suppressHydrationWarning
+    >
       <body
         className={cn(
           // geistMono.variable,
@@ -47,13 +52,11 @@ export default async function LocaleLayout({ children, params }: Props) {
           // raleway.variable,
           inter.variable,
           // graduate.variable,
-          'antialiased bg-surface text-base-fg min-h-dvh font-inter'
+          'antialiased bg-surface text-base-fg min-h-dvh font-inter',
         )}
       >
         <SSRProviders>
-          <CSRProvider>
-            {children}
-          </CSRProvider>
+          <CSRProvider>{children}</CSRProvider>
         </SSRProviders>
       </body>
     </html>

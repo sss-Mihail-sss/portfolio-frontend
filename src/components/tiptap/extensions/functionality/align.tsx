@@ -1,8 +1,8 @@
 import { useCurrentEditor } from '@tiptap/react';
 import { AlignCenterIcon, AlignJustifyIcon, AlignLeftIcon, AlignRightIcon } from 'lucide-react';
 
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/ui/tooltip';
 import { Button } from '@/ui/button';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/ui/tooltip';
 
 function AlignLeft() {
   const { editor } = useCurrentEditor();
@@ -15,7 +15,7 @@ function AlignLeft() {
     <Tooltip>
       <TooltipTrigger asChild>
         <Button
-          size="icon"
+          size="sq-md"
           variant="ghost"
           onClick={() => editor.chain().focus().setTextAlign('left').run()}
           className={editor.isActive({ textAlign: 'left' }) ? 'bg-accent' : ''}
@@ -23,9 +23,7 @@ function AlignLeft() {
           <AlignLeftIcon className="size-4" />
         </Button>
       </TooltipTrigger>
-      <TooltipContent className="fill-primary">
-        Align Left
-      </TooltipContent>
+      <TooltipContent className="fill-primary">Align Left</TooltipContent>
     </Tooltip>
   );
 }
@@ -41,7 +39,7 @@ function AlignCenter() {
     <Tooltip>
       <TooltipTrigger asChild>
         <Button
-          size="icon"
+          size="sq-md"
           variant="ghost"
           onClick={() => editor.chain().focus().setTextAlign('center').run()}
           className={editor.isActive({ textAlign: 'center' }) ? 'bg-accent' : ''}
@@ -49,9 +47,7 @@ function AlignCenter() {
           <AlignCenterIcon className="size-4" />
         </Button>
       </TooltipTrigger>
-      <TooltipContent className="fill-primary">
-        Align Center
-      </TooltipContent>
+      <TooltipContent className="fill-primary">Align Center</TooltipContent>
     </Tooltip>
   );
 }
@@ -67,7 +63,7 @@ function AlignRight() {
     <Tooltip>
       <TooltipTrigger asChild>
         <Button
-          size="icon"
+          size="sq-md"
           variant="ghost"
           onClick={() => editor.chain().focus().setTextAlign('right').run()}
           className={editor.isActive({ textAlign: 'right' }) ? 'bg-accent' : ''}
@@ -75,9 +71,7 @@ function AlignRight() {
           <AlignRightIcon className="size-4" />
         </Button>
       </TooltipTrigger>
-      <TooltipContent className="fill-primary">
-        Align Right
-      </TooltipContent>
+      <TooltipContent className="fill-primary">Align Right</TooltipContent>
     </Tooltip>
   );
 }
@@ -92,7 +86,7 @@ function AlignJustify() {
     <Tooltip>
       <TooltipTrigger asChild>
         <Button
-          size="icon"
+          size="sq-md"
           variant="ghost"
           onClick={() => editor.chain().focus().setTextAlign('justify').run()}
           className={editor.isActive({ textAlign: 'justify' }) ? 'bg-accent' : ''}
@@ -100,9 +94,7 @@ function AlignJustify() {
           <AlignJustifyIcon className="size-4" />
         </Button>
       </TooltipTrigger>
-      <TooltipContent className="fill-primary">
-        Align Justify
-      </TooltipContent>
+      <TooltipContent className="fill-primary">Align Justify</TooltipContent>
     </Tooltip>
   );
 }

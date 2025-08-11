@@ -1,8 +1,8 @@
 import { useCurrentEditor } from '@tiptap/react';
 import { BoldIcon, ItalicIcon, StrikethroughIcon, UnderlineIcon } from 'lucide-react';
 
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/ui/tooltip';
 import { Button } from '@/ui/button';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/ui/tooltip';
 
 function Bold() {
   const { editor } = useCurrentEditor();
@@ -15,7 +15,7 @@ function Bold() {
     <Tooltip>
       <TooltipTrigger asChild>
         <Button
-          size="icon"
+          size="sq-md"
           variant="ghost"
           onClick={() => editor.chain().focus().toggleBold().run()}
           className={editor.isActive('bold') ? 'bg-accent' : ''}
@@ -23,9 +23,7 @@ function Bold() {
           <BoldIcon className="size-4" />
         </Button>
       </TooltipTrigger>
-      <TooltipContent className="fill-primary">
-        Bold
-      </TooltipContent>
+      <TooltipContent className="fill-primary">Bold</TooltipContent>
     </Tooltip>
   );
 }
@@ -41,7 +39,7 @@ function Italic() {
     <Tooltip>
       <TooltipTrigger asChild>
         <Button
-          size="icon"
+          size="sq-md"
           variant="ghost"
           onClick={() => editor.chain().focus().toggleItalic().run()}
           className={editor.isActive('italic') ? 'bg-accent' : ''}
@@ -49,9 +47,7 @@ function Italic() {
           <ItalicIcon className="size-4" />
         </Button>
       </TooltipTrigger>
-      <TooltipContent className="fill-primary">
-        Italic
-      </TooltipContent>
+      <TooltipContent className="fill-primary">Italic</TooltipContent>
     </Tooltip>
   );
 }
@@ -67,7 +63,7 @@ function Strike() {
     <Tooltip>
       <TooltipTrigger asChild>
         <Button
-          size="icon"
+          size="sq-md"
           variant="ghost"
           onClick={() => editor.chain().focus().toggleStrike().run()}
           className={editor.isActive('strike') ? 'bg-accent' : ''}
@@ -75,9 +71,7 @@ function Strike() {
           <StrikethroughIcon className="size-4" />
         </Button>
       </TooltipTrigger>
-      <TooltipContent className="fill-primary">
-        Strike
-      </TooltipContent>
+      <TooltipContent className="fill-primary">Strike</TooltipContent>
     </Tooltip>
   );
 }
@@ -93,7 +87,7 @@ function Underline() {
     <Tooltip>
       <TooltipTrigger asChild>
         <Button
-          size="icon"
+          size="sq-md"
           variant="ghost"
           onClick={() => editor.chain().focus().toggleUnderline().run()}
           className={editor.isActive('underline') ? 'bg-accent' : ''}
@@ -101,9 +95,7 @@ function Underline() {
           <UnderlineIcon className="size-4" />
         </Button>
       </TooltipTrigger>
-      <TooltipContent className="fill-primary">
-        Underline
-      </TooltipContent>
+      <TooltipContent className="fill-primary">Underline</TooltipContent>
     </Tooltip>
   );
 }

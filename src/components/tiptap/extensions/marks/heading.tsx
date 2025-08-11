@@ -8,8 +8,8 @@ import {
   ListIcon,
   ListOrderedIcon,
   PilcrowIcon,
-  TextQuote,
 } from 'lucide-react';
+
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/ui/select';
 
 function HeadingSelect() {
@@ -37,7 +37,7 @@ function HeadingSelect() {
   }
 
   const handleChange = (value: string) => {
-    switch ( value ) {
+    switch (value) {
       case 'paragraph':
         editor.chain().focus().setParagraph().run();
         break;
@@ -73,15 +73,16 @@ function HeadingSelect() {
   };
 
   return (
-    <Select value={value} onValueChange={handleChange}>
+    <Select
+      value={value}
+      onValueChange={handleChange}
+    >
       <SelectTrigger className="w-40 whitespace-nowrap rounded-sm">
         <SelectValue placeholder="Select format" />
       </SelectTrigger>
       <SelectContent position="popper">
         <SelectGroup>
-          <SelectLabel>
-            Hierarchy
-          </SelectLabel>
+          <SelectLabel>Hierarchy</SelectLabel>
           <SelectItem value="paragraph">
             <PilcrowIcon className="size-4" />
             Paragraph
@@ -109,9 +110,7 @@ function HeadingSelect() {
         </SelectGroup>
 
         <SelectGroup>
-          <SelectLabel>
-            List
-          </SelectLabel>
+          <SelectLabel>List</SelectLabel>
           <SelectItem value="bullet-list">
             <ListIcon className="size-4" />
             Bullet List

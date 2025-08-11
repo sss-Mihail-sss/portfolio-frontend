@@ -2,6 +2,8 @@
 
 import { ChevronDownIcon, LayoutDashboardIcon, ShieldUserIcon, UsersIcon } from 'lucide-react';
 
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/ui/collapsible';
+import { Link } from '@/ui/link';
 import {
   Sidebar,
   SidebarContent,
@@ -13,10 +15,8 @@ import {
   SidebarMenuItem,
   SidebarMenuSub,
   SidebarMenuSubButton,
-  SidebarMenuSubItem
+  SidebarMenuSubItem,
 } from '@/ui/sidebar';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/ui/collapsible';
-import { Link } from '@/ui/link';
 
 function AppSidebar() {
   return (
@@ -25,9 +25,7 @@ function AppSidebar() {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
-              <Link href='/'>
-                Mihai
-              </Link>
+              <Link href="/">Mihai</Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
@@ -49,26 +47,22 @@ function AppSidebar() {
                   <SidebarMenuButton>
                     <ShieldUserIcon />
                     User Management
-                    <ChevronDownIcon className='group-data-[state=open]:rotate-180 ml-auto' />
+                    <ChevronDownIcon className="group-data-[state=open]:rotate-180 ml-auto" />
                   </SidebarMenuButton>
                 </CollapsibleTrigger>
                 <CollapsibleContent asChild>
                   <SidebarMenuSub>
                     <SidebarMenuSubItem>
-                      <SidebarMenuSubButton href='/user-management/users'>
+                      <SidebarMenuSubButton href="/user-management/users">
                         <UsersIcon />
                         Users
                       </SidebarMenuSubButton>
                     </SidebarMenuSubItem>
                     <SidebarMenuSubItem>
-                      <SidebarMenuSubButton href='/user-management/roles'>
-                        Roles
-                      </SidebarMenuSubButton>
+                      <SidebarMenuSubButton href="/user-management/roles">Roles</SidebarMenuSubButton>
                     </SidebarMenuSubItem>
                     <SidebarMenuSubItem>
-                      <SidebarMenuSubButton href='/user-management/permissions'>
-                        Permissions
-                      </SidebarMenuSubButton>
+                      <SidebarMenuSubButton href="/user-management/permissions">Permissions</SidebarMenuSubButton>
                     </SidebarMenuSubItem>
                   </SidebarMenuSub>
                 </CollapsibleContent>
@@ -79,9 +73,7 @@ function AppSidebar() {
       </SidebarContent>
 
       <SidebarFooter>
-        <span className='text-xs text-muted text-center'>
-          Powered by Mihai
-        </span>
+        <span className="text-xs text-muted text-center">Powered by Mihai</span>
       </SidebarFooter>
     </Sidebar>
   );

@@ -1,10 +1,8 @@
 'use client';
-
-import { ReactNode } from 'react';
 import { useDroppable } from '@dnd-kit/core';
-import { tv } from 'tailwind-variants';
+import type { ReactNode } from 'react';
 
-import { cn } from '@/lib/utils';
+import { cn, tv } from '@/lib/utils';
 
 const droppableVariants = tv({
   base: '',
@@ -20,7 +18,7 @@ type Props = {
   children?: ReactNode;
   className?: string;
   id: string;
-}
+};
 
 const Droppable = ({ children, className, id }: Props) => {
   const { isOver, setNodeRef } = useDroppable({ id });

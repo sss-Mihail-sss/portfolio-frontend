@@ -1,10 +1,10 @@
 'use client';
 
-import { ComponentProps } from 'react';
 import { Separator as SeparatorPrimitive } from 'radix-ui';
+import type { ComponentProps } from 'react';
+import type { VariantProps } from 'tailwind-variants';
 
-import { cn } from '@/lib/utils';
-import { tv, VariantProps } from 'tailwind-variants';
+import { cn, tv } from '@/lib/utils';
 
 const separatorVariants = tv({
   base: 'shrink-0 bg-border',
@@ -24,10 +24,7 @@ const Separator = ({ ref, className, orientation, decorative, ...props }: Separa
       ref={ref}
       decorative={decorative}
       orientation={orientation}
-      className={cn(
-        separatorVariants({ orientation }),
-        className,
-      )}
+      className={cn(separatorVariants({ orientation }), className)}
       {...props}
     />
   );

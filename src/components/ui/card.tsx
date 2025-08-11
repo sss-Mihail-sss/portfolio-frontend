@@ -1,7 +1,7 @@
-import { ComponentProps } from 'react';
-import { tv, VariantProps } from 'tailwind-variants';
+import type { ComponentProps } from 'react';
+import type { VariantProps } from 'tailwind-variants';
 
-import { cn } from '@/lib/utils';
+import { cn, tv } from '@/lib/utils';
 
 const cardsVariants = tv({
   slots: {
@@ -20,7 +20,11 @@ const Card = ({ ref, className, ...props }: CardProps) => {
   const { card } = cardsVariants();
 
   return (
-    <div ref={ref} className={cn(card(), className)} {...props} />
+    <div
+      ref={ref}
+      className={cn(card(), className)}
+      {...props}
+    />
   );
 };
 
@@ -30,7 +34,11 @@ const CardHeader = ({ ref, className, ...props }: CardHeaderProps) => {
   const { header } = cardsVariants();
 
   return (
-    <div ref={ref} className={cn(header(), className)} {...props} />
+    <div
+      ref={ref}
+      className={cn(header(), className)}
+      {...props}
+    />
   );
 };
 
@@ -40,7 +48,11 @@ const CardTitle = ({ ref, className, ...props }: CardTitleProps) => {
   const { title } = cardsVariants();
 
   return (
-    <div ref={ref} className={cn(title(), className)} {...props} />
+    <div
+      ref={ref}
+      className={cn(title(), className)}
+      {...props}
+    />
   );
 };
 
@@ -50,7 +62,11 @@ const CardDescription = ({ ref, className, ...props }: CardDescriptionProps) => 
   const { description } = cardsVariants();
 
   return (
-    <div ref={ref} className={cn(description(), className)} {...props} />
+    <div
+      ref={ref}
+      className={cn(description(), className)}
+      {...props}
+    />
   );
 };
 
@@ -60,7 +76,11 @@ const CardContent = ({ ref, className, ...props }: CardContentProps) => {
   const { content } = cardsVariants();
 
   return (
-    <div ref={ref} className={cn(content(), className)} {...props} />
+    <div
+      ref={ref}
+      className={cn(content(), className)}
+      {...props}
+    />
   );
 };
 
@@ -70,7 +90,11 @@ const CardFooter = ({ ref, className, ...props }: CardFooterProps) => {
   const { footer } = cardsVariants();
 
   return (
-    <div ref={ref} className={cn(footer(), className)} {...props} />
+    <div
+      ref={ref}
+      className={cn(footer(), className)}
+      {...props}
+    />
   );
 };
 

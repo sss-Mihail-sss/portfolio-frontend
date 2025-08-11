@@ -1,7 +1,8 @@
-import { readdirSync, existsSync } from 'fs';
-import { join } from 'path';
+import type { AbstractIntlMessages, IntlError } from 'next-intl';
+import { IntlErrorCode } from 'next-intl';
 
-import { type AbstractIntlMessages, IntlError, IntlErrorCode } from 'next-intl';
+import { existsSync, readdirSync } from 'node:fs';
+import { join } from 'node:path';
 
 export function getLanguageName(locale: string, code: string): string | undefined {
   const Locale = new Intl.Locale(locale);
@@ -20,7 +21,11 @@ export function onError(error: IntlError) {
   }
 }
 
-export function getMessageFallback({ key, error, namespace }: {
+export function getMessageFallback({
+  key,
+  error,
+  namespace,
+}: {
   error: IntlError;
   key: string;
   namespace?: string;
@@ -29,10 +34,9 @@ export function getMessageFallback({ key, error, namespace }: {
   console.error('Intl fallback', key, error, namespace);
 
   if (error.code === IntlErrorCode.MISSING_MESSAGE) {
-    return path + ' is not yet translated';
-  } else {
-    return 'Dear developer, please fix this message: ' + path;
+    return `${path} is not yet translated`;
   }
+  return `Dear developer, please fix this message: ${path}`;
 }
 
 export async function loadMessages(locale: string): Promise<AbstractIntlMessages> {
@@ -41,7 +45,7 @@ export async function loadMessages(locale: string): Promise<AbstractIntlMessages
   const messages: AbstractIntlMessages = (await import(`../../messages/${locale}/common.json`)).default;
 
   for (const file of files) {
-    if (existsSync(file) && file != 'common.json' && file.endsWith('.json')) {
+    if (existsSync(file) && file !== 'common.json' && file.endsWith('.json')) {
       try {
         const json = (await import(`../../messages/${locale}/${file}`)).default;
         const key = file.replace('.json', '');

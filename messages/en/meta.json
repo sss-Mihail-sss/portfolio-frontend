@@ -7,5 +7,11 @@
   },
   "dashboard": {
     "title": "Dashboard Page"
+  },
+  "register": {
+    "title": "Register Page"
+  },
+  "forgot-password": {
+    "title": "Forgot Password Page"
   }
 }

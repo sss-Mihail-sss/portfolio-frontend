@@ -1,38 +1,37 @@
 'use client';
 
-import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useTranslations } from 'next-intl';
-import { z } from 'zod/v4-mini';
 import { PlusIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod/v4-mini';
 
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/ui/form';
-import { Link } from '@/ui/link';
-import { Input } from '@/ui/input';
+import { useRouter } from '@/config/i18n/navigation';
+import { signIn } from '@/lib/api/auth';
 import { Button } from '@/ui/button';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/ui/form';
+import { Input } from '@/ui/input';
+import { Link } from '@/ui/link';
 import { Password, PasswordInput, PasswordToggle } from '@/ui/password';
 import { toast } from '@/ui/sonner';
-
-import { signIn } from '@/lib/api/auth';
-import { useRouter } from '@/config/i18n/navigation';
 
 const LoginForm = () => {
   const { push } = useRouter();
   const t = useTranslations();
 
   const signInSchema = z.object({
-    identifier: z.string().check(
-      z.trim(),
-      z.minLength(2, t('validation.username-required'))
-    ),
+    identifier: z.string().check(z.trim(), z.minLength(2, t('validation.username-required'))),
     password: z.string().check(
       z.trim(),
       z.minLength(8, t('validation.password-min-length', { length: 8 })),
       z.maxLength(32, t('validation.password-min-length', { length: 32 })),
+      // biome-ignore lint/performance/useTopLevelRegex: zod
       z.regex(/[a-zA-Z]/, t('validation.contains-letters')),
+      // biome-ignore lint/performance/useTopLevelRegex: zod
       z.regex(/[0-9]/, t('validation.contains-numbers')),
-      z.regex(/[^a-zA-Z0-9]/, t('validation.contains-special-characters'))
-    )
+      // biome-ignore lint/performance/useTopLevelRegex: zod
+      z.regex(/[^a-zA-Z0-9]/, t('validation.contains-special-characters')),
+    ),
   });
 
   type SignInSchema = z.infer<typeof signInSchema>;
@@ -41,22 +40,22 @@ const LoginForm = () => {
     resolver: zodResolver(signInSchema),
     defaultValues: {
       identifier: '',
-      password: ''
-    }
+      password: '',
+    },
   });
 
   async function onSubmit(values: SignInSchema) {
     try {
       await signIn(values);
       push({
-        pathname: '/dashboard'
+        pathname: '/dashboard',
       });
     } catch (error) {
       console.log(error);
       toast({
         title: 'Error',
         description: 'Description',
-        icon: <PlusIcon />
+        icon: <PlusIcon />,
       });
     }
   }
@@ -65,16 +64,19 @@ const LoginForm = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className='flex flex-col gap-6'
+        className="flex flex-col gap-6"
       >
         <FormField
-          name='identifier'
+          name="identifier"
           control={form.control}
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t('username')}</FormLabel>
               <FormControl>
-                <Input placeholder='john' {...field} />
+                <Input
+                  placeholder="john"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -82,14 +84,17 @@ const LoginForm = () => {
         />
 
         <FormField
-          name='password'
+          name="password"
           control={form.control}
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t('form.login.fields.password.label')}</FormLabel>
               <FormControl>
                 <Password>
-                  <PasswordInput {...field} placeholder='john@123' />
+                  <PasswordInput
+                    {...field}
+                    placeholder="john@123"
+                  />
                   <PasswordToggle />
                 </Password>
               </FormControl>
@@ -98,13 +103,14 @@ const LoginForm = () => {
           )}
         />
 
-        <Link underline href='/forgot-password'>
+        <Link
+          underline
+          href="/forgot-password"
+        >
           {t('forgot-password')}?
         </Link>
 
-        <Button type='submit'>
-          {t('submit')}
-        </Button>
+        <Button type="submit">{t('submit')}</Button>
 
         {/*<div className='flex items-center gap-2 text-sm'>*/}
         {/*  <Separator orientation='horizontal' className='flex-1' />*/}
@@ -144,9 +150,14 @@ const LoginForm = () => {
         {/*  </Button>*/}
         {/*</div>*/}
 
-        <div className='text-center text-sm'>
+        <div className="text-center text-sm">
           {t('no-account')}{' '}
-          <Link href='/register' underline variant='secondary' className='font-medium'>
+          <Link
+            href="/register"
+            underline
+            variant="secondary"
+            className="font-medium"
+          >
             {t('sign-up')}
           </Link>
         </div>

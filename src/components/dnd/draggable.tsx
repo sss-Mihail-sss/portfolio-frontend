@@ -1,14 +1,14 @@
 'use client';
 
-import { ReactNode } from 'react';
+import type { UseDraggableArguments } from '@dnd-kit/core';
 import { useDraggable } from '@dnd-kit/core';
-import { tv } from 'tailwind-variants';
+import type { ReactNode } from 'react';
+
+import { tv } from '@/lib/utils';
 
 type Props = {
   children: ReactNode;
-  id: string;
-  data?: AnyData;
-}
+} & UseDraggableArguments;
 
 const draggable = tv({
   base: '',
@@ -19,11 +19,16 @@ const draggable = tv({
   },
 });
 
-const Draggable = ({ children, id, data }: Props) => {
-  const { attributes, listeners, setNodeRef, isDragging } = useDraggable({ id, data });
+const Draggable = ({ children, ...props }: Props) => {
+  const { attributes, listeners, setNodeRef, isDragging } = useDraggable(props);
 
   return (
-    <div ref={setNodeRef} {...listeners} {...attributes} className={draggable({ isDragging })}>
+    <div
+      ref={setNodeRef}
+      {...listeners}
+      {...attributes}
+      className={draggable({ isDragging })}
+    >
       {children}
     </div>
   );

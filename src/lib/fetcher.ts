@@ -3,7 +3,7 @@ import deepmerge from 'deepmerge';
 const defaultOptions: RequestInit = {
   headers: {
     'Content-Type': 'application/json',
-    'Accept': 'application/json'
+    Accept: 'application/json',
   },
   credentials: 'include',
 };

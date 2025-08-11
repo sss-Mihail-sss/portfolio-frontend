@@ -1,13 +1,11 @@
-import { Log } from '@/types/log';
+import { fetcher } from '@/lib/fetcher';
 import { logError } from '@/lib/logger';
+import type { Log } from '@/types/log';
 
 export async function sendInfoLog(log: Log) {
   try {
-    const response = await fetch(`${process.env.API_URL}/log/info`, {
+    const response = await fetcher(`/log/info`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
       body: JSON.stringify(log),
     });
 
@@ -20,6 +18,7 @@ export async function sendInfoLog(log: Log) {
     logError({
       message: 'Failed logging info',
       source: 'fetch',
+      context: error,
     });
   }
 }

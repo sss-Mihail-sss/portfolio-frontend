@@ -1,4 +1,4 @@
-import { Log } from '@/types/log';
+import type { Log } from '@/types/log';
 
 export function logDebug({ context, message, source }: Log): void {
   console.debug('DEBUG:', { context, message, source });

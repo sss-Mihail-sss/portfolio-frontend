@@ -1,17 +1,17 @@
 'use client';
 
 import { Avatar as AvatarPrimitive } from 'radix-ui';
-import { VariantProps } from 'tailwind-variants';
-import { ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
+import type { VariantProps } from 'tailwind-variants';
 
-import { tv, cn } from '@/lib/utils';
+import { cn, tv } from '@/lib/utils';
 
 const avatarVariants = tv({
   slots: {
     root: 'relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full',
     image: 'aspect-square h-full w-full',
-    fallback: 'flex h-full w-full items-center justify-center rounded-full bg-muted'
-  }
+    fallback: 'flex h-full w-full items-center justify-center rounded-full bg-muted',
+  },
 });
 
 type AvatarProps = VariantProps<typeof avatarVariants>;
@@ -22,7 +22,11 @@ const Avatar = ({ ref, className, ...props }: AvatarRootProps) => {
   const { root } = avatarVariants();
 
   return (
-    <AvatarPrimitive.Root ref={ref} className={cn(root(), className)} {...props} />
+    <AvatarPrimitive.Root
+      ref={ref}
+      className={cn(root(), className)}
+      {...props}
+    />
   );
 };
 
@@ -32,7 +36,11 @@ const AvatarImage = ({ ref, className, ...props }: AvatarImageProps) => {
   const { image } = avatarVariants();
 
   return (
-    <AvatarPrimitive.Image ref={ref} className={cn(image(), className)} {...props} />
+    <AvatarPrimitive.Image
+      ref={ref}
+      className={cn(image(), className)}
+      {...props}
+    />
   );
 };
 
@@ -42,7 +50,11 @@ const AvatarFallback = ({ ref, className, ...props }: AvatarFallbackProps) => {
   const { fallback } = avatarVariants();
 
   return (
-    <AvatarPrimitive.Fallback ref={ref} className={cn(fallback(), className)} {...props} />
+    <AvatarPrimitive.Fallback
+      ref={ref}
+      className={cn(fallback(), className)}
+      {...props}
+    />
   );
 };
 

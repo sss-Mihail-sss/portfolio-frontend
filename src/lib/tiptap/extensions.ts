@@ -1,26 +1,26 @@
-import { AnyExtension, Extensions } from '@tiptap/react';
-import Document from '@tiptap/extension-document';
-import Paragraph from '@tiptap/extension-paragraph';
-import Text from '@tiptap/extension-text';
-import Placeholder from '@tiptap/extension-placeholder';
-import Bold from '@tiptap/extension-bold';
-import Italic from '@tiptap/extension-italic';
-import Underline from '@tiptap/extension-underline';
-import Strike from '@tiptap/extension-strike';
-import Link from '@tiptap/extension-link';
-import CodeBlock from '@tiptap/extension-code-block';
-import Heading from '@tiptap/extension-heading';
-import TextAlign from '@tiptap/extension-text-align';
 import Blockquote from '@tiptap/extension-blockquote';
+import Bold from '@tiptap/extension-bold';
 import BulletList from '@tiptap/extension-bullet-list';
-import OrderedList from '@tiptap/extension-ordered-list';
-import ListItem from '@tiptap/extension-list-item';
-import HorizontalRule from '@tiptap/extension-horizontal-rule';
-import Highlight from '@tiptap/extension-highlight';
 import CharacterCount from '@tiptap/extension-character-count';
+import CodeBlock from '@tiptap/extension-code-block';
+import Document from '@tiptap/extension-document';
+import Heading from '@tiptap/extension-heading';
+import Highlight from '@tiptap/extension-highlight';
+import HorizontalRule from '@tiptap/extension-horizontal-rule';
+import Italic from '@tiptap/extension-italic';
+import Link from '@tiptap/extension-link';
+import ListItem from '@tiptap/extension-list-item';
+import OrderedList from '@tiptap/extension-ordered-list';
+import Paragraph from '@tiptap/extension-paragraph';
+import Placeholder from '@tiptap/extension-placeholder';
+import Strike from '@tiptap/extension-strike';
+import Text from '@tiptap/extension-text';
+import TextAlign from '@tiptap/extension-text-align';
+import Underline from '@tiptap/extension-underline';
+import type { AnyExtension, Extensions } from '@tiptap/react';
 
 export type ExtensionsEnum =
-  'bold'
+  | 'bold'
   | 'italic'
   | 'underline'
   | 'strike'
@@ -34,28 +34,28 @@ export type ExtensionsEnum =
   | 'bullet-list'
   | 'ordered-list';
 
-export const configureExtensions = ({ extensions, placeholder, limit }: {
-  extensions?: ExtensionsEnum[],
-  placeholder?: string,
-  limit?: number
+export const configureExtensions = ({
+  extensions,
+  placeholder,
+  limit,
+}: {
+  extensions?: ExtensionsEnum[];
+  placeholder?: string;
+  limit?: number;
 }): Extensions => {
-  const baseExtensions: Extensions = [
-    Document,
-    Paragraph,
-    Text,
-    ListItem,
-  ];
+  const baseExtensions: Extensions = [Document, Paragraph, Text, ListItem];
 
-  if (!!placeholder) {
+  if (placeholder) {
     baseExtensions.push(
       Placeholder.configure({
         placeholder,
-        emptyEditorClass: 'first:before:content-[attr(data-placeholder)] first:before:text-muted-foreground first:before:pointer-events-none first:before:h-0 first:before:float-left',
+        emptyEditorClass:
+          'first:before:content-[attr(data-placeholder)] first:before:text-muted-foreground first:before:pointer-events-none first:before:h-0 first:before:float-left',
       }),
     );
   }
 
-  if (!!limit) {
+  if (limit) {
     baseExtensions.push(
       CharacterCount.configure({
         limit: limit,
@@ -117,7 +117,7 @@ export const extensionMap: Record<ExtensionsEnum, AnyExtension> = {
           return false;
         }
 
-        const allowedProtocols = ctx.protocols.map(p => (typeof p === 'string' ? p : p.scheme));
+        const allowedProtocols = ctx.protocols.map((p) => (typeof p === 'string' ? p : p.scheme));
 
         if (!allowedProtocols.includes(protocol)) {
           return false;
@@ -135,7 +135,7 @@ export const extensionMap: Record<ExtensionsEnum, AnyExtension> = {
         return false;
       }
     },
-    shouldAutoLink: url => {
+    shouldAutoLink: (url) => {
       try {
         const parsedUrl = url.includes(':') ? new URL(url) : new URL(`https://${url}`);
 

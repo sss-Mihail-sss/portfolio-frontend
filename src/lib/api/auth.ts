@@ -1,10 +1,10 @@
-import { SignInSchema } from '@/schemas/auth';
 import { fetcher } from '@/lib/fetcher';
+import type { SignInSchema } from '@/schemas/auth';
 
 export async function signIn(data: SignInSchema) {
   const response = await fetcher('/auth/login', {
     method: 'POST',
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
   });
 
   const json: FetchResponse = await response.json();

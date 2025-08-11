@@ -1,5 +1,5 @@
-import { Metadata } from 'next';
-import { Locale } from 'next-intl';
+import type { Metadata } from 'next';
+import type { Locale } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 
 import { RegisterForm } from '@/components/form/register';
@@ -7,8 +7,8 @@ import { RegisterForm } from '@/components/form/register';
 type Props = {
   params: Promise<{
     locale: Locale;
-  }>
-}
+  }>;
+};
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
@@ -20,7 +20,5 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default function RegisterPage() {
-  return (
-    <RegisterForm />
-  );
+  return <RegisterForm />;
 }

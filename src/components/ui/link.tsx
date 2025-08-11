@@ -1,5 +1,5 @@
-import { ComponentProps } from 'react';
-import { VariantProps } from 'tailwind-variants';
+import type { ComponentProps } from 'react';
+import type { VariantProps } from 'tailwind-variants';
 
 import { Link as ILink } from '@/config/i18n/navigation';
 import { cn, tv } from '@/lib/utils';
@@ -9,13 +9,13 @@ const linkVariants = tv({
   variants: {
     variant: {
       primary: 'text-primary hover:text-primary/90',
-      secondary: 'text-muted-fg hover:text-fg'
+      secondary: 'text-muted-fg hover:text-fg',
     },
     underline: {
       true: 'underline-offset-2 hover:underline',
-      false: ''
-    }
-  }
+      false: '',
+    },
+  },
 });
 
 type LinkProps = ComponentProps<typeof ILink> & VariantProps<typeof linkVariants>;
@@ -23,7 +23,7 @@ type LinkProps = ComponentProps<typeof ILink> & VariantProps<typeof linkVariants
 function Link({ variant, underline, className, ...props }: LinkProps) {
   return (
     <ILink
-      data-slot='link'
+      data-slot="link"
       className={cn(linkVariants({ underline, variant }), className)}
       {...props}
     />

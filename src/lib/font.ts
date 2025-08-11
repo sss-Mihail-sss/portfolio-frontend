@@ -1,13 +1,16 @@
-export { GeistSans as geistSans } from 'geist/font/sans';
-export { GeistMono as geistMono } from 'geist/font/mono';
-
-import { Inter, Montserrat, Open_Sans, Raleway, Roboto, Roboto_Mono, Graduate } from 'next/font/google';
+import { GeistMono } from 'geist/font/mono';
+import { GeistSans } from 'geist/font/sans';
+import { Graduate, Inter, Montserrat, Open_Sans, Raleway, Roboto, Roboto_Mono } from 'next/font/google';
 
 export const montserrat = Montserrat({
   display: 'swap',
   subsets: ['cyrillic'],
   variable: '--font-montserrat',
 });
+
+export const geistMono = GeistMono;
+
+export const geistSans = GeistSans;
 
 export const openSans = Open_Sans({
   display: 'swap',
@@ -38,7 +41,6 @@ export const inter = Inter({
   subsets: ['cyrillic'],
   variable: '--font-inter',
 });
-
 
 export const graduate = Graduate({
   weight: ['400'],

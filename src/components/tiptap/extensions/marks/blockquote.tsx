@@ -1,8 +1,8 @@
 import { useCurrentEditor } from '@tiptap/react';
 import { TextQuote } from 'lucide-react';
 
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/ui/tooltip';
 import { Button } from '@/ui/button';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/ui/tooltip';
 
 function Blockquote() {
   const { editor } = useCurrentEditor();
@@ -15,7 +15,7 @@ function Blockquote() {
     <Tooltip>
       <TooltipTrigger asChild>
         <Button
-          size="icon"
+          size="sq-md"
           variant="ghost"
           onClick={() => editor.chain().focus().toggleBlockquote().run()}
           className={editor.isActive('blockquote') ? 'bg-accent' : ''}
@@ -23,9 +23,7 @@ function Blockquote() {
           <TextQuote className="size-4" />
         </Button>
       </TooltipTrigger>
-      <TooltipContent className="fill-primary">
-        Blockquote
-      </TooltipContent>
+      <TooltipContent className="fill-primary">Blockquote</TooltipContent>
     </Tooltip>
   );
 }

@@ -1,6 +1,8 @@
 'use client';
 
-import { APIProvider, Map, MapProps } from '@vis.gl/react-google-maps';
+import type { MapProps } from '@vis.gl/react-google-maps';
+import { APIProvider, Map } from '@vis.gl/react-google-maps';
+
 import { LocationPickerAutocomplete } from '@/components/google/location-picker-autocomplete';
 
 type Props = MapProps;

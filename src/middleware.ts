@@ -1,9 +1,10 @@
-import { NextRequest, NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
 
 import { routing } from '@/config/i18n/routing';
-import { getCookie } from '@/lib/cookie';
 import { refresh } from '@/lib/api/auth';
+import { getCookie } from '@/lib/cookie';
 
 const withIntl = createMiddleware(routing);
 
@@ -39,5 +40,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!api|trpc|_next|_vercel|.*\\..*).*)']
+  matcher: ['/((?!api|trpc|_next|_vercel|.*\\..*).*)'],
 };

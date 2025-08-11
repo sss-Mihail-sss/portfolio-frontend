@@ -1,11 +1,10 @@
 'use client';
-
-import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { ControlPosition, MapControl, useMap, useMapsLibrary } from '@vis.gl/react-google-maps';
+import { useEffect, useState } from 'react';
 
-import { Input } from '@/ui/input';
 import { useDebounce } from '@/hooks/use-debounce';
+import { Input } from '@/ui/input';
 
 const LocationPickerAutocomplete = () => {
   const map = useMap();
@@ -34,11 +33,12 @@ const LocationPickerAutocomplete = () => {
 
   const { data, status } = useQuery({
     queryKey: ['google-map-place', addressSearchDebounce, sessionToken],
-    queryFn: () => autocompleteService?.getPlacePredictions({
-      input: addressSearchDebounce,
-      sessionToken,
-    }),
-    enabled: (!!placesService && !!sessionToken && !!addressSearch),
+    queryFn: () =>
+      autocompleteService?.getPlacePredictions({
+        input: addressSearchDebounce,
+        sessionToken,
+      }),
+    enabled: !!placesService && !!sessionToken && !!addressSearch,
   });
 
   console.log(status);
@@ -49,29 +49,23 @@ const LocationPickerAutocomplete = () => {
 
   return (
     <MapControl position={ControlPosition.TOP_CENTER}>
-      <div className='p-4'>
+      <div className="p-4">
         <Input
-          className='bg-background w-72 max-w-full'
-          placeholder='Search address'
+          className="bg-background w-72 max-w-full"
+          placeholder="Search address"
           value={addressSearch}
-          onChange={event => setAddressSearch(event.target.value)}
+          onChange={(event) => setAddressSearch(event.target.value)}
         />
 
-        {
-          status === 'pending' ? (
-            <div>Loading...</div>
-          ) : status === 'error' ? (
-            <div>Error</div>
-          ) : data?.predictions.map(place => (
-            <div key={place.description}>
-              {place.description}
-            </div>
-          ))
-        }
-
+        {status === 'pending' ? (
+          <div>Loading...</div>
+        ) : status === 'error' ? (
+          <div>Error</div>
+        ) : (
+          data?.predictions.map((place) => <div key={place.description}>{place.description}</div>)
+        )}
       </div>
     </MapControl>
-
   );
 };
 

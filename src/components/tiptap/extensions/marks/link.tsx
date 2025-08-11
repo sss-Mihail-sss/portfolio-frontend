@@ -2,12 +2,12 @@
 
 import { useCurrentEditor } from '@tiptap/react';
 import { Link2Icon, Trash2Icon } from 'lucide-react';
-
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/ui/tooltip';
-import { Button } from '@/ui/button';
-import { Popover, PopoverContent, PopoverTrigger } from '@/ui/popover';
-import { Input } from '@/ui/input';
 import { useState } from 'react';
+
+import { Button } from '@/ui/button';
+import { Input } from '@/ui/input';
+import { Popover, PopoverContent, PopoverTrigger } from '@/ui/popover';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/ui/tooltip';
 
 function Link() {
   const { editor } = useCurrentEditor();
@@ -23,7 +23,7 @@ function Link() {
         <TooltipTrigger asChild>
           <PopoverTrigger asChild>
             <Button
-              size="icon"
+              size="sq-md"
               variant="ghost"
               className={editor.isActive('link') ? 'bg-accent' : ''}
             >
@@ -31,9 +31,7 @@ function Link() {
             </Button>
           </PopoverTrigger>
         </TooltipTrigger>
-        <TooltipContent className="fill-primary">
-          Link
-        </TooltipContent>
+        <TooltipContent className="fill-primary">Link</TooltipContent>
       </Tooltip>
       <PopoverContent className="flex flex-col gap-2 w-auto">
         <Input
@@ -42,14 +40,10 @@ function Link() {
           onChange={(event) => setLink(event.target.value)}
         />
         <div className="flex justify-between">
+          <Button onClick={() => editor.chain().focus().setLink({ href: link }).run()}>Save</Button>
           <Button
-            onClick={() => editor.chain().focus().setLink({ href: link }).run()}
-          >
-            Save
-          </Button>
-          <Button
-            size="icon"
-            color="error"
+            size="sq-md"
+            color="danger"
             disabled={!editor.isActive('link')}
             onClick={() => editor.chain().focus().unsetLink().run()}
           >
