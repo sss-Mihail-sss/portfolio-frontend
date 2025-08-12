@@ -1,6 +1,6 @@
 'use client';
 
-import { EditorContent, EditorContext, useEditor } from '@tiptap/react';
+import { EditorContent, EditorContext, type JSONContent, type UseEditorOptions, useEditor } from '@tiptap/react';
 import { BubbleMenu } from '@tiptap/react/menus';
 
 import { AlignCenter, AlignJustify, AlignLeft, AlignRight } from '@/components/tiptap/extensions/functionality/align';
@@ -16,15 +16,14 @@ import { configureExtensions } from '@/lib/tiptap/extensions';
 import { cn } from '@/lib/utils';
 
 type TextEditorProps = {
-  content: string;
-  onChange: (content: string) => void;
+  onChange: (content: JSONContent) => void;
   placeholder?: string;
   className?: string;
   extensions?: ExtensionsEnum[];
   limit?: number;
-};
+} & UseEditorOptions;
 
-const TextEditor = ({ className, content, placeholder, onChange, extensions, limit }: TextEditorProps) => {
+function TextEditor({ className, content, placeholder, onChange, extensions, limit }: TextEditorProps) {
   const editor = useEditor({
     extensions: configureExtensions({
       extensions,
@@ -32,6 +31,9 @@ const TextEditor = ({ className, content, placeholder, onChange, extensions, lim
       limit,
     }),
     immediatelyRender: false,
+    injectCSS: false,
+    enableContentCheck: true,
+    enableInputRules: [],
     editorProps: {
       attributes: {
         class: 'outline-none',
@@ -39,7 +41,7 @@ const TextEditor = ({ className, content, placeholder, onChange, extensions, lim
     },
     content: content,
     onUpdate({ editor }) {
-      const value = editor.getHTML();
+      const value = editor.getJSON();
       onChange(value);
     },
   });
@@ -118,6 +120,6 @@ const TextEditor = ({ className, content, placeholder, onChange, extensions, lim
       </div>
     </EditorContext>
   );
-};
+}
 
 export { TextEditor };
