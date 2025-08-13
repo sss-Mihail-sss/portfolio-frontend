@@ -2,7 +2,7 @@
 
 import { PanelLeftIcon } from 'lucide-react';
 import type { ComponentProps } from 'react';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 import type { VariantProps } from 'tailwind-variants';
 
 import { Link } from '@/config/i18n/navigation';
@@ -271,7 +271,7 @@ function SidebarMenuButton({
   tooltip?: string | ComponentProps<typeof TooltipContent>;
 } & VariantProps<typeof sidebarMenuButtonVariants>) {
   const Comp = asChild ? Slot : 'button';
-  const { isMobile, state } = useSidebar();
+  const { isOpen } = useSidebar();
 
   const button = (
     <Comp
@@ -300,7 +300,7 @@ function SidebarMenuButton({
       <TooltipContent
         side="right"
         align="center"
-        hidden={state !== 'collapsed' || isMobile}
+        hidden={!isOpen}
         {...tooltip}
       />
     </Tooltip>
@@ -365,11 +365,6 @@ function SidebarMenuSkeleton({
 }: ComponentProps<'div'> & {
   showIcon?: boolean;
 }) {
-  // Random width between 50 to 90%.
-  const width = useMemo(() => {
-    return `${Math.floor(Math.random() * 40) + 50}%`;
-  }, []);
-
   return (
     <div
       data-slot="sidebar-menu-skeleton"

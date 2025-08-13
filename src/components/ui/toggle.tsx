@@ -27,7 +27,7 @@ const toggleVariants = tv({
 
 type ToggleProps = ComponentProps<typeof TogglePrimitive.Root> & VariantProps<typeof toggleVariants>;
 
-function Toggle({ className, variant, size, ...props }: ToggleProps) {
+const Toggle = ({ className, variant, size, ...props }: ToggleProps) => {
   return (
     <TogglePrimitive.Root
       data-slot="toggle"
@@ -35,6 +35,6 @@ function Toggle({ className, variant, size, ...props }: ToggleProps) {
       {...props}
     />
   );
-}
+};
 
 export { Toggle, toggleVariants };

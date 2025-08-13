@@ -16,7 +16,8 @@
     "attributePosition": "multiline",
     "bracketSpacing": true,
     "indentWidth": 2,
-    "indentStyle": "space"
+    "indentStyle": "space",
+    "useEditorconfig": true
   },
   "linter": {
     "enabled": true,

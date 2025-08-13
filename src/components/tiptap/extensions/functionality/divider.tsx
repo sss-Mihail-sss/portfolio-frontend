@@ -15,7 +15,7 @@ function Divider() {
     <Tooltip>
       <TooltipTrigger asChild>
         <Button
-          size="icon"
+          size="sq-sm"
           variant="ghost"
           onClick={() => editor.chain().focus().setHorizontalRule().run()}
         >
