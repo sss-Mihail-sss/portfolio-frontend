@@ -22,3 +22,7 @@ export function parseBoolean(value: string | boolean | null) {
 
   return value === 'true';
 }
+
+export function getLanguage(locale: string): string {
+  return new Intl.Locale(locale).language;
+}

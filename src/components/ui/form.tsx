@@ -69,7 +69,7 @@ const formVariants = tv({
     item: 'grid gap-3',
     label: '',
     description: 'text-[0.8rem] text-muted-foreground',
-    message: 'text-[0.8rem] font-medium',
+    message: 'font-medium text-[0.8rem]',
   },
   variants: {
     error: {
@@ -121,7 +121,7 @@ const FormControl = ({ ref, ...props }: FormControlProps) => {
     <Slot
       ref={ref}
       id={formItemId}
-      aria-describedby={!error ? `${formDescriptionId}` : `${formDescriptionId} ${formMessageId}`}
+      aria-describedby={error ? `${formDescriptionId} ${formMessageId}` : `${formDescriptionId}`}
       aria-invalid={!!error}
       {...props}
     />

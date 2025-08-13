@@ -11,8 +11,8 @@ export async function generateAlternates({ href }: { href: Pathnames }): Promise
   return {
     canonical: getPathname({ locale, href }),
     languages: locales.reduce(
-      (acc, locale) => {
-        acc[locale] = getPathname({ locale, href });
+      (acc, l) => {
+        acc[locale] = getPathname({ locale: l, href });
         return acc;
       },
       {} as { [key: string]: string },

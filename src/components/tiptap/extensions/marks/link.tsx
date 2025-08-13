@@ -33,7 +33,7 @@ function Link() {
         </TooltipTrigger>
         <TooltipContent className="fill-primary">Link</TooltipContent>
       </Tooltip>
-      <PopoverContent className="flex flex-col gap-2 w-auto">
+      <PopoverContent className="flex w-auto flex-col gap-2">
         <Input
           placeholder="https://"
           value={link}

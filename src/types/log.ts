@@ -5,10 +5,3 @@ export type Log = {
   exception?: string;
   userId?: number;
 };
-
-export enum LogLevel {
-  ERROR,
-  WARNING,
-  INFO,
-  DEBUG,
-}

@@ -28,7 +28,7 @@ export default async function Layout({ children }: Props) {
     <SidebarProvider open>
       <AppSidebar />
 
-      <main className="flex flex-col flex-1 gap-2">
+      <main className="flex flex-1 flex-col gap-2">
         <Navbar />
 
         {children}

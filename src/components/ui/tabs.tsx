@@ -39,9 +39,9 @@ function TabsTrigger({ className, ...props }: ComponentProps<typeof TabsPrimitiv
     <TabsPrimitive.Trigger
       data-slot="tabs-trigger"
       className={cn(
-        'relative p-2 flex items-center text-sm font-medium whitespace-nowrap rounded-sm text-muted-fg hover:text-fg',
+        'relative flex items-center whitespace-nowrap rounded-sm p-2 font-medium text-muted-fg text-sm hover:text-fg',
         'data-[state=active]:text-fg data-[state=active]:after:absolute data-[state=active]:after:bg-fg',
-        'focus-visible:outline-ring focus-visible:outline-2 focus-visible:outline-offset-1',
+        'focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-offset-1',
         className,
       )}
       {...props}
@@ -52,7 +52,7 @@ function TabsTrigger({ className, ...props }: ComponentProps<typeof TabsPrimitiv
 function TabsContent({ className, ...props }: ComponentProps<typeof TabsPrimitive.Content>) {
   return (
     <TabsPrimitive.Content
-      className={cn('focus-visible:outline-ring focus-visible:outline-2 focus-visible:outline-offset-1', className)}
+      className={cn('focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-offset-1', className)}
       {...props}
     />
   );

@@ -10,7 +10,7 @@ type Props<TData> = {
 function DataTablePagination<TData>({ table, pageSizeOptions }: Props<TData>) {
   return (
     <div className="flex flex-wrap items-center gap-4 py-4">
-      <div className="flex-1 text-sm text-muted-foreground whitespace-nowrap">
+      <div className="flex-1 whitespace-nowrap text-muted-foreground text-sm">
         {table.getFilteredSelectedRowModel().rows.length} of {table.getFilteredRowModel().rows.length} row(s) selected.
       </div>
 

@@ -36,8 +36,8 @@ function HeadingSelect() {
     value = 'ordered-list';
   }
 
-  const handleChange = (value: string) => {
-    switch (value) {
+  const handleChange = (newValue: string) => {
+    switch (newValue) {
       case 'paragraph':
         editor.chain().focus().setParagraph().run();
         break;
@@ -68,6 +68,9 @@ function HeadingSelect() {
 
       case 'ordered-list':
         editor.chain().focus().toggleOrderedList().run();
+        break;
+
+      default:
         break;
     }
   };

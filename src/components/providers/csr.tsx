@@ -27,7 +27,7 @@ const CSRProvider = ({ children }: Props) => {
         {children}
 
         <Toaster
-          duration={10000000}
+          duration={10_000_000}
           toastOptions={{ unstyled: true }}
         />
       </QueryClientProvider>

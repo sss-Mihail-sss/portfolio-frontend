@@ -58,13 +58,17 @@ export const configureExtensions = ({
   if (limit) {
     baseExtensions.push(
       CharacterCount.configure({
-        limit: limit,
+        limit,
       }),
     );
   }
 
   if (extensions) {
-    extensions.forEach((ext) => extensionMap[ext] && baseExtensions.push(extensionMap[ext]));
+    for (const extension of extensions) {
+      if ('extension' in extensionMap) {
+        baseExtensions.push(extensionMap[extension]);
+      }
+    }
   }
 
   return baseExtensions;
@@ -126,11 +130,7 @@ export const extensionMap: Record<ExtensionsEnum, AnyExtension> = {
         const disallowedDomains = ['example-phishing.com', 'malicious-site.net'];
         const domain = parsedUrl.hostname;
 
-        if (disallowedDomains.includes(domain)) {
-          return false;
-        }
-
-        return true;
+        return !disallowedDomains.includes(domain);
       } catch {
         return false;
       }

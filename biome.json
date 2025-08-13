@@ -53,7 +53,10 @@
         "noInferrableTypes": "error",
         "noNamespace": "error",
         "noNegationElse": "error",
-        "noNestedTernary": "error",
+        "noNestedTernary": {
+          "level": "error",
+          "options": {}
+        },
         "noNonNullAssertion": "error",
         "noParameterAssign": "error",
         "noProcessEnv": "error",
@@ -69,7 +72,6 @@
         "useBlockStatements": "error",
         "useCollapsedElseIf": "error",
         "useCollapsedIf": "error",
-        "useComponentExportOnlyModules": "error",
         "useConsistentArrayType": "error",
         "useConsistentBuiltinInstantiation": "error",
         "useConsistentCurlyBraces": "error",
@@ -90,10 +92,14 @@
         "useForOf": "error",
         "useFragmentSyntax": "error",
         "useLiteralEnumMembers": "error",
-        "useNamingConvention": "error",
         "useSelfClosingElements": "error",
         "useShorthandAssign": "error",
         "useShorthandFunctionType": "error",
+        "useTrimStartEnd": "error",
+        "useThrowOnlyError": "error",
+        "useThrowNewError": "error",
+        "useTemplate": "error",
+        "useSingleVarDeclarator": "error",
         "useImportType": {
           "level": "error",
           "fix": "safe",
@@ -106,7 +112,7 @@
           "options": {
             "paths": {
               "next/link": {
-                "message": "Please import from `@/i18n/routing` instead."
+                "message": "Please import from `@/ui/link` instead."
               },
               "next/navigation": {
                 "message": "Please import from `@/i18n/routing` instead.",
@@ -163,7 +169,10 @@
         "noEmptyPattern": "error",
         "noInnerDeclarations": "error",
         "noInvalidBuiltinInstantiation": "error",
-        "noNodejsModules": "error",
+        "noNodejsModules": {
+          "level": "error",
+          "options": {}
+        },
         "noPrecisionLoss": "error",
         "noRenderReturnValue": "error",
         "noSelfAssign": "error",
@@ -207,7 +216,11 @@
         "useIndexOf": "error",
         "noGlobalDirnameFilename": "error",
         "noNestedComponentDefinitions": "error",
-        "noProcessGlobal": "error",
+        "noProcessGlobal": {
+          "level": "error",
+          "fix": "safe",
+          "options": {}
+        },
         "noRestrictedElements": {
           "level": "error",
           "options": {
@@ -221,12 +234,51 @@
         "useUniqueElementIds": "error",
         "noFloatingPromises": "error",
         "noImportCycles": "error",
-        "noMisusedPromises": "error"
+        "noMisusedPromises": "error",
+        "noAwaitInLoop": "error",
+        "noBitwiseOperators": "error",
+        "noConstantBinaryExpression": "error",
+        "noReactPropAssign": "error",
+        "noImportantStyles": "error",
+        "noNoninteractiveElementInteractions": "error",
+        "noNonNullAssertedOptionalChain": "error",
+        "noShadow": "error",
+        "noTsIgnore": "error",
+        "noUnassignedVariables": "error",
+        "noUnknownAtRule": "error",
+        "noUnnecessaryConditions": "error",
+        "useUnifiedTypeSignature": "error",
+        "useSortedClasses": {
+          "level": "error",
+          "fix": "safe",
+          "options": {
+            "attributes": ["className"],
+            "functions": ["cn", "tv"]
+          }
+        },
+        "useObjectSpread": "error",
+        "useNumericSeparators": "error",
+        "useIterableCallbackReturn": "error",
+        "useExportsLast": "error",
+        "useExhaustiveSwitchCases": "error",
+        "useConsistentObjectDefinition": "error",
+        "noUselessUndefined": "error",
+        "noUselessEscapeInString": "error",
+        "noUselessBackrefInRegex": "error",
+        "noUnwantedPolyfillio": "error",
+        "useConsistentTypeDefinitions": {
+          "level": "error",
+          "fix": "safe",
+          "options": {
+            "style": "type"
+          }
+        }
       }
     },
     "domains": {
-      "next": "recommended",
-      "react": "recommended"
+      "next": "all",
+      "react": "all",
+      "tailwind": "all"
     }
   },
   "javascript": {
@@ -234,6 +286,9 @@
       "quoteStyle": "single",
       "bracketSpacing": true,
       "semicolons": "always"
+    },
+    "assist": {
+      "enabled": true
     },
     "linter": {
       "enabled": true

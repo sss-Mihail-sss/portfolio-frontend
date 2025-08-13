@@ -6,8 +6,8 @@ import { Slot } from '@/ui/slot';
 
 const buttonVariants = tv({
   base: [
-    'inline-flex items-center justify-center gap-2 whitespace-nowrap transition-all font-medium cursor-pointer',
-    'disabled:pointer-events-none disabled:text-on-disabled disabled:bg-neutral disabled:opacity-30',
+    'inline-flex cursor-pointer items-center justify-center gap-2 whitespace-nowrap font-medium transition-all',
+    'disabled:pointer-events-none disabled:bg-neutral disabled:text-on-disabled disabled:opacity-30',
     'focus-visible:outline-2 focus-visible:outline-offset-2',
   ],
   variants: {
@@ -25,11 +25,11 @@ const buttonVariants = tv({
       info: '',
     },
     size: {
-      default: 'rounded-md h-10 py-2 px-3',
-      xs: 'text-sm rounded-md h-7 py-1 px-2',
-      sm: 'text-sm rounded-md h-8 py-1.5 px-2.5',
-      lg: 'text-lg rounded-md h-12 py-3 px-4.5',
-      xl: 'text-lg rounded-md h-14 py-4 px-6',
+      default: 'h-10 rounded-md px-3 py-2',
+      xs: 'h-7 rounded-md px-2 py-1 text-sm',
+      sm: 'h-8 rounded-md px-2.5 py-1.5 text-sm',
+      lg: 'h-12 rounded-md px-4.5 py-3 text-lg',
+      xl: 'h-14 rounded-md px-6 py-4 text-lg',
       'sq-xs': '',
       'sq-sm': '',
       'sq-md': '',
@@ -46,7 +46,7 @@ const buttonVariants = tv({
     {
       variant: 'default',
       color: 'default',
-      className: 'text-on-neutral bg-neutral hover:bg-neutral-hover active:bg-neutral-press',
+      className: 'bg-neutral text-on-neutral hover:bg-neutral-hover active:bg-neutral-press',
     },
     {
       variant: 'outline',
@@ -61,7 +61,7 @@ const buttonVariants = tv({
     {
       variant: 'default',
       color: 'brand',
-      className: 'text-on-brand bg-brand hover:bg-brand-hover active:bg-brand-press',
+      className: 'bg-brand text-on-brand hover:bg-brand-hover active:bg-brand-press',
     },
     {
       variant: 'outline',
@@ -76,7 +76,7 @@ const buttonVariants = tv({
     {
       variant: 'default',
       color: 'danger',
-      className: 'text-on-danger bg-danger hover:bg-danger-hover active:bg-danger-press',
+      className: 'bg-danger text-on-danger hover:bg-danger-hover active:bg-danger-press',
     },
     {
       variant: 'outline',
@@ -91,7 +91,7 @@ const buttonVariants = tv({
     {
       variant: 'default',
       color: 'warning',
-      className: 'text-on-warning bg-warning hover:bg-warning-hover active:bg-warning-press',
+      className: 'bg-warning text-on-warning hover:bg-warning-hover active:bg-warning-press',
     },
     {
       variant: 'outline',
@@ -106,7 +106,7 @@ const buttonVariants = tv({
     {
       variant: 'default',
       color: 'success',
-      className: 'text-on-success bg-success hover:bg-success-hover active:bg-success-press',
+      className: 'bg-success text-on-success hover:bg-success-hover active:bg-success-press',
     },
     {
       variant: 'outline',
@@ -121,7 +121,7 @@ const buttonVariants = tv({
     {
       variant: 'default',
       color: 'info',
-      className: 'text-on-info bg-info hover:bg-info-hover active:bg-info-press',
+      className: 'bg-info text-on-info hover:bg-info-hover active:bg-info-press',
     },
     {
       variant: 'outline',

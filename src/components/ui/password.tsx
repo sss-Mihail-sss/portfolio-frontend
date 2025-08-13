@@ -34,7 +34,7 @@ function PasswordToggle({ className, ...props }: PasswordToggleProps) {
       className={cn(
         buttonVariants({ size: 'sq-xs', variant: 'ghost' }),
         className,
-        'absolute top-1/2 -translate-y-1/2 right-1',
+        '-translate-y-1/2 absolute top-1/2 right-1',
       )}
       {...props}
     >

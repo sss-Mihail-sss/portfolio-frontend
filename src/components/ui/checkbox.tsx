@@ -13,12 +13,12 @@ function Checkbox({ className, ...props }: CheckboxProps) {
     <CheckboxPrimitive.Root
       data-slot="checkbox"
       className={cn(
-        'group peer flex items-center justify-center transition-all bg-base-input border border-base-border-input shrink-0 size-4.5 rounded-md',
-        'not-disabled:data-[state=checked]:bg-base-input-on not-disabled:data-[state=checked]:border-base-input-on',
-        'not-disabled:data-[state=indeterminate]:bg-base-input-on not-disabled:data-[state=indeterminate]:border-base-input-on',
-        'focus-visible:bg-base-input-focus focus-visible:border-base-border-focus focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-base-border-focus',
+        'group peer flex size-4.5 shrink-0 items-center justify-center rounded-md border border-base-border-input bg-base-input transition-all',
+        'not-disabled:data-[state=checked]:border-base-input-on not-disabled:data-[state=checked]:bg-base-input-on',
+        'not-disabled:data-[state=indeterminate]:border-base-input-on not-disabled:data-[state=indeterminate]:bg-base-input-on',
+        'focus-visible:border-base-border-focus focus-visible:bg-base-input-focus focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-base-border-focus focus-visible:ring-offset-1',
         'aria-invalid:border-negative-border-accent',
-        'disabled:bg-neutral-accent disabled:border-neutral-accent disabled:opacity-40',
+        'disabled:border-neutral-accent disabled:bg-neutral-accent disabled:opacity-40',
         className,
       )}
       {...props}
@@ -27,8 +27,8 @@ function Checkbox({ className, ...props }: CheckboxProps) {
         data-slot="checkbox-indicator"
         className="inline-flex items-center justify-center"
       >
-        <MinusIcon className="size-3 text-white-accent-fg stroke-4 hidden group-data-[state=indeterminate]:block" />
-        <CheckIcon className="size-3 text-white-accent-fg stroke-4 hidden group-data-[state=checked]:block" />
+        <MinusIcon className="hidden size-3 stroke-4 text-white-accent-fg group-data-[state=indeterminate]:block" />
+        <CheckIcon className="hidden size-3 stroke-4 text-white-accent-fg group-data-[state=checked]:block" />
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
   );

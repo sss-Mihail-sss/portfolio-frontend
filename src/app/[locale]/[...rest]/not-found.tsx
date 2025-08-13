@@ -12,10 +12,10 @@ export default async function GlobalNotFound() {
   // });
 
   return (
-    <div className="flex-1 flex flex-col gap-4 items-center justify-center">
-      <h3 className="text-7xl font-medium">404</h3>
+    <div className="flex flex-1 flex-col items-center justify-center gap-4">
+      <h3 className="font-medium text-7xl">404</h3>
       <h1 className="text-4xl">{t('title')}</h1>
-      <h2 className="text-xl font-light">{t('description')}</h2>
+      <h2 className="font-light text-xl">{t('description')}</h2>
       <Button asChild>
         <Link href="/">Go home</Link>
       </Button>

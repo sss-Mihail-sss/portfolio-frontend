@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import type { VariantProps } from 'tailwind-variants';
 
 import { Button, buttonVariants } from '@/ui/button';
@@ -11,13 +11,15 @@ import { Table, TableBody, TableCell, TableRow } from '@/ui/table';
 import { ToggleGroup, ToggleGroupItem } from '@/ui/toggle-group';
 
 export default function ButtonPage() {
+  const switchId = useId();
+
   const [label, setLabel] = useState<string>('Button');
   const [isDisabled, setDisabled] = useState<boolean>(false);
   const [props, setProps] = useState<VariantProps<typeof buttonVariants>>();
 
   return (
-    <div className="h-dvh flex flex-col">
-      <div className="h-100 flex items-center justify-center">
+    <div className="flex h-dvh flex-col">
+      <div className="flex h-100 items-center justify-center">
         <Button
           disabled={isDisabled}
           {...props}
@@ -42,11 +44,11 @@ export default function ButtonPage() {
               </TableRow>
               <TableRow>
                 <TableCell>
-                  <Label htmlFor="disabled">Disabled</Label>
+                  <Label htmlFor={switchId}>Disabled</Label>
                 </TableCell>
                 <TableCell>
                   <Switch
-                    id="disabled"
+                    id={switchId}
                     checked={isDisabled}
                     onCheckedChange={setDisabled}
                   />
@@ -68,10 +70,10 @@ export default function ButtonPage() {
                         }
                       }}
                     >
-                      {Object.keys(values).map((variant) => (
+                      {Object.keys(values).map((value) => (
                         <ToggleGroupItem
-                          key={variant}
-                          value={variant}
+                          key={value}
+                          value={value}
                         >
                           {variant}
                         </ToggleGroupItem>

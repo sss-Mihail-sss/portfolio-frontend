@@ -47,7 +47,7 @@ function AppSidebar() {
                   <SidebarMenuButton>
                     <ShieldUserIcon />
                     User Management
-                    <ChevronDownIcon className="group-data-[state=open]:rotate-180 ml-auto" />
+                    <ChevronDownIcon className="ml-auto group-data-[state=open]:rotate-180" />
                   </SidebarMenuButton>
                 </CollapsibleTrigger>
                 <CollapsibleContent asChild>
@@ -73,7 +73,7 @@ function AppSidebar() {
       </SidebarContent>
 
       <SidebarFooter>
-        <span className="text-xs text-muted text-center">Powered by Mihai</span>
+        <span className="text-center text-muted text-xs">Powered by Mihai</span>
       </SidebarFooter>
     </Sidebar>
   );

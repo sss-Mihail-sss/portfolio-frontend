@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useId, useState } from 'react';
 
 import { Checkbox } from '@/ui/checkbox';
 import { Label } from '@/ui/label';
@@ -8,6 +8,7 @@ import { Switch } from '@/ui/switch';
 import { Table, TableBody, TableCell, TableRow } from '@/ui/table';
 
 export default function CheckboxPage() {
+  const switchId = useId();
   const [isDisabled, setDisabled] = useState<boolean>(false);
 
   const options = [
@@ -29,8 +30,8 @@ export default function CheckboxPage() {
   ];
 
   return (
-    <div className="h-dvh flex flex-col">
-      <div className="h-100 flex items-center justify-center">
+    <div className="flex h-dvh flex-col">
+      <div className="flex h-100 items-center justify-center">
         <div className="flex flex-col">
           {options.map((option) => (
             <div
@@ -54,11 +55,11 @@ export default function CheckboxPage() {
             <TableBody>
               <TableRow>
                 <TableCell>
-                  <Label htmlFor="disabled">Disabled</Label>
+                  <Label htmlFor={switchId}>Disabled</Label>
                 </TableCell>
                 <TableCell>
                   <Switch
-                    id="disabled"
+                    id={switchId}
                     checked={isDisabled}
                     onCheckedChange={setDisabled}
                   />

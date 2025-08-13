@@ -27,8 +27,8 @@ export default async function LoginPage({ params }: Props) {
   return (
     <>
       <div className="text-center">
-        <h1 className="text-2xl font-bold">{t('form.login.title')}</h1>
-        <p className="text-balance text-sm text-muted-fg">{t('form.login.description')}</p>
+        <h1 className="font-bold text-2xl">{t('form.login.title')}</h1>
+        <p className="text-balance text-muted-fg text-sm">{t('form.login.description')}</p>
       </div>
 
       <Tabs

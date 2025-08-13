@@ -29,12 +29,12 @@ function toast({ onDismiss, onAutoClose, ...props }: Omit<Toaster, 'id'>) {
 
 function Toast({ id, title, description, icon, type, action, cancel }: Omit<Toaster, 'onDismiss' | 'onAutoClose'>) {
   return (
-    <div className="flex rounded-lg bg-bg shadow w-full md:w-92 max-w-full items-center p-4">
+    <div className="flex w-full max-w-full items-center rounded-lg bg-bg p-4 shadow md:w-92">
       {!!icon && <Slot>icon</Slot>}
       <div className="w-full">
-        <p className="text-xs font-medium text-fg">{typeof title === 'function' ? title() : title}</p>
+        <p className="font-medium text-fg text-xs">{typeof title === 'function' ? title() : title}</p>
         {!!description && (
-          <p className="text-sm text-muted-fg">{typeof description === 'function' ? description() : description}</p>
+          <p className="text-muted-fg text-sm">{typeof description === 'function' ? description() : description}</p>
         )}
       </div>
     </div>

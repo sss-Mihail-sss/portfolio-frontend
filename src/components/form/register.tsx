@@ -45,7 +45,7 @@ const RegisterForm = () => {
     toast('You submitted the following values:', {
       description: (
         <pre className="mt-2 rounded-md bg-slate-950 p-4">
-          <code className="text-white whitespace-pre-wrap">{JSON.stringify(values, null, 2)}</code>
+          <code className="whitespace-pre-wrap text-white">{JSON.stringify(values, null, 2)}</code>
         </pre>
       ),
     });
@@ -55,11 +55,11 @@ const RegisterForm = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col px-4 py-8 xs:px-12 md:px-24 w-full md:w-lg gap-6"
+        className="flex w-full flex-col gap-6 px-4 xs:px-12 py-8 md:w-lg md:px-24"
       >
         <div className="text-center">
-          <h1 className="text-2xl font-bold">Create account</h1>
-          <p className="text-balance text-sm text-muted-foreground">
+          <h1 className="font-bold text-2xl">Create account</h1>
+          <p className="text-balance text-muted-foreground text-sm">
             Enter your username below to login to your account
           </p>
         </div>

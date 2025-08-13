@@ -1,16 +1,17 @@
 'use client';
 
 import type { MapProps } from '@vis.gl/react-google-maps';
-import { APIProvider, Map } from '@vis.gl/react-google-maps';
+import { APIProvider, Map as GoogleMap } from '@vis.gl/react-google-maps';
 
 import { LocationPickerAutocomplete } from '@/components/google/location-picker-autocomplete';
+import { env } from '@/config/env';
 
 type Props = MapProps;
 
 const defaultOptions: Partial<MapProps> = {
   defaultCenter: {
-    lat: 47.0147319,
-    lng: 28.8421226,
+    lat: 47.014_731_9,
+    lng: 28.842_122_6,
   },
   defaultZoom: 12,
   cameraControl: false,
@@ -26,7 +27,7 @@ const defaultOptions: Partial<MapProps> = {
 };
 
 const LocationPicker = ({ ...props }: Props) => {
-  if (!process.env.GOOGLE_PLACE_API_KEY) {
+  if (!env.googlePlaceKey) {
     return;
   }
 
@@ -36,10 +37,10 @@ const LocationPicker = ({ ...props }: Props) => {
   };
 
   return (
-    <APIProvider apiKey={process.env.GOOGLE_PLACE_API_KEY}>
+    <APIProvider apiKey={env.googlePlaceKey}>
       <LocationPickerAutocomplete />
 
-      <Map {...options} />
+      <GoogleMap {...options} />
     </APIProvider>
   );
 };

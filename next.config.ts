@@ -1,13 +1,18 @@
 import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
 
-import { FileNames } from '@/config/i18n';
-
 const withNextIntl = createNextIntlPlugin({
   experimental: {
-    createMessagesDeclaration: FileNames
+    createMessagesDeclaration: [
+      './messages/en/common.json',
+      './messages/en/error.json',
+      './messages/en/form.json',
+      './messages/en/meta.json',
+      './messages/en/navigation.json',
+      './messages/en/validation.json',
+    ]
   },
-  requestConfig: './src/i18n/request.ts'
+  requestConfig: './src/config/i18n/request.ts'
 });
 
 const nextConfig: NextConfig = {

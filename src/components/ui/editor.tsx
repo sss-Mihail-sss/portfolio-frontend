@@ -39,9 +39,9 @@ function TextEditor({ className, content, placeholder, onChange, extensions, lim
         class: 'outline-none',
       },
     },
-    content: content,
-    onUpdate({ editor }) {
-      const value = editor.getJSON();
+    content,
+    onUpdate({ editor: editorUpdate }) {
+      const value = editorUpdate.getJSON();
       onChange(value);
     },
   });
@@ -52,9 +52,9 @@ function TextEditor({ className, content, placeholder, onChange, extensions, lim
 
   return (
     <EditorContext value={{ editor }}>
-      <div className={cn('overflow-auto relative border rounded', className)}>
+      <div className={cn('relative overflow-auto rounded border', className)}>
         {extensions && extensions.length > 0 && (
-          <div className="flex flex-wrap items-center p-2 border-b divide-x *:px-2 *:first:pl-0 *:last:pr-0">
+          <div className="flex flex-wrap items-center divide-x border-b p-2 *:px-2 *:first:pl-0 *:last:pr-0">
             {extensions.includes('heading') && (
               <div>
                 <HeadingSelect />
@@ -91,9 +91,9 @@ function TextEditor({ className, content, placeholder, onChange, extensions, lim
           </div>
         )}
 
-        {extensions && extensions.some((ext) => ['bold', 'italic', 'underline', 'strike', 'code'].includes(ext)) && (
+        {extensions?.some((ext) => ['bold', 'italic', 'underline', 'strike', 'code'].includes(ext)) && (
           <BubbleMenu editor={editor}>
-            <div className="relative flex bg-background shadow rounded-xs">
+            <div className="relative flex rounded-xs bg-background shadow">
               {extensions.includes('bold') && <Bold />}
               {extensions.includes('italic') && <Italic />}
               {extensions.includes('underline') && <Underline />}
@@ -104,7 +104,7 @@ function TextEditor({ className, content, placeholder, onChange, extensions, lim
         )}
 
         {!!limit && (
-          <div className="absolute text-xs bottom-0 right-1">
+          <div className="absolute right-1 bottom-0 text-xs">
             <span>
               {editor.storage.characterCount.characters()} / {limit}
             </span>

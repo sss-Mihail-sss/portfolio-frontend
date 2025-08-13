@@ -1,27 +1,55 @@
-import deepmerge from 'deepmerge';
-import type { AbstractIntlMessages } from 'next-intl';
-import { hasLocale } from 'next-intl';
+import { all } from 'deepmerge';
+import { type AbstractIntlMessages, type Formats, hasLocale, IntlErrorCode } from 'next-intl';
 import { getRequestConfig } from 'next-intl/server';
 
-import { formats } from '@/config/i18n';
 import { defaultLocale, locales } from '@/config/i18n/routing';
-import { getLanguage, getMessageFallback, loadMessages, onError } from '@/lib/intl';
+import { getLanguage } from '@/lib/utils';
+
+export const formats: Formats = {
+  dateTime: {
+    'date-short': {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+    },
+  },
+};
 
 export default getRequestConfig(async ({ requestLocale }) => {
   const requested = await requestLocale;
   const locale = hasLocale(locales, requested) ? requested : defaultLocale;
   const language = getLanguage(locale);
-  const defaultLanguage = getLanguage(defaultLocale);
 
-  const defaultMessages: AbstractIntlMessages = await loadMessages(defaultLanguage);
-  const messages: AbstractIntlMessages = await loadMessages(language);
+  const messages: AbstractIntlMessages = all({
+    ...(await import(`../../messages/${language}/common.json`)).default,
+    meta: (await import(`../../messages/${language}/meta.json`)).default,
+    form: (await import(`../../messages/${language}/form.json`)).default,
+    error: (await import(`../../messages/${language}/error.json`)).default,
+    navigation: (await import(`../../messages/${language}/navigation.json`)).default,
+    validation: (await import(`../../messages/${language}/validation.json`)).default,
+  }) as AbstractIntlMessages;
 
   return {
     locale,
-    messages: deepmerge(defaultMessages, messages),
+    messages,
     timeZone: 'Europe/Chisinau',
-    onError,
-    getMessageFallback,
+    onError(error) {
+      if (error.code === IntlErrorCode.MISSING_MESSAGE) {
+        console.error('Intl error', error);
+      } else {
+        throw error;
+      }
+    },
+    getMessageFallback(info) {
+      const { error, key, namespace } = info;
+      const path = [namespace, key].filter((part) => part != null).join('.');
+      console.error('Intl fallback', key, error, namespace);
+
+      if (error.code === IntlErrorCode.MISSING_MESSAGE) {
+        return `${path} is not yet translated`;
+      }
+      return `Dear developer, please fix this message: ${path}`;
+    },
     formats,
   };
 });

@@ -4,7 +4,6 @@ import createMiddleware from 'next-intl/middleware';
 
 import { routing } from '@/config/i18n/routing';
 import { refresh } from '@/lib/api/auth';
-import { getCookie } from '@/lib/cookie';
 
 const withIntl = createMiddleware(routing);
 
@@ -18,8 +17,8 @@ export async function middleware(request: NextRequest) {
     return withIntl(request);
   }
 
-  const accessToken = await getCookie('accessToken');
-  const refreshToken = await getCookie('refreshToken');
+  const accessToken = request.cookies.get('accessToken');
+  const refreshToken = request.cookies.get('refreshToken');
 
   console.log(`Access Token: ${accessToken?.value}`);
   console.log(`Refresh Token: ${refreshToken?.value}`);

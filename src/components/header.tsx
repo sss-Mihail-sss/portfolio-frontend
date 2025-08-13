@@ -5,27 +5,27 @@ import { Link } from '@/ui/link';
 
 const Header = async () => {
   return (
-    <header className="sticky w-full bottom-0 md:top-0 bg-card shadow flex items-center md:h-20 py-4 z-10">
+    <header className="sticky bottom-0 z-10 flex w-full items-center bg-card py-4 shadow md:top-0 md:h-20">
       <div className="container-wrapper flex items-center justify-between">
         <Logo className="hidden md:block" />
 
-        <nav className="flex items-center justify-between md:justify-center w-full md:w-auto gap-4 md:[&>a]:underline-offset-4">
+        <nav className="flex w-full items-center justify-between gap-4 md:w-auto md:justify-center md:[&>a]:underline-offset-4">
           <Link
-            variant="underline"
+            underline
             href="/"
           >
             <House className="md:hidden" />
             <span className="hidden md:block">Home</span>
           </Link>
           <Link
-            variant="underline"
+            underline
             href="/about"
           >
             <Search className="md:hidden" />
             <span className="hidden md:block">About</span>
           </Link>
           <Link
-            variant="underline"
+            underline
             href="/contact"
           >
             <User className="md:hidden" />

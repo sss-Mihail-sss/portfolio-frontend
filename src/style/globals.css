@@ -150,8 +150,7 @@
   --text-color-on-danger: var(--on-background-danger);
 
   /* Foreground */
-  --text-color-foreground: var(--foreground-default);
-  --text-color-default: var(--foreground-default);
+  --text-color-base: var(--foreground-base);
   --text-color-disabled: var(--foreground-disabled);
   --text-color-support: var(--foreground-support);
   --text-color-brand: var(--foreground-brand);

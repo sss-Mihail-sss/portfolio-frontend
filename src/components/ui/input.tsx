@@ -9,11 +9,11 @@ function Input({ className, ...props }: InputProps) {
     <input
       data-slot="input"
       className={cn(
-        'h-10 border bg-base-input border-base-border-input rounded-md py-2 px-2.5 text-label text-neutral-accent-fg outline-none transition',
+        'h-10 rounded-md border border-base-border-input bg-base-input px-2.5 py-2 text-label text-neutral-accent-fg outline-none transition',
         'placeholder:text-base-placeholder-fg',
-        'focus-visible:ring-2 focus-visible:ring-base-border-input-focus focus-visible:border-base-border-input-focus',
+        'focus-visible:border-base-border-input-focus focus-visible:ring-2 focus-visible:ring-base-border-input-focus',
         'aria-invalid:border-negative-border-accent',
-        'disabled:opacity-40 disabled:bg-base-input-disabled',
+        'disabled:bg-base-input-disabled disabled:opacity-40',
         className,
       )}
       {...props}

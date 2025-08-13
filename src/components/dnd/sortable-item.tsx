@@ -1,27 +1,44 @@
-import type { UniqueIdentifier } from '@dnd-kit/core';
-import { useSortable } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
+import type { UseSortableInput } from '@dnd-kit/react/sortable';
+import { useSortable } from '@dnd-kit/react/sortable';
 import type { ReactNode } from 'react';
+
+import { cn, tv } from '@/lib/utils';
 
 type Props = {
   children: ReactNode;
-  id: UniqueIdentifier;
-};
+  className?: string;
+} & UseSortableInput;
 
-const SortableItem = ({ children, id }: Props) => {
-  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
+const sortableVariants = tv({
+  base: '',
+  variants: {
+    isDropTarget: {
+      true: '',
+      false: '',
+    },
+    isDragging: {
+      true: '',
+      false: '',
+    },
+    isDragSource: {
+      true: '',
+      false: '',
+    },
+    isDropping: {
+      true: '',
+      false: '',
+    },
+  },
+});
 
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-  };
+const SortableItem = ({ children, className, ...props }: Props) => {
+  const { ref, isDropTarget, isDragging, isDragSource, isDropping } = useSortable(props);
 
   return (
     <div
-      ref={setNodeRef}
-      {...attributes}
-      {...listeners}
-      style={style}
+      data-slot="sortable-item"
+      ref={ref}
+      className={cn(sortableVariants({ isDropTarget, isDragging, isDragSource, isDropping }), className)}
     >
       {children}
     </div>

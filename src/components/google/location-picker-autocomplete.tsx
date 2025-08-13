@@ -1,4 +1,5 @@
 'use client';
+
 import { useQuery } from '@tanstack/react-query';
 import { ControlPosition, MapControl, useMap, useMapsLibrary } from '@vis.gl/react-google-maps';
 import { useEffect, useState } from 'react';
@@ -18,7 +19,7 @@ const LocationPickerAutocomplete = () => {
   const addressSearchDebounce = useDebounce(addressSearch, 1000);
 
   useEffect(() => {
-    if (!places || !map) {
+    if (!(places && map)) {
       return;
     }
 
@@ -51,7 +52,7 @@ const LocationPickerAutocomplete = () => {
     <MapControl position={ControlPosition.TOP_CENTER}>
       <div className="p-4">
         <Input
-          className="bg-background w-72 max-w-full"
+          className="w-72 max-w-full bg-background"
           placeholder="Search address"
           value={addressSearch}
           onChange={(event) => setAddressSearch(event.target.value)}

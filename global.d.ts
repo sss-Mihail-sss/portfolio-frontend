@@ -1,5 +1,4 @@
-import { routing } from '@/config/i18n/routing';
-import { formats } from '@/config/i18n';
+import { formats, routing } from '@/config/i18n/routing';
 
 const defaultMessages = {
   ...(await import('./messages/en/common.json')).default,

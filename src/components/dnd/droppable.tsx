@@ -1,32 +1,34 @@
 'use client';
-import { useDroppable } from '@dnd-kit/core';
+
+import type { UseDroppableInput } from '@dnd-kit/react';
+import { useDroppable } from '@dnd-kit/react';
 import type { ReactNode } from 'react';
 
 import { cn, tv } from '@/lib/utils';
 
+type Props = {
+  children?: ReactNode;
+  className?: string;
+} & UseDroppableInput;
+
 const droppableVariants = tv({
   base: '',
   variants: {
-    isOver: {
+    isDropTarget: {
       true: 'bg-blue-200',
       false: '',
     },
   },
 });
 
-type Props = {
-  children?: ReactNode;
-  className?: string;
-  id: string;
-};
-
-const Droppable = ({ children, className, id }: Props) => {
-  const { isOver, setNodeRef } = useDroppable({ id });
+const Droppable = ({ children, className, ...props }: Props) => {
+  const { ref, isDropTarget } = useDroppable(props);
 
   return (
     <div
-      ref={setNodeRef}
-      className={cn(className, droppableVariants({ isOver }))}
+      data-slot="droppable"
+      ref={ref}
+      className={cn(droppableVariants({ isDropTarget }), className)}
     >
       {children}
     </div>

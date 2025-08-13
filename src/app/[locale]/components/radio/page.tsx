@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useId, useState } from 'react';
 
 import { Label } from '@/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/ui/radio-group';
@@ -8,6 +8,7 @@ import { Switch } from '@/ui/switch';
 import { Table, TableBody, TableCell, TableRow } from '@/ui/table';
 
 export default function RadioPage() {
+  const switchId = useId();
   const [isDisabled, setDisabled] = useState<boolean>(false);
 
   const options = [
@@ -29,8 +30,8 @@ export default function RadioPage() {
   ];
 
   return (
-    <div className="h-dvh flex flex-col">
-      <div className="h-100 flex items-center justify-center">
+    <div className="flex h-dvh flex-col">
+      <div className="flex h-100 items-center justify-center">
         <RadioGroup
           disabled={isDisabled}
           className="flex flex-col"
@@ -57,11 +58,11 @@ export default function RadioPage() {
             <TableBody>
               <TableRow>
                 <TableCell>
-                  <Label htmlFor="disabled">Disabled</Label>
+                  <Label htmlFor={switchId}>Disabled</Label>
                 </TableCell>
                 <TableCell>
                   <Switch
-                    id="disabled"
+                    id={switchId}
                     checked={isDisabled}
                     onCheckedChange={setDisabled}
                   />

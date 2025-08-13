@@ -1,33 +1,42 @@
 'use client';
 
-import type { UseDraggableArguments } from '@dnd-kit/core';
-import { useDraggable } from '@dnd-kit/core';
+import type { UseDraggableInput } from '@dnd-kit/react';
+import { useDraggable } from '@dnd-kit/react';
 import type { ReactNode } from 'react';
 
-import { tv } from '@/lib/utils';
+import { cn, tv } from '@/lib/utils';
 
 type Props = {
   children: ReactNode;
-} & UseDraggableArguments;
+  className?: string;
+} & UseDraggableInput;
 
-const draggable = tv({
+const draggableVariants = tv({
   base: '',
   variants: {
     isDragging: {
       true: 'opacity-50',
+      false: '',
+    },
+    isDragSource: {
+      true: '',
+      false: '',
+    },
+    isDropping: {
+      true: '',
+      false: '',
     },
   },
 });
 
-const Draggable = ({ children, ...props }: Props) => {
-  const { attributes, listeners, setNodeRef, isDragging } = useDraggable(props);
+const Draggable = ({ children, className, ...props }: Props) => {
+  const { ref, isDragging, isDragSource, isDropping } = useDraggable(props);
 
   return (
     <div
-      ref={setNodeRef}
-      {...listeners}
-      {...attributes}
-      className={draggable({ isDragging })}
+      data-slot="draggable"
+      ref={ref}
+      className={cn(draggableVariants({ isDragging, isDragSource, isDropping }), className)}
     >
       {children}
     </div>
