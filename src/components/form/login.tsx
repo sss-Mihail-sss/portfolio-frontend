@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 
 import { useRouter } from '@/config/i18n/navigation';
-import { signIn } from '@/lib/api/auth';
+import { useSignInMutation } from '@/lib/mutations/auth';
 import { type SignInSchema, signInSchema } from '@/schemas/sign-in';
 import { Button } from '@/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/ui/form';
@@ -16,25 +16,9 @@ import { Password, PasswordInput, PasswordToggle } from '@/ui/password';
 import { toast } from '@/ui/sonner';
 
 const LoginForm = () => {
-  const { push } = useRouter();
   const t = useTranslations();
-
-  // const signInSchema = z.object({
-  //   identifier: z.string().check(z.trim(), z.minLength(2, t('validation.username-required'))),
-  //   password: z.string().check(
-  //     z.trim(),
-  //     z.minLength(8, t('validation.password-min-length', { length: 8 })),
-  //     z.maxLength(32, t('validation.password-min-length', { length: 32 })),
-  //     // biome-ignore lint/performance/useTopLevelRegex: zod
-  //     z.regex(/[a-zA-Z]/, t('validation.contains-letters')),
-  //     // biome-ignore lint/performance/useTopLevelRegex: zod
-  //     z.regex(/[0-9]/, t('validation.contains-numbers')),
-  //     // biome-ignore lint/performance/useTopLevelRegex: zod
-  //     z.regex(/[^a-zA-Z0-9]/, t('validation.contains-special-characters')),
-  //   ),
-  // });
-  //
-  // type SignInSchema = z.infer<typeof signInSchema>;
+  const { push } = useRouter();
+  const { mutate } = useSignInMutation();
 
   const form = useForm<SignInSchema>({
     resolver: zodResolver(signInSchema),
@@ -45,19 +29,20 @@ const LoginForm = () => {
   });
 
   async function onSubmit(values: SignInSchema) {
-    try {
-      await signIn(values);
-      push({
-        pathname: '/dashboard',
-      });
-    } catch (error) {
-      console.log(error);
-      toast({
-        title: 'Error',
-        description: 'Description',
-        icon: <PlusIcon />,
-      });
-    }
+    mutate(values, {
+      onSuccess: () => {
+        push({
+          pathname: '/dashboard',
+        });
+      },
+      onError: (error: Error) => {
+        toast({
+          title: 'Error',
+          description: error.message,
+          icon: <PlusIcon />,
+        });
+      },
+    });
   }
 
   return (

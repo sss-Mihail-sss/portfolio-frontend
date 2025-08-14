@@ -10,9 +10,39 @@ const defaultOptions: RequestInit = {
   credentials: 'include',
 };
 
-export async function fetcher(input: string | URL, initialOptions: RequestInit = {}) {
+type FetchResponse<T = unknown> =
+  | {
+      message: string;
+      statusCode: number;
+      data?: T;
+    }
+  | {
+      message: string;
+      statusCode: number;
+      error: string;
+    }
+  | {
+      message: string;
+      statusCode: number;
+      data: T[];
+      meta: {
+        page: number;
+        pageSize: number;
+        pageCount: number;
+        rowCount: number;
+      };
+    };
+
+export async function fetcher<T>(input: string | URL, initialOptions: RequestInit = {}): Promise<FetchResponse<T>> {
   const url = new URL(input, env.apiUrl);
   const options = deepmerge(defaultOptions, initialOptions);
 
-  return await fetch(url, options);
+  const response = await fetch(url, options);
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || 'Ошибка на сервере');
+  }
+
+  return await response.json();
 }

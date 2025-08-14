@@ -28,8 +28,7 @@ export async function middleware(request: NextRequest) {
   }
 
   if (refreshToken?.value) {
-    const refreshResponse = await refresh();
-    console.log(refreshResponse);
+    await refresh();
     return NextResponse.redirect(request.url);
   }
 
