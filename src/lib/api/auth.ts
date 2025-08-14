@@ -1,5 +1,5 @@
 import { fetcher } from '@/lib/fetcher';
-import type { SignInSchema } from '@/schemas/auth';
+import type { SignInSchema } from '@/schemas/sign-in';
 
 export async function signIn(data: SignInSchema) {
   const response = await fetcher('/auth/login', {
@@ -20,7 +20,6 @@ export async function refresh() {
   const response = await fetcher('/auth/refresh');
 
   const json: FetchResponse = await response.json();
-  console.log(json);
 
   if (!response.ok) {
     throw new Error('Failed to refresh token');

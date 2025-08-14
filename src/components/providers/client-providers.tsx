@@ -5,13 +5,13 @@ import { ThemeProvider } from 'next-themes';
 import type { ReactNode } from 'react';
 import { Toaster } from 'sonner';
 
-import { getQueryClient } from '@/lib/tanstack';
+import { getQueryClient } from '@/lib/integrations/tanstack';
 
 type Props = {
   children: ReactNode;
 };
 
-const CSRProvider = ({ children }: Props) => {
+const ClientProviders = ({ children }: Props) => {
   const queryClient = getQueryClient();
 
   return (
@@ -21,7 +21,7 @@ const CSRProvider = ({ children }: Props) => {
       disableTransitionOnChange
       defaultTheme="system"
       attribute="class"
-      themes={['light', 'dark']}
+      themes={['light', 'dark', 'light-blue', 'dark-blue']}
     >
       <QueryClientProvider client={queryClient}>
         {children}
@@ -35,4 +35,4 @@ const CSRProvider = ({ children }: Props) => {
   );
 };
 
-export { CSRProvider };
+export { ClientProviders };

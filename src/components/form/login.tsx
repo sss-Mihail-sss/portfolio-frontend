@@ -4,10 +4,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { PlusIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod/v4-mini';
 
 import { useRouter } from '@/config/i18n/navigation';
 import { signIn } from '@/lib/api/auth';
+import { type SignInSchema, signInSchema } from '@/schemas/sign-in';
 import { Button } from '@/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/ui/form';
 import { Input } from '@/ui/input';
@@ -19,22 +19,22 @@ const LoginForm = () => {
   const { push } = useRouter();
   const t = useTranslations();
 
-  const signInSchema = z.object({
-    identifier: z.string().check(z.trim(), z.minLength(2, t('validation.username-required'))),
-    password: z.string().check(
-      z.trim(),
-      z.minLength(8, t('validation.password-min-length', { length: 8 })),
-      z.maxLength(32, t('validation.password-min-length', { length: 32 })),
-      // biome-ignore lint/performance/useTopLevelRegex: zod
-      z.regex(/[a-zA-Z]/, t('validation.contains-letters')),
-      // biome-ignore lint/performance/useTopLevelRegex: zod
-      z.regex(/[0-9]/, t('validation.contains-numbers')),
-      // biome-ignore lint/performance/useTopLevelRegex: zod
-      z.regex(/[^a-zA-Z0-9]/, t('validation.contains-special-characters')),
-    ),
-  });
-
-  type SignInSchema = z.infer<typeof signInSchema>;
+  // const signInSchema = z.object({
+  //   identifier: z.string().check(z.trim(), z.minLength(2, t('validation.username-required'))),
+  //   password: z.string().check(
+  //     z.trim(),
+  //     z.minLength(8, t('validation.password-min-length', { length: 8 })),
+  //     z.maxLength(32, t('validation.password-min-length', { length: 32 })),
+  //     // biome-ignore lint/performance/useTopLevelRegex: zod
+  //     z.regex(/[a-zA-Z]/, t('validation.contains-letters')),
+  //     // biome-ignore lint/performance/useTopLevelRegex: zod
+  //     z.regex(/[0-9]/, t('validation.contains-numbers')),
+  //     // biome-ignore lint/performance/useTopLevelRegex: zod
+  //     z.regex(/[^a-zA-Z0-9]/, t('validation.contains-special-characters')),
+  //   ),
+  // });
+  //
+  // type SignInSchema = z.infer<typeof signInSchema>;
 
   const form = useForm<SignInSchema>({
     resolver: zodResolver(signInSchema),

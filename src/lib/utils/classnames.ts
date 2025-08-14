@@ -14,15 +14,3 @@ export function cn(...inputs: ClassValue[]) {
 export const tv = createTV({
   twMergeConfig: tailwindConfig,
 });
-
-export function parseBoolean(value: string | boolean | null) {
-  if (typeof value === 'boolean') {
-    return value;
-  }
-
-  return value === 'true';
-}
-
-export function getLanguage(locale: string): string {
-  return new Intl.Locale(locale).language;
-}

@@ -3,7 +3,7 @@ import { type AbstractIntlMessages, type Formats, hasLocale, IntlErrorCode } fro
 import { getRequestConfig } from 'next-intl/server';
 
 import { defaultLocale, locales } from '@/config/i18n/routing';
-import { getLanguage } from '@/lib/utils';
+import { getLanguage } from '@/lib/utils/i18n';
 
 export const formats: Formats = {
   dateTime: {
