@@ -1,12 +1,14 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.1.4/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.2.0/schema.json",
   "vcs": {
     "enabled": true,
     "clientKind": "git",
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["src/**/*.{ts,tsx}"]
+    "includes": [
+      "src/**/*.{ts,tsx}"
+    ]
   },
   "formatter": {
     "enabled": true,
@@ -23,7 +25,8 @@
     "enabled": true,
     "rules": {
       "a11y": {
-        "recommended": true
+        "recommended": true,
+        "noNoninteractiveElementInteractions": "error"
       },
       "performance": {
         "noBarrelFile": "error",
@@ -33,15 +36,20 @@
         "noNamespaceImport": "error",
         "noReExportAll": "error",
         "useTopLevelRegex": "error",
-        "noAccumulatingSpread": "error"
+        "noAccumulatingSpread": "error",
+        "noAwaitInLoops": "error",
+        "noUnwantedPolyfillio": "error"
       },
       "security": {
         "noBlankTarget": "error",
         "noDangerouslySetInnerHtml": "error",
         "noDangerouslySetInnerHtmlWithChildren": "error",
-        "noGlobalEval": "error"
+        "noGlobalEval": "error",
+        "noBitwiseOperators": "error"
       },
       "style": {
+        "useNumericSeparators": "error",
+        "useExportsLast": "error",
         "noCommonJs": "error",
         "noUselessElse": "error",
         "noDefaultExport": "error",
@@ -87,7 +95,9 @@
           "level": "error",
           "options": {
             "strictCase": true,
-            "filenameCases": ["kebab-case"]
+            "filenameCases": [
+              "kebab-case"
+            ]
           }
         },
         "useForOf": "error",
@@ -117,15 +127,25 @@
               },
               "next/navigation": {
                 "message": "Please import from `@/i18n/routing` instead.",
-                "importNames": ["redirect", "permanentRedirect", "useRouter", "usePathname"]
+                "importNames": [
+                  "redirect",
+                  "permanentRedirect",
+                  "useRouter",
+                  "usePathname"
+                ]
               },
               "tailwind-variants": {
                 "message": "Please import from `@/lib/utils` instead.",
-                "importNames": ["tv"]
+                "importNames": [
+                  "tv"
+                ]
               }
             }
           }
-        }
+        },
+        "useObjectSpread": "error",
+        "useUnifiedTypeSignatures": "error",
+        "useConsistentObjectDefinitions": "error"
       },
       "complexity": {
         "noAdjacentSpacesInRegex": "error",
@@ -159,7 +179,9 @@
         "useRegexLiterals": "error",
         "useSimpleNumberKeys": "error",
         "useSimplifiedLogicExpression": "error",
-        "useWhile": "error"
+        "useWhile": "error",
+        "useIndexOf": "error",
+        "noImportantStyles": "error"
       },
       "correctness": {
         "noChildrenProp": "error",
@@ -170,10 +192,7 @@
         "noEmptyPattern": "error",
         "noInnerDeclarations": "error",
         "noInvalidBuiltinInstantiation": "error",
-        "noNodejsModules": {
-          "level": "error",
-          "options": {}
-        },
+        "noNodejsModules": "error",
         "noPrecisionLoss": "error",
         "noRenderReturnValue": "error",
         "noSelfAssign": "error",
@@ -208,18 +227,11 @@
         "noUnknownMediaFeatureName": "error",
         "noUnknownFunction": "error",
         "noSetterReturn": "error",
-        "noInvalidGridAreas": "error"
-      },
-      "nursery": {
-        "useImageSize": "error",
-        "useAnchorHref": "error",
-        "useReactFunctionComponents": "error",
-        "useIndexOf": "error",
-        "noGlobalDirnameFilename": "error",
+        "noInvalidGridAreas": "error",
         "noNestedComponentDefinitions": "error",
         "noProcessGlobal": {
-          "level": "error",
           "fix": "safe",
+          "level": "error",
           "options": {}
         },
         "noRestrictedElements": {
@@ -230,43 +242,46 @@
             }
           }
         },
-        "useJsonImportAttribute": "error",
         "useParseIntRadix": "error",
         "useUniqueElementIds": "error",
+        "useJsonImportAttributes": "error",
+        "noReactPropAssignments": "error",
+        "noGlobalDirnameFilename": "error"
+      },
+      "suspicious": {
+        "noUselessRegexBackrefs": "error",
+        "noUselessEscapeInString": "error",
+        "useIterableCallbackReturn": "error",
+        "noUnknownAtRules": "error",
+        "noUnassignedVariables": "error",
+        "noTsIgnore": "error",
+        "noConstantBinaryExpressions": "error"
+      },
+      "nursery": {
+        "useImageSize": "error",
+        "useAnchorHref": "error",
+        "useReactFunctionComponents": "error",
         "noFloatingPromises": "error",
         "noImportCycles": "error",
         "noMisusedPromises": "error",
-        "noAwaitInLoop": "error",
-        "noBitwiseOperators": "error",
-        "noConstantBinaryExpression": "error",
-        "noReactPropAssign": "error",
-        "noImportantStyles": "error",
-        "noNoninteractiveElementInteractions": "error",
         "noNonNullAssertedOptionalChain": "error",
         "noShadow": "error",
-        "noTsIgnore": "error",
-        "noUnassignedVariables": "error",
-        "noUnknownAtRule": "error",
         "noUnnecessaryConditions": "error",
-        "useUnifiedTypeSignature": "error",
         "useSortedClasses": {
           "level": "error",
           "fix": "safe",
           "options": {
-            "attributes": ["className"],
-            "functions": ["cn", "tv"]
+            "attributes": [
+              "className"
+            ],
+            "functions": [
+              "cn",
+              "tv"
+            ]
           }
         },
-        "useObjectSpread": "error",
-        "useNumericSeparators": "error",
-        "useIterableCallbackReturn": "error",
-        "useExportsLast": "error",
         "useExhaustiveSwitchCases": "error",
-        "useConsistentObjectDefinition": "error",
         "noUselessUndefined": "error",
-        "noUselessEscapeInString": "error",
-        "noUselessBackrefInRegex": "error",
-        "noUnwantedPolyfillio": "error",
         "useConsistentTypeDefinitions": {
           "level": "error",
           "fix": "safe",
@@ -310,7 +325,16 @@
         "organizeImports": {
           "level": "on",
           "options": {
-            "groups": [":PACKAGE:", ":BLANK_LINE:", ["@/ui", "@/components"], ":BLANK_LINE:", ":ALIAS:"]
+            "groups": [
+              ":PACKAGE:",
+              ":BLANK_LINE:",
+              [
+                "@/ui",
+                "@/components"
+              ],
+              ":BLANK_LINE:",
+              ":ALIAS:"
+            ]
           }
         }
       }
