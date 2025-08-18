@@ -1,0 +1,9 @@
+:root {
+  --shadow-overlay: 0px 8px 12px rgba(9, 30, 66, 0.15),0px 0px 1px rgba(9, 30, 66, 0.31);
+  --shadow-raised: 0px 1px 1px rgba(9, 30, 66, 0.25),0px 0px 1px rgba(9, 30, 66, 0.31);
+}
+
+.dark {
+  --shadow-overlay: 0px 0px 0px rgba(57, 66, 74, 1),0px 8px 12px rgba(3, 4, 4, 0.36),0px 0px 1px rgba(3, 4, 4, 0.5);
+  --shadow-raised: 0px 0px 0px rgba(0, 0, 0, 0),0px 1px 1px rgba(3, 4, 4, 0.5),0px 0px 1px rgba(3, 4, 4, 0.5);
+}

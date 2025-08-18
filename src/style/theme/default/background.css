@@ -1,7 +1,6 @@
 :root {
   /* Background */
-  --background-page: #F6F2F0FF;
-  --background-selected: #DFE7FF;
+  --background-selected: oklch(0.145 0 0);
   --background-disabled: #CCD5DF;
 
   /* Surface sunken level -1 */
@@ -24,11 +23,16 @@
   --background-surface-overlay-hover: #E8E0DBFF;
   --background-surface-overlay-press: #D3C3BAFF;
 
-  /* Background - neutral */
+  /* Background - Neutral */
   --background-neutral-subtle: oklch(92% 0 0);
   --background-neutral: oklch(0.1776 0 0);
   --background-neutral-hover: oklch(0.2931 0 0);
   --background-neutral-press: oklch(0.4131 0 0);
+
+  /* Background - Input */
+  --background-input: oklch(1 0 0);
+  --background-input-hover: oklch(0.2931 0 0);
+  --background-input-press: oklch(0.4131 0 0);
 
   /* Background - Brand */
   --background-brand-subtle: #E9F2FF;
@@ -62,5 +66,21 @@
 }
 
 .dark {
+  --background-selected: oklch(0.922 0 0);
+
+  /* Surface base */
+  --background-surface: oklch(14.5% 0 0);
+  --background-surface-hover: #E8E0DBFF;
+  --background-surface-press: #D3C3BAFF;
+
+  /* Background - Input */
+  --background-input: oklch(0.2931 0 0);
+  --background-input-hover: oklch(0.2931 0 0);
+  --background-input-press: oklch(0.4131 0 0);
+
+  /* Surface overlay level 2 */
+  --background-surface-overlay: oklch(26.9% 0 0);
+  --background-surface-overlay-hover: #2C333A;
+  --background-surface-overlay-press: #38414A;
 
 }

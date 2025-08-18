@@ -6,9 +6,7 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": [
-      "src/**/*.{ts,tsx}"
-    ]
+    "includes": ["src/**/*.{ts,tsx}"]
   },
   "formatter": {
     "enabled": true,
@@ -44,8 +42,7 @@
         "noBlankTarget": "error",
         "noDangerouslySetInnerHtml": "error",
         "noDangerouslySetInnerHtmlWithChildren": "error",
-        "noGlobalEval": "error",
-        "noBitwiseOperators": "error"
+        "noGlobalEval": "error"
       },
       "style": {
         "useNumericSeparators": "error",
@@ -95,9 +92,7 @@
           "level": "error",
           "options": {
             "strictCase": true,
-            "filenameCases": [
-              "kebab-case"
-            ]
+            "filenameCases": ["kebab-case"]
           }
         },
         "useForOf": "error",
@@ -127,18 +122,11 @@
               },
               "next/navigation": {
                 "message": "Please import from `@/i18n/routing` instead.",
-                "importNames": [
-                  "redirect",
-                  "permanentRedirect",
-                  "useRouter",
-                  "usePathname"
-                ]
+                "importNames": ["redirect", "permanentRedirect", "useRouter", "usePathname"]
               },
               "tailwind-variants": {
                 "message": "Please import from `@/lib/utils` instead.",
-                "importNames": [
-                  "tv"
-                ]
+                "importNames": ["tv"]
               }
             }
           }
@@ -229,11 +217,6 @@
         "noSetterReturn": "error",
         "noInvalidGridAreas": "error",
         "noNestedComponentDefinitions": "error",
-        "noProcessGlobal": {
-          "fix": "safe",
-          "level": "error",
-          "options": {}
-        },
         "noRestrictedElements": {
           "level": "error",
           "options": {
@@ -255,7 +238,64 @@
         "noUnknownAtRules": "error",
         "noUnassignedVariables": "error",
         "noTsIgnore": "error",
-        "noConstantBinaryExpressions": "error"
+        "noConstantBinaryExpressions": "error",
+        "noBitwiseOperators": "error",
+        "noAlert": "error",
+        "noArrayIndexKey": "error",
+        "noAsyncPromiseExecutor": "error",
+        "noCatchAssign": "error",
+        "noConsole": "error",
+        "noConstEnum": "error",
+        "noDocumentCookie": "error",
+        "noDoubleEquals": "error",
+        "noDuplicateAtImportRules": "error",
+        "noDuplicateCase": "error",
+        "noDuplicateCustomProperties": "error",
+        "useNumberToFixedDigitsArgument": "error",
+        "useIsArray": "error",
+        "useGuardForIn": "error",
+        "useGoogleFontDisplay": "error",
+        "useErrorMessage": "error",
+        "useDefaultSwitchClauseLast": "error",
+        "useAdjacentOverloadSignatures": "error",
+        "noWith": "error",
+        "noVar": "error",
+        "noUnsafeNegation": "error",
+        "noUnsafeDeclarationMerging": "error",
+        "noThenProperty": "error",
+        "noTemplateCurlyInString": "error",
+        "noSuspiciousSemicolonInJsx": "error",
+        "noSparseArray": "error",
+        "noShorthandPropertyOverrides": "error",
+        "noShadowRestrictedNames": "error",
+        "noSelfCompare": "error",
+        "noRedeclare": "error",
+        "noPrototypeBuiltins": "error",
+        "noMisrefactoredShorthandAssign": "error",
+        "noIrregularWhitespace": "error",
+        "noImportAssign": "error",
+        "noImportantInKeyframe": "error",
+        "noImplicitAnyLet": "error",
+        "noGlobalIsNan": "error",
+        "noGlobalIsFinite": "error",
+        "noGlobalAssign": "error",
+        "noFunctionAssign": "error",
+        "noFallthroughSwitchClause": "error",
+        "noExtraNonNullAssertion": "error",
+        "noExplicitAny": "error",
+        "noEvolvingTypes": "error",
+        "noEmptyInterface": "error",
+        "noEmptyBlockStatements": "error",
+        "noEmptyBlock": "error",
+        "noDuplicateSelectorsKeyframeBlock": "error",
+        "noDuplicateProperties": "error",
+        "noDuplicateParameters": "error",
+        "noDuplicateObjectKeys": "error",
+        "noDuplicateJsxProps": "error",
+        "noDuplicateFontNames": "error",
+        "noDuplicateElseIf": "error",
+        "noApproximativeNumericConstant": "error",
+        "noAssignInExpressions": "error"
       },
       "nursery": {
         "useImageSize": "error",
@@ -271,13 +311,8 @@
           "level": "error",
           "fix": "safe",
           "options": {
-            "attributes": [
-              "className"
-            ],
-            "functions": [
-              "cn",
-              "tv"
-            ]
+            "attributes": ["className"],
+            "functions": ["cn", "tv"]
           }
         },
         "useExhaustiveSwitchCases": "error",
@@ -325,16 +360,7 @@
         "organizeImports": {
           "level": "on",
           "options": {
-            "groups": [
-              ":PACKAGE:",
-              ":BLANK_LINE:",
-              [
-                "@/ui",
-                "@/components"
-              ],
-              ":BLANK_LINE:",
-              ":ALIAS:"
-            ]
+            "groups": [":PACKAGE:", ":BLANK_LINE:", ["@/ui", "@/components"], ":BLANK_LINE:", ":ALIAS:"]
           }
         }
       }

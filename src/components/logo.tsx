@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils/classnames';
 import { Link } from '@/ui/link';
 
 type Props = {

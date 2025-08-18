@@ -20,14 +20,26 @@ export default getRequestConfig(async ({ requestLocale }) => {
   const locale = hasLocale(locales, requested) ? requested : defaultLocale;
   const language = getLanguage(locale);
 
-  const messages: AbstractIntlMessages = all({
-    ...(await import(`../../messages/${language}/common.json`)).default,
-    meta: (await import(`../../messages/${language}/meta.json`)).default,
-    form: (await import(`../../messages/${language}/form.json`)).default,
-    error: (await import(`../../messages/${language}/error.json`)).default,
-    navigation: (await import(`../../messages/${language}/navigation.json`)).default,
-    validation: (await import(`../../messages/${language}/validation.json`)).default,
-  }) as AbstractIntlMessages;
+  const messages: AbstractIntlMessages = all([
+    {
+      ...(await import(`../../../messages/${language}/common.json`)).default,
+    },
+    {
+      meta: (await import(`../../../messages/${language}/meta.json`)).default,
+    },
+    {
+      form: (await import(`../../../messages/${language}/form.json`)).default,
+    },
+    {
+      error: (await import(`../../../messages/${language}/error.json`)).default,
+    },
+    {
+      navigation: (await import(`../../../messages/${language}/navigation.json`)).default,
+    },
+    {
+      validation: (await import(`../../../messages/${language}/validation.json`)).default,
+    },
+  ]);
 
   return {
     locale,

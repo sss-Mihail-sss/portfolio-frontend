@@ -1,7 +1,7 @@
 import { ChevronRight, MoreHorizontal } from 'lucide-react';
 import type { ComponentProps } from 'react';
 
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils/classnames';
 import { Link } from '@/ui/link';
 
 function Breadcrumb({ ...props }: ComponentProps<'nav'>) {

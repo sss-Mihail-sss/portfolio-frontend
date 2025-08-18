@@ -4,7 +4,7 @@ import { Avatar as AvatarPrimitive } from 'radix-ui';
 import type { ComponentProps } from 'react';
 import type { VariantProps } from 'tailwind-variants';
 
-import { cn, tv } from '@/lib/utils';
+import { cn, tv } from '@/lib/utils/classnames';
 
 const avatarVariants = tv({
   slots: {

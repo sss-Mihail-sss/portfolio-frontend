@@ -1,7 +1,7 @@
 import { RadioGroup as RadioGroupPrimitive } from 'radix-ui';
 import type { ComponentProps } from 'react';
 
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils/classnames';
 
 type RadioGroupProps = ComponentProps<typeof RadioGroupPrimitive.Root>;
 

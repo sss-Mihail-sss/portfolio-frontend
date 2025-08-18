@@ -4,7 +4,7 @@ import { EditorContent, EditorContext, type JSONContent, type UseEditorOptions, 
 
 import type { ExtensionsEnum } from '@/lib/tiptap/extensions';
 import { configureExtensions } from '@/lib/tiptap/extensions';
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils/classnames';
 import { EditorBubbleMenu } from '@/ui/editor/editor-bubble-menu';
 import { EditorCharactersCount } from '@/ui/editor/editor-characters-count';
 import { EditorToolbar } from '@/ui/editor/editor-toolbar';

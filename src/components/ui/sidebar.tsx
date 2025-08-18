@@ -9,7 +9,7 @@ import { Link } from '@/config/i18n/navigation';
 import { SidebarContext } from '@/context/sidebar';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useSidebar } from '@/hooks/use-sidebar';
-import { cn, tv } from '@/lib/utils';
+import { cn, tv } from '@/lib/utils/classnames';
 import { Button } from '@/ui/button';
 import { Separator } from '@/ui/separator';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '@/ui/sheet';

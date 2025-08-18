@@ -1,7 +1,7 @@
 import type { ButtonHTMLAttributes } from 'react';
 import type { VariantProps } from 'tailwind-variants';
 
-import { cn, tv } from '@/lib/utils';
+import { cn, tv } from '@/lib/utils/classnames';
 import { Slot } from '@/ui/slot';
 
 const buttonVariants = tv({
@@ -30,11 +30,6 @@ const buttonVariants = tv({
       sm: 'h-8 rounded-md px-2.5 py-1.5 text-sm',
       lg: 'h-12 rounded-md px-4.5 py-3 text-lg',
       xl: 'h-14 rounded-md px-6 py-4 text-lg',
-      'sq-xs': '',
-      'sq-sm': '',
-      'sq-md': '',
-      'sq-lg': '',
-      'sq-xl': '',
     },
   },
   defaultVariants: {

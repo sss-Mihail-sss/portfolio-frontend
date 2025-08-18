@@ -3,7 +3,6 @@ import type { Locale } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 
 import { LoginForm } from '@/components/form/login';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/ui/tabs';
 
 type Props = {
   params: Promise<{
@@ -26,24 +25,12 @@ export default async function LoginPage({ params }: Props) {
 
   return (
     <>
-      <div className="text-center">
-        <h1 className="font-bold text-2xl">{t('form.login.title')}</h1>
-        <p className="text-balance text-muted-fg text-sm">{t('form.login.description')}</p>
+      <div className="space-y-2 text-center">
+        <h1 className="font-bold text-heading-2xl">{t('form.login.title')}</h1>
+        <p className="text-md text-secondary">{t('form.login.description')}</p>
       </div>
 
-      <Tabs
-        defaultValue="credentials"
-        className="mt-4"
-      >
-        <TabsList>
-          <TabsTrigger value="credentials">Credentials</TabsTrigger>
-          <TabsTrigger value="email">Email</TabsTrigger>
-          <TabsTrigger value="phone">Phone</TabsTrigger>
-        </TabsList>
-        <TabsContent value="credentials">
-          <LoginForm />
-        </TabsContent>
-      </Tabs>
+      <LoginForm />
     </>
   );
 }

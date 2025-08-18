@@ -3,7 +3,7 @@
 import { Popover as PopoverPrimitive } from 'radix-ui';
 import type { ComponentProps } from 'react';
 
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils/classnames';
 
 function Popover({ ...props }: ComponentProps<typeof PopoverPrimitive.Root>) {
   return (

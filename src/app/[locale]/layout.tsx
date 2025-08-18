@@ -6,7 +6,7 @@ import type { ReactNode } from 'react';
 
 import { ClientProviders } from '@/components/providers/client-providers';
 import { ServerProviders } from '@/components/providers/server-providers';
-import { env } from '@/config/env';
+import { envServer } from '@/config/env/server';
 import { locales } from '@/config/i18n/routing';
 import { cn } from '@/lib/utils/classnames';
 import { inter } from '@/lib/utils/font';
@@ -20,7 +20,7 @@ type Props = {
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    metadataBase: new URL(env.webUrl),
+    metadataBase: new URL(envServer.webUrl),
   };
 }
 
@@ -52,7 +52,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           // raleway.variable,
           inter.variable,
           // graduate.variable,
-          'min-h-dvh bg-surface font-inter text-base antialiased',
+          'flex min-h-dvh bg-surface font-inter text-base antialiased',
         )}
       >
         <ServerProviders locale={locale}>

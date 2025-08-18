@@ -4,7 +4,7 @@ import { Separator as SeparatorPrimitive } from 'radix-ui';
 import type { ComponentProps } from 'react';
 import type { VariantProps } from 'tailwind-variants';
 
-import { cn, tv } from '@/lib/utils';
+import { cn, tv } from '@/lib/utils/classnames';
 
 const separatorVariants = tv({
   base: 'shrink-0 bg-border',

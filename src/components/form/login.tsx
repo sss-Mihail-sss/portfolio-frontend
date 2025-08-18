@@ -49,7 +49,7 @@ const LoginForm = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col gap-6"
+        className="mt-6 flex flex-col gap-6"
       >
         <FormField
           name="identifier"
@@ -74,15 +74,15 @@ const LoginForm = () => {
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t('form.login.fields.password.label')}</FormLabel>
-              <FormControl>
-                <Password>
+              <Password>
+                <FormControl>
                   <PasswordInput
                     {...field}
                     placeholder="john@123"
                   />
-                  <PasswordToggle />
-                </Password>
-              </FormControl>
+                </FormControl>
+                <PasswordToggle />
+              </Password>
               <FormMessage />
             </FormItem>
           )}
@@ -95,7 +95,12 @@ const LoginForm = () => {
           {t('forgot-password')}?
         </Link>
 
-        <Button type="submit">{t('submit')}</Button>
+        <Button
+          color="brand"
+          type="submit"
+        >
+          {t('submit')}
+        </Button>
 
         {/*<div className='flex items-center gap-2 text-sm'>*/}
         {/*  <Separator orientation='horizontal' className='flex-1' />*/}

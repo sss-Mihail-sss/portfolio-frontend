@@ -2,7 +2,7 @@ import type { ComponentProps } from 'react';
 import type { VariantProps } from 'tailwind-variants';
 
 import { Link as ILink } from '@/config/i18n/navigation';
-import { cn, tv } from '@/lib/utils';
+import { cn, tv } from '@/lib/utils/classnames';
 
 const linkVariants = tv({
   base: 'rounded-sm text-sm focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-offset-1',

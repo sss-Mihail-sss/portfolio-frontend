@@ -6,7 +6,7 @@ import type { ComponentProps } from 'react';
 import { Fragment } from 'react';
 import type { VariantProps } from 'tailwind-variants';
 
-import { cn, tv } from '@/lib/utils';
+import { cn, tv } from '@/lib/utils/classnames';
 
 const selectVariants = tv({
   slots: {

@@ -3,7 +3,7 @@
 import { Tooltip as TooltipPrimitive } from 'radix-ui';
 import type { ComponentProps } from 'react';
 
-import { cn, tv } from '@/lib/utils';
+import { cn, tv } from '@/lib/utils/classnames';
 
 const tooltipVariants = tv({
   slots: {

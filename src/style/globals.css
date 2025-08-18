@@ -50,8 +50,8 @@
   --text-lg: 1rem;
   --text-lg--line-height: 1.5rem;
 
-  --text-base: 0.875rem;
-  --text-base--line-height: 1.25rem;
+  --text-md: 0.875rem;
+  --text-md--line-height: 1.25rem;
 
   --text-sm: 0.75rem;
   --text-sm--line-height: 1rem;
@@ -70,7 +70,6 @@
 
 @theme inline {
   /* Background */
-  --background-color-page: var(--background-page);
   --background-color-selected: var(--background-selected);
   --background-color-disabled: var(--background-disabled);
 
@@ -90,9 +89,9 @@
   --background-color-surface-raised-press: var(--background-surface-raised-press);
 
   /* Surface overlay level 2 */
-  --background-color-surface-overlay: var(--background-surface-overlay);
-  --background-color-surface-overlay-hover: var(--background-surface-overlay-hover);
-  --background-color-surface-overlay-press: var(--background-surface-overlay-press);
+  --background-color-overlay: var(--background-surface-overlay);
+  --background-color-overlay-hover: var(--background-surface-overlay-hover);
+  --background-color-overlay-press: var(--background-surface-overlay-press);
 
   /* Background - neutral */
   --background-color-neutral-subtle: var(--background-neutral-subtle);
@@ -105,6 +104,11 @@
   --background-color-brand: var(--background-brand);
   --background-color-brand-hover: var(--background-brand-hover);
   --background-color-brand-press: var(--background-brand-press);
+
+  /* Background - Input */
+  --background-color-input: var(--background-input);
+  --background-color-input-hover: var(--background-input-hover);
+  --background-color-input-press: var(--background-input-press);
 
   /* Background - Info */
   --background-color-info-subtle: var(--background-info-subtle);
@@ -151,9 +155,13 @@
 
   /* Foreground */
   --text-color-base: var(--foreground-base);
+  --text-color-secondary: var(--foreground-secondary);
+  --text-color-muted: var(--foreground-muted);
+
   --text-color-disabled: var(--foreground-disabled);
   --text-color-support: var(--foreground-support);
   --text-color-brand: var(--foreground-brand);
+  --text-color-selected: var(--foreground-selected);
   --text-color-info: var(--foreground-info);
   --text-color-success: var(--foreground-success);
   --text-color-warning: var(--foreground-warning);
@@ -178,7 +186,6 @@
   --ring-color-danger: var(--border-danger);
   --ring-color-focus: var(--focus);
 
-
   --outline-color-disabled: var(--border-disabled);
   --outline-color-brand: var(--border-brand);
   --outline-color-info: var(--border-info);
@@ -188,6 +195,10 @@
   --outline-color-focus: var(--focus);
 
   --color-border: var(--border-default);
+
+  /* Shadow */
+  --shadow-overlay: var(--shadow-overlay);
+  --shadow-raised: var(--shadow-raised);
 }
 
 @layer base {
@@ -196,6 +207,7 @@
   }
 
   ::selection {
+    @apply bg-selected text-selected;
     /* @apply bg-selection text-selection-foreground; */
   }
 

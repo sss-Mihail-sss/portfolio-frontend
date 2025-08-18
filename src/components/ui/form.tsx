@@ -6,7 +6,7 @@ import type { ControllerProps, FieldPath, FieldValues } from 'react-hook-form';
 import { Controller, FormProvider, useFormContext } from 'react-hook-form';
 import type { VariantProps } from 'tailwind-variants';
 
-import { cn, tv } from '@/lib/utils';
+import { cn, tv } from '@/lib/utils/classnames';
 import type { LabelProps } from '@/ui/label';
 import { Label } from '@/ui/label';
 import { Slot } from '@/ui/slot';

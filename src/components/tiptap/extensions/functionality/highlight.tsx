@@ -2,7 +2,7 @@ import { useCurrentEditor } from '@tiptap/react';
 import { HighlighterIcon } from 'lucide-react';
 
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils/classnames';
 import { Button } from '@/ui/button';
 import { ToggleGroup, ToggleGroupItem } from '@/ui/toggle-group';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/ui/tooltip';

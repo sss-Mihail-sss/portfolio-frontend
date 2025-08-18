@@ -3,8 +3,8 @@ import type { Locale } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import type { ReactNode } from 'react';
 
-import { Navbar } from '@/components/dashboard/navbar';
-import { AppSidebar } from '@/components/dashboard/sidebar';
+import { Navbar } from '@/components/layouts/dashboard/navbar';
+import { AppSidebar } from '@/components/layouts/dashboard/sidebar';
 import { SidebarProvider } from '@/ui/sidebar';
 
 type Props = {

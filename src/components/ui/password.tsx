@@ -2,14 +2,14 @@ import { EyeClosedIcon, EyeIcon } from 'lucide-react';
 import { unstable_PasswordToggleField as PasswordPrimitive } from 'radix-ui';
 import type { ComponentProps } from 'react';
 
-import { cn } from '@/lib/utils';
-import { buttonVariants } from '@/ui/button';
+import { cn } from '@/lib/utils/classnames';
+import { IconButton } from '@/ui/icon-button';
 import { Input } from '@/ui/input';
 
 function Password({ children, ...props }: ComponentProps<typeof PasswordPrimitive.Root>) {
   return (
     <PasswordPrimitive.Root {...props}>
-      <div className="relative">{children}</div>
+      <div className="flex">{children}</div>
     </PasswordPrimitive.Root>
   );
 }
@@ -21,7 +21,7 @@ function PasswordInput({ className, ...props }: Omit<ComponentProps<typeof Passw
       className={cn('pr-10', className)}
       asChild
     >
-      <Input />
+      <Input className="w-full" />
     </PasswordPrimitive.Input>
   );
 }
@@ -31,15 +31,11 @@ type PasswordToggleProps = ComponentProps<typeof PasswordPrimitive.Toggle> & {};
 function PasswordToggle({ className, ...props }: PasswordToggleProps) {
   return (
     <PasswordPrimitive.Toggle
-      className={cn(
-        buttonVariants({ size: 'sq-xs', variant: 'ghost' }),
-        className,
-        '-translate-y-1/2 absolute top-1/2 right-1',
-      )}
+      className={cn(className, '')}
       {...props}
     >
-      <PasswordPrimitive.Icon
-        hidden={<EyeClosedIcon />}
+      <PasswordIcon
+        hidden={<EyeClosedIcon className="size-full" />}
         visible={<EyeIcon />}
       />
     </PasswordPrimitive.Toggle>
@@ -48,11 +44,13 @@ function PasswordToggle({ className, ...props }: PasswordToggleProps) {
 
 function PasswordIcon(props: ComponentProps<typeof PasswordPrimitive.Icon>) {
   return (
-    <PasswordPrimitive.Icon
-      {...props}
-      hidden={<EyeIcon />}
-      visible={<EyeClosedIcon />}
-    />
+    <IconButton
+      variant="ghost"
+      size="sm"
+      asChild
+    >
+      <PasswordPrimitive.Icon {...props} />
+    </IconButton>
   );
 }
 

@@ -3,14 +3,21 @@ import { NuqsAdapter } from 'nuqs/adapters/next/app';
 import type { ReactNode } from 'react';
 import { z } from 'zod/v4-mini';
 
+import { getLanguage } from '@/lib/utils/i18n';
+
 type Props = {
   children: ReactNode;
   locale: Locale;
 };
 
+async function setLocale(lang: string) {
+  const locales = await import('zod/v4/locales');
+  z.config((locales[lang] ?? locales.nl)());
+}
+
 const ServerProviders = async ({ children, locale }: Props) => {
-  const { default: zodLocale } = await import(`zod/v4/locales/${locale}.js`);
-  z.config(zodLocale());
+  const language = getLanguage(locale);
+  await setLocale(language);
 
   return (
     <NextIntlClientProvider>

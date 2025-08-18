@@ -1,6 +1,6 @@
 import deepmerge from 'deepmerge';
 
-import { env } from '@/config/env';
+import { envClient } from '@/config/env/client';
 
 const defaultOptions: RequestInit = {
   headers: {
@@ -34,7 +34,7 @@ type FetchResponse<T = unknown> =
     };
 
 export async function fetcher<T>(input: string | URL, initialOptions: RequestInit = {}): Promise<FetchResponse<T>> {
-  const url = new URL(input, env.apiUrl);
+  const url = new URL(input, envClient.apiUrl);
   const options = deepmerge(defaultOptions, initialOptions);
 
   const response = await fetch(url, options);
