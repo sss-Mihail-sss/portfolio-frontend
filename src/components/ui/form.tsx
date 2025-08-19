@@ -1,12 +1,17 @@
 'use client';
 
-import type { ComponentProps } from 'react';
-import { createContext, useContext, useId } from 'react';
-import type { ControllerProps, FieldPath, FieldValues } from 'react-hook-form';
-import { Controller, FormProvider, useFormContext } from 'react-hook-form';
-import type { VariantProps } from 'tailwind-variants';
+import { type ComponentProps, createContext, useContext, useId, useMemo } from 'react';
+import {
+  Controller,
+  type ControllerProps,
+  type FieldPath,
+  type FieldValues,
+  FormProvider,
+  useFormContext,
+  useFormState,
+} from 'react-hook-form';
 
-import { cn, tv } from '@/lib/utils/classnames';
+import { cn } from '@/lib/utils/classnames';
 import type { LabelProps } from '@/ui/label';
 import { Label } from '@/ui/label';
 import { Slot } from '@/ui/slot';
@@ -38,24 +43,25 @@ const FormField = <
 const useFormField = () => {
   const fieldContext = useContext(FormFieldContext);
   const itemContext = useContext(FormItemContext);
-  const { getFieldState, formState } = useFormContext();
-
+  const { getFieldState } = useFormContext();
+  const formState = useFormState({ name: fieldContext.name });
   const fieldState = getFieldState(fieldContext.name, formState);
 
   if (!fieldContext) {
     throw new Error('useFormField should be used within <FormField>');
   }
 
-  const { id } = itemContext;
-
-  return {
-    id,
-    name: fieldContext.name,
-    formItemId: `${id}-form-item`,
-    formDescriptionId: `${id}-form-item-description`,
-    formMessageId: `${id}-form-item-message`,
-    ...fieldState,
-  };
+  return useMemo(
+    () => ({
+      id: itemContext.id,
+      name: fieldContext.name,
+      formItemId: `${itemContext.id}-form-item`,
+      formDescriptionId: `${itemContext.id}-form-item-description`,
+      formMessageId: `${itemContext.id}-form-item-message`,
+      ...fieldState,
+    }),
+    [fieldContext, itemContext, fieldState],
+  );
 };
 
 type FormItemContextValue = {
@@ -64,62 +70,40 @@ type FormItemContextValue = {
 
 const FormItemContext = createContext<FormItemContextValue>({} as FormItemContextValue);
 
-const formVariants = tv({
-  slots: {
-    item: 'grid gap-3',
-    label: '',
-    description: 'text-[0.8rem] text-muted-foreground',
-    message: 'font-medium text-[0.8rem]',
-  },
-  variants: {
-    error: {
-      true: {
-        item: 'text-error',
-        message: 'text-error',
-      },
-    },
-  },
-});
-
-type FormItemProps = ComponentProps<'div'> & VariantProps<typeof formVariants>;
-
-const FormItem = ({ ref, className, ...props }: FormItemProps) => {
+const FormItem = ({ className, ...props }: ComponentProps<'div'>) => {
   const id = useId();
-  const { item } = formVariants();
 
   return (
     <FormItemContext.Provider value={{ id }}>
       <div
-        ref={ref}
-        className={cn(item(), className)}
+        data-slot="form-item"
+        className={cn('grid gap-2', className)}
         {...props}
       />
     </FormItemContext.Provider>
   );
 };
 
-const FormLabel = ({ ref, className, ...props }: LabelProps) => {
+const FormLabel = ({ className, ...props }: LabelProps) => {
   const { error, formItemId } = useFormField();
-  const { label } = formVariants({ error: !!error });
 
   return (
     <Label
-      ref={ref}
-      className={cn(label(), className)}
+      data-slot="label"
+      data-error={!!error}
+      className={cn('font-medium text-sm', !!error && 'text-danger', className)}
       htmlFor={formItemId}
       {...props}
     />
   );
 };
 
-type FormControlProps = ComponentProps<typeof Slot> & VariantProps<typeof formVariants>;
-
-const FormControl = ({ ref, ...props }: FormControlProps) => {
+const FormControl = ({ ...props }: ComponentProps<typeof Slot>) => {
   const { error, formItemId, formDescriptionId, formMessageId } = useFormField();
 
   return (
     <Slot
-      ref={ref}
+      data-slot="form-control"
       id={formItemId}
       aria-describedby={error ? `${formDescriptionId} ${formMessageId}` : `${formDescriptionId}`}
       aria-invalid={!!error}
@@ -128,28 +112,22 @@ const FormControl = ({ ref, ...props }: FormControlProps) => {
   );
 };
 
-type FormDescriptionProps = ComponentProps<'p'> & VariantProps<typeof formVariants>;
-
-const FormDescription = ({ ref, className, ...props }: FormDescriptionProps) => {
+const FormDescription = ({ className, ...props }: ComponentProps<'p'>) => {
   const { formDescriptionId } = useFormField();
-  const { description } = formVariants();
 
   return (
     <p
-      ref={ref}
+      data-slot="form-description"
       id={formDescriptionId}
-      className={cn(description(), className)}
+      className={cn('text-muted text-sm', className)}
       {...props}
     />
   );
 };
 
-type FormMessageProps = ComponentProps<'p'> & VariantProps<typeof formVariants>;
-
-const FormMessage = ({ ref, className, children, ...props }: FormMessageProps) => {
+const FormMessage = ({ className, children, ...props }: ComponentProps<'p'>) => {
   const { error, formMessageId } = useFormField();
   const body = error ? String(error?.message) : children;
-  const { message } = formVariants({ error: !!error });
 
   if (!body) {
     return null;
@@ -157,9 +135,9 @@ const FormMessage = ({ ref, className, children, ...props }: FormMessageProps) =
 
   return (
     <p
-      ref={ref}
+      data-slot="form-message"
       id={formMessageId}
-      className={cn(message(), className)}
+      className={cn('font-medium text-xs', !!error && 'text-danger', className)}
       {...props}
     >
       {body}

@@ -9,7 +9,7 @@ import { Input } from '@/ui/input';
 function Password({ children, ...props }: ComponentProps<typeof PasswordPrimitive.Root>) {
   return (
     <PasswordPrimitive.Root {...props}>
-      <div className="flex">{children}</div>
+      <div className="relative">{children}</div>
     </PasswordPrimitive.Root>
   );
 }
@@ -30,28 +30,22 @@ type PasswordToggleProps = ComponentProps<typeof PasswordPrimitive.Toggle> & {};
 
 function PasswordToggle({ className, ...props }: PasswordToggleProps) {
   return (
-    <PasswordPrimitive.Toggle
-      className={cn(className, '')}
-      {...props}
-    >
-      <PasswordIcon
-        hidden={<EyeClosedIcon className="size-full" />}
-        visible={<EyeIcon />}
-      />
-    </PasswordPrimitive.Toggle>
-  );
-}
-
-function PasswordIcon(props: ComponentProps<typeof PasswordPrimitive.Icon>) {
-  return (
     <IconButton
       variant="ghost"
       size="sm"
       asChild
     >
-      <PasswordPrimitive.Icon {...props} />
+      <PasswordPrimitive.Toggle
+        className={cn('-translate-y-1/2 absolute top-1/2 right-2', className)}
+        {...props}
+      >
+        <PasswordPrimitive.Icon
+          hidden={<EyeClosedIcon size={32} />}
+          visible={<EyeIcon className="!size-5" />}
+        />
+      </PasswordPrimitive.Toggle>
     </IconButton>
   );
 }
 
-export { Password, PasswordInput, PasswordToggle, PasswordIcon };
+export { Password, PasswordInput, PasswordToggle };

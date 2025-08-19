@@ -2,12 +2,12 @@ import type { ButtonHTMLAttributes } from 'react';
 import type { VariantProps } from 'tailwind-variants';
 
 import { cn, tv } from '@/lib/utils/classnames';
-import { buttonVariants } from '@/ui/button';
+import { baseButtonVariants } from '@/ui/button';
 import { Slot } from '@/ui/slot';
 
 const iconButtonVariants = tv({
   base: '',
-  extend: buttonVariants,
+  extend: baseButtonVariants,
   variants: {
     size: {
       default: 'size-10 rounded-md',

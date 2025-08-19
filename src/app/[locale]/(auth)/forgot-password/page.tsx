@@ -1,22 +1,5 @@
-import type { Metadata } from 'next';
-import type { Locale } from 'next-intl';
-import { getTranslations } from 'next-intl/server';
+import { ForgotPasswordEmail } from '@/components/form/forgot-password-email';
 
-type Props = {
-  params: Promise<{
-    locale: Locale;
-  }>;
-};
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'meta.forgot-password' });
-
-  return {
-    title: t('title'),
-  };
-}
-
-export default function ForgotPasswordPage() {
-  return <h1>forgot-password</h1>;
+export default async function ForgotPassword() {
+  return <ForgotPasswordEmail />;
 }

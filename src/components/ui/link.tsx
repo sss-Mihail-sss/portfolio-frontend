@@ -5,30 +5,33 @@ import { Link as ILink } from '@/config/i18n/navigation';
 import { cn, tv } from '@/lib/utils/classnames';
 
 const linkVariants = tv({
-  base: 'rounded-sm text-sm focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-offset-1',
+  base: [
+    'rounded-sm text-sm underline underline-offset-2',
+    'focus-visible:outline-2 focus-visible:outline-focus focus-visible:outline-offset-2',
+  ],
   variants: {
     variant: {
-      primary: 'text-primary hover:text-primary/90',
-      secondary: 'text-muted-fg hover:text-fg',
+      default: '',
+      primary: 'text-brand',
+      secondary: 'text-muted',
     },
-    underline: {
-      true: 'underline-offset-2 hover:underline',
-      false: '',
-    },
+  },
+  defaultVariants: {
+    variant: 'default',
   },
 });
 
 type LinkProps = ComponentProps<typeof ILink> & VariantProps<typeof linkVariants>;
 
-function Link({ variant, underline, className, ...props }: LinkProps) {
+const Link = ({ variant, className, ...props }: LinkProps) => {
   return (
     <ILink
       data-slot="link"
-      className={cn(linkVariants({ underline, variant }), className)}
+      className={cn(linkVariants({ variant }), className)}
       {...props}
     />
   );
-}
+};
 
 export { Link };
 export type { LinkProps };

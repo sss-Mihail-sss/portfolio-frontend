@@ -28,7 +28,9 @@ const ClientProviders = ({ children }: Props) => {
 
         <Toaster
           duration={10_000_000}
-          toastOptions={{ unstyled: true }}
+          richColors
+          closeButton
+          // toastOptions={{ unstyled: true }}
         />
       </QueryClientProvider>
     </ThemeProvider>

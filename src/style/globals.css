@@ -47,14 +47,14 @@
   --text-heading-2xs--font-weight: 700;
 
   /* Typography - Body */
-  --text-lg: 1rem;
-  --text-lg--line-height: 1.5rem;
+  /*--text-lg: 1rem;*/
+  /*--text-lg--line-height: 1.5rem;*/
 
-  --text-md: 0.875rem;
-  --text-md--line-height: 1.25rem;
+  /*--text-md: 0.875rem;*/
+  /*--text-md--line-height: 1.25rem;*/
 
-  --text-sm: 0.75rem;
-  --text-sm--line-height: 1rem;
+  /*--text-sm: 0.75rem;*/
+  /*--text-sm--line-height: 1rem;*/
 
   /* Breakpoint */
   --breakpoint-xs: 30rem;
@@ -178,6 +178,7 @@
   --border-color-danger: var(--border-danger);
   --border-color-focus: var(--focus);
 
+  --ring-color-default: var(--border-default);
   --ring-color-disabled: var(--border-disabled);
   --ring-color-brand: var(--border-brand);
   --ring-color-info: var(--border-info);
@@ -186,6 +187,7 @@
   --ring-color-danger: var(--border-danger);
   --ring-color-focus: var(--focus);
 
+  --outline-color-default: var(--border-default);
   --outline-color-disabled: var(--border-disabled);
   --outline-color-brand: var(--border-brand);
   --outline-color-info: var(--border-info);
@@ -194,8 +196,6 @@
   --outline-color-danger: var(--border-danger);
   --outline-color-focus: var(--focus);
 
-  --color-border: var(--border-default);
-
   /* Shadow */
   --shadow-overlay: var(--shadow-overlay);
   --shadow-raised: var(--shadow-raised);
@@ -203,7 +203,7 @@
 
 @layer base {
   * {
-    @apply border-default ring-border;
+    @apply border-default ring-default;
   }
 
   ::selection {

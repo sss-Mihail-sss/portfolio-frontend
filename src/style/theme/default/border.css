@@ -13,5 +13,9 @@
 }
 
 .dark {
+  --border-default: oklch(100% 0 0/.15);
 
+  --border-danger: oklch(70.4% .191 22.216);
+
+  --focus: oklch(0.5237 0.146 265.522);
 }

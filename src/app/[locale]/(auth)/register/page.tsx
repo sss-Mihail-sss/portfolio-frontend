@@ -19,6 +19,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function RegisterPage() {
-  return <RegisterForm />;
+export default async function RegisterPage({ params }: Props) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale });
+
+  return (
+    <>
+      <div className="space-y-2 text-center">
+        <h1 className="font-bold text-heading-2xl">{t('form.register.title')}</h1>
+        <p className="text-secondary text-sm">{t('form.register.description')}</p>
+      </div>
+
+      <RegisterForm />
+    </>
+  );
 }

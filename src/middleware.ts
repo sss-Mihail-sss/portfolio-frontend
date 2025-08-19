@@ -20,9 +20,6 @@ export async function middleware(request: NextRequest) {
   const accessToken = request.cookies.get('accessToken');
   const refreshToken = request.cookies.get('refreshToken');
 
-  console.log(`Access Token: ${accessToken?.value}`);
-  console.log(`Refresh Token: ${refreshToken?.value}`);
-
   if (accessToken?.value) {
     return withIntl(request);
   }

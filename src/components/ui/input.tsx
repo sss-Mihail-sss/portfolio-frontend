@@ -9,11 +9,11 @@ const Input = ({ className, ...props }: InputProps) => {
     <input
       data-slot="input"
       className={cn(
-        'h-10 rounded-md border border-default bg-input px-2.5 py-2 text-md transition',
+        'rounded border-default p-3 text-sm ring ring-default ring-inset',
         'placeholder:text-muted',
-        'focus-visible:outline-2 focus-visible:outline-focus focus-visible:outline-offset-2',
-        'aria-invalid:border-danger',
-        'disabled:bg-base-input-disabled disabled:opacity-40',
+        'outline-focus focus-visible:outline-2 focus-visible:outline-offset-2',
+        'aria-invalid:ring-danger',
+        'disabled:opacity-40',
         className,
       )}
       {...props}

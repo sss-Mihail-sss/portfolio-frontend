@@ -4,11 +4,11 @@ import type { VariantProps } from 'tailwind-variants';
 import { cn, tv } from '@/lib/utils/classnames';
 import { Slot } from '@/ui/slot';
 
-const buttonVariants = tv({
+const baseButtonVariants = tv({
   base: [
-    'inline-flex cursor-pointer items-center justify-center gap-2 whitespace-nowrap font-medium transition-all',
+    'inline-flex cursor-pointer items-center justify-center',
     'disabled:pointer-events-none disabled:bg-neutral disabled:text-on-disabled disabled:opacity-30',
-    'focus-visible:outline-2 focus-visible:outline-offset-2',
+    'outline-focus focus-visible:outline-2 focus-visible:outline-offset-2',
   ],
   variants: {
     variant: {
@@ -23,13 +23,6 @@ const buttonVariants = tv({
       warning: '',
       success: '',
       info: '',
-    },
-    size: {
-      default: 'h-10 rounded-md px-3 py-2',
-      xs: 'h-7 rounded-md px-2 py-1 text-sm',
-      sm: 'h-8 rounded-md px-2.5 py-1.5 text-sm',
-      lg: 'h-12 rounded-md px-4.5 py-3 text-lg',
-      xl: 'h-14 rounded-md px-6 py-4 text-lg',
     },
   },
   defaultVariants: {
@@ -46,12 +39,12 @@ const buttonVariants = tv({
     {
       variant: 'outline',
       color: 'default',
-      className: 'text-foreground hover:bg-neutral-subtle',
+      className: 'hover:bg-neutral-subtle',
     },
     {
       variant: 'ghost',
       color: 'default',
-      className: 'text-foreground hover:bg-neutral-subtle',
+      className: 'hover:bg-neutral-subtle',
     },
     {
       variant: 'default',
@@ -131,6 +124,20 @@ const buttonVariants = tv({
   ],
 });
 
+const buttonVariants = tv({
+  base: 'gap-2 whitespace-nowrap font-medium',
+  extend: baseButtonVariants,
+  variants: {
+    size: {
+      default: 'h-10 rounded-md px-3 py-2 text-sm',
+      xs: 'h-7 rounded-md px-2 py-1 text-xs',
+      sm: 'h-8 rounded-md px-2.5 py-1.5 text-sm',
+      lg: 'h-12 rounded-md px-4.5 py-3 text-lg',
+      xl: 'h-14 rounded-md px-6 py-4 text-lg',
+    },
+  },
+});
+
 type ButtonProps = {
   asChild?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement> &
@@ -152,5 +159,5 @@ const Button = ({ variant, size, color, className, asChild, ...props }: ButtonPr
   );
 };
 
-export { Button, buttonVariants };
+export { Button, buttonVariants, baseButtonVariants };
 export type { ButtonProps };

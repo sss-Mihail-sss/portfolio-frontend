@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
-
-import { LoginForm } from '@/components/form/login';
+import type { ReactNode } from 'react';
 
 type Props = {
+  children: ReactNode;
   params: Promise<{
     locale: Locale;
   }>;
@@ -12,25 +12,25 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'meta.login' });
+  const t = await getTranslations({ locale, namespace: 'meta.forgot-password' });
 
   return {
     title: t('title'),
   };
 }
 
-export default async function LoginPage({ params }: Props) {
+export default async function ForgotPasswordLayout({ params, children }: Props) {
   const { locale } = await params;
-  const t = await getTranslations({ locale });
+  const t = await getTranslations({ locale, namespace: 'form.forgot-password' });
 
   return (
     <>
       <div className="space-y-2 text-center">
-        <h1 className="font-bold text-heading-2xl">{t('form.login.title')}</h1>
-        <p className="text-secondary text-sm">{t('form.login.description')}</p>
+        <h1 className="font-bold text-heading-2xl">{t('title')}?</h1>
+        <p className="text-secondary text-sm">{t('description')}.</p>
       </div>
 
-      <LoginForm />
+      {children}
     </>
   );
 }

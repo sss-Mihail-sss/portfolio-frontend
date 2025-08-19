@@ -1,7 +1,11 @@
 {
   "forgot-password": "Forgot password",
+  "already-have-an-account": "Already have an account",
   "submit": "Submit",
+  "reset-password": "Reset password",
+  "back-to-login": "Back to log in",
   "or": "Or",
+  "sign-in": "Sign in",
   "sign-up": "Sign up",
   "no-account": "Don't have an account?",
   "username": "Username",

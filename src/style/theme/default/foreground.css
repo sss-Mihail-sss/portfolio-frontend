@@ -17,6 +17,9 @@
   --foreground-base: oklch(98.5% 0 0);
   --foreground-secondary: oklch(0.97 0 0);
   --foreground-muted: oklch(0.708 0 0);
+  --foreground-brand: #579DFF;
+
+  --foreground-danger: oklch(70.4% .191 22.216);
 
   --foreground-selected: oklch(0.205 0 0);
 }

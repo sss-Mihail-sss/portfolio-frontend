@@ -42,7 +42,7 @@
 
   /* Background - Info */
   --background-info-subtle: #DFE7FF;
-  --background-info: oklch(54.6% 0.245 262.881);
+  --background-info: oklch(54.6% .245 262.881);
   --background-info-hover: oklch(48.8% 0.243 264.376);
   --background-info-press: oklch(42.4% 0.199 265.638);
 
@@ -82,5 +82,11 @@
   --background-surface-overlay: oklch(26.9% 0 0);
   --background-surface-overlay-hover: #2C333A;
   --background-surface-overlay-press: #38414A;
+
+  /* Background - Brand */
+  --background-brand-subtle: #E9F2FF;
+  --background-brand: oklch(54.6% 0.245 262.881);
+  --background-brand-hover: oklch(48.8% 0.243 264.376);
+  --background-brand-press: oklch(42.4% 0.199 265.638);
 
 }

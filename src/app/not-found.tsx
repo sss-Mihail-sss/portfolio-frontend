@@ -1,5 +1,6 @@
 'use client';
 
+// biome-ignore lint/suspicious/noShadowRestrictedNames: Error from next/error
 import Error from 'next/error';
 
 export default function GlobalNotFoundPage() {

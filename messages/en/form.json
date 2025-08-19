@@ -18,5 +18,53 @@
       "github": "Log in with GitHub",
       "linkedin": "Log in with LinkedIn"
     }
+  },
+  "register": {
+    "title": "Create account",
+    "description": "Enter your username below to login to your account",
+    "fields": {
+      "username": {
+        "label": "Username",
+        "placeholder": "jognwick24"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "********"
+      },
+      "confirm-password": {
+        "label": "Confirm password",
+        "placeholder": "********"
+      }
+    },
+    "social": {
+      "google": "Sign up with Google",
+      "facebook": "Sign up with Facebook",
+      "github": "Sign up with GitHub",
+      "linkedin": "Sign up with LinkedIn"
+    }
+  },
+  "forgot-password": {
+    "title": "Forgot password",
+    "description": "No worries, we'll send you reset instructions",
+    "fields": {
+      "username": {
+        "label": "Username",
+        "placeholder": "jognwick24"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "********"
+      },
+      "confirm-password": {
+        "label": "Confirm password",
+        "placeholder": "********"
+      }
+    },
+    "social": {
+      "google": "Sign up with Google",
+      "facebook": "Sign up with Facebook",
+      "github": "Sign up with GitHub",
+      "linkedin": "Sign up with LinkedIn"
+    }
   }
 }

@@ -13,6 +13,7 @@ export const routing = defineRouting({
     '/login': '/login',
     '/register': '/register',
     '/forgot-password': '/forgot-password',
+    '/forgot-password/phone': '/forgot-password/phone',
 
     '/dashboard': '/dashboard',
 
