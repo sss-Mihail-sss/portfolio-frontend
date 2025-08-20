@@ -1,16 +1,9 @@
 import type { Metadata } from 'next';
-import type { Locale } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 
 import { RegisterForm } from '@/components/form/register';
 
-type Props = {
-  params: Promise<{
-    locale: Locale;
-  }>;
-};
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps<'/[locale]/register'>): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'meta.register' });
 
@@ -19,7 +12,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function RegisterPage({ params }: Props) {
+export default async function Page({ params }: PageProps<'/[locale]/register'>) {
   const { locale } = await params;
   const t = await getTranslations({ locale });
 

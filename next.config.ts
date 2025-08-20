@@ -10,6 +10,7 @@ const withNextIntl = createNextIntlPlugin({
       './messages/en/meta.json',
       './messages/en/navigation.json',
       './messages/en/validation.json',
+      './messages/en/unauthorized.json',
     ]
   },
   requestConfig: './src/config/i18n/request.ts'
@@ -23,6 +24,7 @@ const nextConfig: NextConfig = {
     // ppr: 'incremental',
     useCache: true
   },
+  typedRoutes: true,
   devIndicators: {
     position: 'bottom-right'
   }

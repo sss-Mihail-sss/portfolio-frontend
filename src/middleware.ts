@@ -20,18 +20,23 @@ export async function middleware(request: NextRequest) {
   const accessToken = request.cookies.get('accessToken');
   const refreshToken = request.cookies.get('refreshToken');
 
+  // Если пользователь уже авторизован, то просто продолжаем
   if (accessToken?.value) {
     return withIntl(request);
   }
 
+  // Если есть refreshToken, то обновляем токены и редиректим на ту же страницу
+  // TODO: проверить return withIntl(request) вместо NextResponse.redirect(request.url)
   if (refreshToken?.value) {
     await refresh();
     return NextResponse.redirect(request.url);
   }
 
-  const loginUrl = new URL('/login', request.nextUrl);
-  loginUrl.searchParams.set('redirect', request.nextUrl.pathname);
-  return NextResponse.redirect(loginUrl);
+  return withIntl(request);
+
+  // const loginUrl = new URL('/login', request.nextUrl);
+  // loginUrl.searchParams.set('redirect', request.nextUrl.pathname);
+  // return NextResponse.redirect(loginUrl);
 }
 
 export const config = {

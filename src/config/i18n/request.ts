@@ -26,6 +26,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
     error: (await import(`../../../messages/${language}/error.json`)).default,
     navigation: (await import(`../../../messages/${language}/navigation.json`)).default,
     validation: (await import(`../../../messages/${language}/validation.json`)).default,
+    unauthorized: (await import(`../../../messages/${language}/unauthorized.json`)).default,
   };
 
   return {

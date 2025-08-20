@@ -1,20 +1,13 @@
 import type { Metadata } from 'next';
-import type { Locale } from 'next-intl';
+import { headers } from 'next/headers';
+import { unauthorized } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
-import type { ReactNode } from 'react';
 
 import { Navbar } from '@/components/layouts/dashboard/navbar';
 import { AppSidebar } from '@/components/layouts/dashboard/sidebar';
 import { SidebarProvider } from '@/ui/sidebar';
 
-type Props = {
-  children: ReactNode;
-  params: Promise<{
-    locale: Locale;
-  }>;
-};
-
-export async function generateMetadata({ params }: Omit<Props, 'children'>): Promise<Metadata> {
+export async function generateMetadata({ params }: LayoutProps<'/[locale]/dashboard'>): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'meta.dashboard' });
 
@@ -23,7 +16,14 @@ export async function generateMetadata({ params }: Omit<Props, 'children'>): Pro
   };
 }
 
-export default async function Layout({ children }: Props) {
+export default async function Layout({ children }: LayoutProps<'/[locale]/dashboard'>) {
+  const cookies = await headers();
+  const session = cookies.get('accessToken');
+
+  if (!session) {
+    unauthorized();
+  }
+
   return (
     <SidebarProvider open>
       <AppSidebar />

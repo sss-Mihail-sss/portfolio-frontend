@@ -10,24 +10,15 @@ const Header = async () => {
         <Logo className="hidden md:block" />
 
         <nav className="flex w-full items-center justify-between gap-4 md:w-auto md:justify-center md:[&>a]:underline-offset-4">
-          <Link
-            underline
-            href="/"
-          >
+          <Link href="/">
             <House className="md:hidden" />
             <span className="hidden md:block">Home</span>
           </Link>
-          <Link
-            underline
-            href="/about"
-          >
+          <Link href="/about">
             <Search className="md:hidden" />
             <span className="hidden md:block">About</span>
           </Link>
-          <Link
-            underline
-            href="/contact"
-          >
+          <Link href="/contact">
             <User className="md:hidden" />
             <span className="hidden md:block">Contact</span>
           </Link>

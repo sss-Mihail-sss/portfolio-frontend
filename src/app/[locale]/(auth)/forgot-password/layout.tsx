@@ -1,16 +1,7 @@
 import type { Metadata } from 'next';
-import type { Locale } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
-import type { ReactNode } from 'react';
 
-type Props = {
-  children: ReactNode;
-  params: Promise<{
-    locale: Locale;
-  }>;
-};
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: LayoutProps<'/[locale]/forgot-password'>): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'meta.forgot-password' });
 
@@ -19,7 +10,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function ForgotPasswordLayout({ params, children }: Props) {
+export default async function Layout({ params, children }: LayoutProps<'/[locale]/forgot-password'>) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'form.forgot-password' });
 

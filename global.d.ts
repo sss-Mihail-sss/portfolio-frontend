@@ -7,6 +7,7 @@ const defaultMessages = {
   error: (await import('./messages/en/error.json')).default,
   navigation: (await import('./messages/en/navigation.json')).default,
   validation: (await import('./messages/en/validation.json')).default,
+  unauthorized: (await import(`../../../messages/${language}/unauthorized.json`)).default,
 };
 
 declare module 'next-intl' {
