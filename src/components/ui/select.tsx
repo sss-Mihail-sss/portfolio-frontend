@@ -2,7 +2,7 @@
 
 import { Check, ChevronDown, ChevronsUpDownIcon, ChevronUp } from 'lucide-react';
 import { Select as SelectPrimitive } from 'radix-ui';
-import type { ComponentProps } from 'react';
+import type { ComponentProps, ElementRef, RefObject } from 'react';
 import { Fragment } from 'react';
 import type { VariantProps } from 'tailwind-variants';
 
@@ -10,18 +10,10 @@ import { cn, tv } from '@/lib/utils/classnames';
 
 const selectVariants = tv({
   slots: {
-    trigger:
-      'flex items-center justify-between rounded-md border border-base-border-input bg-base-input text-label text-neutral-accent-fg',
-    content: [
-      'bg-base-overlay',
-      'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md border shadow-md data-[state=closed]:animate-out data-[state=open]:animate-in',
-    ],
+    content: ['relative z-50 max-h-96 min-w-32 overflow-hidden rounded-md border bg-overlay shadow-overlay'],
     viewport: 'p-1',
     label: 'px-2 py-1.5 font-medium text-sm',
     item: "relative flex w-full cursor-default select-none items-center gap-2 rounded-sm py-1.5 pr-8 pl-2 text-sm outline-hidden focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 *:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2",
-    separator: '-mx-1 pointer-events-none my-1 h-px bg-border',
-    up: 'flex cursor-default items-center justify-center py-1',
-    bottom: 'flex cursor-default items-center justify-center py-1',
   },
   variants: {
     position: {
@@ -29,11 +21,6 @@ const selectVariants = tv({
         content:
           'data-[side=left]:-translate-x-1 data-[side=top]:-translate-y-1 data-[side=right]:translate-x-1 data-[side=bottom]:translate-y-1',
         viewport: 'h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)] scroll-my-1',
-      },
-    },
-    size: {
-      default: {
-        trigger: 'h-10 px-2.5 py-2',
       },
     },
     side: {
@@ -51,50 +38,40 @@ const selectVariants = tv({
       },
     },
   },
-  defaultVariants: {
-    size: 'default',
-  },
 });
 
-function Select({ ...props }: ComponentProps<typeof SelectPrimitive.Root>) {
+const Select = ({ ...props }: ComponentProps<typeof SelectPrimitive.Root>) => {
   return (
     <SelectPrimitive.Root
       data-slot="select"
       {...props}
     />
   );
-}
+};
 
-function SelectGroup({ ...props }: ComponentProps<typeof SelectPrimitive.Group>) {
+const SelectGroup = ({ ...props }: ComponentProps<typeof SelectPrimitive.Group>) => {
   return (
     <SelectPrimitive.Group
       data-slot="select-group"
       {...props}
     />
   );
-}
+};
 
-function SelectValue({ ...props }: ComponentProps<typeof SelectPrimitive.Value>) {
+const SelectValue = ({ ...props }: ComponentProps<typeof SelectPrimitive.Value>) => {
   return (
     <SelectPrimitive.Value
       data-slot="select-value"
       {...props}
     />
   );
-}
+};
 
-function SelectTrigger({
-  className,
-  children,
-  variant,
-  ...props
-}: ComponentProps<typeof SelectPrimitive.Trigger> & VariantProps<typeof selectVariants>) {
-  const { trigger } = selectVariants({ variant });
-
+const SelectTrigger = ({ className, children, ...props }: ComponentProps<typeof SelectPrimitive.Trigger>) => {
   return (
     <SelectPrimitive.Trigger
       data-slot="select-trigger"
-      className={cn(trigger({ variant }), className)}
+      className={cn('flex items-center justify-between gap-2 rounded-md border bg-input p-3 text-label', className)}
       {...props}
     >
       {children}
@@ -103,21 +80,20 @@ function SelectTrigger({
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
   );
-}
+};
 
-function SelectContent({
+const SelectContent = ({
   className,
   children,
   position,
-  portal = true,
+  viewportRef,
   ...props
-}: ComponentProps<typeof SelectPrimitive.Content> & VariantProps<typeof selectVariants> & { portal?: boolean }) {
+}: ComponentProps<typeof SelectPrimitive.Content> &
+  VariantProps<typeof selectVariants> & { viewportRef?: RefObject<HTMLDivElement> }) => {
   const { content, viewport } = selectVariants({ position });
 
-  const Component = portal ? SelectPrimitive.Portal : Fragment;
-
   return (
-    <Component>
+    <SelectPrimitive.Portal>
       <SelectPrimitive.Content
         data-slot="select-content"
         className={cn(content({ position }), className)}
@@ -125,18 +101,23 @@ function SelectContent({
         {...props}
       >
         <SelectScrollUpButton />
-        <SelectPrimitive.Viewport className={cn(viewport({ position }))}>{children}</SelectPrimitive.Viewport>
+        <SelectPrimitive.Viewport
+          ref={viewportRef}
+          className={cn(viewport({ position }), 'overflow-auto')}
+        >
+          {children}
+        </SelectPrimitive.Viewport>
         <SelectScrollDownButton />
       </SelectPrimitive.Content>
-    </Component>
+    </SelectPrimitive.Portal>
   );
-}
+};
 
-function SelectLabel({
+const SelectLabel = ({
   className,
   position,
   ...props
-}: ComponentProps<typeof SelectPrimitive.Label> & VariantProps<typeof selectVariants>) {
+}: ComponentProps<typeof SelectPrimitive.Label> & VariantProps<typeof selectVariants>) => {
   const { label } = selectVariants();
 
   return (
@@ -145,23 +126,21 @@ function SelectLabel({
       {...props}
     />
   );
-}
+};
 
-function SelectItem({
-  className,
-  children,
-  position,
-  ...props
-}: ComponentProps<typeof SelectPrimitive.SelectItem> & VariantProps<typeof selectVariants>) {
-  const { item } = selectVariants();
-
+const SelectItem = ({ className, children, ...props }: ComponentProps<typeof SelectPrimitive.SelectItem>) => {
   return (
     <SelectPrimitive.Item
       data-slot="select-item"
-      className={cn(item(), className)}
+      className={cn(
+        'flex w-full cursor-pointer select-none items-center gap-2 rounded-sm py-1.5 text-sm outline-hidden',
+        'focus:bg-neutral-subtle',
+        'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+        className,
+      )}
       {...props}
     >
-      <span className="absolute right-2 flex size-3.5 items-center justify-center">
+      <span className="size-3.5 shrink-0">
         <SelectPrimitive.ItemIndicator>
           <Check className="size-4" />
         </SelectPrimitive.ItemIndicator>
@@ -169,60 +148,49 @@ function SelectItem({
       <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
     </SelectPrimitive.Item>
   );
-}
+};
 
-function SelectSeparator({
-  className,
-  children,
-  position,
-  ...props
-}: ComponentProps<typeof SelectPrimitive.SelectSeparator> & VariantProps<typeof selectVariants>) {
-  const { separator } = selectVariants();
-
+const SelectSeparator = ({ className, children, ...props }: ComponentProps<typeof SelectPrimitive.SelectSeparator>) => {
   return (
     <SelectPrimitive.Separator
       data-slot="select-separator"
-      className={cn(separator(), className)}
+      className={cn('-mx-1 pointer-events-none my-1 h-px bg-border', className)}
       {...props}
     />
   );
-}
+};
 
-function SelectScrollUpButton({
+const SelectScrollUpButton = ({
   className,
   children,
   ...props
-}: ComponentProps<typeof SelectPrimitive.ScrollUpButton> & VariantProps<typeof selectVariants>) {
-  const { up } = selectVariants();
-
+}: ComponentProps<typeof SelectPrimitive.ScrollUpButton>) => {
   return (
     <SelectPrimitive.ScrollUpButton
       data-slot="select-scroll-up-button"
-      className={cn(up(), className)}
+      className={cn('flex cursor-default items-center justify-center py-1', className)}
       {...props}
     >
       <ChevronUp className="size-4" />
     </SelectPrimitive.ScrollUpButton>
   );
-}
+};
 
-function SelectScrollDownButton({
+const SelectScrollDownButton = ({
   className,
   children,
   ...props
-}: ComponentProps<typeof SelectPrimitive.SelectScrollDownButton> & VariantProps<typeof selectVariants>) {
-  const { bottom } = selectVariants();
-
+}: ComponentProps<typeof SelectPrimitive.SelectScrollDownButton>) => {
   return (
     <SelectPrimitive.ScrollDownButton
       data-slot="select-scroll-down-button"
-      className={cn(bottom(), className)}
+      className={cn('flex cursor-default items-center justify-center py-1', className)}
       {...props}
     >
       <ChevronDown className="size-4" />
     </SelectPrimitive.ScrollDownButton>
   );
-}
+};
 
 export {
   Select,

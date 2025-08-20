@@ -11,3 +11,16 @@ export const forgotPasswordPhoneSchema = z.object({
 
 export type ForgotPasswordEmailSchema = z.infer<typeof forgotPasswordEmailSchema>;
 export type ForgotPasswordPhoneSchema = z.infer<typeof forgotPasswordPhoneSchema>;
+
+export const forgotPasswordSchema = z.discriminatedUnion('type', [
+  z.object({
+    type: z.literal('email'),
+    email: z.email(),
+  }),
+  z.object({
+    type: z.literal('phone'),
+    phone: z.string().check(z.refine((value) => isValidPhoneNumber(value), 'Invalid phone number')),
+  }),
+]);
+
+export type ForgotPasswordSchema = z.infer<typeof forgotPasswordSchema>;

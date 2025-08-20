@@ -9,7 +9,7 @@
   --foreground-selected: oklch(1 0 0);
   --foreground-info: #295EFF;
   --foreground-success: #0E813E;
-  --foreground-warning: oklch(0.8652 0.1768 90.38);
+  --foreground-warning: #FF8622;
   --foreground-danger: oklch(0.5361 0.2099 29.47);
 }
 
@@ -20,6 +20,7 @@
   --foreground-brand: #579DFF;
 
   --foreground-danger: oklch(70.4% .191 22.216);
+  --foreground-warning: oklch(83.7% 0.128 66.29);
 
   --foreground-selected: oklch(0.205 0 0);
 }

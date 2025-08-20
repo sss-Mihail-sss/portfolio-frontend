@@ -1,5 +1,5 @@
-import { ForgotPasswordEmail } from '@/components/form/forgot-password-email';
+import { ForgotPassword } from '@/components/form/forgot-password';
 
 export default async function Page() {
-  return <ForgotPasswordEmail />;
+  return <ForgotPassword />;
 }
