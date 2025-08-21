@@ -83,6 +83,12 @@
   --background-surface-overlay-hover: #2C333A;
   --background-surface-overlay-press: #38414A;
 
+  /* Background - Neutral */
+  --background-neutral-subtle: oklch(92% 0 0);
+  --background-neutral: oklch(0.1776 0 0);
+  --background-neutral-hover: oklch(0.2931 0 0);
+  --background-neutral-press: oklch(0.4131 0 0);
+
   /* Background - Brand */
   --background-brand-subtle: #E9F2FF;
   --background-brand: oklch(54.6% 0.245 262.881);

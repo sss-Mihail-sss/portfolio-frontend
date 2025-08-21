@@ -44,7 +44,7 @@ const baseButtonVariants = tv({
     {
       variant: 'ghost',
       color: 'default',
-      className: 'hover:bg-neutral-subtle',
+      className: 'hover:bg-neutral-subtle/40',
     },
     {
       variant: 'default',

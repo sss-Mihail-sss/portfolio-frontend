@@ -167,6 +167,12 @@
   --text-color-warning: var(--foreground-warning);
   --text-color-danger: var(--foreground-danger);
 
+  /* Link */
+  --text-color-link: var(--link);
+  --text-color-link-hover: var(--link-hover);
+  --text-color-link-visited: var(--link-visited);
+  --text-color-link-visited-hover: var(--link-visited-hover);
+
   /* Border */
   --border-color-default: var(--border-default);
   --border-color-disabled: var(--border-disabled);

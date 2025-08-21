@@ -2,8 +2,7 @@
 
 import { Check, ChevronDown, ChevronsUpDownIcon, ChevronUp } from 'lucide-react';
 import { Select as SelectPrimitive } from 'radix-ui';
-import type { ComponentProps, ElementRef, RefObject } from 'react';
-import { Fragment } from 'react';
+import type { ComponentProps, RefObject } from 'react';
 import type { VariantProps } from 'tailwind-variants';
 
 import { cn, tv } from '@/lib/utils/classnames';
@@ -86,10 +85,10 @@ const SelectContent = ({
   className,
   children,
   position,
-  viewportRef,
+  virtualRef,
   ...props
 }: ComponentProps<typeof SelectPrimitive.Content> &
-  VariantProps<typeof selectVariants> & { viewportRef?: RefObject<HTMLDivElement> }) => {
+  VariantProps<typeof selectVariants> & { virtualRef?: RefObject<HTMLDivElement> }) => {
   const { content, viewport } = selectVariants({ position });
 
   return (
@@ -102,7 +101,7 @@ const SelectContent = ({
       >
         <SelectScrollUpButton />
         <SelectPrimitive.Viewport
-          ref={viewportRef}
+          ref={virtualRef}
           className={cn(viewport({ position }), 'overflow-auto')}
         >
           {children}
@@ -133,7 +132,7 @@ const SelectItem = ({ className, children, ...props }: ComponentProps<typeof Sel
     <SelectPrimitive.Item
       data-slot="select-item"
       className={cn(
-        'flex w-full cursor-pointer select-none items-center gap-2 rounded-sm py-1.5 text-sm outline-hidden',
+        'flex w-full cursor-pointer select-none items-center gap-2 rounded-sm p-1.5 text-sm outline-hidden',
         'focus:bg-neutral-subtle',
         'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
         className,

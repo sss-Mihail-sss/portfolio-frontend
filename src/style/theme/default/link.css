@@ -1,10 +1,15 @@
 :root {
   --link: #295EFF;
-  --link-fover: #1D42B3;
-  --link-press: #17348C;
-  --link-disabled: #7189A7;
+  --link-hover: #1D42B3;
+
+  --link-visited: #5E4DB2;
+  --link-visited-hover: #352C63;
 }
 
 .dark {
+  --link: #579DFF;
+  --link-hover: #85B8FF;
 
+  --link-visited: #B8ACF6;
+  --link-visited-hover: #DFD8FD;
 }

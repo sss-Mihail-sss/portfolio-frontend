@@ -35,9 +35,10 @@ const ForgotPassword = () => {
 
   const virtualCountries = useVirtualizer({
     count: countries.length,
-    getScrollElement: () => virtualizedRef,
+    getScrollElement: () => virtualizedRef.current,
     estimateSize: () => 40,
   });
+  const virtualItems = virtualCountries.getVirtualItems();
 
   async function onSubmit(values: ForgotPasswordSchema) {
     mutate(values, {
@@ -113,30 +114,31 @@ const ForgotPassword = () => {
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent
+                      virtualRef={virtualizedRef}
                       position="popper"
-                      viewportRef={virtualizedRef}
                     >
                       <div
-                        style={{ height: `${virtualCountries.getTotalSize()}px` }}
-                        className="relative w-full"
+                        style={{
+                          height: virtualCountries.getTotalSize(),
+                          position: 'relative',
+                          width: '100%',
+                        }}
                       >
-                        {virtualCountries.getVirtualItems().map((item) => {
-                          const country = countries[item.index];
-
-                          return (
-                            <SelectItem
-                              className="absolute top-0 left-0 w-full"
-                              style={{
-                                height: `${item.size}px`,
-                                transform: `translateY(${item.start}px)`,
-                              }}
-                              key={item.key}
-                              value={country}
-                            >
-                              {country}
-                            </SelectItem>
-                          );
-                        })}
+                        {virtualItems.map((virtualRow) => (
+                          <div
+                            key={virtualRow.key}
+                            style={{
+                              position: 'absolute',
+                              top: 0,
+                              left: 0,
+                              width: '100%',
+                              height: `${virtualRow.size}px`,
+                              transform: `translateY(${virtualRow.start}px)`,
+                            }}
+                          >
+                            <SelectItem value={countries[virtualRow.index]}>{countries[virtualRow.index]}</SelectItem>
+                          </div>
+                        ))}
                       </div>
                     </SelectContent>
                   </Select>

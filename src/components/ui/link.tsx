@@ -5,7 +5,11 @@ import { Link as ILink } from '@/config/i18n/navigation';
 import { cn, tv } from '@/lib/utils/classnames';
 
 const linkVariants = tv({
-  base: ['rounded-sm text-sm', 'focus-visible:outline-2 focus-visible:outline-focus focus-visible:outline-offset-2'],
+  base: [
+    'rounded-sm text-link text-sm hover:text-link-hover',
+    'visited:text-link-visited visited:hover:text-link-visited-hover',
+    'focus-visible:outline-2 focus-visible:outline-focus focus-visible:outline-offset-2',
+  ],
   variants: {
     variant: {
       default: '',

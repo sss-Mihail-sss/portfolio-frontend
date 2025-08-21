@@ -88,7 +88,12 @@ const LoginForm = () => {
           )}
         />
 
-        <Link href="/forgot-password">{t('forgot-password')}?</Link>
+        <Link
+          underline
+          href="/forgot-password"
+        >
+          {t('forgot-password')}?
+        </Link>
 
         <Button
           color="brand"
@@ -136,7 +141,13 @@ const LoginForm = () => {
         {/*</div>*/}
 
         <div className="text-center text-sm">
-          {t('no-account')} <Link href="/register">{t('sign-up')}</Link>
+          {t('no-account')}{' '}
+          <Link
+            underline
+            href="/register"
+          >
+            {t('sign-up')}
+          </Link>
         </div>
       </form>
     </Form>
