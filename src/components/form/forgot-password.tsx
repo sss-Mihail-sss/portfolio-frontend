@@ -1,13 +1,12 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useVirtualizer } from '@tanstack/react-virtual';
 import { ArrowLeftIcon, CircleAlertIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { getCountries } from 'react-phone-number-input';
 import { toast } from 'sonner';
+import { Virtualizer } from 'virtua';
 
 import { useForgotPasswordMutation } from '@/lib/mutations/auth';
 import { type ForgotPasswordSchema, forgotPasswordSchema } from '@/schemas/forgot-password';
@@ -20,25 +19,18 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 const ForgotPassword = () => {
   const t = useTranslations();
   const { mutate } = useForgotPasswordMutation();
-  const virtualizedRef = useRef<HTMLDivElement>();
 
   const form = useForm<ForgotPasswordSchema>({
     resolver: zodResolver(forgotPasswordSchema),
     defaultValues: {
       email: '',
       phone: '',
+      code: 'MD',
     },
   });
 
   const type = form.watch('type');
   const countries = getCountries();
-
-  const virtualCountries = useVirtualizer({
-    count: countries.length,
-    getScrollElement: () => virtualizedRef.current,
-    estimateSize: () => 40,
-  });
-  const virtualItems = virtualCountries.getVirtualItems();
 
   async function onSubmit(values: ForgotPasswordSchema) {
     mutate(values, {
@@ -106,42 +98,39 @@ const ForgotPassword = () => {
                   </Button>
                 </div>
                 <div className="flex justify-center">
-                  <Select
-                    defaultValue="MD"
-                    open
-                  >
-                    <SelectTrigger className="w-24 rounded-r-none">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent
-                      virtualRef={virtualizedRef}
-                      position="popper"
-                    >
-                      <div
-                        style={{
-                          height: virtualCountries.getTotalSize(),
-                          position: 'relative',
-                          width: '100%',
-                        }}
-                      >
-                        {virtualItems.map((virtualRow) => (
-                          <div
-                            key={virtualRow.key}
-                            style={{
-                              position: 'absolute',
-                              top: 0,
-                              left: 0,
-                              width: '100%',
-                              height: `${virtualRow.size}px`,
-                              transform: `translateY(${virtualRow.start}px)`,
-                            }}
-                          >
-                            <SelectItem value={countries[virtualRow.index]}>{countries[virtualRow.index]}</SelectItem>
-                          </div>
-                        ))}
-                      </div>
-                    </SelectContent>
-                  </Select>
+                  <FormField
+                    control={form.control}
+                    name="code"
+                    render={({ field }) => (
+                      <FormItem>
+                        <Select
+                          value={field.value}
+                          onValueChange={field.onChange}
+                        >
+                          <FormControl>
+                            <SelectTrigger className="w-24 rounded-r-none">
+                              <SelectValue />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent position="popper">
+                            <Virtualizer
+                              overscan={2}
+                              keepMounted={[countries.indexOf(field.value) ?? undefined]}
+                            >
+                              {countries.map((country) => (
+                                <SelectItem
+                                  key={country}
+                                  value={country}
+                                >
+                                  {country}
+                                </SelectItem>
+                              ))}
+                            </Virtualizer>
+                          </SelectContent>
+                        </Select>
+                      </FormItem>
+                    )}
+                  />
                   <FormControl>
                     <Input
                       className="w-full rounded-l-none"

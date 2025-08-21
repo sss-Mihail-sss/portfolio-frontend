@@ -2,7 +2,7 @@
 
 import { Check, ChevronDown, ChevronsUpDownIcon, ChevronUp } from 'lucide-react';
 import { Select as SelectPrimitive } from 'radix-ui';
-import type { ComponentProps, RefObject } from 'react';
+import type { ComponentProps } from 'react';
 import type { VariantProps } from 'tailwind-variants';
 
 import { cn, tv } from '@/lib/utils/classnames';
@@ -70,7 +70,10 @@ const SelectTrigger = ({ className, children, ...props }: ComponentProps<typeof 
   return (
     <SelectPrimitive.Trigger
       data-slot="select-trigger"
-      className={cn('flex items-center justify-between gap-2 rounded-md border bg-input p-3 text-label', className)}
+      className={cn(
+        'flex items-center justify-between gap-2 rounded-md border bg-input p-3 text-sm outline-focus focus-visible:outline-2 focus-visible:outline-offset-2',
+        className,
+      )}
       {...props}
     >
       {children}
@@ -85,10 +88,8 @@ const SelectContent = ({
   className,
   children,
   position,
-  virtualRef,
   ...props
-}: ComponentProps<typeof SelectPrimitive.Content> &
-  VariantProps<typeof selectVariants> & { virtualRef?: RefObject<HTMLDivElement> }) => {
+}: ComponentProps<typeof SelectPrimitive.Content> & VariantProps<typeof selectVariants>) => {
   const { content, viewport } = selectVariants({ position });
 
   return (
@@ -100,10 +101,7 @@ const SelectContent = ({
         {...props}
       >
         <SelectScrollUpButton />
-        <SelectPrimitive.Viewport
-          ref={virtualRef}
-          className={cn(viewport({ position }), 'overflow-auto')}
-        >
+        <SelectPrimitive.Viewport className={cn(viewport({ position }), 'overflow-auto')}>
           {children}
         </SelectPrimitive.Viewport>
         <SelectScrollDownButton />

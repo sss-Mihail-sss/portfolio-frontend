@@ -9,7 +9,7 @@ function Textarea({ className, ...props }: TextareaProps) {
     <textarea
       data-slot="textarea"
       className={cn(
-        'min-h-12 resize-none rounded-md border border-base-border-input bg-base-input px-2.5 py-2 text-label text-neutral-accent-fg outline-none transition',
+        'min-h-12 resize-none rounded-md border border-base-border-input bg-base-input px-2.5 py-2 text-neutral-accent-fg text-sm outline-none transition',
         'placeholder:text-base-placeholder-fg',
         'focus-visible:border-base-border-input-focus focus-visible:ring-2 focus-visible:ring-base-border-input-focus',
         'aria-invalid:border-negative-border-accent',
