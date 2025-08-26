@@ -103,10 +103,7 @@ const ForgotPassword = () => {
                     name="code"
                     render={({ field }) => (
                       <FormItem>
-                        <Select
-                          value={field.value}
-                          onValueChange={field.onChange}
-                        >
+                        <Select {...field}>
                           <FormControl>
                             <SelectTrigger className="w-24 rounded-r-none">
                               <SelectValue />
