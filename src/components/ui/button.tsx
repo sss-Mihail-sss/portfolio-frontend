@@ -139,11 +139,12 @@ const buttonVariants = tv({
 });
 
 type ButtonProps = {
-  asChild?: boolean;
+  asChild?: true;
+  isLoading?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement> &
   VariantProps<typeof buttonVariants>;
 
-const Button = ({ variant, size, color, className, asChild, ...props }: ButtonProps) => {
+const Button = ({ variant, size, color, className, isLoading, asChild, ...props }: ButtonProps) => {
   const Component = asChild ? Slot : 'button';
 
   return (

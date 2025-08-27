@@ -18,7 +18,12 @@ export default function Unauthorized() {
         color="brand"
         asChild
       >
-        <Link href="/login">{t('go-to-login')}</Link>
+        <Link
+          href="/login"
+          unstyled
+        >
+          {t('go-to-login')}
+        </Link>
       </Button>
     </main>
   );

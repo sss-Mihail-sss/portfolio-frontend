@@ -187,7 +187,12 @@ const RegisterForm = () => {
 
         <div className="text-center text-sm">
           {t('already-have-an-account')}?&nbsp;
-          <Link href="/login">{t('sign-in')}</Link>
+          <Link
+            href="/login"
+            underline
+          >
+            {t('sign-in')}
+          </Link>
         </div>
       </form>
     </Form>

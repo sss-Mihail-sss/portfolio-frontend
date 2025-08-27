@@ -13,20 +13,24 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/ui/input';
 import { Link } from '@/ui/link';
 import { Password, PasswordInput, PasswordToggle } from '@/ui/password';
+import { PhoneInput } from '@/ui/phone-input';
 import { toast } from '@/ui/sonner';
 
 const LoginForm = () => {
   const t = useTranslations();
   const { push } = useRouter();
-  const { mutate } = useSignInMutation();
+  const { mutate, isPending } = useSignInMutation();
 
   const form = useForm<SignInSchema>({
     resolver: zodResolver(signInSchema),
     defaultValues: {
-      identifier: '',
+      type: 'username',
+      username: '',
       password: '',
     },
   });
+
+  const type = form.watch('type');
 
   async function onSubmit(values: SignInSchema) {
     mutate(values, {
@@ -51,22 +55,62 @@ const LoginForm = () => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="mt-6 flex flex-col gap-6"
       >
-        <FormField
-          name="identifier"
-          control={form.control}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>{t('username')}</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="john"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        {type === 'username' ? (
+          <FormField
+            name="username"
+            key="username"
+            control={form.control}
+            render={({ field }) => (
+              <FormItem>
+                <div className="flex items-center justify-between">
+                  <FormLabel>{t('form.login.fields.username-or-email.label')}</FormLabel>
+                  <Button
+                    size="xs"
+                    variant="ghost"
+                    onClick={() => form.setValue('type', 'phone')}
+                  >
+                    {t('use-phone')}
+                  </Button>
+                </div>
+                <FormControl>
+                  <Input
+                    placeholder={t('form.login.fields.username-or-email.placeholder')}
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        ) : (
+          <FormField
+            control={form.control}
+            key="phone"
+            name="phone"
+            render={({ field }) => (
+              <FormItem>
+                <div className="flex items-center justify-between">
+                  <FormLabel>{t('form.login.fields.phone.label')}</FormLabel>
+                  <Button
+                    size="xs"
+                    variant="ghost"
+                    onClick={() => form.setValue('type', 'username')}
+                  >
+                    {t('use-username')}
+                  </Button>
+                </div>
+                <FormControl>
+                  <PhoneInput
+                    defaultCountry="MD"
+                    countries={['MD', 'RO', 'RU', 'UA']}
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        )}
 
         <FormField
           name="password"
@@ -78,7 +122,7 @@ const LoginForm = () => {
                 <FormControl>
                   <PasswordInput
                     {...field}
-                    placeholder="john@123"
+                    placeholder={t('form.login.fields.password.placeholder')}
                   />
                 </FormControl>
                 <PasswordToggle />
@@ -98,6 +142,7 @@ const LoginForm = () => {
         <Button
           color="brand"
           type="submit"
+          isLoading={isPending}
         >
           {t('submit')}
         </Button>

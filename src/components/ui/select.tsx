@@ -119,6 +119,7 @@ const SelectLabel = ({
 
   return (
     <SelectPrimitive.Label
+      data-slot="label"
       className={cn(label(), className)}
       {...props}
     />
@@ -137,13 +138,41 @@ const SelectItem = ({ className, children, ...props }: ComponentProps<typeof Sel
       )}
       {...props}
     >
-      <span className="size-3.5 shrink-0">
+      <span
+        data-slot="select-item-indicator"
+        className="size-3.5 shrink-0"
+      >
         <SelectPrimitive.ItemIndicator>
           <Check className="size-4" />
         </SelectPrimitive.ItemIndicator>
       </span>
-      <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
+      <SelectPrimitive.ItemText data-slot="select-item-text">{children}</SelectPrimitive.ItemText>
+      {/*{children}*/}
     </SelectPrimitive.Item>
+  );
+};
+
+const SelectIndicator = ({ className, children, ...props }: ComponentProps<typeof SelectPrimitive.ItemIndicator>) => {
+  return (
+    <SelectPrimitive.ItemIndicator
+      data-slot="select-item-indicator"
+      className={cn('', className)}
+      {...props}
+    >
+      <Check className="size-4" />
+    </SelectPrimitive.ItemIndicator>
+  );
+};
+
+const SelectText = ({ className, children, ...props }: ComponentProps<typeof SelectPrimitive.ItemText>) => {
+  return (
+    <SelectPrimitive.ItemText
+      data-slot="select-item-text"
+      className={cn('', className)}
+      {...props}
+    >
+      {children}
+    </SelectPrimitive.ItemText>
   );
 };
 
@@ -197,6 +226,8 @@ export {
   SelectContent,
   SelectLabel,
   SelectItem,
+  SelectText,
+  SelectIndicator,
   SelectSeparator,
   SelectScrollUpButton,
   SelectScrollDownButton,

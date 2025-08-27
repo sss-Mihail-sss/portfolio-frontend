@@ -11,5 +11,8 @@
   "username": "Username",
   "email": "Email",
   "phone": "Phone",
-  "username-or-email": "Username or email"
+  "username-or-email": "Username or email",
+  "use-phone": "Use phone",
+  "use-email": "Use email",
+  "use-username": "Use username"
 }

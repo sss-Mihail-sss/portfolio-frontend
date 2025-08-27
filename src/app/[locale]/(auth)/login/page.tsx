@@ -1,11 +1,15 @@
 import type { Metadata } from 'next';
+import type { Locale } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 
 import { LoginForm } from '@/components/form/login';
 
 export async function generateMetadata({ params }: PageProps<'/[locale]/login'>): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'meta.login' });
+  const t = await getTranslations({
+    locale: locale as Locale,
+    namespace: 'meta.login',
+  });
 
   return {
     title: t('title'),
@@ -14,13 +18,16 @@ export async function generateMetadata({ params }: PageProps<'/[locale]/login'>)
 
 export default async function Page({ params }: PageProps<'/[locale]/login'>) {
   const { locale } = await params;
-  const t = await getTranslations({ locale });
+  const t = await getTranslations({
+    locale: locale as Locale,
+    namespace: 'form.login',
+  });
 
   return (
     <>
       <div className="space-y-2 text-center">
-        <h1 className="font-bold text-heading-2xl">{t('form.login.title')}</h1>
-        <p className="text-secondary text-sm">{t('form.login.description')}</p>
+        <h1 className="font-bold text-heading-2xl">{t('title')}</h1>
+        <p className="text-secondary text-sm">{t('description')}</p>
       </div>
 
       <LoginForm />

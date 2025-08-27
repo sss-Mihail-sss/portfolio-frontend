@@ -27,13 +27,13 @@ const linkVariants = tv({
   },
 });
 
-type LinkProps = ComponentProps<typeof ILink> & VariantProps<typeof linkVariants>;
+type LinkProps = ComponentProps<typeof ILink> & VariantProps<typeof linkVariants> & { unstyled?: true };
 
-const Link = ({ variant, underline, className, ...props }: LinkProps) => {
+const Link = ({ variant, underline, unstyled, className, ...props }: LinkProps) => {
   return (
     <ILink
       data-slot="link"
-      className={cn(linkVariants({ variant, underline }), className)}
+      className={cn(!unstyled && linkVariants({ variant, underline }), className)}
       {...props}
     />
   );

@@ -3,12 +3,16 @@
     "title": "Login to your account",
     "description": "Enter your username and password to login",
     "fields": {
-      "username": {
-        "label": "Username",
+      "username-or-email": {
+        "label": "Username or email",
         "placeholder": "jognwick24"
       },
       "password": {
         "label": "Password",
+        "placeholder": "********"
+      },
+      "phone": {
+        "label": "Phone",
         "placeholder": "********"
       }
     },

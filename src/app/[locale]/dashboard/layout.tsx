@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { headers } from 'next/headers';
 import { unauthorized } from 'next/navigation';
+import type { Locale } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 
 import { Navbar } from '@/components/layouts/dashboard/navbar';
@@ -9,7 +10,7 @@ import { SidebarProvider } from '@/ui/sidebar';
 
 export async function generateMetadata({ params }: LayoutProps<'/[locale]/dashboard'>): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'meta.dashboard' });
+  const t = await getTranslations({ locale: locale as Locale, namespace: 'meta.dashboard' });
 
   return {
     title: t('title'),

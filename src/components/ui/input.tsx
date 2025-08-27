@@ -9,7 +9,7 @@ const Input = ({ className, ...props }: InputProps) => {
     <input
       data-slot="input"
       className={cn(
-        'rounded border-default p-3 text-sm ring ring-default ring-inset',
+        'rounded border-default bg-input p-3 text-sm ring ring-default ring-inset',
         'placeholder:text-muted',
         'outline-focus focus-visible:outline-2 focus-visible:outline-offset-2',
         'aria-invalid:ring-danger',
