@@ -2,57 +2,40 @@
 
 import { Avatar as AvatarPrimitive } from 'radix-ui';
 import type { ComponentProps } from 'react';
-import type { VariantProps } from 'tailwind-variants';
 
-import { cn, tv } from '@/lib/utils/classnames';
+import { cn } from '@/lib/utils/classnames';
 
-const avatarVariants = tv({
-  slots: {
-    root: 'relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full',
-    image: 'aspect-square h-full w-full',
-    fallback: 'flex h-full w-full items-center justify-center rounded-full bg-muted',
-  },
-});
+type AvatarRootProps = ComponentProps<typeof AvatarPrimitive.Root>;
 
-type AvatarProps = VariantProps<typeof avatarVariants>;
-
-type AvatarRootProps = ComponentProps<typeof AvatarPrimitive.Root> & AvatarProps;
-
-const Avatar = ({ ref, className, ...props }: AvatarRootProps) => {
-  const { root } = avatarVariants();
-
+const Avatar = ({ className, ...props }: AvatarRootProps) => {
   return (
     <AvatarPrimitive.Root
-      ref={ref}
-      className={cn(root(), className)}
+      data-slot="avatar"
+      className={cn('relative flex size-10 shrink-0 overflow-hidden rounded-full', className)}
       {...props}
     />
   );
 };
 
-type AvatarImageProps = ComponentProps<typeof AvatarPrimitive.Image> & AvatarProps;
+type AvatarImageProps = ComponentProps<typeof AvatarPrimitive.Image>;
 
-const AvatarImage = ({ ref, className, ...props }: AvatarImageProps) => {
-  const { image } = avatarVariants();
-
+const AvatarImage = ({ className, ...props }: AvatarImageProps) => {
   return (
     <AvatarPrimitive.Image
-      ref={ref}
-      className={cn(image(), className)}
+      data-slot="avatar-image"
+      className={cn('aspect-square h-full w-full', className)}
       {...props}
     />
   );
 };
 
-type AvatarFallbackProps = ComponentProps<typeof AvatarPrimitive.Fallback> & AvatarProps;
+type AvatarFallbackProps = ComponentProps<typeof AvatarPrimitive.Fallback>;
 
-const AvatarFallback = ({ ref, className, ...props }: AvatarFallbackProps) => {
-  const { fallback } = avatarVariants();
-
+const AvatarFallback = ({ className, ...props }: AvatarFallbackProps) => {
   return (
     <AvatarPrimitive.Fallback
-      ref={ref}
-      className={cn(fallback(), className)}
+      data-slot="avatar-fallback"
+      className={cn('flex h-full w-full items-center justify-center rounded-full bg-muted', className)}
       {...props}
     />
   );

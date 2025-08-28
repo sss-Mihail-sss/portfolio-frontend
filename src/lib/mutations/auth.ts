@@ -1,7 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
 
-import { requestOneTimeCode, signIn, signUp } from '@/lib/api/auth';
+import { confirmOneTimeCode, requestOneTimeCode, signIn, signUp } from '@/lib/api/auth';
 import type { ForgotPasswordSchema } from '@/schemas/forgot-password';
+import type { ForgotPasswordCodeSchema } from '@/schemas/forgot-password-code';
 import type { SignInSchema } from '@/schemas/sign-in';
 import type { SignUpSchema } from '@/schemas/sign-up';
 
@@ -20,5 +21,11 @@ export const useSignUpMutation = () => {
 export const useForgotPasswordMutation = () => {
   return useMutation({
     mutationFn: async (data: ForgotPasswordSchema) => requestOneTimeCode(data),
+  });
+};
+
+export const useForgotPasswordConfirmCodeMutation = () => {
+  return useMutation({
+    mutationFn: async (data: ForgotPasswordCodeSchema) => confirmOneTimeCode(data),
   });
 };

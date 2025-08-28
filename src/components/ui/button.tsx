@@ -7,7 +7,7 @@ import { Slot } from '@/ui/slot';
 const baseButtonVariants = tv({
   base: [
     'inline-flex cursor-pointer items-center justify-center',
-    'disabled:pointer-events-none disabled:bg-neutral disabled:text-on-disabled disabled:opacity-30',
+    'disabled:pointer-events-none disabled:text-on-disabled disabled:opacity-30',
     'outline-focus focus-visible:outline-2 focus-visible:outline-offset-2',
   ],
   variants: {
@@ -144,6 +144,7 @@ type ButtonProps = {
 } & ButtonHTMLAttributes<HTMLButtonElement> &
   VariantProps<typeof buttonVariants>;
 
+// TODO: add loading effect from isLoading
 const Button = ({ variant, size, color, className, isLoading, asChild, ...props }: ButtonProps) => {
   const Component = asChild ? Slot : 'button';
 
