@@ -10,14 +10,19 @@ type Props = {
   locale: Locale;
 };
 
-async function setLocale(lang: string) {
-  const locales = await import('zod/v4/locales');
-  z.config((locales[lang] ?? locales.nl)());
+async function loadLocale(lang: string) {
+  try {
+    const { default: locale } = await import(`zod/v4/locales/${lang}.js`);
+    z.config(locale());
+  } catch (error) {
+    // biome-ignore lint/suspicious/noConsole: Logging if locale from language not exist
+    console.log(`Failed load locale ${lang}`, error);
+  }
 }
 
 const ServerProviders = async ({ children, locale }: Props) => {
   const language = getLanguage(locale);
-  await setLocale(language);
+  await loadLocale(language);
 
   return (
     <NextIntlClientProvider>
