@@ -1,9 +1,6 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { addSeconds } from 'date-fns';
-import { ArrowLeftIcon } from 'lucide-react';
-import { useFormatter, useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 
 import { useCountdown } from '@/hooks/use-countdown';
@@ -11,13 +8,10 @@ import { useForgotPasswordConfirmCodeMutation } from '@/lib/mutations/auth';
 import { type ForgotPasswordCodeSchema, forgotPasswordCodeSchema } from '@/schemas/forgot-password-code';
 import { Button } from '@/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/ui/form';
-import { Link } from '@/ui/link';
 import { OneTimePassword } from '@/ui/one-time-password';
 import { toast } from '@/ui/sonner';
 
 const ForgotPasswordCode = () => {
-  const t = useTranslations();
-
   const { mutate, isPending } = useForgotPasswordConfirmCodeMutation();
 
   const form = useForm<ForgotPasswordCodeSchema>({
