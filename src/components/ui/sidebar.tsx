@@ -10,7 +10,8 @@ import { SidebarContext } from '@/context/sidebar';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useSidebar } from '@/hooks/use-sidebar';
 import { cn, tv } from '@/lib/utils/classnames';
-import { Button } from '@/ui/button';
+import { type Button } from '@/ui/button';
+import { IconButton } from '@/ui/icon-button';
 import { Separator } from '@/ui/separator';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '@/ui/sheet';
 import { Skeleton } from '@/ui/skeleton';
@@ -94,12 +95,12 @@ function SidebarTrigger({ className, onClick, ...props }: ComponentProps<typeof 
   const { toggleSidebar } = useSidebar();
 
   return (
-    <Button
+    <IconButton
       data-sidebar="trigger"
       data-slot="sidebar-trigger"
       variant="ghost"
-      size="sq-xs"
-      className={cn('h-7 w-7', className)}
+      size="sm"
+      className={cn(className)}
       onClick={(event) => {
         onClick?.(event);
         toggleSidebar();
@@ -108,7 +109,7 @@ function SidebarTrigger({ className, onClick, ...props }: ComponentProps<typeof 
     >
       <PanelLeftIcon />
       <span className="sr-only">Toggle Sidebar</span>
-    </Button>
+    </IconButton>
   );
 }
 

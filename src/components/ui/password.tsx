@@ -14,11 +14,12 @@ function Password({ children, ...props }: ComponentProps<typeof PasswordPrimitiv
   );
 }
 
-function PasswordInput({ className, ...props }: Omit<ComponentProps<typeof PasswordPrimitive.Input>, 'asChild'>) {
+function PasswordInput({ className, ...props }: ComponentProps<typeof PasswordPrimitive.Input>) {
   return (
     <PasswordPrimitive.Input
       {...props}
       className={cn('pr-10', className)}
+      // @ts-expect-error
       asChild
     >
       <Input className="w-full" />

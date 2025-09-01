@@ -12,19 +12,17 @@ import { cn } from '@/lib/utils/classnames';
 import { Input } from '@/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/ui/select';
 
-const PhoneInput = ({ className, ...props }: PhoneInputProps<typeof PhoneInput>) => {
-  return (
-    <PhoneNumber
-      className={cn('flex', className)}
-      countrySelectComponent={PhoneNumberSelect}
-      inputComponent={PhoneNumberInput}
-      flagComponent={PhoneNumberFlag}
-      addInternationalOption={false}
-      international
-      {...props}
-    />
-  );
-};
+const PhoneInput = ({ className, ...props }: PhoneInputProps<typeof PhoneNumber>) => (
+  <PhoneNumber
+    className={cn('flex', className)}
+    countrySelectComponent={PhoneNumberSelect}
+    inputComponent={PhoneNumberInput}
+    flagComponent={PhoneNumberFlag}
+    addInternationalOption={false}
+    international
+    {...props}
+  />
+);
 
 const PhoneNumberInput = ({ className, ...props }: ComponentProps<'input'>) => {
   return (
