@@ -1,7 +1,7 @@
 import { useCurrentEditor } from '@tiptap/react';
 import { AlignCenterIcon, AlignJustifyIcon, AlignLeftIcon, AlignRightIcon } from 'lucide-react';
 
-import { Button } from '@/ui/button';
+import { IconButton } from '@/ui/icon-button';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/ui/tooltip';
 
 function AlignLeft() {
@@ -14,14 +14,13 @@ function AlignLeft() {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <Button
-          size="sq-md"
+        <IconButton
           variant="ghost"
           onClick={() => editor.chain().focus().setTextAlign('left').run()}
           className={editor.isActive({ textAlign: 'left' }) ? 'bg-accent' : ''}
         >
           <AlignLeftIcon className="size-4" />
-        </Button>
+        </IconButton>
       </TooltipTrigger>
       <TooltipContent className="fill-primary">Align Left</TooltipContent>
     </Tooltip>
@@ -38,14 +37,13 @@ function AlignCenter() {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <Button
-          size="sq-md"
+        <IconButton
           variant="ghost"
           onClick={() => editor.chain().focus().setTextAlign('center').run()}
           className={editor.isActive({ textAlign: 'center' }) ? 'bg-accent' : ''}
         >
           <AlignCenterIcon className="size-4" />
-        </Button>
+        </IconButton>
       </TooltipTrigger>
       <TooltipContent className="fill-primary">Align Center</TooltipContent>
     </Tooltip>
@@ -62,14 +60,13 @@ function AlignRight() {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <Button
-          size="sq-md"
+        <IconButton
           variant="ghost"
           onClick={() => editor.chain().focus().setTextAlign('right').run()}
           className={editor.isActive({ textAlign: 'right' }) ? 'bg-accent' : ''}
         >
           <AlignRightIcon className="size-4" />
-        </Button>
+        </IconButton>
       </TooltipTrigger>
       <TooltipContent className="fill-primary">Align Right</TooltipContent>
     </Tooltip>
@@ -85,14 +82,13 @@ function AlignJustify() {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <Button
-          size="sq-md"
+        <IconButton
           variant="ghost"
           onClick={() => editor.chain().focus().setTextAlign('justify').run()}
           className={editor.isActive({ textAlign: 'justify' }) ? 'bg-accent' : ''}
         >
           <AlignJustifyIcon className="size-4" />
-        </Button>
+        </IconButton>
       </TooltipTrigger>
       <TooltipContent className="fill-primary">Align Justify</TooltipContent>
     </Tooltip>

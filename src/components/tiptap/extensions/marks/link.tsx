@@ -5,6 +5,7 @@ import { Link2Icon, Trash2Icon } from 'lucide-react';
 import { useState } from 'react';
 
 import { Button } from '@/ui/button';
+import { IconButton } from '@/ui/icon-button';
 import { Input } from '@/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/ui/popover';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/ui/tooltip';
@@ -22,13 +23,12 @@ function Link() {
       <Tooltip>
         <TooltipTrigger asChild>
           <PopoverTrigger asChild>
-            <Button
-              size="sq-md"
+            <IconButton
               variant="ghost"
               className={editor.isActive('link') ? 'bg-accent' : ''}
             >
               <Link2Icon className="size-4" />
-            </Button>
+            </IconButton>
           </PopoverTrigger>
         </TooltipTrigger>
         <TooltipContent className="fill-primary">Link</TooltipContent>
@@ -41,14 +41,13 @@ function Link() {
         />
         <div className="flex justify-between">
           <Button onClick={() => editor.chain().focus().setLink({ href: link }).run()}>Save</Button>
-          <Button
-            size="sq-md"
+          <IconButton
             color="danger"
             disabled={!editor.isActive('link')}
             onClick={() => editor.chain().focus().unsetLink().run()}
           >
             <Trash2Icon className="size-4" />
-          </Button>
+          </IconButton>
         </div>
       </PopoverContent>
     </Popover>
