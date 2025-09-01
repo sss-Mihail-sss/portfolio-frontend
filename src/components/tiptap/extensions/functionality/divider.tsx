@@ -1,7 +1,7 @@
 import { useCurrentEditor } from '@tiptap/react';
 import { MinusIcon } from 'lucide-react';
 
-import { Button } from '@/ui/button';
+import { IconButton } from '@/ui/icon-button';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/ui/tooltip';
 
 function Divider() {
@@ -14,13 +14,12 @@ function Divider() {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <Button
-          size="sq-sm"
+        <IconButton
           variant="ghost"
           onClick={() => editor.chain().focus().setHorizontalRule().run()}
         >
           <MinusIcon className="size-4" />
-        </Button>
+        </IconButton>
       </TooltipTrigger>
       <TooltipContent className="fill-primary">Divider</TooltipContent>
     </Tooltip>

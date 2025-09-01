@@ -3,7 +3,7 @@ import { HighlighterIcon } from 'lucide-react';
 
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { cn } from '@/lib/utils/classnames';
-import { Button } from '@/ui/button';
+import { IconButton } from '@/ui/icon-button';
 import { ToggleGroup, ToggleGroupItem } from '@/ui/toggle-group';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/ui/tooltip';
 
@@ -31,13 +31,12 @@ function Highlighter() {
       <Tooltip>
         <TooltipTrigger asChild>
           <PopoverTrigger asChild>
-            <Button
-              size="sq-sm"
+            <IconButton
               variant="ghost"
               // onClick={() => editor.chain().focus().toggleHighlight().run()}
             >
               <HighlighterIcon className="size-4" />
-            </Button>
+            </IconButton>
           </PopoverTrigger>
         </TooltipTrigger>
         <TooltipContent className="fill-primary">Highlight</TooltipContent>
