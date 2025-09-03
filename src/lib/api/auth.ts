@@ -26,7 +26,10 @@ export async function requestOneTimeCode(data: ForgotPasswordSchema) {
 }
 
 export async function confirmOneTimeCode(data: ForgotPasswordCodeSchema) {
-  return await fetcher<'OK'>('/auth/request-otp', {
+  return await fetcher<{
+    token: string;
+    expiredAt: string;
+  }>('/auth/validate-otp', {
     method: 'POST',
     body: JSON.stringify(data),
   });

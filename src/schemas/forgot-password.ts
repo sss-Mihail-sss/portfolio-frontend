@@ -3,12 +3,12 @@ import { z } from 'zod/v4-mini';
 
 export const forgotPasswordEmailSchema = z.object({
   type: z.literal('email'),
-  email: z.string().check(z.email()),
+  identifier: z.email(),
 });
 
 export const forgotPasswordPhoneSchema = z.object({
   type: z.literal('phone'),
-  phone: z.string().check(z.refine((value) => isValidPhoneNumber(value), 'Invalid phone number')),
+  identifier: z.string().check(z.refine(isValidPhoneNumber, 'Invalid phone number')),
 });
 
 export const forgotPasswordSchema = z.discriminatedUnion('type', [
@@ -16,4 +16,16 @@ export const forgotPasswordSchema = z.discriminatedUnion('type', [
   forgotPasswordPhoneSchema,
 ]);
 
+export const forgotPasswordCodeSchema = z.discriminatedUnion('type', [
+  z.object({
+    ...forgotPasswordEmailSchema.shape,
+    code: z.string().check(z.length(6)),
+  }),
+  z.object({
+    ...forgotPasswordPhoneSchema.shape,
+    code: z.string().check(z.length(6)),
+  }),
+]);
+
 export type ForgotPasswordSchema = z.infer<typeof forgotPasswordSchema>;
+export type ForgotPasswordCodeSchema = z.infer<typeof forgotPasswordCodeSchema>;
