@@ -1,28 +1,21 @@
-import { House, Search, User } from 'lucide-react';
+import { cookies } from 'next/headers';
 
+import { Navbar } from '@/components/layouts/navbar';
 import { Logo } from '@/components/logo';
-import { Link } from '@/ui/link';
+import { Button } from '@/ui/button';
 
 const Header = async () => {
+  const cookie = await cookies();
+  const isAuthenticated = cookie.get('accessToken');
+
   return (
-    <header className="sticky bottom-0 z-10 flex w-full items-center bg-card py-4 shadow md:top-0 md:h-20">
-      <div className="container-wrapper flex items-center justify-between">
+    <header className="sticky top-0 z-10 flex w-full items-center justify-center bg-card py-4">
+      <div className="container flex items-center justify-between">
         <Logo className="hidden md:block" />
 
-        <nav className="flex w-full items-center justify-between gap-4 md:w-auto md:justify-center md:[&>a]:underline-offset-4">
-          <Link href="/">
-            <House className="md:hidden" />
-            <span className="hidden md:block">Home</span>
-          </Link>
-          <Link href="/about">
-            <Search className="md:hidden" />
-            <span className="hidden md:block">About</span>
-          </Link>
-          <Link href="/contact">
-            <User className="md:hidden" />
-            <span className="hidden md:block">Contact</span>
-          </Link>
-        </nav>
+        <Navbar />
+
+        {isAuthenticated ? <Button>Logout</Button> : <Button>Login</Button>}
       </div>
     </header>
   );

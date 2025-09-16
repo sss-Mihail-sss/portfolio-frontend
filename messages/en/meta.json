@@ -1,6 +1,8 @@
 {
   "home": {
-    "title": "Home Page"
+    "title": "Home Page",
+    "description": "Home Page Description",
+    "keywords": ["Portfolio", "Next.js", "TypeScript", "Tailwind CSS", "React", "Tanstack Query", "Next Intl"]
   },
   "login": {
     "title": "Login Page"

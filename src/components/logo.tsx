@@ -11,7 +11,7 @@ const Logo = ({ className }: Props) => {
       href="/"
       className={cn('font-bold text-3xl uppercase tracking-widest', className)}
     >
-      Bear
+      LOGO
     </Link>
   );
 };

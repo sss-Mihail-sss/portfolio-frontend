@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { hasLocale } from 'next-intl';
 
@@ -43,7 +43,7 @@ export default async function Layout({ children, params }: LayoutProps<'/[locale
           // raleway.variable,
           inter.variable,
           // graduate.variable,
-          'flex min-h-dvh bg-surface font-inter text-base antialiased',
+          'flex min-h-dvh flex-col bg-surface font-inter text-base antialiased',
         )}
       >
         <ServerProviders locale={locale}>

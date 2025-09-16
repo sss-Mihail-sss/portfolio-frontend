@@ -402,6 +402,7 @@
       "includes": [
         "**/*/page.tsx",
         "**/*/layout.tsx",
+        "**/*/global-error.tsx",
         "**/*/error.tsx",
         "**/*/not-found.tsx",
         "**/*/forbidden.tsx",

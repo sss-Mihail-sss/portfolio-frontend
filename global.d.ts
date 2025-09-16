@@ -17,3 +17,7 @@ declare module 'next-intl' {
     Formats: typeof formats;
   }
 }
+
+declare module "lucide-react" {
+  export * from "lucide-react/dist/lucide-react.suffixed";
+}

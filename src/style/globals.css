@@ -155,6 +155,9 @@
 
   /* Foreground */
   --text-color-base: var(--foreground-base);
+  --text-color-base-subtle: var(--foreground-base-subtle);
+  --text-color-base-subtlest: var(--foreground-base-subtlest);
+
   --text-color-secondary: var(--foreground-secondary);
   --text-color-muted: var(--foreground-muted);
 
@@ -228,6 +231,10 @@
 
   .lucide {
     @apply size-4;
+  }
+
+  .lucide * {
+    vector-effect: non-scaling-stroke;
   }
 }
 

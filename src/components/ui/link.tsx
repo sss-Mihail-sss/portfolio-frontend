@@ -1,7 +1,7 @@
-import type { ComponentProps } from 'react';
-import type { VariantProps } from 'tailwind-variants';
+import { type ComponentProps } from 'react';
+import { type VariantProps } from 'tailwind-variants';
 
-import { Link as ILink } from '@/config/i18n/navigation';
+import { Link as LocaleLink } from '@/config/i18n/navigation';
 import { cn, tv } from '@/lib/utils/classnames';
 
 const linkVariants = tv({
@@ -27,11 +27,11 @@ const linkVariants = tv({
   },
 });
 
-type LinkProps = ComponentProps<typeof ILink> & VariantProps<typeof linkVariants> & { unstyled?: true };
+type LinkProps = ComponentProps<typeof LocaleLink> & VariantProps<typeof linkVariants> & { unstyled?: true };
 
 const Link = ({ variant, underline, unstyled, className, ...props }: LinkProps) => {
   return (
-    <ILink
+    <LocaleLink
       data-slot="link"
       className={cn(!unstyled && linkVariants({ variant, underline }), className)}
       {...props}

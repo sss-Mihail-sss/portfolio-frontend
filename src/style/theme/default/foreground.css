@@ -1,5 +1,8 @@
 :root {
   --foreground-base: oklch(0.1776 0 0);
+  --foreground-base-subtle: oklch(0.2776 0 0);
+  --foreground-base-subtlest: oklch(0.3776 0 0);
+
   --foreground-secondary: oklch(0.224 0 0);
   --foreground-muted: oklch(0.556 0 0);
   --foreground-disabled: #7189A7;
@@ -15,6 +18,9 @@
 
 .dark {
   --foreground-base: oklch(98.5% 0 0);
+  --foreground-base-subtle: oklch(90.5% 0 0);
+  --foreground-base-subtlest: oklch(81.5% 0 0);
+
   --foreground-secondary: oklch(0.97 0 0);
   --foreground-muted: oklch(0.708 0 0);
   --foreground-brand: #579DFF;

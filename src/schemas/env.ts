@@ -6,8 +6,6 @@ const envSchemaClient = z.object({
   googlePlaceKey: z.string().optional(),
 });
 
-const envSchemaServer = envSchemaClient.extend({
-  server: z.string().optional(),
-});
+const envSchemaServer = envSchemaClient.extend({});
 
 export { envSchemaClient, envSchemaServer };

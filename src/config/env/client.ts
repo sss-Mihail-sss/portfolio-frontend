@@ -1,7 +1,5 @@
 /** biome-ignore-all lint/correctness/noNodejsModules lint/style/noProcessEnv: env config file */
 
-'use client';
-
 import { envSchemaClient } from '@/schemas/env';
 
 export const envClient = envSchemaClient.parse({
