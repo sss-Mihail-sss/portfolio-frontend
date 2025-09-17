@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { ForgotPasswordStep1 } from '@/components/form/forgot-password/forgot-password-step-1';
 import { ForgotPasswordStep2 } from '@/components/form/forgot-password/forgot-password-step-2';
 import { ForgotPasswordStep3 } from '@/components/form/forgot-password/forgot-password-step-3';
-import type { ForgotPasswordSchema } from '@/schemas/forgot-password';
+import { type ForgotPasswordSchema } from '@/schemas/forgot-password';
 
 const ForgotPassword = () => {
   const [step, setStep] = useState(1);

@@ -1,5 +1,5 @@
 import { getCountryCallingCode } from 'libphonenumber-js';
-import type { ComponentProps } from 'react';
+import { type ComponentProps } from 'react';
 import {
   type Country,
   type FlagProps,

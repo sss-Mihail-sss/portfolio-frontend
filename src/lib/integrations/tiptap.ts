@@ -14,7 +14,7 @@ import Text from '@tiptap/extension-text';
 import TextAlign from '@tiptap/extension-text-align';
 import Underline from '@tiptap/extension-underline';
 import { CharacterCount, Placeholder } from '@tiptap/extensions';
-import type { AnyExtension, Extensions } from '@tiptap/react';
+import { type AnyExtension, type Extensions } from '@tiptap/react';
 
 export type ExtensionsEnum =
   | 'bold'

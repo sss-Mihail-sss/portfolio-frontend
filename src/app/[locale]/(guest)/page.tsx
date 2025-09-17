@@ -4,17 +4,25 @@ import { getMeta } from '@/lib/api/meta';
 
 export async function generateMetadata({ params }: PageProps<'/[locale]'>): Promise<Metadata> {
   const { locale } = await params;
-  const meta = await getMeta('/home');
+  try {
+    const meta = await getMeta('/home', locale);
 
-  if (meta.error) {
+    if (meta.error) {
+      return {
+        title: 'Home Page',
+        description: 'Welcome to the home page',
+        keywords: ['Mihail', 'mihai', 'Portfolio'],
+      };
+    }
+
+    return meta.data;
+  } catch (_) {
     return {
       title: 'Home Page',
       description: 'Welcome to the home page',
       keywords: ['Mihail', 'mihai', 'Portfolio'],
     };
   }
-
-  return meta.data;
 }
 
 export default async function Page() {

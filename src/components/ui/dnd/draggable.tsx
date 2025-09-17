@@ -1,8 +1,8 @@
 'use client';
 
-import type { UseDraggableInput } from '@dnd-kit/react';
+import { type UseDraggableInput } from '@dnd-kit/react';
 import { useDraggable } from '@dnd-kit/react';
-import type { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
 import { cn, tv } from '@/lib/utils/classnames';
 

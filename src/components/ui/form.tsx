@@ -12,7 +12,7 @@ import {
 } from 'react-hook-form';
 
 import { cn } from '@/lib/utils/classnames';
-import type { LabelProps } from '@/ui/label';
+import { type LabelProps } from '@/ui/label';
 import { Label } from '@/ui/label';
 import { Slot } from '@/ui/slot';
 

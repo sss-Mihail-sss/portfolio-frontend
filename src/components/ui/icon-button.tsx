@@ -1,5 +1,5 @@
-import type { ButtonHTMLAttributes } from 'react';
-import type { VariantProps } from 'tailwind-variants';
+import { type ButtonHTMLAttributes } from 'react';
+import { type VariantProps } from 'tailwind-variants';
 
 import { cn, tv } from '@/lib/utils/classnames';
 import { baseButtonVariants } from '@/ui/button';

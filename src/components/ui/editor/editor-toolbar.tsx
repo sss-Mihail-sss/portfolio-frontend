@@ -6,7 +6,7 @@ import { Code } from '@/components/tiptap/extensions/marks/code';
 import { Bold, Italic, Strike, Underline } from '@/components/tiptap/extensions/marks/formatting';
 import { HeadingSelect } from '@/components/tiptap/extensions/marks/heading';
 import { Link } from '@/components/tiptap/extensions/marks/link';
-import type { ExtensionsEnum } from '@/lib/integrations/tiptap';
+import { type ExtensionsEnum } from '@/lib/integrations/tiptap';
 
 type Props = {
   extensions?: ExtensionsEnum[];

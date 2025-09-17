@@ -2,7 +2,7 @@
 
 import { XIcon } from 'lucide-react';
 import { Dialog as SheetPrimitive } from 'radix-ui';
-import type { ComponentProps } from 'react';
+import { type ComponentProps } from 'react';
 
 import { cn } from '@/lib/utils/classnames';
 

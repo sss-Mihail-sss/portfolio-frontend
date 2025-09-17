@@ -1,6 +1,6 @@
 import { EyeClosedIcon, EyeIcon } from 'lucide-react';
 import { unstable_PasswordToggleField as PasswordPrimitive } from 'radix-ui';
-import type { ComponentProps } from 'react';
+import { type ComponentProps } from 'react';
 
 import { cn } from '@/lib/utils/classnames';
 import { IconButton } from '@/ui/icon-button';

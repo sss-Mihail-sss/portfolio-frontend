@@ -1,59 +1,105 @@
-import { Link } from '@/ui/link';
+'use client';
+
 import {
   NavigationMenu,
   NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from '@/ui/navigation-menu';
+} from '@/ui/base-ui/navigation-menu';
+import { Link } from '@/ui/link';
 
 const Navbar = () => {
   return (
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuLink asChild>
-            <Link
-              unstyled
-              href="/"
-            >
-              Home
-            </Link>
+          <NavigationMenuLink
+            render={
+              <Link
+                unstyled
+                href="/"
+              />
+            }
+          >
+            Home
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuTrigger>Categories</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <NavigationMenuLink>test</NavigationMenuLink>
-            <NavigationMenuLink>test</NavigationMenuLink>
-            <NavigationMenuLink>test</NavigationMenuLink>
-            <NavigationMenuLink>test</NavigationMenuLink>
-            <NavigationMenuLink>test</NavigationMenuLink>
+            <ul className="grid list-none grid-cols-1 xs:grid-cols-[12rem_12rem] gap-0">
+              <li>
+                <NavigationMenuLink>Link 1</NavigationMenuLink>
+              </li>
+              <li>
+                <NavigationMenuLink>Link 2</NavigationMenuLink>
+              </li>
+              <li>
+                <NavigationMenuLink>Link 3</NavigationMenuLink>
+              </li>
+              <li>
+                <NavigationMenuLink>Link 4</NavigationMenuLink>
+              </li>
+              <li>
+                <NavigationMenuLink>Link 5</NavigationMenuLink>
+              </li>
+              <li>
+                <NavigationMenuLink>Link 6</NavigationMenuLink>
+              </li>
+            </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuLink asChild>
-            <Link
-              unstyled
-              href="/about"
-            >
-              About
-            </Link>
+          <NavigationMenuTrigger>Categories</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid list-none grid-cols-1 xs:grid-cols-[12rem_12rem] gap-0">
+              <li>
+                <NavigationMenuLink>Link 1</NavigationMenuLink>
+              </li>
+              <li>
+                <NavigationMenuLink>Link 2</NavigationMenuLink>
+              </li>
+              <li>
+                <NavigationMenuLink>Link 3</NavigationMenuLink>
+              </li>
+              <li>
+                <NavigationMenuLink>Link 4</NavigationMenuLink>
+              </li>
+              <li>
+                <NavigationMenuLink>Link 5</NavigationMenuLink>
+              </li>
+              <li>
+                <NavigationMenuLink>Link 6</NavigationMenuLink>
+              </li>
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink
+            render={
+              <Link
+                unstyled
+                href="/about"
+              />
+            }
+          >
+            About
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuLink asChild>
-            <Link
-              unstyled
-              href="/contact"
-            >
-              Contact
-            </Link>
+          <NavigationMenuLink
+            render={
+              <Link
+                unstyled
+                href="/contact"
+              />
+            }
+          >
+            Contact
           </NavigationMenuLink>
         </NavigationMenuItem>
-        <NavigationMenuIndicator />
       </NavigationMenuList>
     </NavigationMenu>
   );

@@ -2,7 +2,7 @@
 
 import { EditorContent, EditorContext, type JSONContent, type UseEditorOptions, useEditor } from '@tiptap/react';
 
-import type { ExtensionsEnum } from '@/lib/integrations/tiptap';
+import { type ExtensionsEnum } from '@/lib/integrations/tiptap';
 import { configureExtensions } from '@/lib/integrations/tiptap';
 import { cn } from '@/lib/utils/classnames';
 import { EditorBubbleMenu } from '@/ui/editor/editor-bubble-menu';

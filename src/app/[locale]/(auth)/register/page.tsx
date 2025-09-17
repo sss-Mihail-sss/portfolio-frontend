@@ -1,5 +1,5 @@
-import type { Metadata } from 'next';
-import type { Locale } from 'next-intl';
+import { type Metadata } from 'next';
+import { type Locale } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 
 import { RegisterForm } from '@/components/form/register';

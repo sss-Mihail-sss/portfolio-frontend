@@ -1,5 +1,5 @@
 import { ChevronRight, MoreHorizontal } from 'lucide-react';
-import type { ComponentProps } from 'react';
+import { type ComponentProps } from 'react';
 
 import { cn } from '@/lib/utils/classnames';
 import { Link } from '@/ui/link';

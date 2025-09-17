@@ -1,4 +1,4 @@
-import type { ConfigExtension, DefaultClassGroupIds, DefaultThemeGroupIds } from 'tailwind-merge';
+import { type ConfigExtension, type DefaultClassGroupIds, type DefaultThemeGroupIds } from 'tailwind-merge';
 
 export const tailwindConfig: ConfigExtension<DefaultClassGroupIds, DefaultThemeGroupIds> = {
   extend: {

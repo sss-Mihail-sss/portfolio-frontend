@@ -1,7 +1,7 @@
 /** biome-ignore-all lint/correctness/noUnusedFunctionParameters: need refactor */
 'use client';
 
-import type { ToastT } from 'sonner';
+import { type ToastT } from 'sonner';
 import { toast as sonnerToast } from 'sonner';
 
 import { cn, tv } from '@/lib/utils/classnames';

@@ -1,7 +1,7 @@
 'use client';
 
 import { useId, useState } from 'react';
-import type { VariantProps } from 'tailwind-variants';
+import { type VariantProps } from 'tailwind-variants';
 
 import { Button, buttonVariants } from '@/ui/button';
 import { Input } from '@/ui/input';

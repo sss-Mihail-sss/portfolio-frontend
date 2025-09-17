@@ -1,8 +1,8 @@
 'use client';
 
-import type { UseDroppableInput } from '@dnd-kit/react';
+import { type UseDroppableInput } from '@dnd-kit/react';
 import { useDroppable } from '@dnd-kit/react';
-import type { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
 import { cn, tv } from '@/lib/utils/classnames';
 

@@ -2,8 +2,8 @@
 
 import { Check, ChevronDown, ChevronsUpDownIcon, ChevronUp } from 'lucide-react';
 import { Select as SelectPrimitive } from 'radix-ui';
-import type { ComponentProps } from 'react';
-import type { VariantProps } from 'tailwind-variants';
+import { type ComponentProps } from 'react';
+import { type VariantProps } from 'tailwind-variants';
 
 import { cn, tv } from '@/lib/utils/classnames';
 

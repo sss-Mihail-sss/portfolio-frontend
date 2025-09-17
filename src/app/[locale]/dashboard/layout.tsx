@@ -1,7 +1,7 @@
-import type { Metadata } from 'next';
+import { type Metadata } from 'next';
 import { headers } from 'next/headers';
 import { unauthorized } from 'next/navigation';
-import type { Locale } from 'next-intl';
+import { type Locale } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 
 import { Navbar } from '@/components/layouts/dashboard/navbar';

@@ -1,6 +1,6 @@
 import { type Locale, NextIntlClientProvider } from 'next-intl';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
-import type { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
 type Props = {
   children: ReactNode;

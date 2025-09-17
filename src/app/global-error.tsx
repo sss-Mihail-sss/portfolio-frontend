@@ -11,6 +11,8 @@ type Props = {
 
 export default function GlobalError({ error, reset }: Props) {
   useEffect(() => {
+    // TODO: Log the error to an error reporting service
+    // biome-ignore lint/suspicious/noConsole: Need to log the error
     console.error(error);
   }, [error]);
 

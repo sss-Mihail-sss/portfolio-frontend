@@ -2,7 +2,7 @@ import { BubbleMenu } from '@tiptap/react/menus';
 
 import { Code } from '@/components/tiptap/extensions/marks/code';
 import { Bold, Italic, Strike, Underline } from '@/components/tiptap/extensions/marks/formatting';
-import type { ExtensionsEnum } from '@/lib/integrations/tiptap';
+import { type ExtensionsEnum } from '@/lib/integrations/tiptap';
 
 type Props = {
   extensions?: ExtensionsEnum[];

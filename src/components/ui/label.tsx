@@ -1,5 +1,5 @@
 import { Label as LabelPrimitive } from 'radix-ui';
-import type { ComponentProps } from 'react';
+import { type ComponentProps } from 'react';
 
 import { cn } from '@/lib/utils/classnames';
 

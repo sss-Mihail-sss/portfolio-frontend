@@ -1,9 +1,9 @@
 'use client';
 
 import { ToggleGroup as ToggleGroupPrimitive } from 'radix-ui';
-import type { ComponentProps } from 'react';
+import { type ComponentProps } from 'react';
 import { createContext, useContext } from 'react';
-import type { VariantProps } from 'tailwind-variants';
+import { type VariantProps } from 'tailwind-variants';
 
 import { cn, tv } from '@/lib/utils/classnames';
 
