@@ -1,5 +1,4 @@
-import { type UseSortableInput } from '@dnd-kit/react/sortable';
-import { useSortable } from '@dnd-kit/react/sortable';
+import { type UseSortableInput, useSortable } from '@dnd-kit/react/sortable';
 import { type ReactNode } from 'react';
 
 import { cn, tv } from '@/lib/utils/classnames';

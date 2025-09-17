@@ -1,5 +1,8 @@
 import { type Metadata } from 'next';
+import { type Locale } from 'next-intl';
 
+import { getPathname } from '@/config/i18n/navigation';
+import { locales } from '@/config/i18n/routing';
 import { getMeta } from '@/lib/api/meta';
 
 export async function generateMetadata({ params }: PageProps<'/[locale]'>): Promise<Metadata> {
@@ -21,6 +24,16 @@ export async function generateMetadata({ params }: PageProps<'/[locale]'>): Prom
       title: 'Home Page',
       description: 'Welcome to the home page',
       keywords: ['Mihail', 'mihai', 'Portfolio'],
+      alternates: {
+        canonical: getPathname({ href: '/', locale: locale as Locale }),
+        languages: locales.reduce(
+          (acc, l) => {
+            acc[locale] = getPathname({ href: '/', locale: l });
+            return acc;
+          },
+          {} as { [key: string]: string },
+        ),
+      },
     };
   }
 }

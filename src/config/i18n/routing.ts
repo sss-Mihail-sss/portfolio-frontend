@@ -17,6 +17,9 @@ export const routing = defineRouting({
 
     '/dashboard': '/dashboard',
 
+    '/jobs': '/jobs',
+    '/jobs/category/[slug]': '/jobs/category/[slug]',
+
     '/user-management': '/user-management',
     '/user-management/users': '/user-management/users',
     '/user-management/roles': '/user-management/roles',

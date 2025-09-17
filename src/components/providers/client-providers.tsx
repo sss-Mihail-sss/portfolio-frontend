@@ -6,6 +6,7 @@ import { type ReactNode, useEffect } from 'react';
 import { scan } from 'react-scan/all-environments';
 import { Toaster } from 'sonner';
 
+import { envClient } from '@/config/env/client';
 import { getQueryClient } from '@/lib/integrations/tanstack';
 
 type Props = {
@@ -17,7 +18,7 @@ const ClientProviders = ({ children }: Props) => {
 
   useEffect(() => {
     scan({
-      enabled: true,
+      enabled: !envClient.isProduction,
     });
   }, []);
 

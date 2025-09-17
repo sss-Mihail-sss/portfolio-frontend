@@ -1,8 +1,7 @@
 'use client';
 
 import { PanelLeftIcon } from 'lucide-react';
-import { type ComponentProps } from 'react';
-import { useCallback, useState } from 'react';
+import { type ComponentProps, useCallback, useState } from 'react';
 import { type VariantProps } from 'tailwind-variants';
 
 import { Link } from '@/config/i18n/navigation';

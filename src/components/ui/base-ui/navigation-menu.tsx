@@ -8,7 +8,7 @@ const NavigationMenu = ({ children, className, ...props }: ComponentProps<typeof
   return (
     <NavigationMenuPrimitive.Root
       data-slot="navigation-menu"
-      className={cn('group/navigation-menu relative z-10 flex max-w-max flex-1 items-center justify-center', className)}
+      className={cn('group/navigation-menu max-w-max p-1', className)}
       {...props}
     >
       {children}
@@ -20,7 +20,7 @@ const NavigationMenu = ({ children, className, ...props }: ComponentProps<typeof
           collisionAvoidance={{ side: 'none' }}
         >
           <NavigationMenuPopup>
-            <NavigationMenuArrow>t</NavigationMenuArrow>
+            <NavigationMenuArrow>Arrow</NavigationMenuArrow>
             <NavigationMenuPrimitive.Viewport className="relative h-full w-full overflow-hidden" />
           </NavigationMenuPopup>
         </NavigationMenuPositioner>
@@ -31,7 +31,7 @@ const NavigationMenu = ({ children, className, ...props }: ComponentProps<typeof
 
 const navigationMenuPositionerVariants = tv({
   base: [
-    "transition duration-500 before:absolute before:content-['']",
+    "transition duration-500 ease-in-navigation before:absolute before:content-['']",
     'h-(--positioner-height) w-(--positioner-width) max-w-(--available-width)',
   ],
   variants: {
@@ -84,7 +84,7 @@ const navigationMenuArrowVariants = tv({
     'data-[side=bottom]:top-[-8px]',
     'data-[side=left]:right-[-13px] data-[side=left]:rotate-90',
     'data-[side=right]:-rotate-90 data-[side=right]:left-[-13px]',
-    'data-[side=top]:bottom-[-8px] data-[side=top]:rotate-180'
+    'data-[side=top]:bottom-[-8px] data-[side=top]:rotate-180',
   ],
   variants: {
     side: {
@@ -92,9 +92,9 @@ const navigationMenuArrowVariants = tv({
       bottom: 'top-[-8px]',
       left: 'right-[-13px] rotate-90',
       right: '-rotate-90 left-[-13px]',
-    }
-  }
-})
+    },
+  },
+});
 
 const NavigationMenuArrow = ({ className, ...props }: ComponentProps<typeof NavigationMenuPrimitive.Arrow>) => {
   return (
@@ -110,7 +110,7 @@ const NavigationMenuList = ({ className, ...props }: ComponentProps<typeof Navig
   return (
     <NavigationMenuPrimitive.List
       data-slot="navigation-menu-list"
-      className={cn('group flex list-none items-center justify-center gap-2', className)}
+      className={cn('group flex gap-2', className)}
       {...props}
     />
   );
@@ -134,8 +134,8 @@ const NavigationMenuTrigger = ({
     <NavigationMenuPrimitive.Trigger
       data-slot="navigation-menu-trigger"
       className={cn(
-        'flex h-10 items-center justify-center gap-1.5 px-4 py-2',
-        'hover:bg-neutral-hover hover:text-base',
+        'flex h-10 items-center justify-center gap-1.5 rounded px-4 py-2 text-sm',
+        'hover:bg-neutral-subtle hover:text-base',
         'disabled:pointer-events-none disabled:opacity-50',
         'outline-focus focus-visible:outline-2 focus-visible:outline-offset-2',
         className,
@@ -154,7 +154,7 @@ const NavigationMenuContent = ({ className, ...props }: ComponentProps<typeof Na
       data-slot="navigation-menu-content"
       className={cn(
         // 'h-full w-full xs:w-max bg-overlay px-4 py-2 shadow-overlay',
-        'h-full w-full xs:w-max px-4 py-2',
+        'h-full max-h-(--available-height) w-full xs:w-max overflow-auto px-4 py-2',
         'transition duration-300',
         'data-[ending-style]:opacity-0 data-[starting-style]:opacity-0',
         'data-[starting-style]:data-[activation-direction=left]:translate-x-[-50%]',
@@ -185,8 +185,8 @@ const NavigationMenuLink = ({ className, ...props }: ComponentProps<typeof Navig
     <NavigationMenuPrimitive.Link
       data-slot="navigation-menu-icon"
       className={cn(
-        'flex h-10 items-center justify-center gap-1.5 px-4 py-2',
-        'hover:bg-neutral-hover hover:text-base',
+        'flex items-center gap-2 rounded px-4 py-2 text-sm',
+        'hover:bg-neutral-subtle hover:text-base',
         'disabled:pointer-events-none disabled:opacity-50',
         'outline-focus focus-visible:outline-2 focus-visible:outline-offset-2',
         className,
