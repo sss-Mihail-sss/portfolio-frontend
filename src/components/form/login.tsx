@@ -136,7 +136,7 @@ const LoginForm = () => {
           underline
           href="/forgot-password"
         >
-          {t('forgot-password')}?
+          {t('forgot-password')}
         </Link>
 
         <Button

@@ -1,5 +1,8 @@
 {
   "dashboard": "Dashboard",
   "storage": "Storage",
-  "folders": "Folders"
+  "folders": "Folders",
+  "processing-personal-data": "Processing of personal data",
+  "terms-and-conditions": "Terms and conditions",
+  "cookie-policy": "Cookie Policy"
 }

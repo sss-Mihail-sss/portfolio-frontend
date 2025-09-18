@@ -355,7 +355,10 @@ const Navbar = () => {
                         />
                       }
                     >
-                      <Icon className="size-6 shrink-0" />
+                      <Icon
+                        className="size-4 shrink-0 stroke-[1.5]"
+                        absoluteStrokeWidth
+                      />
                       <p className="font-medium">{item.label}</p>
                     </NavigationMenuLink>
                   </li>

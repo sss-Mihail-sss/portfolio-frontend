@@ -1,3 +1,22 @@
 {
-
+  "forgot-password": "Aţi uitat parola",
+  "already-have-an-account": "Already have an account",
+  "submit": "Trimite",
+  "reset-password": "Resetare parolă",
+  "back-to-login": "Înapoi la autentificare",
+  "login": "Autentificare",
+  "logout": "Deconectați-vă",
+  "or": "Sau",
+  "sign-in": "Autentificare",
+  "sign-up": "Înregistrează-te",
+  "no-account": "Nu aveți un cont?",
+  "username": "Nume de utilizator",
+  "email": "E-mail",
+  "phone": "Telefon",
+  "username-or-email": "Nume de utilizator sau e-mail",
+  "use-phone": "Folosește telefonul",
+  "use-email": "Folosește e-mailul",
+  "use-username": "Folosește numele de utilizator",
+  "code": "Cod",
+  "continue": "Continuă"
 }

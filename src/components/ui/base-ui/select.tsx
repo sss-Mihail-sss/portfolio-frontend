@@ -1,5 +1,5 @@
 import { Select as SelectPrimitive } from '@base-ui-components/react/select';
-import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from 'lucide-react';
+import { CheckIcon, ChevronUpIcon } from 'lucide-react';
 import { type ComponentProps } from 'react';
 
 import { cn } from '@/lib/utils/classnames';
@@ -13,21 +13,13 @@ const Select = (props: ComponentProps<typeof SelectPrimitive.Root>) => {
   );
 };
 
-const SelectTrigger = ({ children, className, ...props }: ComponentProps<typeof SelectPrimitive.Trigger>) => {
+const SelectTrigger = ({ children, ...props }: ComponentProps<typeof SelectPrimitive.Trigger>) => {
   return (
     <SelectPrimitive.Trigger
       data-slot="select-trigger"
-      className={cn(
-        'flex h-10 min-w-36 select-none items-center justify-between rounded border px-3 text-sm hover:bg-neutral-subtle',
-        'outline-focus focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-offset-1',
-        className,
-      )}
       {...props}
     >
       {children}
-      <SelectPrimitive.Icon>
-        <ChevronDownIcon />
-      </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
   );
 };
@@ -80,7 +72,7 @@ const SelectItem = ({ children, className, ...props }: ComponentProps<typeof Sel
       data-slot="select-item"
       className={cn(
         'flex cursor-default select-none items-center gap-2 rounded-sm p-2 text-sm',
-        'max-h-(--available-height) w-(--anchor-width) max-w-(--available-width)',
+        'max-h-(--available-height) max-w-(--available-width)',
         'pointer-coarse:text-[0.925rem]',
         'outline-focus focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-offset-1',
         'data-[highlighted]:relative data-[highlighted]:z-0 data-[highlighted]:text-sm data-[highlighted]:before:absolute data-[highlighted]:before:inset-0 data-[highlighted]:before:z-[-1] data-[highlighted]:before:rounded-sm data-[highlighted]:before:bg-neutral-subtle',

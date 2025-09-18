@@ -1,0 +1,74 @@
+{
+  "login": {
+    "title": "Conectați-vă la contul dvs.",
+    "description": "Introduceți numele de utilizator și parola pentru a vă autentifica",
+    "fields": {
+      "username-or-email": {
+        "label": "Nume de utilizator sau e-mail",
+        "placeholder": "johnwick24"
+      },
+      "password": {
+        "label": "Parola",
+        "placeholder": "********"
+      },
+      "phone": {
+        "label": "Telefon",
+        "placeholder": "********"
+      }
+    },
+    "social": {
+      "google": "Conectați-vă cu Google",
+      "facebook": "Conectați-vă cu Facebook",
+      "github": "Conectați-vă cu GitHub",
+      "linkedin": "Conectați-vă cu LinkedIn"
+    }
+  },
+  "register": {
+    "title": "Creează cont",
+    "description": "Introduceți numele de utilizator mai jos pentru a vă conecta la contul dvs.",
+    "fields": {
+      "username": {
+        "label": "Nume de utilizator",
+        "placeholder": "jognwick24"
+      },
+      "password": {
+        "label": "Parola",
+        "placeholder": "********"
+      },
+      "confirm-password": {
+        "label": "Confirmați parola",
+        "placeholder": "********"
+      }
+    },
+    "social": {
+      "google": "Conectați-vă cu Google",
+      "facebook": "Conectați-vă cu Facebook",
+      "github": "Conectați-vă cu GitHub",
+      "linkedin": "Conectați-vă cu LinkedIn"
+    }
+  },
+  "forgot-password": {
+    "title": "Aţi uitat parola",
+    "description": "Nicio grijă, îți vom trimite instrucțiuni de resetare.",
+    "fields": {
+      "username": {
+        "label": "Nume de utilizator",
+        "placeholder": "jognwick24"
+      },
+      "password": {
+        "label": "Parola",
+        "placeholder": "********"
+      },
+      "confirm-password": {
+        "label": "Confirmați parola",
+        "placeholder": "********"
+      }
+    },
+    "social": {
+      "google": "Conectați-vă cu Google",
+      "facebook": "Conectați-vă cu Facebook",
+      "github": "Conectați-vă cu GitHub",
+      "linkedin": "Conectați-vă cu LinkedIn"
+    }
+  }
+}

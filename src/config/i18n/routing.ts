@@ -24,6 +24,24 @@ export const routing = defineRouting({
     '/user-management/users': '/user-management/users',
     '/user-management/roles': '/user-management/roles',
     '/user-management/permissions': '/user-management/permissions',
+
+    '/terms-and-conditions': {
+      ru: '/usloviya-i-polozheniya',
+      ro: '/termeni-si-conditii',
+      en: '/terms-and-conditions',
+    },
+
+    '/processing-of-personal-data': {
+      ru: '/obrabotka-personalnykh-dannykh',
+      ro: '/prelucrarea-datelor-cu-caracter-personal',
+      en: '/processing-of-personal-data',
+    },
+
+    '/cookie-policy': {
+      ru: '/politica-de-utilizare-cookie-uri',
+      ro: '/politika-ispolzovaniya-faylov-cookie',
+      en: '/cookie-policy',
+    },
   },
 });
 

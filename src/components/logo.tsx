@@ -8,6 +8,7 @@ type Props = {
 const Logo = ({ className }: Props) => {
   return (
     <Link
+      unstyled
       href="/"
       className={cn('font-bold text-3xl uppercase tracking-widest', className)}
     >

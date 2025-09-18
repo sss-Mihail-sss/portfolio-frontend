@@ -35,13 +35,13 @@
   --background-input-press: oklch(0.4131 0 0);
 
   /* Background - Brand */
-  --background-brand-subtle: #E9F2FF;
+  --background-brand-subtle: oklch(82.6% 0.245 262.881);
   --background-brand: oklch(54.6% 0.245 262.881);
   --background-brand-hover: oklch(48.8% 0.243 264.376);
   --background-brand-press: oklch(42.4% 0.199 265.638);
 
   /* Background - Info */
-  --background-info-subtle: #DFE7FF;
+  --background-info-subtle: oklch(70.7% 0.165 254.624);
   --background-info: oklch(54.6% .245 262.881);
   --background-info-hover: oklch(48.8% 0.243 264.376);
   --background-info-press: oklch(42.4% 0.199 265.638);
@@ -90,7 +90,7 @@
   --background-neutral-press: oklch(0.4131 0 0);
 
   /* Background - Brand */
-  --background-brand-subtle: #E9F2FF;
+  --background-brand-subtle: oklch(70.7% 0.165 254.624);
   --background-brand: oklch(54.6% 0.245 262.881);
   --background-brand-hover: oklch(48.8% 0.243 264.376);
   --background-brand-press: oklch(42.4% 0.199 265.638);

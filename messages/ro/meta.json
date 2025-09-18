@@ -1,5 +1,19 @@
 {
   "home": {
-    "title": "Pagina principală"
+    "title": "Home Page",
+    "description": "Home Page Description",
+    "keywords": ["Portfolio", "Next.js", "TypeScript", "Tailwind CSS", "React", "Tanstack Query", "Next Intl"]
+  },
+  "login": {
+    "title": "Pagina de autentificare"
+  },
+  "dashboard": {
+    "title": "Dashboard Page"
+  },
+  "register": {
+    "title": "Register Page"
+  },
+  "forgot-password": {
+    "title": "Forgot Password Page"
   }
 }

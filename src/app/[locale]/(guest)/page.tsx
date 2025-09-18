@@ -1,6 +1,7 @@
 import { type Metadata } from 'next';
 import { type Locale } from 'next-intl';
 
+import { Hero } from '@/components/hero';
 import { getPathname } from '@/config/i18n/navigation';
 import { locales } from '@/config/i18n/routing';
 import { getMeta } from '@/lib/api/meta';
@@ -39,5 +40,5 @@ export async function generateMetadata({ params }: PageProps<'/[locale]'>): Prom
 }
 
 export default async function Page() {
-  return <h1>main page</h1>;
+  return <Hero />;
 }

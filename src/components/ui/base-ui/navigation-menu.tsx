@@ -61,7 +61,7 @@ const NavigationMenuPositioner = ({
 
 const navigationMenuPopupVariants = tv({
   base: [
-    'relative rounded-lg bg-overlay text-neutral-subtlest shadow-overlay transition-all duration-500',
+    'relative rounded-lg bg-overlay text-muted shadow-overlay transition-all duration-500',
     'h-(--popup-height) w-(--popup-width) origin-(--transform-origin)',
     'data-[ending-style]:easing-[ease] data-[ending-style]:scale-90 data-[ending-style]:opacity-0 data-[ending-style]:duration-150',
     'data-[starting-style]:scale-90 data-[starting-style]:opacity-0',
@@ -116,10 +116,11 @@ const NavigationMenuList = ({ className, ...props }: ComponentProps<typeof Navig
   );
 };
 
-const NavigationMenuItem = (props: ComponentProps<typeof NavigationMenuPrimitive.Item>) => {
+const NavigationMenuItem = ({ className, ...props }: ComponentProps<typeof NavigationMenuPrimitive.Item>) => {
   return (
     <NavigationMenuPrimitive.Item
       data-slot="navigation-menu-item"
+      className={cn('flex h-10 items-center justify-center', className)}
       {...props}
     />
   );
@@ -134,7 +135,7 @@ const NavigationMenuTrigger = ({
     <NavigationMenuPrimitive.Trigger
       data-slot="navigation-menu-trigger"
       className={cn(
-        'flex h-10 items-center justify-center gap-1.5 rounded px-4 py-2 text-sm',
+        'flex items-center justify-center gap-1.5 rounded px-4 py-2 text-muted text-sm',
         'hover:bg-neutral-subtle hover:text-base',
         'disabled:pointer-events-none disabled:opacity-50',
         'outline-focus focus-visible:outline-2 focus-visible:outline-offset-2',
@@ -153,7 +154,6 @@ const NavigationMenuContent = ({ className, ...props }: ComponentProps<typeof Na
     <NavigationMenuPrimitive.Content
       data-slot="navigation-menu-content"
       className={cn(
-        // 'h-full w-full xs:w-max bg-overlay px-4 py-2 shadow-overlay',
         'h-full max-h-(--available-height) w-full xs:w-max overflow-auto px-4 py-2',
         'transition duration-300',
         'data-[ending-style]:opacity-0 data-[starting-style]:opacity-0',
@@ -185,7 +185,7 @@ const NavigationMenuLink = ({ className, ...props }: ComponentProps<typeof Navig
     <NavigationMenuPrimitive.Link
       data-slot="navigation-menu-icon"
       className={cn(
-        'flex items-center gap-2 rounded px-4 py-2 text-sm',
+        'flex items-center gap-1.5 rounded px-4 py-2 text-muted text-sm',
         'hover:bg-neutral-subtle hover:text-base',
         'disabled:pointer-events-none disabled:opacity-50',
         'outline-focus focus-visible:outline-2 focus-visible:outline-offset-2',

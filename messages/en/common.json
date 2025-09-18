@@ -4,6 +4,8 @@
   "submit": "Submit",
   "reset-password": "Reset password",
   "back-to-login": "Back to log in",
+  "login": "Login",
+  "logout": "Logout",
   "or": "Or",
   "sign-in": "Sign in",
   "sign-up": "Sign up",

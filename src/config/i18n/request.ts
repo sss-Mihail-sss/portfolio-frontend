@@ -4,6 +4,14 @@ import { getRequestConfig } from 'next-intl/server';
 import { defaultLocale, locales } from '@/config/i18n/routing';
 import { getLanguage } from '@/lib/utils/i18n';
 
+const loadFile = async (language: string, filename: string): Promise<AbstractIntlMessages> => {
+  try {
+    return (await import(`../../../messages/${language}/${filename}`)).default;
+  } catch (_) {
+    return {};
+  }
+};
+
 export const formats: Formats = {
   dateTime: {
     'date-short': {
@@ -20,13 +28,13 @@ export default getRequestConfig(async ({ requestLocale }) => {
   const language = getLanguage(locale);
 
   const messages: AbstractIntlMessages = {
-    ...(await import(`../../../messages/${language}/common.json`)).default,
-    meta: (await import(`../../../messages/${language}/meta.json`)).default,
-    form: (await import(`../../../messages/${language}/form.json`)).default,
-    error: (await import(`../../../messages/${language}/error.json`)).default,
-    navigation: (await import(`../../../messages/${language}/navigation.json`)).default,
-    validation: (await import(`../../../messages/${language}/validation.json`)).default,
-    unauthorized: (await import(`../../../messages/${language}/unauthorized.json`)).default,
+    ...(await loadFile(language, 'common.json')),
+    meta: await loadFile(language, 'meta.json'),
+    form: await loadFile(language, 'form.json'),
+    error: await loadFile(language, 'error.json'),
+    navigation: await loadFile(language, 'navigation.json'),
+    validation: await loadFile(language, 'validation.json'),
+    unauthorized: await loadFile(language, 'unauthorized.json'),
   };
 
   return {

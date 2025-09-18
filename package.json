@@ -48,6 +48,7 @@
     "jotai": "^2.14.0",
     "libphonenumber-js": "^1.12.17",
     "lucide-react": "latest",
+    "match-sorter": "^8.1.0",
     "motion": "^12.23.14",
     "next": "^15.5.3",
     "next-intl": "^4.3.9",
@@ -69,8 +70,9 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.2.4",
+    "@faker-js/faker": "^10.0.0",
     "@tailwindcss/postcss": "^4.1.13",
-    "@types/node": "^24.5.1",
+    "@types/node": "^24.5.2",
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
     "postcss": "^8.5.6",
