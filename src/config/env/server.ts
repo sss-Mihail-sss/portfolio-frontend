@@ -2,10 +2,9 @@
 
 import 'server-only';
 
+import { envClient } from '@/config/env/client';
 import { envSchemaServer } from '@/schemas/env';
 
 export const envServer = envSchemaServer.parse({
-  isProduction: process.env.NODE_ENV === 'production',
-  apiUrl: process.env.NEXT_PUBLIC_API_URL,
-  webUrl: process.env.NEXT_PUBLIC_WEB_URL,
+  ...envClient,
 });
